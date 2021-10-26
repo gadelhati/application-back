@@ -1,0 +1,7 @@
+body {
+    background-image: url(manutencao.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: 600px 300px;//cover
+}

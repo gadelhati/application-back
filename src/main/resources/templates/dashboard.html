@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>bens</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/png" th:href="@{/imagem/heraldica.ico}"/>
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>bens</strong>
+    </div>
+    <div class="panel-footer">
+        <div th:replace="header :: header" ></div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>Equipamento/Software</th>
+                    <th>NºPatrimonial</th>
+                    <th>Preço</th>
+                    <th>OM proprietária</th>
+                    <th>Modelo</th>
+                    <th>Cedido à</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:switch="${bens}">
+                    <h2 th:case="null">Sem resgistros na tabela</h2>
+                    <div th:case="*">
+                        <tr th:each="bem : ${#lists.sort(bens, bensNome)}">
+                            <td th:text="${bem.nome}"></td>
+                            <td th:text="${bem.numeroPatrimonial}"></td>
+                            <td th:text="${bem.precoUnitario}"></td>
+                            <td th:text="${bem.oM.nome}"></td>
+                            <td th:text="${bem.modelo.nome}"></td>
+                            <td th:text="${bem.cessao != null ? bem.cessao.oMDestino.nome : ''}"></td>
+                        </tr>
+                    </div>
+                </div>
+                </tbody>
+            </table>
+            <span th:text="${#lists.size(bens)}"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

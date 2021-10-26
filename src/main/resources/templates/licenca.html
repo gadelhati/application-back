@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>licencas</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/png" th:href="@{/imagem/heraldica.ico}"/>
+</head>
+<body>
+<div class="panel panel-default">
+    <div th:replace="header :: header" ></div>
+    <div class="panel-heading">
+        <strong>licencas</strong>
+    </div>
+    <div class="panel-footer">
+        <div th:replace="header :: header" ></div>
+        <a class="btn btn-sm btn-success" th:href="@{/licencaMV/add/}" >Nova Licença</a>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>Software</th>
+                    <th>Preço</th>
+                    <th>OM Proprietária</th>
+                    <th>Modelo</th>
+                    <th>Cedido à</th>
+                    <th>Nºda Licença</th>
+                    <th>Data de Validade</th>
+                    <th>Solicitação</th>
+                    <th>Edição</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:switch="${licencas}">
+                    <h2 th:case="null">Sem resgistros na tabela</h2>
+                    <div th:case="*">
+                        <tr th:each="licenca : ${#lists.sort(licencas, licencasNome)}">
+                            <td th:text="${licenca.nome}"></td>
+                            <td th:text="${licenca.precoUnitario}"></td>
+                            <td th:text="${licenca.oM.nome}"></td>
+                            <td th:text="${licenca.modelo.nome}"></td>
+                            <td th:text="${licenca.cessao != null ? licenca.cessao.oMDestino.nome : ''}"></td>
+                            <td th:text="${licenca.numero}"></td>
+                            <td th:text="${#dates.format(licenca.validade, 'dd/MM/yyyy')}"></td>
+                            <td>
+                                <form action="#" th:if="${#authentication.getPrincipal().getOM() != licenca.oM.nome && licenca.cessao == null}" th:action="@{/cessaoMV/solicitar/{cessao.bem.id}(cessao.bem.id=${licenca.id})}" th:method="post">
+                                    <button type="submit" class="btn btn-sm btn-success" >Solicitar</button>
+                                </form>
+                                <div  th:if="${#authentication.getPrincipal().getOM() != licenca.oM.nome && licenca.cessao != null}">
+                                    <span >Indisponível</span>
+                                </div>
+                            </td>
+                            <td>
+                                <form action="#" th:if="${#authentication.getPrincipal().getOM() == licenca.oM.nome}" th:action="@{/licencaMV/update/{id}(id=${licenca.id})}" th:method="put">
+                                    <button type="submit" class="btn btn-sm btn-primary" >Editar</button>
+                                </form>
+                            </td>
+<!--                            <td>-->
+<!--                                <form action="#" th:action="@{/licencaMV/delete/{id}(id=${licenca.id})}" th:method="delete">-->
+<!--                                    <button type="submit" class="delete btn btn-sm btn-danger" >Excluir</button>-->
+<!--                                </form>-->
+<!--                            </td>-->
+                        </tr>
+                    </div>
+                </div>
+                </tbody>
+            </table>
+            <label>Quantidade de registros: </label><span th:text="${#lists.size(licencas)}"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

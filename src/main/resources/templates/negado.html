@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Negado</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="/css/negado.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/png" th:href="@{/imagem/heraldica.ico}"/>
+</head>
+<body>
+<div class="panel panel-default" th:if="${#authorization.expression('hasAuthority(''administrador'')')}">
+    <div class="panel-footer">
+        <div th:replace="header :: header" ></div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="form-group">
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="form-group">
+            </div>
+        </div>
+    </div>
+    <div align="center">
+        <img src="/imagem/405.png" alt="Imagem responsiva">
+    </div>
+</div>
+</body>
+</html>
