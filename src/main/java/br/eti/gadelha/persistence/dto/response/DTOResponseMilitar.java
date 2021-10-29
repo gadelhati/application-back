@@ -33,6 +33,7 @@ public class DTOResponseMilitar {
     private String nomeDeGuerra;
     @Column
     private String nome;
+    @Column
     private String funcao;
 
     public static DTOResponseMilitar toDTO(Militar militar) {
