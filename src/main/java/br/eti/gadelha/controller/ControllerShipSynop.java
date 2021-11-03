@@ -60,12 +60,12 @@ public class ControllerShipSynop {
         }
     }
 
-    @GetMapping("/retrieve")// @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @GetMapping("/retrieve") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public List<DTOResponseShipSynop> retrieveAll(){
         return service.retrieveAll();
     }
 
-    @GetMapping("")// @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @GetMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<Page<DTOResponseShipSynop>> retrieve(Pageable pageable){
         return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
     }
