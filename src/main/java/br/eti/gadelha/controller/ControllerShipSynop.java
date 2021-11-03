@@ -111,7 +111,7 @@ public class ControllerShipSynop {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/upload") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @PostMapping("/upload") //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public File upload(@RequestParam (value="file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
         interpret(fileName, file.getContentType(), file.getSize());

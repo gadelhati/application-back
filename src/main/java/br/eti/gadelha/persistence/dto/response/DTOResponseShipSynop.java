@@ -8,6 +8,7 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -18,6 +19,7 @@ import java.util.Date;
 @Getter @AllArgsConstructor
 public class DTOResponseShipSynop {
 
+    private UUID id;
     @Column(length = 128) //@Pattern(regexp = "[0-2][0-9]|30")
     private String observador;
     @Temporal(TemporalType.TIMESTAMP)
@@ -295,6 +297,7 @@ public class DTOResponseShipSynop {
 
     public static DTOResponseShipSynop toDTO(ShipSynop shipSynop) {
         return new DTOResponseShipSynop(
+                shipSynop.getId(),
                 shipSynop.getObservador(),
                 shipSynop.getDataObservacao(),
                 shipSynop.getEstacao(),
