@@ -65,7 +65,7 @@ public class ControllerShipSynop {
         return service.retrieveAll();
     }
 
-    @GetMapping("")// @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @GetMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<Page<DTOResponseShipSynop>> retrieve(Pageable pageable){
         return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
     }
@@ -85,7 +85,7 @@ public class ControllerShipSynop {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @PutMapping("/{id}") //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseShipSynop> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestShipSynop updated){
         try {
             return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
@@ -111,7 +111,7 @@ public class ControllerShipSynop {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/upload") //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @PostMapping("/upload") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public File upload(@RequestParam (value="file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
         interpret(fileName, file.getContentType(), file.getSize());
