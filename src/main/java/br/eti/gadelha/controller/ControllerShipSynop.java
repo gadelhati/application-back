@@ -85,7 +85,7 @@ public class ControllerShipSynop {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @PutMapping("/{id}") //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseShipSynop> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestShipSynop updated){
         try {
             return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);

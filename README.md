@@ -1,92 +1,135 @@
-# REFERENCE MANUALS:
+# INSTRUÇÕES PARA A API _Spring Boot_
 
-> [MANUAL ON CODES](https://library.wmo.int/doc_num.php?explnum_id=10235)
+![github](https://img.shields.io/github/stars/gadelhati/demo?style=social "Github")
+![java](https://img.shields.io/badge/java-8-6495ED "Java")
+![springboot](https://img.shields.io/badge/springboot-2.4.5-6495ED "Spring Boot")
+![react](https://img.shields.io/badge/react-17.0.2-6495ED "React")
 
-> [MANUAL DO OBSERVADOR METEOROLÓGICO](https://www.marinha.mil.br/chm/sites/www.marinha.mil.br.chm/files/u1907/manual-observador-completo.pdf)
+#### Tecnologias utilizadas e conhecimentos necessários:
 
-> [MANUAL DE CÓDIGOS METEOROLÓGICOS](http://www.dca.iag.usp.br/material/ritaynoue/aca-0522/referencias/manual%20codigos%20meteo%20decea.pdf)
+<a href="https://www.w3.org/html/" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="25" height="25"/>
+</a>
+<a href="https://www.w3schools.com/css/" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="25" height="25"/>
+</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="25" height="25"/>
+</a>
+<a href="https://getbootstrap.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="25" height="25"/>
+</a>
+<a href="https://www.java.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="25" height="25"/>
+</a>
+<a href="https://www.postgresql.org" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="25" height="25"/>
+</a>
+<a href="https://spring.io/" target="_blank">
+    <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="25" height="25"/>
+</a>
+<a href="https://git-scm.com/" target="_blank">
+    <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="25" height="25"/>
+</a>
 
-> [METAREA](https://pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=515&pagina=56&data=12/03/2021&captchafield=firstAccess)
+[comment]: <> (<a href="https://www.linux.org/" target="_blank">)
+[comment]: <> (    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="25" height="25"/>)
+[comment]: <> (</a>)
+[comment]: <> (<a href="https://www.docker.com/" target="_blank">)
+[comment]: <> (    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="25" height="25"/>)
+[comment]: <> (</a>)
 
-# Spring Boot Refresh Token with JWT example
+<a href="https://heroku.com" target="_blank">
+    <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="25" height="25"/>
+</a>
 
-Build JWT Refresh Token in the Java Spring Boot Application. You can know how to expire the JWT, then renew the Access Token with Refresh Token.
+[comment]: <> (<a href="https://www.nginx.com" target="_blank">)
+[comment]: <> (    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="25" height="25"/>)
+[comment]: <> (</a>)
+[comment]: <> (<a href="https://www.jenkins.io" target="_blank">)
+[comment]: <> (    <img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" alt="jenkins" width="25" height="25"/>)
+[comment]: <> (</a>)
 
-The instruction can be found at:Related
-[Spring Boot Refresh Token with JWT example](https://bezkoder.com/spring-boot-refresh-token-jwt/)
+<a href="https://nodejs.org" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="25" height="25"/>
+</a>
+<a href="https://reactjs.org/" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="25" height="25"/>
+</a>
+<a href="https://materializecss.com/" target="_blank">
+    <img src="https://raw.githubusercontent.com/prplx/svg-logos/5585531d45d294869c4eaab4d7cf2e9c167710a9/svg/materialize.svg" alt="materialize" width="25" height="25"/>
+</a>
+<a href="https://redux.js.org" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" alt="redux" width="25" height="25"/>
+</a>
 
-## User Registration, User Login and Authorization process.
-The diagram shows flow of how we implement User Registration, User Login and Authorization process.
+### Link para criação de um projeto similar, acesse:
 
-![spring-boot-spring-security-jwt-authentication-flow](spring-boot-spring-security-jwt-authentication-flow.png)
+> [https://start.spring.io/](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.4.5.RELEASE&packaging=war&jvmVersion=1.8&groupId=br.eti.gadelha&artifactId=gadelha&name=gadelha&description=Demo%20project%20for%20Spring%20Boot%20to%20Gadelha&packageName=br.eti.gadelha.gadelha&dependencies=lombok,web,h2,devtools,configuration-processor,jersey,security,data-jpa,postgresql,cloud-config-server,actuator,validation)
+Relative links
 
-And this is for Refresh Token:
+```
+netstat -a -n -o
+tskill "NÚMERO DO PID"
+```
+Para rodar a API, utilize o comando:
+```
+mvn spring-boot:run
+```
+Isso irá gerar a Base de dados. Acessível através da url.
+Para abrir console do banco de dados **H2**, acesse:
 
-![spring-boot-refresh-token-jwt-example-flow](spring-boot-refresh-token-jwt-example-flow.png)
+> [http://localhost:8080/h2-ui](http://localhost:8080/h2-ui)
+Relative links
 
-## Spring Boot Server Architecture with Spring Security
-You can have an overview of our Spring Boot Server with the diagram below:
+### HTTP Status code list:
 
-![spring-boot-jwt-authentication-spring-security-architecture](spring-boot-jwt-authentication-spring-security-architecture.png)
+> [HHTP Status Code](https://httpstatuses.com/)
+### Run Your Maven Build Anywhere with the Maven Wrapper
 
-Related Posts:
-> [Spring Boot, Spring Security, MySQL: JWT Authentication & Authorization example](https://bezkoder.com/spring-boot-jwt-authentication/)
+>[Run Maven Build Anywhere with the Maven Wrapper](https://reflectoring.io/maven-wrapper/)
+```
+mvn -N io.takari:maven:0.7.7:wrapper
+mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+mvnw clean install
+```
+Relative links
+### Altere a JDBC URL para o path descrito no console:
+```
+2021-04-18 21:44:01.317  INFO 7560 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-ui'. Database available at 'jdbc:h2:mem:testdb'
+```
+no caso:
+```
+jdbc:h2:mem:testdb
+```
+Aplicação _Spring Boot_ para: [Acompanhamento do projeto no redemine](https://redmine.chm.mb/projects/siscoep){:target="_blank"}
 
-> [For PostgreSQL](https://bezkoder.com/spring-boot-security-postgresql-jwt-authentication/)
+Relative links
 
-> [For MongoDB](https://bezkoder.com/spring-boot-jwt-auth-mongodb/)
+### Requirements
 
-## Fullstack Authentication
+For building and running the application you need:
 
-> [Spring Boot + Vue.js JWT Authentication](https://bezkoder.com/spring-boot-vue-js-authentication-jwt-spring-security/)
+- [x] [JDK](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html) - Neste projeto utilzamos a versão JDK 8 update 211.
+- [x] [Lombok](https://projectlombok.org/) - Download the Lombok plugin for your IDE. This is required to add Lombok dependency support.
 
-> [Spring Boot + Angular 8 JWT Authentication](https://bezkoder.com/angular-spring-boot-jwt-auth/)
+### Running
 
-> [Spring Boot + Angular 10 JWT Authentication](https://bezkoder.com/angular-10-spring-boot-jwt-auth/)
+First, clone the project and build locally:
 
-> [Spring Boot + Angular 11 JWT Authentication](https://bezkoder.com/angular-11-spring-boot-jwt-auth/)
+```
+git clone http://10.5.193.26/00038059/siscoep
+```
 
-> [Spring Boot + React JWT Authentication](https://bezkoder.com/spring-boot-react-jwt-auth/)
+Para criar o arquivo _.war_, digite no terminal do _intellij_:
 
-## Fullstack CRUD App
+```
+mvn clean package
+```
 
-> [Vue.js + Spring Boot + MySQL/PostgreSQL example](https://bezkoder.com/spring-boot-vue-js-crud-example/)
+serão criados dois arquivos com a extensão .war, o com nome menor é o que será utilizado.
 
-> [Angular 8 + Spring Boot + MySQL example](https://bezkoder.com/angular-spring-boot-crud/)
-
-> [Angular 8 + Spring Boot + PostgreSQL example](https://bezkoder.com/angular-spring-boot-postgresql/)
-
-> [Angular 10 + Spring Boot + MySQL example](https://bezkoder.com/angular-10-spring-boot-crud/)
-
-> [Angular 10 + Spring Boot + PostgreSQL example](https://bezkoder.com/angular-10-spring-boot-postgresql/)
-
-> [Angular 11 + Spring Boot + MySQL example](https://bezkoder.com/angular-11-spring-boot-crud/)
-
-> [Angular 11 + Spring Boot + PostgreSQL example](https://bezkoder.com/angular-11-spring-boot-postgresql/)
-
-> [React + Spring Boot + MySQL example](https://bezkoder.com/react-spring-boot-crud/)
-
-> [React + Spring Boot + PostgreSQL example](https://bezkoder.com/spring-boot-react-postgresql/)
-
-> [React + Spring Boot + MongoDB example](https://bezkoder.com/react-spring-boot-mongodb/)
-
-Run both Back-end & Front-end in one place:
-> [Integrate Angular with Spring Boot Rest API](https://bezkoder.com/integrate-angular-spring-boot/)
-
-> [Integrate React.js with Spring Boot Rest API](https://bezkoder.com/integrate-reactjs-spring-boot/)
-
-> [Integrate Vue.js with Spring Boot Rest API](https://bezkoder.com/integrate-vue-spring-boot/)
-
-## More Practice:
-> [Spring Boot File upload example with Multipart File](https://bezkoder.com/spring-boot-file-upload/)
-
-> [Exception handling: @RestControllerAdvice example in Spring Boot](https://bezkoder.com/spring-boot-restcontrolleradvice/)
-
-> [Spring Boot Repository Unit Test with @DataJpaTest](https://bezkoder.com/spring-boot-unit-test-jpa-repo-datajpatest/)
-
-> [Deploy Spring Boot App on AWS – Elastic Beanstalk](https://bezkoder.com/deploy-spring-boot-aws-eb/)
-
-> [Secure Spring Boot App with Spring Security & JWT Authentication](https://bezkoder.com/spring-boot-jwt-authentication/)
+[comment]: <> ([![All Contributors]&#40;https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square&#41;]&#40;#contributors-&#41;)
 
 ## Dependency
 ```xml
