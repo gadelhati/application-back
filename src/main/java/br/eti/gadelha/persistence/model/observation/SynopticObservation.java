@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 @Entity @Table(name="synoptic_observation")//, schema="shipsynopweb")
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class SynopticObservation extends GenericEntity {
+
     private String observer;
     private LocalDateTime dateTime;
     private String station;
@@ -29,7 +30,7 @@ public class SynopticObservation extends GenericEntity {
     private String A1;
     private String bw;
     private String nbnbnb;
-    @ValidYY
+
     private String YY;
     @ValidGG
     private String GG;
