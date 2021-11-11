@@ -10,8 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
-@Audited @AuditTable(value = "shipsynop2_auditoria")
-@Entity @Table(name="shipsynop2")//, schema="shipsynopweb")
+@Audited @AuditTable(value = "audit_observation")
+@Entity @Table(name="observation")//, schema="shipsynopweb")
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class Observation extends GenericEntity {
 

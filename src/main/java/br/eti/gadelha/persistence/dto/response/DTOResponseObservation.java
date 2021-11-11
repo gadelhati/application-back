@@ -19,6 +19,7 @@ import java.util.UUID;
 @Getter @AllArgsConstructor
 public class DTOResponseObservation {
 
+    private UUID id;
     //SECTION 0
 
     //AABB
@@ -164,6 +165,7 @@ public class DTOResponseObservation {
 
     public static DTOResponseObservation toDTO(Observation observation) {
         return new DTOResponseObservation(
+                observation.getId(),
                 observation.getMimi(),
                 observation.getMjmj(),
                 observation.getDdddddd(),

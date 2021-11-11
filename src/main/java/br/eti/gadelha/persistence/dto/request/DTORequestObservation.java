@@ -24,9 +24,9 @@ public class DTORequestObservation {
     //SECTION 0
 
     //AABB
-    @Pattern(regexp = "AA||BB")
+    @Pattern(regexp = "AA||BB", message = "{mimi.valid}")
     private String mimi;
-    @Pattern(regexp = "XX")
+    @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;
     //DDDDDDD
     private String ddddddd;
@@ -38,203 +38,202 @@ public class DTORequestObservation {
 
     private String nbnbnb;
     //YYGGiw
-    @Pattern(regexp = "[0-2][0-9]||3[0-1]")
+    @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}")
     private String yy;
-    @Pattern(regexp = "00||03||06||09||12||15||18||21")
+    @Pattern(regexp = "00||03||06||09||12||15||18||21", message = "{gg.valid}")
     private String gg;
-    @Pattern(regexp = "0||1||2||3||4")
+    @Pattern(regexp = "0||1||2||3||4", message = "{iw.valid}")
     private String iw;
     //IIiii
-    @Pattern(regexp = "82||83")
+    @Pattern(regexp = "82||83", message = "{ii.valid}")
     private String ii;
-    @Pattern(regexp = "[0-9][0-9][0-9]")
+    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
     private String iii;
     //99LaLaLa
-    @Pattern(regexp = "[0-8][0-9][0-9]||900")
+    @Pattern(regexp = "[0-8][0-9][0-9]||900", message = "{lalala.valid}")
     private String lalala;
     //QcLoLOLOLO
-    @Pattern(regexp = "1||3||5||7")
+    @Pattern(regexp = "1||3||5||7", message = "{mimi.valid}")
     private String qc;
-    @Pattern(regexp = "[0-1][0-7][0-9][0-9]||1800")
+    @Pattern(regexp = "[0-1][0-7][0-9][0-9]||1800", message = "{lolololo.valid}")
     private String lolololo;
 
     //SECTION 1
 
     //iRiXhVV
-    @Pattern(regexp = "1||3||4")
+    @Pattern(regexp = "1||3||4", message = "{ir.valid}")
     private String ir;
-    @Pattern(regexp = "[1-7]")
+    @Pattern(regexp = "[1-7]", message = "{ix.valid}")
     private String ix;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{h.valid}")
     private String h;
-    @Pattern(regexp = "9[0-9]")
+    @Pattern(regexp = "9[0-9]", message = "{vv.valid}")
     private String vv;
     //Nddff
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{n.valid}")
     private String n;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99")
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99", message = "{dd.valid}")
     private String dd;
-    @Pattern(regexp = "[0-9][0-9]")
+    @Pattern(regexp = "[0-9][0-9]", message = "{ff.valid}")
     private String ff;
-    @Pattern(regexp = "[1-9][0-9][0-9]")
+    @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
     private String fff;
     //1snTTT
-    @Pattern(regexp = "[0-1]")
+    @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}")
     private String sn1_1;
-    @Pattern(regexp = "[0-4][0-9][0-9]||500")
+    @Pattern(regexp = "[0-4][0-9][0-9]||500", message = "{ttt.valid}")
     private String ttt;
     //2snTdTdTd (ou 29UUU)
-    @Pattern(regexp = "0||1||9]")
+    @Pattern(regexp = "0||1||9]", message = "{sn2_1.valid}")
     private String sn2_1;
-    @Pattern(regexp = "[0-4][0-9][0-9]||500")
+    @Pattern(regexp = "[0-4][0-9][0-9]||500", message = "{tdtdtd.valid}")
     private String tdtdtd;
     //3P0P0P0P0
-    @Pattern(regexp = "[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]")
+    @Pattern(regexp = "[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
     private String p0p0p0p0;
     //4PPPP
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]")
+    @Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "{pppp.valid}")
     private String pppp;
-    @Pattern(regexp = "1||2||5||7||8")
     //4a3hhh
-
+    @Pattern(regexp = "1||2||5||7||8", message = "{a3.valid}")
     private String a3;
 
     private String hhh;
     //5appp
-    @Pattern(regexp = "[1-8]||\\/")
+    @Pattern(regexp = "[1-8]||\\/", message = "{a.valid}")
     private String a;
-    @Pattern(regexp = "[0-1][0-9][0-9]||200")
+    @Pattern(regexp = "[0-1][0-9][0-9]||200", message = "{ppp.valid}")
     private String ppp;
     //6RRRtR
-//    @Pattern(regexp = "001||[0-9][0-9][0-9]")
+//    @Pattern(regexp = "001||[0-9][0-9][0-9]", message = "{rrr.valid}")
     private String rrr;
-    @Pattern(regexp = "[0-9]")
+    @Pattern(regexp = "[0-9]", message = "{tr.valid}")
     private String tr;
     //7wwW1W2
-    @Pattern(regexp = "[0-9][0-9]")
+    @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}")
     private String ww;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}")
     private String w1;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}")
     private String w2;
     //7wawaWa1Wa2
-    @Pattern(regexp = "[0-9][0-9]")
+    @Pattern(regexp = "[0-9][0-9]", message = "{wawa.valid}")
     private String wawa;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{wa1.valid}")
     private String wa1;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{wa2.valid}")
     private String wa2;
     //8NhCLCMCH
-    @Pattern(regexp = "[0-8]||\\/")
+    @Pattern(regexp = "[0-8]||\\/", message = "{nh.valid}")
     private String nh;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{cl.valid}")
     private String cl;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{cm.valid}")
     private String cm;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{ch.valid}")
     private String ch;
     //9GGgg
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]")//HHmm
+    @Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "{gggg.valid}")//HHmm
     private String gggg;
 
     //SECTION 2
 
     //222DsVs
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{ds.valid}")
     private String ds;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{vs.valid}")
     private String vs;
     //0SsTwTwTw
-    @Pattern(regexp = "[0-7]")
+    @Pattern(regexp = "[0-7]", message = "{ss.valid}")
     private String ss;
-    @Pattern(regexp = "[0-3][0-9][0-9]||400")
+    @Pattern(regexp = "[0-3][0-9][0-9]||400", message = "{twtwtw.valid}")
     private String twtwtw;
     //1PwaPwaHwaHwa
-    @Pattern(regexp = "[0-2][0-9]||30")
+    @Pattern(regexp = "[0-2][0-9]||30", message = "{pwapwa.valid}")
     private String pwapwa;
-    //    @Pattern(regexp = "0[0-9]||10||\\//")
+    //    @Pattern(regexp = "0[0-9]||10||\\//", message = "{hwahwa.valid}")
     private String hwahwa;
     //2PwPwHwHw
-    @Pattern(regexp = "[0-1][0-9]||20||99")
+    @Pattern(regexp = "[0-1][0-9]||20||99", message = "{pwpw.valid}")
     private String pwpw;
-    //    @Pattern(regexp = "[0-2][0-9]||30||\\//")
+    //    @Pattern(regexp = "[0-2][0-9]||30||\\//", message = "{hwhw.valid}")
     private String hwhw;
     //3dw1dw1dw2dw2
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]")
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]", message = "{dw1dw1.valid}")
     private String dw1dw1;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]")
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]", message = "{dw2dw2.valid}")
     private String dw2dw2;
     //4Pw1Pw1Hw1Hw1
-    @Pattern(regexp = "[0-2][0-9]||30")
+    @Pattern(regexp = "[0-2][0-9]||30", message = "{pw1pw1.valid}")
     private String pw1pw1;
-    @Pattern(regexp = "[0-2][0-9]||30")
+    @Pattern(regexp = "[0-2][0-9]||30", message = "{hw1hw1.valid}")
     private String hw1hw1;
     //5Pw2Pw2Hw2Hw2
-    @Pattern(regexp = "[0-2][0-9]||30")
+    @Pattern(regexp = "[0-2][0-9]||30", message = "{pw2pw2.valid}")
     private String pw2pw2;
-    @Pattern(regexp = "[0-2][0-9]||30")
+    @Pattern(regexp = "[0-2][0-9]||30", message = "{hw2hw2.valid}")
     private String hw2hw2;
     //6IsEsEsRs (ou ICING + lig. clara)
-    @Pattern(regexp = "[1-5]")  @JsonProperty("is")
+    @Pattern(regexp = "[1-5]", message = "{is_ice.valid}")  @JsonProperty("is")
     private String is_ice;
-    @Pattern(regexp = "[0-2][0-9]||30")
+    @Pattern(regexp = "[0-2][0-9]||30", message = "{eses.valid}")
     private String eses;
-    @Pattern(regexp = "[0-4]")
+    @Pattern(regexp = "[0-4]", message = "{rs.valid}")
     private String rs;
     //70HwaHwaHwa
-    @Pattern(regexp = "[0-1][0-9][0-9]||200")
+    @Pattern(regexp = "[0-1][0-9][0-9]||200", message = "{hwahwahwa.valid}")
     private String hwahwahwa;
     //8swTbTbTb
-    @Pattern(regexp = "[0-7]")
+    @Pattern(regexp = "[0-7]", message = "{sw.valid}")
     private String sw;
-    @Pattern(regexp = "[0-3][0-9][0-9]||400")
+    @Pattern(regexp = "[0-3][0-9][0-9]||400", message = "{tbtbtb.valid}")
     private String tbtbtb;
     //ICE ciSibiDizi (ou ling. clara)
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{ci.valid}")
     private String ci;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{si.valid}")
     private String si;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{bi.valid}")
     private String bi;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{di.valid}")
     private String di;
-    @Pattern(regexp = "[0-9]||\\/")
+    @Pattern(regexp = "[0-9]||\\/", message = "{zi.valid}")
     private String zi;
 
     //SECTION 3
 
     //333
     //1snTxTxTx
-    @Pattern(regexp = "[0-1]")
+    @Pattern(regexp = "[0-1]", message = "{sn1_3.valid}")
     private String sn1_3;
-    @Pattern(regexp = "[0-3][0-9][0-9]||4[0-4][0-9]||450")
+    @Pattern(regexp = "[0-3][0-9][0-9]||4[0-4][0-9]||450", message = "{txtxtx.valid}")
     private String txtxtx;
     //2snTnTnTn
-    @Pattern(regexp = "[0-1]")
+    @Pattern(regexp = "[0-1]", message = "{sn2_3.valid}")
     private String sn2_3;
-    @Pattern(regexp = "[0-2][0-9][0-9]||3[0-4][0-9]||350")
+    @Pattern(regexp = "[0-2][0-9][0-9]||3[0-4][0-9]||350", message = "{tntntn.valid}")
     private String tntntn;
     //58/9P24P24P24
-    @Pattern(regexp = "8||9")
+    @Pattern(regexp = "8||9", message = "{_89.valid}")
     private String _89;
-    @Pattern(regexp = "1[0-9][0-9]||200")
+    @Pattern(regexp = "1[0-9][0-9]||200", message = "{p24p24p24.valid}")
     private String p24p24p24;
 
     //SECTION 5
 
     //555
     //chwicMcsicFicpicQ
-    @Pattern(regexp = "[0-3]")
+    @Pattern(regexp = "[0-3]", message = "{ichw.valid}")
     private String ichw;
-    @Pattern(regexp = "[0-7]")
+    @Pattern(regexp = "[0-7]", message = "{icm.valid}")
     private String icm;
-    @Pattern(regexp = "[0-9]")
+    @Pattern(regexp = "[0-9]", message = "{cs.valid}")
     private String cs;
-    @Pattern(regexp = "[0-6]")
+    @Pattern(regexp = "[0-6]", message = "{icf.valid}")
     private String icf;
-    @Pattern(regexp = "[0-9]")
+    @Pattern(regexp = "[0-9]", message = "{icp.valid}")
     private String icp;
-    @Pattern(regexp = "[0-9]")
+    @Pattern(regexp = "[0-9]", message = "{icq.valid}")
     private String icq;
 
     private String observador;
