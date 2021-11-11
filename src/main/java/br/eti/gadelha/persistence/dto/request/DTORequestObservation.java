@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -21,6 +22,7 @@ import java.util.Date;
 @Getter @AllArgsConstructor @NoArgsConstructor
 public class DTORequestObservation {
 
+    private Point coordinates;
     //SECTION 0
 
     //AABB
@@ -247,6 +249,6 @@ public class DTORequestObservation {
     private File file;
 
     public Observation toObject(){
-        return new Observation(mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1, w2, wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, _89, p24p24p24, ichw, icm, cs, icf, icp, icq, observador, dataObservacao, estacao, file);
+        return new Observation(coordinates, mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1, w2, wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, _89, p24p24p24, ichw, icm, cs, icf, icp, icq, observador, dataObservacao, estacao, file);
     }
 }

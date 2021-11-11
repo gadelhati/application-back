@@ -5,6 +5,7 @@ import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.*;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
+import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -15,6 +16,8 @@ import java.util.Date;
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class Observation extends GenericEntity {
 
+    // https://www.baeldung.com/hibernate-spatial
+    private Point coordinates;
     //SECTION 0
 
     //AABB

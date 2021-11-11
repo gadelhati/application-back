@@ -5,6 +5,8 @@ import br.eti.gadelha.persistence.model.observation.Observation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,6 +22,7 @@ import java.util.UUID;
 public class DTOResponseObservation {
 
     private UUID id;
+    private Point coordinates;
     //SECTION 0
 
     //AABB
@@ -166,6 +169,7 @@ public class DTOResponseObservation {
     public static DTOResponseObservation toDTO(Observation observation) {
         return new DTOResponseObservation(
                 observation.getId(),
+                observation.getCoordinates(),
                 observation.getMimi(),
                 observation.getMjmj(),
                 observation.getDdddddd(),
