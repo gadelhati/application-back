@@ -155,18 +155,18 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.6.1.Final</version>
-			</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-spatial -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-spatial</artifactId>
-			<version>5.6.1.Final</version>
-		</dependency>
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-core &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.hibernate</groupId>-->
+<!--			<artifactId>hibernate-core</artifactId>-->
+<!--			<version>5.6.1.Final</version>-->
+<!--			</dependency>-->
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-spatial &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.hibernate</groupId>-->
+<!--			<artifactId>hibernate-spatial</artifactId>-->
+<!--			<version>5.6.1.Final</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 
