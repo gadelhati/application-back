@@ -176,7 +176,7 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-2][0-9]||30", message = "{hw2hw2.valid}")
     private String hw2hw2;
     //6IsEsEsRs (ou ICING + lig. clara)
-    @Pattern(regexp = "[1-5]", message = "{is_ice.valid}")  @JsonProperty("is")
+    @Pattern(regexp = "[1-5]", message = "{is_ice.valid}")//  @JsonProperty("is")
     private String is_ice;
     @Pattern(regexp = "[0-2][0-9]||30", message = "{eses.valid}")
     private String eses;

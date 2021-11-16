@@ -114,39 +114,39 @@ public class ControllerObservation {
     @PostMapping("/upload") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public File upload(@RequestParam (value="file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
-//        interpret(fileName, file.getContentType(), file.getSize());
+        interpret(fileName, file.getContentType(), file.getSize());
         return new File(fileName, file.getContentType(), file.getSize());
     }
-//    public void interpret(String fileName, String fileType, Long fileSize) {
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.setDateFormat(simpleDateFormat);
-//        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-//        try {
-//            List<DTORequestObservation> dtoRequestObservations = mapper.readerForListOf(DTORequestObservation.class).readValue(new java.io.File("./uploads/" + fileName));
-//            DTORequestFile dtoRequestFile = new DTORequestFile(fileName, fileType, fileSize);
-//            serviceFile.create(dtoRequestFile);
-//            for( DTORequestObservation dtoRequestObservation : dtoRequestObservations ) {
-//                List<DTOResponseObservation> dtoResponseObservations = service.retrieveByEstacao(dtoRequestObservation.getEstacao());
-//                boolean controle = true;
-//                for (DTOResponseObservation dtoResponseObservation: dtoResponseObservations) {
-//                    if (dtoRequestObservation.getDataObservacao() != null && dtoResponseObservation.getDataObservacao() != null){
-//                        if (simpleDateFormat.format(dtoRequestObservation.getDataObservacao()).equals(simpleDateFormat.format(dtoResponseObservation.getDataObservacao())) && dtoRequestObservation.getGg().equals(dtoResponseObservation.getGg())) {
-//                            controle = false;
-//                        }
-//                    }
-//                }
-//                if (controle){
-////                    dtoRequestObservation.setFile(dtoRequestFile.toObject());
-//                    service.create(dtoRequestObservation);
-//                }
-//            }
-//        } catch (JsonGenerationException e) {
-//            e.printStackTrace();
-//        } catch (JsonMappingException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void interpret(String fileName, String fileType, Long fileSize) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setDateFormat(simpleDateFormat);
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        try {
+            List<DTORequestObservation> dtoRequestObservations = mapper.readerForListOf(DTORequestObservation.class).readValue(new java.io.File("./uploads/" + fileName));
+            DTORequestFile dtoRequestFile = new DTORequestFile(fileName, fileType, fileSize);
+            serviceFile.create(dtoRequestFile);
+            for( DTORequestObservation dtoRequestObservation : dtoRequestObservations ) {
+                List<DTOResponseObservation> dtoResponseObservations = service.retrieveAll();
+                boolean controle = true;
+                for (DTOResponseObservation dtoResponseObservation: dtoResponseObservations) {
+                    if (dtoRequestObservation.getDataObservacao() != null && dtoResponseObservation.getDataObservacao() != null){
+                        if (simpleDateFormat.format(dtoRequestObservation.getDataObservacao()).equals(simpleDateFormat.format(dtoResponseObservation.getDataObservacao())) && dtoRequestObservation.getGg().equals(dtoResponseObservation.getGg())) {
+                            controle = false;
+                        }
+                    }
+                }
+                if (controle){
+//                    dtoRequestObservation.setFile(dtoRequestFile.toObject());
+                    service.create(dtoRequestObservation);
+                }
+            }
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
