@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
@@ -26,7 +27,7 @@ public class DTORequestObservation {
     //SECTION 0
 
     //AABB
-    @Pattern(regexp = "AA||BB", message = "{mimi.valid}")
+    @Pattern(regexp = "AA||BB", message = "{mimi.valid}") @NotNull
     private String mimi;
     @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;
@@ -40,11 +41,11 @@ public class DTORequestObservation {
 
     private String nbnbnb;
     //YYGGiw
-    @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}")
+    @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}") @NotNull
     private String yy;
-    @Pattern(regexp = "00||03||06||09||12||15||18||21", message = "{gg.valid}")
+    @Pattern(regexp = "00||03||06||09||12||15||18||21", message = "{gg.valid}") @NotNull
     private String gg;
-    @Pattern(regexp = "0||1||2||3||4", message = "{iw.valid}")
+    @Pattern(regexp = "0||1||2||3||4", message = "{iw.valid}") @NotNull
     private String iw;
     //IIiii
     @Pattern(regexp = "82||83", message = "{ii.valid}")
@@ -55,7 +56,7 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-8][0-9][0-9]||900", message = "{lalala.valid}")
     private String lalala;
     //QcLoLOLOLO
-    @Pattern(regexp = "1||3||5||7", message = "{mimi.valid}")
+    @Pattern(regexp = "1||3||5||7", message = "{qc.valid}")
     private String qc;
     @Pattern(regexp = "[0-1][0-7][0-9][0-9]||1800", message = "{lolololo.valid}")
     private String lolololo;
@@ -63,27 +64,27 @@ public class DTORequestObservation {
     //SECTION 1
 
     //iRiXhVV
-    @Pattern(regexp = "1||3||4", message = "{ir.valid}")
+    @Pattern(regexp = "1||3||4", message = "{ir.valid}") @NotNull
     private String ir;
-    @Pattern(regexp = "[1-7]", message = "{ix.valid}")
+    @Pattern(regexp = "[1-7]", message = "{ix.valid}") @NotNull
     private String ix;
-    @Pattern(regexp = "[0-9]||\\/", message = "{h.valid}")
+    @Pattern(regexp = "[0-9]||\\/", message = "{h.valid}") @NotNull
     private String h;
-    @Pattern(regexp = "9[0-9]", message = "{vv.valid}")
+    @Pattern(regexp = "9[0-9]", message = "{vv.valid}") @NotNull
     private String vv;
     //Nddff
-    @Pattern(regexp = "[0-9]||\\/", message = "{n.valid}")
+    @Pattern(regexp = "[0-9]||\\/", message = "{n.valid}") @NotNull
     private String n;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99", message = "{dd.valid}")
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99", message = "{dd.valid}") @NotNull
     private String dd;
-    @Pattern(regexp = "[0-9][0-9]", message = "{ff.valid}")
+    @Pattern(regexp = "[0-9][0-9]", message = "{ff.valid}") @NotNull
     private String ff;
-    @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
+    @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}") @NotNull
     private String fff;
     //1snTTT
-    @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}")
+    @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull
     private String sn1_1;
-    @Pattern(regexp = "[0-4][0-9][0-9]||500", message = "{ttt.valid}")
+    @Pattern(regexp = "[0-4][0-9][0-9]||500", message = "{ttt.valid}") @NotNull
     private String ttt;
     //2snTdTdTd (ou 29UUU)
     @Pattern(regexp = "0||1||9]", message = "{sn2_1.valid}")
@@ -94,7 +95,7 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
     private String p0p0p0p0;
     //4PPPP
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "{pppp.valid}")
+    @Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "{pppp.valid}") @NotNull
     private String pppp;
     //4a3hhh
     @Pattern(regexp = "1||2||5||7||8", message = "{a3.valid}")
@@ -112,11 +113,11 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-9]", message = "{tr.valid}")
     private String tr;
     //7wwW1W2
-    @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}")
+    @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull
     private String ww;
-    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}")
+    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull
     private String w1;
-    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}")
+    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull
     private String w2;
     //7wawaWa1Wa2
     @Pattern(regexp = "[0-9][0-9]", message = "{wawa.valid}")
