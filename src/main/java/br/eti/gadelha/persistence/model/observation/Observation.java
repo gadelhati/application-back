@@ -17,6 +17,7 @@ import java.util.Date;
 public class Observation extends GenericEntity {
 
     // https://www.baeldung.com/hibernate-spatial
+//    @Column(columnDefinition = "POINT")
     private Point coordinates;
     //SECTION 0
 
