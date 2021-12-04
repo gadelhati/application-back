@@ -79,7 +79,7 @@ public class DTORequestObservation {
     private String dd;
     @Pattern(regexp = "[0-9][0-9]", message = "{ff.valid}") @NotNull
     private String ff;
-    @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}") @NotNull
+    @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
     private String fff;
     //1snTTT
     @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull
@@ -92,7 +92,7 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-4][0-9][0-9]||500", message = "{tdtdtd.valid}")
     private String tdtdtd;
     //3P0P0P0P0
-    @Pattern(regexp = "[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
+    @Pattern(regexp = "0[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
     private String p0p0p0p0;
     //4PPPP
     @Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "{pppp.valid}") @NotNull
@@ -219,7 +219,7 @@ public class DTORequestObservation {
     //58/9P24P24P24
     @Pattern(regexp = "8||9", message = "{_89.valid}")
     private String _89;
-    @Pattern(regexp = "1[0-9][0-9]||200", message = "{p24p24p24.valid}")
+    @Pattern(regexp = "[0-1][0-9][0-9]||200", message = "{p24p24p24.valid}")
     private String p24p24p24;
 
     //SECTION 5

@@ -69,7 +69,7 @@ public class ControllerObservation {
     public ResponseEntity<Page<DTOResponseObservation>> retrieve(Pageable pageable){
         return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.OK);
     }
-    @GetMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @GetMapping("/{id}") //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseObservation> retrieve(@PathVariable UUID id){
         try {
             return new ResponseEntity<>(service.retrieve(id), HttpStatus.OK);
@@ -94,10 +94,9 @@ public class ControllerObservation {
         }
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'RECTIFIER')")
-    public ResponseEntity<HttpStatus> delete(@PathVariable UUID id){
+    public ResponseEntity<DTOResponseObservation> delete(@PathVariable UUID id){
         try {
-            service.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -106,7 +105,7 @@ public class ControllerObservation {
     public ResponseEntity<HttpStatus> delete(){
         try {
             service.delete();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

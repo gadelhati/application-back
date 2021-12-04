@@ -153,8 +153,10 @@ public class ServiceObservation {
         observation.setFile(updated.getFile());
         return DTOResponseObservation.toDTO(repository.save(observation));
     }
-    public void delete(UUID id){
+    public DTOResponseObservation delete(UUID id){
+        DTOResponseObservation deleted = DTOResponseObservation.toDTO(repository.findById(id).get());
         repository.deleteById(id);
+        return deleted;
     }
     public void delete() {
         repository.deleteAll();
