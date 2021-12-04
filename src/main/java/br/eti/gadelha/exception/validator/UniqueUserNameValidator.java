@@ -1,7 +1,8 @@
 package br.eti.gadelha.exception.validator;
 
-import br.eti.gadelha.exception.annotation.UniqueRoleName;
+import br.eti.gadelha.exception.annotation.UniqueUserName;
 import br.eti.gadelha.services.ServiceRole;
+import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
@@ -13,13 +14,13 @@ import javax.validation.ConstraintValidatorContext;
  * @link	www.gadelha.eti.br
  **/
 
-public class UniqueRoleNameValidator implements ConstraintValidator<UniqueRoleName, String> {
+public class UniqueUserNameValidator implements ConstraintValidator<UniqueUserName, String> {
 
     @Autowired
-    private ServiceRole serviceRole;
+    private ServiceUser serviceUser;
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value != null && !serviceRole.isNameValid(value);
+        return value != null && !serviceUser.isNameValid(value);
     }
 }

@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.model;
 
-import br.eti.gadelha.exception.annotation.UniqueRoleName;
+import br.eti.gadelha.exception.annotation.UniqueUserName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class Abiliity extends GenericEntity {
 
-    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @UniqueRoleName
+    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @UniqueUserName
     private String name;
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}")
     private String description;

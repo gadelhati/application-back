@@ -1,5 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
+import br.eti.gadelha.exception.annotation.UniqueUserName;
 import lombok.Data;
 
 import java.util.Set;
@@ -9,7 +10,7 @@ import javax.validation.constraints.*;
 @Data
 public class SignupRequest {
     @NotBlank
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 20) @UniqueUserName
     private String username;
  
     @NotBlank

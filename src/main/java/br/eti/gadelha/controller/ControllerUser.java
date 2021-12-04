@@ -2,6 +2,7 @@ package br.eti.gadelha.controller;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
+import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.services.ServiceUser;
 import org.springframework.data.domain.Page;
@@ -29,8 +30,56 @@ public class ControllerUser {
 
     private final ServiceUser service;
 
-    public ControllerUser(RepositoryUser repository) {
-        this.service = new ServiceUser(repository) {};
+    public ControllerUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole) {
+        this.service = new ServiceUser(repositoryUser, repositoryRole) {};
+    }
+
+    @PostMapping("/signup")  //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ResponseEntity<DTOResponseUser> registerUser(@Valid @RequestBody DTORequestUser created) {
+
+//    User user = new User(dtoResponseUser.getUsername(), dtoResponseUser.getEmail(), encoder.encode(dtoResponseUser.getPassword()));
+//    Set<Role> strRoles = created.getRole();
+//    Set<Role> roles = new HashSet<>();
+
+//    if (strRoles == null) {
+//      Role userRole = roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//      roles.add(serviceRole.("ROLE_USER"));
+//    } else {
+//      strRoles.forEach(role -> {
+//        switch (role) {
+//          case "admin":
+//            Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//            roles.add(adminRole);
+//
+//            break;
+//          case "rectifier":
+//            Role rectifierRole = roleRepository.findByName(ERole.ROLE_RECTIFIER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//            roles.add(rectifierRole);
+//
+//          case "operator":
+//            Role operatorRole = roleRepository.findByName(ERole.ROLE_OPERATOR).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//            roles.add(operatorRole);
+//
+//            break;
+//          case "mod":
+//            Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//            roles.add(modRole);
+//
+//            break;
+//          default:
+//            Role userRole = roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//            roles.add(userRole);
+//        }
+//      });
+//    }
+
+//    user.setRoles(roles);
+//    serviceUser.create(user);
+        try {
+            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")

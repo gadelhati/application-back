@@ -72,7 +72,7 @@ public class ControllerAuth {
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
     Authentication authentication = authenticationManager
-        .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+            .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -81,34 +81,24 @@ public class ControllerAuth {
     String jwt = jwtUtils.generateJwtToken(userDetails);
 
     List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-        .collect(Collectors.toList());
+            .collect(Collectors.toList());
 
     RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
 
     return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(),
-        userDetails.getUsername(), userDetails.getEmail(), roles));
+            userDetails.getUsername(), userDetails.getEmail(), roles));
   }
 
   @PostMapping("/signup")  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-      return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
-    }
-
-    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-      return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
-    }
-
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(),
-        encoder.encode(signUpRequest.getPassword()));
-
+    User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
 
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
       roles.add(userRole);
     } else {
       strRoles.forEach(role -> {
@@ -121,7 +111,7 @@ public class ControllerAuth {
             break;
           case "rectifier":
             Role rectifierRole = roleRepository.findByName(ERole.ROLE_RECTIFIER)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(rectifierRole);
 
           case "operator":
@@ -132,13 +122,13 @@ public class ControllerAuth {
             break;
           case "mod":
             Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(modRole);
 
             break;
           default:
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
         }
       });
@@ -155,16 +145,16 @@ public class ControllerAuth {
     String requestRefreshToken = request.getRefreshToken();
 
     return refreshTokenService.findByToken(requestRefreshToken)
-        .map(refreshTokenService::verifyExpiration)
-        .map(RefreshToken::getUser)
-        .map(user -> {
-          String token = jwtUtils.generateTokenFromUsername(user.getUsername());
-          return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
-        })
-        .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
-            "Refresh token is not in database!"));
+            .map(refreshTokenService::verifyExpiration)
+            .map(RefreshToken::getUser)
+            .map(user -> {
+              String token = jwtUtils.generateTokenFromUsername(user.getUsername());
+              return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
+            })
+            .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
+                    "Refresh token is not in database!"));
   }
-  
+
   @PostMapping("/logout")
   public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) {
     refreshTokenService.deleteByUserId(logOutRequest.getUserId());

@@ -2,6 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestRole;
 import br.eti.gadelha.persistence.dto.response.DTOResponseRole;
+import br.eti.gadelha.persistence.model.ERole;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import org.springframework.data.domain.Page;
@@ -71,4 +72,5 @@ public class ServiceRole {
     public boolean isNameValid(String value) {
         return repository.existsByName(value);
     }
+    public Role findByName(ERole eRole) { return  repository.findByName(eRole); }
 }
