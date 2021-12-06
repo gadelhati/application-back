@@ -9,9 +9,9 @@ import lombok.Getter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -21,6 +21,8 @@ import java.util.Set;
 
 @Getter @AllArgsConstructor
 public class DTOResponseUser {
+
+    private UUID id;
     @NotBlank @Size(min = 3, max = 20) @UniqueNameRole
     private String username;
     @NotBlank @Size(max = 50) @Email @UniqueEmailAddress
@@ -32,6 +34,6 @@ public class DTOResponseUser {
     private String password;
 
     public static DTOResponseUser toDTO(User user) {
-        return new DTOResponseUser(user.getUsername(), user.getEmail(), user.getRoles(), user.getPassword());
+        return new DTOResponseUser(user.getId(), user.getUsername(), user.getEmail(), user.getRoles(), user.getPassword());
     }
 }

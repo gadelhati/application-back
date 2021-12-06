@@ -1,37 +1,25 @@
 package br.eti.gadelha.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 import br.eti.gadelha.exception.TokenRefreshException;
-import br.eti.gadelha.persistence.model.ERole;
+import br.eti.gadelha.persistence.dto.request.DTORequestUser;
+import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
+import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.persistence.model.RefreshToken;
-import br.eti.gadelha.persistence.model.Role;
-import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.payload.request.LogOutRequest;
-import br.eti.gadelha.persistence.payload.request.LoginRequest;
-import br.eti.gadelha.persistence.payload.request.SignupRequest;
 import br.eti.gadelha.persistence.payload.request.TokenRefreshRequest;
 import br.eti.gadelha.persistence.payload.response.JwtResponse;
-import br.eti.gadelha.persistence.payload.response.MessageResponse;
 import br.eti.gadelha.persistence.payload.response.TokenRefreshResponse;
-import br.eti.gadelha.persistence.repository.RoleRepository;
-import br.eti.gadelha.persistence.repository.UserRepository;
+import br.eti.gadelha.persistence.repository.RepositoryRole;
+import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
 import br.eti.gadelha.security.services.RefreshTokenService;
-import br.eti.gadelha.security.services.UserDetailsImpl;
+import br.eti.gadelha.services.ServiceRole;
+import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,94 +38,44 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class ControllerAuth {
-  @Autowired
-  AuthenticationManager authenticationManager;
 
   @Autowired
-  UserRepository userRepository;
-
+  private final ServiceUser serviceUser;
   @Autowired
-  RoleRepository roleRepository;
-
-  @Autowired
-  PasswordEncoder encoder;
-
+  private final ServiceRole serviceRole;
   @Autowired
   JwtUtils jwtUtils;
-
   @Autowired
   RefreshTokenService refreshTokenService;
 
-  @PostMapping("/signin")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-    Authentication authentication = authenticationManager
-            .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-
-    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-    String jwt = jwtUtils.generateJwtToken(userDetails);
-
-    List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-            .collect(Collectors.toList());
-
-    RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
-
-    return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(),
-            userDetails.getUsername(), userDetails.getEmail(), roles));
+  public ControllerAuth (RepositoryUser repositoryUser, RepositoryRole repositoryRole) {
+    this.serviceUser = new ServiceUser(repositoryUser, repositoryRole) {};
+    this.serviceRole = new ServiceRole(repositoryRole) {};
   }
-
-  @PostMapping("/signup")  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    // Create new user's account
-    User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
-    Set<String> strRoles = signUpRequest.getRole();
-    Set<Role> roles = new HashSet<>();
-
-    if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-      roles.add(userRole);
-    } else {
-      strRoles.forEach(role -> {
-        switch (role) {
-          case "admin":
-            Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(adminRole);
-
-            break;
-          case "rectifier":
-            Role rectifierRole = roleRepository.findByName(ERole.ROLE_RECTIFIER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(rectifierRole);
-
-          case "operator":
-            Role operatorRole = roleRepository.findByName(ERole.ROLE_OPERATOR)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(operatorRole);
-
-            break;
-          case "mod":
-            Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(modRole);
-
-            break;
-          default:
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        }
-      });
+  @PostMapping("/signin")
+  public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
+    try {
+      return new ResponseEntity<>(serviceUser.signin(dtoRequestUser), HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-    user.setRoles(roles);
-    userRepository.save(user);
-
-    return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+  }
+  @PostMapping("/signup")	//@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+  public ResponseEntity<DTOResponseUser> registerUser(@Valid @RequestBody DTORequestUser dtoRequestUser) {
+    try {
+      return new ResponseEntity<>(serviceUser.signup(dtoRequestUser), HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+  @PostMapping("/logout")
+  public ResponseEntity<HttpStatus> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) {
+    try {
+      serviceUser.logout(logOutRequest);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @PostMapping("/refreshtoken")
@@ -154,11 +92,4 @@ public class ControllerAuth {
             .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
                     "Refresh token is not in database!"));
   }
-
-  @PostMapping("/logout")
-  public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) {
-    refreshTokenService.deleteByUserId(logOutRequest.getUserId());
-    return ResponseEntity.ok(new MessageResponse("Log out successful!"));
-  }
-
 }
