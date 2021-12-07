@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.eti.gadelha.exception.TokenRefreshException;
 import br.eti.gadelha.persistence.repository.RefreshTokenRepository;
-import br.eti.gadelha.persistence.repository.UserRepository;
+import br.eti.gadelha.persistence.repository.RepositoryUser;
 
 @Service
 public class RefreshTokenService {
@@ -23,7 +23,7 @@ public class RefreshTokenService {
   private RefreshTokenRepository refreshTokenRepository;
 
   @Autowired
-  private UserRepository userRepository;
+  private RepositoryUser repositoryUser;
 
   public Optional<RefreshToken> findByToken(String token) {
     return refreshTokenRepository.findByToken(token);
@@ -32,7 +32,7 @@ public class RefreshTokenService {
   public RefreshToken createRefreshToken(UUID userId) {
     RefreshToken refreshToken = new RefreshToken();
 
-    refreshToken.setUser(userRepository.findById(userId).get());
+    refreshToken.setUser(repositoryUser.findById(userId).get());
     refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
     refreshToken.setToken(UUID.randomUUID().toString());
 
@@ -51,6 +51,6 @@ public class RefreshTokenService {
 
   @Transactional
   public int deleteByUserId(UUID userId) {
-    return refreshTokenRepository.deleteByUser(userRepository.findById(userId).get());
+    return refreshTokenRepository.deleteByUser(repositoryUser.findById(userId).get());
   }
 }
