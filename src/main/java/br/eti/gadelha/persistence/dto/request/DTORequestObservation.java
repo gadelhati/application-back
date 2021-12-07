@@ -2,6 +2,7 @@ package br.eti.gadelha.persistence.dto.request;
 
 import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.observation.Observation;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,14 +21,14 @@ import java.util.Date;
  * @link	www.gadelha.eti.br
  **/
 
-@Getter @AllArgsConstructor @NoArgsConstructor
+@Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
 public class DTORequestObservation {
 
     private Point coordinates;
     //SECTION 0
 
     //AABB
-    @Pattern(regexp = "AA||BB", message = "{mimi.valid}") @NotNull
+    @Pattern(regexp = "AAXX||BBXX", message = "{mimi.valid}") @JsonProperty("aabbxx")
     private String mimi;
     @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;
@@ -110,15 +111,17 @@ public class DTORequestObservation {
     //6RRRtR
 //    @Pattern(regexp = "001||[0-9][0-9][0-9]", message = "{rrr.valid}")
     private String rrr;
-    @Pattern(regexp = "[0-9]", message = "{tr.valid}")
+    @Pattern(regexp = "[0-9]||''", message = "{tr.valid}")
     private String tr;
     //7wwW1W2
     @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull
     private String ww;
-    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull
-    private String w1;
-    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull
-    private String w2;
+    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1W2.valid}") @NotNull
+    private String w1w2;
+//    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull
+//    private String w1;
+//    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull
+//    private String w2;
     //7wawaWa1Wa2
     @Pattern(regexp = "[0-9][0-9]", message = "{wawa.valid}")
     private String wawa;
@@ -136,90 +139,90 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-9]||\\/", message = "{ch.valid}")
     private String ch;
     //9GGgg
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "{gggg.valid}")//HHmm
+    @Pattern(regexp = "[0-9][0-9][0-9][0-9]||''", message = "{gggg.valid}")//HHmm
     private String gggg;
 
     //SECTION 2
 
     //222DsVs
-    @Pattern(regexp = "[0-9]||\\/", message = "{ds.valid}")
+    @Pattern(regexp = "[0-9]||\\/||''", message = "{ds.valid}")
     private String ds;
-    @Pattern(regexp = "[0-9]||\\/", message = "{vs.valid}")
+    @Pattern(regexp = "[0-9]||\\/||''", message = "{vs.valid}")
     private String vs;
     //0SsTwTwTw
-    @Pattern(regexp = "[0-7]", message = "{ss.valid}")
+    @Pattern(regexp = "[0-7]||''", message = "{ss.valid}")
     private String ss;
-    @Pattern(regexp = "[0-3][0-9][0-9]||400", message = "{twtwtw.valid}")
+    @Pattern(regexp = "[0-3][0-9][0-9]||400||''", message = "{twtwtw.valid}")
     private String twtwtw;
     //1PwaPwaHwaHwa
-    @Pattern(regexp = "[0-2][0-9]||30", message = "{pwapwa.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||''", message = "{pwapwa.valid}")
     private String pwapwa;
-    //    @Pattern(regexp = "0[0-9]||10||\\//", message = "{hwahwa.valid}")
+    @Pattern(regexp = "0[0-9]||10||\\/\\/||''", message = "{hwahwa.valid}")
     private String hwahwa;
     //2PwPwHwHw
-    @Pattern(regexp = "[0-1][0-9]||20||99", message = "{pwpw.valid}")
+    @Pattern(regexp = "[0-1][0-9]||20||99||''", message = "{pwpw.valid}")
     private String pwpw;
-    //    @Pattern(regexp = "[0-2][0-9]||30||\\//", message = "{hwhw.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||\\/\\/||''", message = "{hwhw.valid}")
     private String hwhw;
     //3dw1dw1dw2dw2
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]", message = "{dw1dw1.valid}")
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||''", message = "{dw1dw1.valid}")
     private String dw1dw1;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]", message = "{dw2dw2.valid}")
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||''", message = "{dw2dw2.valid}")
     private String dw2dw2;
     //4Pw1Pw1Hw1Hw1
-    @Pattern(regexp = "[0-2][0-9]||30", message = "{pw1pw1.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||''", message = "{pw1pw1.valid}")
     private String pw1pw1;
-    @Pattern(regexp = "[0-2][0-9]||30", message = "{hw1hw1.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||''", message = "{hw1hw1.valid}")
     private String hw1hw1;
     //5Pw2Pw2Hw2Hw2
-    @Pattern(regexp = "[0-2][0-9]||30", message = "{pw2pw2.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||''", message = "{pw2pw2.valid}")
     private String pw2pw2;
-    @Pattern(regexp = "[0-2][0-9]||30", message = "{hw2hw2.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||''", message = "{hw2hw2.valid}")
     private String hw2hw2;
     //6IsEsEsRs (ou ICING + lig. clara)
-    @Pattern(regexp = "[1-5]", message = "{is_ice.valid}")//  @JsonProperty("is")
+    @Pattern(regexp = "[1-5]||''", message = "{is_ice.valid}")  @JsonProperty("is")
     private String is_ice;
-    @Pattern(regexp = "[0-2][0-9]||30", message = "{eses.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||''", message = "{eses.valid}")
     private String eses;
-    @Pattern(regexp = "[0-4]", message = "{rs.valid}")
+    @Pattern(regexp = "[0-4]||''", message = "{rs.valid}")
     private String rs;
     //70HwaHwaHwa
-    @Pattern(regexp = "[0-1][0-9][0-9]||200", message = "{hwahwahwa.valid}")
+    @Pattern(regexp = "[0-1][0-9][0-9]||200||''", message = "{hwahwahwa.valid}")
     private String hwahwahwa;
     //8swTbTbTb
-    @Pattern(regexp = "[0-7]", message = "{sw.valid}")
+    @Pattern(regexp = "[0-7]||''", message = "{sw.valid}")
     private String sw;
-    @Pattern(regexp = "[0-3][0-9][0-9]||400", message = "{tbtbtb.valid}")
+    @Pattern(regexp = "[0-3][0-9][0-9]||400||''", message = "{tbtbtb.valid}")
     private String tbtbtb;
     //ICE ciSibiDizi (ou ling. clara)
-    @Pattern(regexp = "[0-9]||\\/", message = "{ci.valid}")
+    @Pattern(regexp = "[0-9]||\\/||''", message = "{ci.valid}")
     private String ci;
-    @Pattern(regexp = "[0-9]||\\/", message = "{si.valid}")
+    @Pattern(regexp = "[0-9]||\\/||''", message = "{si.valid}")
     private String si;
-    @Pattern(regexp = "[0-9]||\\/", message = "{bi.valid}")
+    @Pattern(regexp = "[0-9]||\\/||''", message = "{bi.valid}")
     private String bi;
-    @Pattern(regexp = "[0-9]||\\/", message = "{di.valid}")
+    @Pattern(regexp = "[0-9]||\\/||''", message = "{di.valid}")
     private String di;
-    @Pattern(regexp = "[0-9]||\\/", message = "{zi.valid}")
+    @Pattern(regexp = "[0-9]||\\/||''", message = "{zi.valid}")
     private String zi;
 
     //SECTION 3
 
     //333
     //1snTxTxTx
-    @Pattern(regexp = "[0-1]", message = "{sn1_3.valid}")
+    @Pattern(regexp = "[0-1]||''", message = "{sn1_3.valid}")
     private String sn1_3;
-    @Pattern(regexp = "[0-3][0-9][0-9]||4[0-4][0-9]||450", message = "{txtxtx.valid}")
+    @Pattern(regexp = "[0-3][0-9][0-9]||4[0-4][0-9]||450||''", message = "{txtxtx.valid}")
     private String txtxtx;
     //2snTnTnTn
-    @Pattern(regexp = "[0-1]", message = "{sn2_3.valid}")
+    @Pattern(regexp = "[0-1]||''", message = "{sn2_3.valid}")
     private String sn2_3;
-    @Pattern(regexp = "[0-2][0-9][0-9]||3[0-4][0-9]||350", message = "{tntntn.valid}")
+    @Pattern(regexp = "[0-2][0-9][0-9]||3[0-4][0-9]||350||''", message = "{tntntn.valid}")
     private String tntntn;
     //58/9P24P24P24
-    @Pattern(regexp = "8||9", message = "{_89.valid}")
-    private String _89;
-    @Pattern(regexp = "[0-1][0-9][0-9]||200", message = "{p24p24p24.valid}")
+    @Pattern(regexp = "8||9||''", message = "{_89.valid}")
+    private String ind89;
+    @Pattern(regexp = "[0-1][0-9][0-9]||200||''", message = "{p24p24p24.valid}")
     private String p24p24p24;
 
     //SECTION 5
@@ -250,6 +253,6 @@ public class DTORequestObservation {
     private File file;
 
     public Observation toObject(){
-        return new Observation(coordinates, mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1, w2, wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, _89, p24p24p24, ichw, icm, cs, icf, icp, icq, observador, dataObservacao, estacao, file);
+        return new Observation(coordinates, mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, observador, dataObservacao, estacao, file);
     }
 }

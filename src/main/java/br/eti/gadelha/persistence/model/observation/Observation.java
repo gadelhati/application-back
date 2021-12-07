@@ -2,6 +2,7 @@ package br.eti.gadelha.persistence.model.observation;
 
 import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.GenericEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
@@ -76,8 +77,9 @@ public class Observation extends GenericEntity {
     private String tr;
     //7wwW1W2
     private String ww;
-    private String w1;
-    private String w2;
+    private String w1w2;
+//    private String w1;
+//    private String w2;
     //7wawaWa1Wa2
     private String wawa;
     private String wa1;
@@ -139,7 +141,7 @@ public class Observation extends GenericEntity {
     private String sn2_3;
     private String tntntn;
     //58/9P24P24P24
-    private String _89;
+    private String ind89;
     private String p24p24p24;
 
     //SECTION 5

@@ -1,5 +1,6 @@
 package br.eti.gadelha.persistence.model;
 
+import br.eti.gadelha.exception.enumeration.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

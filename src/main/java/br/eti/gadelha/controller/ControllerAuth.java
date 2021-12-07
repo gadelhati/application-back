@@ -29,8 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author	Marcelo Ribeiro Gadelha
  * @mail	gadelha.ti@gmail.com
- * @since	03/10/2021
- * @version 1.0
  * @link	www.gadelha.eti.br
  **/
 

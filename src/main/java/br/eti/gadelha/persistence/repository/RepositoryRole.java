@@ -1,11 +1,9 @@
 package br.eti.gadelha.persistence.repository;
 
-import br.eti.gadelha.persistence.model.ERole;
+import br.eti.gadelha.exception.enumeration.ERole;
 import br.eti.gadelha.persistence.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**

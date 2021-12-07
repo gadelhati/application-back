@@ -80,8 +80,9 @@ public class DTOResponseObservation {
     private String tr;
     //7wwW1W2
     private String ww;
-    private String w1;
-    private String w2;
+    private String w1w2;
+//    private String w1;
+//    private String w2;
     //7wawaWa1Wa2
     private String wawa;
     private String wa1;
@@ -143,7 +144,7 @@ public class DTOResponseObservation {
     private String sn2_3;
     private String tntntn;
     //58/9P24P24P24
-    private String _89;
+    private String ind89;
     private String p24p24p24;
 
     //SECTION 5
@@ -205,8 +206,9 @@ public class DTOResponseObservation {
                 observation.getRrr(),
                 observation.getTr(),
                 observation.getWw(),
-                observation.getW1(),
-                observation.getW2(),
+                observation.getW1w2(),
+//                observation.getW1(),
+//                observation.getW2(),
                 observation.getWawa(),
                 observation.getWa1(),
                 observation.getWa2(),
@@ -244,7 +246,7 @@ public class DTOResponseObservation {
                 observation.getTxtxtx(),
                 observation.getSn2_3(),
                 observation.getTntntn(),
-                observation.get_89(),
+                observation.getInd89(),
                 observation.getP24p24p24(),
                 observation.getIchw(),
                 observation.getIcm(),

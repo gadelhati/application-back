@@ -1,8 +1,5 @@
 package br.eti.gadelha.persistence.model.observation;
 
-import br.eti.gadelha.exception.annotation.ValidGG;
-import br.eti.gadelha.exception.annotation.ValidIw;
-import br.eti.gadelha.exception.annotation.ValidYY;
 import br.eti.gadelha.exception.enumeration.EnumMiMiMjMj;
 import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
@@ -32,9 +29,7 @@ public class SynopticObservation extends GenericEntity {
     private String nbnbnb;
 
     private String YY;
-    @ValidGG
     private String GG;
-    @ValidIw
     private String iw;
 
     private String II;

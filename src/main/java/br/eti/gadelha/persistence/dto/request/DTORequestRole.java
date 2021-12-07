@@ -1,7 +1,7 @@
 package br.eti.gadelha.persistence.dto.request;
 
 import br.eti.gadelha.exception.annotation.UniqueUserName;
-import br.eti.gadelha.persistence.model.ERole;
+import br.eti.gadelha.exception.enumeration.ERole;
 import br.eti.gadelha.persistence.model.Role;
 import lombok.Getter;
 

@@ -100,8 +100,9 @@ public class ServiceObservation {
         observation.setRrr(updated.getRrr());
         observation.setTr(updated.getTr());
         observation.setWw(updated.getWw());
-        observation.setW1(updated.getW1());
-        observation.setW2(updated.getW2());
+        observation.setW1w2(updated.getW1w2());
+//        observation.setW1(updated.getW1());
+//        observation.setW2(updated.getW2());
         observation.setWawa(updated.getWawa());
         observation.setWa1(updated.getWa1());
         observation.setWa2(updated.getWa2());
@@ -139,7 +140,7 @@ public class ServiceObservation {
         observation.setTxtxtx(updated.getTxtxtx());
         observation.setSn2_3(updated.getSn2_3());
         observation.setTntntn(updated.getTntntn());
-        observation.set_89(updated.get_89());
+        observation.setInd89(updated.getInd89());
         observation.setP24p24p24(updated.getP24p24p24());
         observation.setIchw(updated.getIchw());
         observation.setIcm(updated.getIcm());

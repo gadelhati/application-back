@@ -31,8 +31,6 @@ import java.util.UUID;
 /**
  * @author	Marcelo Ribeiro Gadelha
  * @mail	gadelha.ti@gmail.com
- * @since	04/08/2021
- * @version 1.0
  * @link	www.gadelha.eti.br
  **/
 
@@ -50,7 +48,6 @@ public class ControllerObservation {
         this.service = new ServiceObservation(repository) {};
         this.serviceFile = new ServiceFile(repositoryFile) {};
     }
-
     @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseObservation> create(@RequestBody @Valid DTORequestObservation created){
         try {
@@ -59,7 +56,6 @@ public class ControllerObservation {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @GetMapping("/retrieve") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public List<DTOResponseObservation> retrieveAll(){
         return service.retrieveAll();
