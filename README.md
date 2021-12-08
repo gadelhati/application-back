@@ -1,11 +1,11 @@
-# INSTRUÇÕES PARA A API _Spring Boot_
+# Application _Back_
 
 ![github](https://img.shields.io/github/stars/gadelhati/demo?style=social "Github")
 ![java](https://img.shields.io/badge/java-8-6495ED "Java")
 ![springboot](https://img.shields.io/badge/springboot-2.4.5-6495ED "Spring Boot")
 ![react](https://img.shields.io/badge/react-17.0.2-6495ED "React")
 
-#### Tecnologias utilizadas e conhecimentos necessários:
+#### Necessary Tech stack:
 
 <a href="https://www.w3.org/html/" target="_blank">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="25" height="25"/>
@@ -42,10 +42,10 @@
 <a href="https://heroku.com" target="_blank">
     <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="25" height="25"/>
 </a>
+<a href="https://www.nginx.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="25" height="25"/>
+</a>
 
-[comment]: <> (<a href="https://www.nginx.com" target="_blank">)
-[comment]: <> (    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="25" height="25"/>)
-[comment]: <> (</a>)
 [comment]: <> (<a href="https://www.jenkins.io" target="_blank">)
 [comment]: <> (    <img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" alt="jenkins" width="25" height="25"/>)
 [comment]: <> (</a>)
@@ -63,7 +63,20 @@
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" alt="redux" width="25" height="25"/>
 </a>
 
-### Link para criação de um projeto similar, acesse:
+## Description
+Descrição simples sobre os propósito do projeto.
+
+## Support
+
+## Roadmap
+q1 If you have ideas for releases in the future, it is a good idea to list them in the README.
+
+### License
+For open source projects, say how it is licensed.
+
+### Acknowledgments
+
+### Link to create a similar project, access:
 
 > [https://start.spring.io/](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.4.5.RELEASE&packaging=war&jvmVersion=1.8&groupId=br.eti.gadelha&artifactId=gadelha&name=gadelha&description=Demo%20project%20for%20Spring%20Boot%20to%20Gadelha&packageName=br.eti.gadelha.gadelha&dependencies=lombok,web,h2,devtools,configuration-processor,jersey,security,data-jpa,postgresql,cloud-config-server,actuator,validation)
 Relative links
@@ -72,7 +85,7 @@ Relative links
 netstat -a -n -o
 tskill "NÚMERO DO PID"
 ```
-Para rodar a API, utilize o comando:
+To run the API, use the command:
 ```
 mvn spring-boot:run
 ```
@@ -107,7 +120,6 @@ Aplicação _Spring Boot_ para: [Acompanhamento do projeto no redemine](https://
 Relative links
 
 ### Requirements
-
 For building and running the application you need:
 
 - [x] [JDK](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html) - Neste projeto utilzamos a versão JDK 8 update 211.
@@ -189,3 +201,13 @@ INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 ```
+### Features
+These are the paths to services:
+
+- [x] [CREATE](http://127.0.0.1/observation/) - path to item creation;
+- [x] [RETRIEVE](http://127.0.0.1/observation/id) - path to retrieve of an item by id;
+- [x] [RETRIEVE_ALL](http://127.0.0.1/observation/) - path to retrieve of all items;
+- [ ] [RETRIEVE](http://127.0.0.1/observation/id) - path to retrieve of an item by source;
+- [x] [UPDATE](http://127.0.0.1/observation/id) - path to update an item;
+- [x] [DELETE](http://127.0.0.1/observation/id) - path to delete an item;
+- [x] [DELETE_ALL](http://127.0.0.1/observation/) - path to delete all items;
