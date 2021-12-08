@@ -64,7 +64,11 @@
 </a>
 
 ## Description
-Descrição simples sobre os propósito do projeto.
+The codes FM 12 - XI SYNOP and FM 13 - XI SHIP are preset number sequences
+that encode observations made at a Surface Meteorological Station (SYNOP) or from
+Stations on board ships (SHIP).
+A inciativa de criar um
+The initiative to create a program in which the code is typed instead of being filled out on paper. Automating the exchange and its consequent inclusion in historical database.
 
 ## Support
 

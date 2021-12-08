@@ -1,5 +1,6 @@
 package br.eti.gadelha.persistence.dto.request;
 
+import br.eti.gadelha.exception.annotation.ObservationValid;
 import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.observation.Observation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,6 +23,18 @@ import java.util.Date;
  **/
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
+@ObservationValid.List({
+        @ObservationValid(
+                field = "password",
+                fieldMatch = "verifyPassword",
+                message = "Passwords do not match!"
+        ),
+        @ObservationValid(
+                field = "email",
+                fieldMatch = "verifyEmail",
+                message = "Email addresses do not match!"
+        )
+})
 public class DTORequestObservation {
 
     private Point coordinates;
