@@ -132,8 +132,7 @@ public class ControllerObservation {
                     }
                 }
                 if (controle){
-//                    dtoRequestObservation.setFile(dtoRequestFile.toObject());
-                    service.create(dtoRequestObservation);
+                    create(dtoRequestObservation);
                 }
             }
         } catch (JsonGenerationException e) {
