@@ -1,18 +1,18 @@
 package br.eti.gadelha.controller;
 
 import br.eti.gadelha.exception.TokenRefreshException;
+import br.eti.gadelha.persistence.dto.request.DTORequestTokenRefresh;
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
 import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
+import br.eti.gadelha.persistence.dto.response.DTOResponseTokenRefresh;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.persistence.model.RefreshToken;
-import br.eti.gadelha.persistence.payload.request.LogOutRequest;
-import br.eti.gadelha.persistence.payload.request.TokenRefreshRequest;
-import br.eti.gadelha.persistence.payload.response.JwtResponse;
-import br.eti.gadelha.persistence.payload.response.TokenRefreshResponse;
+import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
+import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
-import br.eti.gadelha.security.services.RefreshTokenService;
+import br.eti.gadelha.services.ServiceRefreshToken;
 import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,14 +40,14 @@ public class ControllerUser {
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
-    RefreshTokenService refreshTokenService;
+    ServiceRefreshToken serviceRefreshToken;
 
     public ControllerUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole) {
         this.serviceUser = new ServiceUser(repositoryUser, repositoryRole) {};
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
+    public ResponseEntity<DTOResponseJwt> authenticateUser(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
         try {
             return new ResponseEntity<>(serviceUser.signin(dtoRequestUser), HttpStatus.OK);
         } catch (Exception e) {
@@ -63,9 +63,9 @@ public class ControllerUser {
         }
     }
     @PostMapping("/logout")
-    public ResponseEntity<HttpStatus> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) {
+    public ResponseEntity<HttpStatus> logoutUser(@Valid @RequestBody DTORequestLogOut DTORequestLogOut) {
         try {
-            serviceUser.logout(logOutRequest);
+            serviceUser.logout(DTORequestLogOut);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -73,15 +73,15 @@ public class ControllerUser {
     }
 
     @PostMapping("/refreshtoken")
-    public ResponseEntity<?> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
+    public ResponseEntity<?> refreshtoken(@Valid @RequestBody DTORequestTokenRefresh request) {
         String requestRefreshToken = request.getRefreshToken();
 
-        return refreshTokenService.findByToken(requestRefreshToken)
-                .map(refreshTokenService::verifyExpiration)
+        return serviceRefreshToken.findByToken(requestRefreshToken)
+                .map(serviceRefreshToken::verifyExpiration)
                 .map(RefreshToken::getUser)
                 .map(user -> {
                     String token = jwtUtils.generateTokenFromUsername(user.getUsername());
-                    return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
+                    return ResponseEntity.ok(new DTOResponseTokenRefresh(token, requestRefreshToken));
                 })
                 .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
                         "Refresh token is not in database!"));

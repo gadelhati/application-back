@@ -1,4 +1,4 @@
-package br.eti.gadelha.security.services;
+package br.eti.gadelha.services;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import br.eti.gadelha.persistence.repository.RefreshTokenRepository;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 
 @Service
-public class RefreshTokenService {
+public class ServiceRefreshToken {
   @Value("${gadelha.app.jwtRefreshExpirationMs}")
   private Long refreshTokenDurationMs;
 

@@ -7,13 +7,12 @@ import br.eti.gadelha.exception.enumeration.ERole;
 import br.eti.gadelha.persistence.model.RefreshToken;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.model.User;
-import br.eti.gadelha.persistence.payload.request.LogOutRequest;
-import br.eti.gadelha.persistence.payload.response.JwtResponse;
+import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
+import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
+import br.eti.gadelha.persistence.model.UserDetailsImpl;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
-import br.eti.gadelha.security.services.RefreshTokenService;
-import br.eti.gadelha.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,8 +21,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,14 +38,14 @@ import java.util.stream.Collectors;
  **/
 
 @Service
-public class ServiceUser {
+public class ServiceUser implements UserDetailsService {
 
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
-    RefreshTokenService refreshTokenService;
+    ServiceRefreshToken serviceRefreshToken;
     @Autowired
     PasswordEncoder encoder;
     private final RepositoryUser repositoryUser;
@@ -52,17 +55,17 @@ public class ServiceUser {
         this.repositoryUser = repository;
         this.repositoryRole = repositoryRole;
     }
-    public JwtResponse signin(DTORequestUserLogin dtoRequestUser) {
+    public DTOResponseJwt signin(DTORequestUserLogin dtoRequestUser) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestUser.getUsername(), dtoRequestUser.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         String jwt = jwtUtils.generateJwtToken(userDetails);
         List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
-        RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
-        return new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles);
+        RefreshToken refreshToken = serviceRefreshToken.createRefreshToken(userDetails.getId());
+        return new DTOResponseJwt(jwt, refreshToken.getToken(), userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles);
     }
-    public void logout(LogOutRequest value) {
-        refreshTokenService.deleteByUserId(value.getUserId());
+    public void logout(DTORequestLogOut value) {
+        serviceRefreshToken.deleteByUserId(value.getUserId());
     }
     public DTOResponseUser signup(DTORequestUser dtoRequestUser) {
         User user = new User(dtoRequestUser.getUsername(), dtoRequestUser.getEmail(), encoder.encode(dtoRequestUser.getPassword()));
@@ -118,5 +121,14 @@ public class ServiceUser {
     }
     public boolean isEmailValid(String value) {
         return repositoryUser.existsByEmail(value);
+    }
+
+    @Override
+    @Transactional
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = repositoryUser.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+
+        return UserDetailsImpl.build(user);
     }
 }

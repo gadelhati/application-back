@@ -1,5 +1,6 @@
 package br.eti.gadelha.security;
 
+import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import br.eti.gadelha.security.jwt.AuthEntryPointJwt;
 import br.eti.gadelha.security.jwt.AuthTokenFilter;
-import br.eti.gadelha.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -26,7 +26,7 @@ import br.eti.gadelha.security.services.UserDetailsServiceImpl;
 		prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	UserDetailsServiceImpl userDetailsService;
+	ServiceUser serviceUser;
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		authenticationManagerBuilder.userDetailsService(serviceUser).passwordEncoder(passwordEncoder());
 	}
 	@Bean @Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {

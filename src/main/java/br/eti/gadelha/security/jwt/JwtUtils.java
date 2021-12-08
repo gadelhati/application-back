@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import br.eti.gadelha.security.services.UserDetailsImpl;
+import br.eti.gadelha.persistence.model.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 

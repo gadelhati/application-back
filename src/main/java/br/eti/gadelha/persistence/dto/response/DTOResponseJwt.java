@@ -1,9 +1,9 @@
-package br.eti.gadelha.persistence.payload.response;
+package br.eti.gadelha.persistence.dto.response;
 
 import java.util.List;
 import java.util.UUID;
 
-public class JwtResponse {
+public class DTOResponseJwt {
 	private String token;
 	private String type = "Bearer";
 	private String refreshToken;
@@ -12,7 +12,7 @@ public class JwtResponse {
 	private String email;
 	private List<String> roles;
 
-	public JwtResponse(String accessToken, String refreshToken, UUID id, String username, String email, List<String> roles) {
+	public DTOResponseJwt(String accessToken, String refreshToken, UUID id, String username, String email, List<String> roles) {
 		this.token = accessToken;
 		this.refreshToken = refreshToken;
 		this.id = id;
