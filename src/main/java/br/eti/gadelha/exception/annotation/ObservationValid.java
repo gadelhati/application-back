@@ -16,10 +16,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ObservationValid {
 
-    String message() default "Fields values don't match!";
-
+    String message() default "{group.valid}";
     String field();
-
     String fieldMatch();
 
     @Target({ ElementType.TYPE })
