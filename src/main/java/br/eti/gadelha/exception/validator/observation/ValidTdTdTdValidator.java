@@ -15,8 +15,11 @@ public class ValidTdTdTdValidator implements ConstraintValidator<ValidTdTdTd, DT
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
         if ( value == null && value.getTtt() == null && value.getTdtdtd() == null ) {
             return false;
-        } else if(Integer.parseInt(value.getTtt()) < Integer.parseInt(value.getTdtdtd()) ) {
-            return false;
+        } else if(value.getTtt() != null && value.getTdtdtd() != null && !value.getTtt().equals("") && !value.getTdtdtd().equals("") )
+            if( Integer.parseInt(value.getTtt()) < Integer.parseInt(value.getTdtdtd()) ) {
+                return false;
+            } else {
+                return true;
         } else {
             return true;
         }
