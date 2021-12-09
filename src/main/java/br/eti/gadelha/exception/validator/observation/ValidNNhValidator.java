@@ -1,0 +1,28 @@
+package br.eti.gadelha.exception.validator.observation;
+
+import br.eti.gadelha.exception.annotation.observation.ValidNNh;
+import br.eti.gadelha.persistence.dto.request.DTORequestObservation;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+public class ValidNNhValidator implements ConstraintValidator<ValidNNh, DTORequestObservation> {
+
+    @Override
+    public void initialize(ValidNNh constraintAnnotation) {
+    }
+    @Override
+    public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
+        if ( value == null && value.getN() != null && value.getNh() == null ) {
+            return false;
+        } else if(!value.getN().equals("/") && Integer.parseInt(value.getN()) < Integer.parseInt(value.getNh())) {
+            return false;
+        } else if(!value.getN().equals("/") && Integer.parseInt(value.getN()) >= 1 && Integer.parseInt(value.getN()) <= 8 && value.getNh().equals("0")) {
+            return false;
+        } else if(!value.getN().equals("/") && Integer.parseInt(value.getN()) >= 1 && Integer.parseInt(value.getN()) <= 8 && value.getNh().equals("/")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}

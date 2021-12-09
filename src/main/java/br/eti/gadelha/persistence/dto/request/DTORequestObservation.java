@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.dto.request;
 
-import br.eti.gadelha.exception.annotation.ObservationValid;
+import br.eti.gadelha.exception.annotation.observation.*;
 import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.observation.Observation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,18 +23,7 @@ import java.util.Date;
  **/
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
-@ObservationValid.List({
-        @ObservationValid(
-                field = "password",
-                fieldMatch = "verifyPassword",
-                message = "Passwords do not match!"
-        ),
-        @ObservationValid(
-                field = "email",
-                fieldMatch = "verifyEmail",
-                message = "Email addresses do not match!"
-        )
-})
+@ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCM @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
 public class DTORequestObservation {
 
     private Point coordinates;
@@ -64,7 +53,7 @@ public class DTORequestObservation {
     //IIiii
     @Pattern(regexp = "82||83", message = "{ii.valid}")
     private String ii;
-    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
+//    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
     private String iii;
     //99LaLaLa
     @Pattern(regexp = "[0-8][0-9][0-9]||900", message = "{lalala.valid}")
@@ -242,17 +231,17 @@ public class DTORequestObservation {
 
     //555
     //chwicMcsicFicpicQ
-    @Pattern(regexp = "[0-3]", message = "{ichw.valid}")
+    @Pattern(regexp = "[0-3]||''", message = "{ichw.valid}")
     private String ichw;
-    @Pattern(regexp = "[0-7]", message = "{icm.valid}")
+    @Pattern(regexp = "[0-7]||''", message = "{icm.valid}")
     private String icm;
-    @Pattern(regexp = "[0-9]", message = "{cs.valid}")
+    @Pattern(regexp = "[0-9]||''", message = "{cs.valid}")
     private String cs;
-    @Pattern(regexp = "[0-6]", message = "{icf.valid}")
+    @Pattern(regexp = "[0-6]||''", message = "{icf.valid}")
     private String icf;
-    @Pattern(regexp = "[0-9]", message = "{icp.valid}")
+    @Pattern(regexp = "[0-9]||''", message = "{icp.valid}")
     private String icp;
-    @Pattern(regexp = "[0-9]", message = "{icq.valid}")
+    @Pattern(regexp = "[0-9]||''", message = "{icq.valid}")
     private String icq;
 
     private String observador;
