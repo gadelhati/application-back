@@ -15,7 +15,7 @@ public class ValidTxTxTxValidator implements ConstraintValidator<ValidTxTxTx, DT
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
         if ( value == null && value.getTtt() != null && value.getTxtxtx() == null ) {
             return false;
-        } else if(value.getTtt() != null && value.getTxtxtx() != null && !value.getTtt().equals("") || !value.getTxtxtx().equals("") )
+        } else if(value.getTtt() != null && value.getTxtxtx() != null && !value.getTtt().equals("") && !value.getTxtxtx().equals("") )
             if( Integer.parseInt(value.getTtt()) > Integer.parseInt(value.getTxtxtx()) ) {
                 return false;
             } else {
