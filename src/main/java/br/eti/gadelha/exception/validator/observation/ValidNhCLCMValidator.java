@@ -15,7 +15,7 @@ public class ValidNhCLCMValidator implements ConstraintValidator<ValidNhCLCM, DT
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
         if ( value == null && value.getNh() != null && value.getCl() == null && value.getCm() == null ) {
             return false;
-        } else if(!value.getNh().equals("/") && Integer.parseInt(value.getNh()) >=1 && Integer.parseInt(value.getNh()) <=8 && !value.getCl().equals("0") || !value.getCm().equals("0")) {
+        } else if(!value.getNh().equals("/") && Integer.parseInt(value.getNh()) >=1 && Integer.parseInt(value.getNh()) <=8 && value.getCl().equals("0") || value.getCm().equals("0")) {
             return false;
         } else {
             return true;
