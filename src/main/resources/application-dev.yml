@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:institutohidrografico_dev;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT-FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    datasource: org.hibernate.dialect.W2Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+  h2:
+    conlose:
+      enable: true
+#  profiles:
+#    active: dev
+#  devtools:
+#    restart:
+#      enabled: true
+#    livereload:
+#      #      enabled: false
+#      level:
+#        br:
+#          eti:
+#            gadelha: DEBUG
+logging:
+  level:
+    com:
+      institutohidrografico:
+        application: DEBUG
+jwt:
+  secret: institutohidrografico
+  validity: 18000
