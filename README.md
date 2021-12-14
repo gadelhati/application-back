@@ -99,6 +99,11 @@ Para abrir console do banco de dados **H2**, acesse:
 > [http://localhost:8080/h2-ui](http://localhost:8080/h2-ui)
 Relative links
 
+### Deploy
+```
+cp /home/<user>/appliation-back.war /opt/tomcat/webapps
+```
+
 ### HTTP Status code list:
 
 > [HHTP Status Code](https://httpstatuses.com/)
