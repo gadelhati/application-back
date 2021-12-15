@@ -99,12 +99,12 @@
 			<artifactId>springfox-swagger2</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>5.3.13</version>
-		</dependency>
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-context &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework</groupId>-->
+<!--			<artifactId>spring-context</artifactId>-->
+<!--&lt;!&ndash;			<version>5.3.13</version>&ndash;&gt;-->
+<!--		</dependency>-->
 		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -159,31 +159,24 @@
 			<artifactId>javase</artifactId>
 			<version>3.4.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/pl.project13.maven/git-commit-id-plugin -->
-		<dependency>
-			<groupId>pl.project13.maven</groupId>
-			<artifactId>git-commit-id-plugin</artifactId>
-			<version>4.0.4</version>
-		</dependency>
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api &ndash;&gt;-->
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/pl.project13.maven/git-commit-id-plugin &ndash;&gt;-->
 <!--		<dependency>-->
-<!--			<groupId>org.junit.jupiter</groupId>-->
-<!--			<artifactId>junit-jupiter-api</artifactId>-->
-<!--			<version>5.8.2</version>-->
-<!--			<scope>test</scope>-->
+<!--			<groupId>pl.project13.maven</groupId>-->
+<!--			<artifactId>git-commit-id-plugin</artifactId>-->
+<!--			<version>4.0.4</version>-->
 <!--		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-spatial -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-spatial</artifactId>
+			<version>5.6.2.Final</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13.2</version>
 			<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-spatial -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-spatial</artifactId>
-			<version>5.6.2.Final</version>
 		</dependency>
 	</dependencies>
 
