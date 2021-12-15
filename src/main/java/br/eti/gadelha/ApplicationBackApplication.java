@@ -2,6 +2,8 @@ package br.eti.gadelha;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -10,8 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 
 @SpringBootApplication
-public class ApplicationBackApplication {
+public class ApplicationBackApplication extends SpringBootServletInitializer {
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(ApplicationBackApplication.class);
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationBackApplication.class, args);
 	}
