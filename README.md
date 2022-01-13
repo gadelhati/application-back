@@ -150,6 +150,13 @@ mvn clean package
 
 serão criados dois arquivos com a extensão .war, o com nome menor é o que será utilizado.
 
+### On Server
+
+```
+rm /opt/tomcat/webapps/<old_version>.war
+rm -Rfv /opt/tomcat/webapps/<old_version>
+cp /home/<user>/application-back.war /opt/tomcat/webapps/
+```
 [comment]: <> ([![All Contributors]&#40;https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square&#41;]&#40;#contributors-&#41;)
 
 ## Dependency
