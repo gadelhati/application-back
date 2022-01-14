@@ -3,6 +3,7 @@ package br.eti.gadelha.persistence.model;
 import br.eti.gadelha.exception.enumeration.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
@@ -18,7 +19,7 @@ import javax.persistence.*;
  **/
 
 @Audited @AuditTable(value = "audit_role")
-@Entity @Data @NoArgsConstructor @AllArgsConstructor
+@Entity @Data @NoArgsConstructor @AllArgsConstructor @EqualsAndHashCode(callSuper = false)
 @Table(name = "role")
 public class Role extends GenericEntity {
 	@Enumerated(EnumType.STRING)

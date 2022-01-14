@@ -1,6 +1,7 @@
 package br.eti.gadelha.persistence.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
@@ -22,7 +23,7 @@ import javax.validation.constraints.Size;
  **/
 
 @Audited @AuditTable(value = "audit_user")
-@Entity @Data @NoArgsConstructor
+@Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 @Table(	name = "user",
 		uniqueConstraints = { 
 			@UniqueConstraint(columnNames = "username"),
