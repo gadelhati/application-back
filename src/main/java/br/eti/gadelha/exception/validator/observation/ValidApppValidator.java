@@ -19,8 +19,8 @@ public class ValidApppValidator implements ConstraintValidator<ValidAppp, DTOReq
             return false;
         } else if( !value.getA().equals("/") && Integer.parseInt(value.getA()) >= 1 && Integer.parseInt(value.getA()) <= 8 && value.getPpp().equals("///")) {
             return false;
-//        } else if( !value.getA().equals("4") && Integer.parseInt(value.getPpp()) >= 0 ) {
-//            return false;
+        } else if( !value.getA().equals("4") && Integer.parseInt(value.getPpp()) >= 0 ) {
+            return false;
         } else if( !value.getA().equals("/") && Integer.parseInt(value.getA()) >= 1 && Integer.parseInt(value.getA()) <= 3 && value.getPpp().equals("000")) {
             return false;
         } else if( !value.getA().equals("/") && Integer.parseInt(value.getA()) >= 6 && Integer.parseInt(value.getA()) <= 8 && value.getPpp().equals("000")) {
