@@ -157,7 +157,7 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-3][0-9][0-9]||400||''", message = "{twtwtw.valid}")
     private String twtwtw;
     //1PwaPwaHwaHwa
-    @Pattern(regexp = "[0-2][0-9]||30||''", message = "{pwapwa.valid}")
+    @Pattern(regexp = "[0-2][0-9]||30||\\/\\/||''", message = "{pwapwa.valid}")
     private String pwapwa;
     @Pattern(regexp = "0[0-9]||10||\\/\\/||''", message = "{hwahwa.valid}")
     private String hwahwa;
