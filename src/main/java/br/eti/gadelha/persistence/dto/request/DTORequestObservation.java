@@ -98,7 +98,7 @@ public class DTORequestObservation {
     @Pattern(regexp = "0[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
     private String p0p0p0p0;
     //4PPPP
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "{pppp.valid}") @NotNull
+    @Pattern(regexp = "[0-9][0-9][0-9][0-9]||[0-9][0-9][0-9][0-9||\\/]", message = "{pppp.valid}") @NotNull
     private String pppp;
     //4a3hhh
     @Pattern(regexp = "1||2||5||7||8", message = "{a3.valid}")
