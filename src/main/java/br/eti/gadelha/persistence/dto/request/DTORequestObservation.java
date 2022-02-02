@@ -78,9 +78,9 @@ public class DTORequestObservation {
     //Nddff
     @Pattern(regexp = "0||1||2||8||9||\\/", message = "{n.valid}") @NotNull
     private String n;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99", message = "{dd.valid}") @NotNull
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99||\\/", message = "{dd.valid}") @NotNull
     private String dd;
-    @Pattern(regexp = "[0-9][0-9]", message = "{ff.valid}") @NotNull
+    @Pattern(regexp = "[0-9][0-9]||\\/", message = "{ff.valid}") @NotNull
     private String ff;
     @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
     private String fff;
