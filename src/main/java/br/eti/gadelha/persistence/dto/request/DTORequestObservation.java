@@ -78,16 +78,16 @@ public class DTORequestObservation {
     //Nddff
     @Pattern(regexp = "0||1||2||8||9||\\/", message = "{n.valid}") @NotNull
     private String n;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99||\\/", message = "{dd.valid}") @NotNull
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99||\\/\\/", message = "{dd.valid}") @NotNull
     private String dd;
-    @Pattern(regexp = "[0-9][0-9]||\\/", message = "{ff.valid}") @NotNull
+    @Pattern(regexp = "[0-9][0-9]||\\/\\/", message = "{ff.valid}") @NotNull
     private String ff;
     @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
     private String fff;
     //1snTTT
     @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull
     private String sn1_1;
-    @Pattern(regexp = "[0-4][0-9][0-9]||500", message = "{ttt.valid}") @NotNull
+    @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{ttt.valid}") @NotNull
     private String ttt;
     //2snTdTdTd (ou 29UUU)
     @Pattern(regexp = "0||1||9]", message = "{sn2_1.valid}")
