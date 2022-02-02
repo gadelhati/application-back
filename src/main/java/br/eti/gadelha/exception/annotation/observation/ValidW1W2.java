@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidW1W2 {
 
-    String message() default "W2 não pode ser menor que W1. Favor verificar";
+    String message() default "W2 não pode ser maior que W1. Favor verificar";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }
