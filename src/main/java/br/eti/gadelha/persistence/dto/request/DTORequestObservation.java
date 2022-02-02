@@ -111,7 +111,7 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-1][0-9][0-9]||200", message = "{ppp.valid}")
     private String ppp;
     //6RRRtR
-//    @Pattern(regexp = "001||[0-9][0-9][0-9]", message = "{rrr.valid}")
+    @Pattern(regexp = "[0-9][0-9][0-9]||\\/\\/\\/", message = "{rrr.valid}")
     private String rrr;
     @Pattern(regexp = "[0-9]||''", message = "{tr.valid}")
     private String tr;
