@@ -23,7 +23,7 @@ import java.util.Date;
  **/
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
-@ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCM @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
+@ValidTTTTdTdTd //@ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCM @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
 public class DTORequestObservation {
 
     private Point coordinates;
@@ -90,9 +90,9 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{ttt.valid}") @NotNull
     private String ttt;
     //2snTdTdTd (ou 29UUU)
-    @Pattern(regexp = "0||1||9]", message = "{sn2_1.valid}")
+    @Pattern(regexp = "0||1||9", message = "{sn2_1.valid}")
     private String sn2_1;
-    @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{tdtdtd.valid}")
+    @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{tdtdtd.valid}") @JsonProperty("tdTdTd_UUU")
     private String tdtdtd;
     //3P0P0P0P0
     @Pattern(regexp = "0[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
