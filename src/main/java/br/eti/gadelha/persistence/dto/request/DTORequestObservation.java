@@ -23,7 +23,7 @@ import java.util.Date;
  **/
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
-@ValidTTTTdTdTd //@ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCM @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
+@ValidTTTTdTdTd @ValidAppp //@ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCM @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
 public class DTORequestObservation {
 
     private Point coordinates;
@@ -108,7 +108,7 @@ public class DTORequestObservation {
     //5appp
     @Pattern(regexp = "[0-8]||\\/", message = "{a.valid}")
     private String a;
-    @Pattern(regexp = "[0-1][0-9][0-9]||200", message = "{ppp.valid}")
+    @Pattern(regexp = "[0-1][0-9][0-9]||200||\\/||\\/||\\/", message = "{ppp.valid}")
     private String ppp;
     //6RRRtR
     @Pattern(regexp = "[0-9][0-9][0-9]||\\/\\/\\/||''", message = "{rrr.valid}")
