@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter @AllArgsConstructor
-public enum EnumVesselType {
+public enum EnumTypeVessel {
     CARGA("cargo"),
     TANKERS("tankers"),
     PASSAGER_VESSEL("passager vessel"),
