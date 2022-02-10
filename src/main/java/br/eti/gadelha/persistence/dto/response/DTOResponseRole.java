@@ -16,7 +16,7 @@ public class DTOResponseRole {
 
     private ERole name;
 
-    public static DTOResponseRole toDTO(Role role) {
-        return new DTOResponseRole(role.getName());
+    public static DTOResponseRole toDTO(Role value) {
+        return new DTOResponseRole(value.getName());
     }
 }

@@ -33,7 +33,7 @@ public class DTOResponseUser {
     @Size(min = 6, max = 40)
     private String password;
 
-    public static DTOResponseUser toDTO(User user) {
-        return new DTOResponseUser(user.getId(), user.getUsername(), user.getEmail(), user.getRoles(), user.getPassword());
+    public static DTOResponseUser toDTO(User value) {
+        return new DTOResponseUser(value.getId(), value.getUsername(), value.getEmail(), value.getRoles(), value.getPassword());
     }
 }

@@ -17,7 +17,7 @@ public class DTOResponseFile {
     private String fileType;
     private long size;
 
-    public static DTOResponseFile toDTO(File file) {
-        return new DTOResponseFile(file.getFileName(), file.getFileType(), file.getSize());
+    public static DTOResponseFile toDTO(File value) {
+        return new DTOResponseFile(value.getFileName(), value.getFileType(), value.getSize());
     }
 }
