@@ -7,6 +7,7 @@ import br.eti.gadelha.persistence.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -28,9 +29,10 @@ public class DTORequestUser {
     private String email;
     @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}")
     private String password;
+    private Boolean ativo;
     private Set<Role> role;
 
     public User toObject(){
-        return new User(username, password, email);
+        return new User(username, password, email, ativo);
     }
 }

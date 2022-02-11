@@ -42,6 +42,7 @@ public class User extends GenericEntity {
 	@NotBlank
 	@Size(max = 120)
 	private String password;
+	private Boolean ativo;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_role",
@@ -53,10 +54,15 @@ public class User extends GenericEntity {
 		this.username = username;
 		this.password = password;
 	}
-
 	public User(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
+	}
+	public User(String username, String email, String password, Boolean ativo) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.ativo = ativo;
 	}
 }
