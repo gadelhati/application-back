@@ -58,7 +58,7 @@ public class ControllerObservation {
     }
     @GetMapping("/retrieve") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public List<DTOResponseObservation> retrieveAll(){
-        return service.retrieveAll();
+        return service.retrieve();
     }
 
     @GetMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
@@ -122,7 +122,7 @@ public class ControllerObservation {
             DTORequestFile dtoRequestFile = new DTORequestFile(fileName, fileType, fileSize);
             serviceFile.create(dtoRequestFile);
             for( DTORequestObservation dtoRequestObservation : dtoRequestObservations ) {
-                List<DTOResponseObservation> dtoResponseObservations = service.retrieveAll();
+                List<DTOResponseObservation> dtoResponseObservations = service.retrieve();
                 boolean controle = true;
                 for (DTOResponseObservation dtoResponseObservation: dtoResponseObservations) {
                     if (dtoRequestObservation.getDataObservacao() != null && dtoResponseObservation.getDataObservacao() != null){
