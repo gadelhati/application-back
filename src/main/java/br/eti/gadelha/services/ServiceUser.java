@@ -2,6 +2,8 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
 import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
+import br.eti.gadelha.persistence.dto.response.DTOResponseOM;
+import br.eti.gadelha.persistence.dto.response.DTOResponseObservation;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.exception.enumeration.ERole;
 import br.eti.gadelha.persistence.model.RefreshToken;
@@ -10,6 +12,7 @@ import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
 import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
 import br.eti.gadelha.persistence.model.UserDetailsImpl;
+import br.eti.gadelha.persistence.model.observation.Observation;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
@@ -103,6 +106,17 @@ public class ServiceUser implements UserDetailsService {
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
     }
+    public List<DTOResponseUser> retrieve(){
+        List<DTOResponseUser> list = new ArrayList<>();
+        for(User user: repositoryUser.findAll()) {
+//            if(getCurrentUser().getRoles().getNome().equals("ROLE_ADMIN")) {
+//                list.add(DTOResponseUser.toDTO(user));
+//            } else {
+                list.add(DTOResponseUser.toDTO(user));
+//            }
+        }
+        return list;
+    }
     public DTOResponseUser update(UUID id, DTORequestUser updated){
         User user = repositoryUser.findById(id).get();
         user.setUsername(updated.getUsername());
@@ -121,6 +135,13 @@ public class ServiceUser implements UserDetailsService {
     }
     public boolean isEmailValid(String value) {
         return repositoryUser.existsByEmail(value);
+    }
+
+    public User getUserByUsername(String username) {
+        return repositoryUser.getUserByUsername(username);
+    }
+    public User getCurrentUser() {
+        return getUserByUsername(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
     }
 
     @Override
