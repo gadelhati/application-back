@@ -13,17 +13,17 @@ public class ValidVVWWValidator implements ConstraintValidator<ValidVVWW, DTOReq
     }
     @Override
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
-        if ( value == null && value.getVv() != null && value.getWw() == null ) {
+        if ( value == null ) {
             return false;
-        } else if(Integer.parseInt(value.getVv()) < Integer.parseInt(value.getWw())) {
+        } else if(!value.getWw().isEmpty() && !value.getVv().isEmpty() && Integer.parseInt(value.getVv()) < Integer.parseInt(value.getWw())) {
             return false;
-        } else if(Integer.parseInt(value.getVv()) >= 94 && Integer.parseInt(value.getVv()) <= 99
+        } else if(!value.getWw().isEmpty() && !value.getVv().isEmpty() && Integer.parseInt(value.getVv()) >= 94 && Integer.parseInt(value.getVv()) <= 99
                 && Integer.parseInt(value.getWw()) >= 40 && Integer.parseInt(value.getWw()) <= 49) {
             return false;
-        } else if(Integer.parseInt(value.getVv()) >= 90 && Integer.parseInt(value.getVv()) <= 93
+        } else if(!value.getWw().isEmpty() && !value.getVv().isEmpty() && Integer.parseInt(value.getVv()) >= 90 && Integer.parseInt(value.getVv()) <= 93
                 && value.getWw().equals("10")) {
             return false;
-        } else if(Integer.parseInt(value.getVv()) >= 90 && Integer.parseInt(value.getVv()) <= 96
+        } else if(!value.getWw().isEmpty() && !value.getVv().isEmpty() && Integer.parseInt(value.getVv()) >= 90 && Integer.parseInt(value.getVv()) <= 96
                 && Integer.parseInt(value.getWw()) >= 10 && Integer.parseInt(value.getWw()) <= 16) {
             return false;
         } else {
