@@ -32,7 +32,7 @@ public class DTORequestUser {
     private String password;
     private Boolean active;
     private OM om;
-    private Set<Role> role;
+    private Set<Role> roles;
 
     public User toObject(){
         return new User(username, password, email, active, om);

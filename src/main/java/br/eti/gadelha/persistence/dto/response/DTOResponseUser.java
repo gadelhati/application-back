@@ -31,7 +31,7 @@ public class DTOResponseUser {
     private String password;
     private Boolean active;
     private OM om;
-    private Set<Role> role;
+    private Set<Role> roles;
 
     public static DTOResponseUser toDTO(User value) {
         return new DTOResponseUser(value.getId(), value.getUsername(), value.getEmail(), value.getPassword(), value.getActive(), value.getOm(), value.getRoles());

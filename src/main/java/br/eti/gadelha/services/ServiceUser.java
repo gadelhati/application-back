@@ -2,8 +2,6 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
 import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
-import br.eti.gadelha.persistence.dto.response.DTOResponseOM;
-import br.eti.gadelha.persistence.dto.response.DTOResponseObservation;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.exception.enumeration.ERole;
 import br.eti.gadelha.persistence.model.RefreshToken;
@@ -12,7 +10,6 @@ import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
 import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
 import br.eti.gadelha.persistence.model.UserDetailsImpl;
-import br.eti.gadelha.persistence.model.observation.Observation;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
@@ -80,7 +77,7 @@ public class ServiceUser implements UserDetailsService {
     public DTOResponseUser create(DTORequestUser created){
         Set<Role> roles = new HashSet<>();
         roles.add(repositoryRole.findByName(ERole.ROLE_USER));
-        created.setRole(roles);
+        created.setRoles(roles);
         return DTOResponseUser.toDTO(repositoryUser.save(created.toObject()));
     }
     public Page<DTOResponseUser> retrieve(Pageable pageable){
@@ -120,7 +117,11 @@ public class ServiceUser implements UserDetailsService {
     public DTOResponseUser update(UUID id, DTORequestUser updated){
         User user = repositoryUser.findById(id).get();
         user.setUsername(updated.getUsername());
+        user.setEmail(updated.getEmail());
         user.setPassword(encoder.encode(updated.getPassword()));
+        user.setActive(updated.getActive());
+        user.setOm(updated.getOm());
+        user.setRoles(updated.getRoles());
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
     public void delete(UUID id){
