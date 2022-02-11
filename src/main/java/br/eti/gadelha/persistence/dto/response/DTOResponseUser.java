@@ -29,11 +29,11 @@ public class DTOResponseUser {
     @NotBlank @Size(max = 50) @Email @UniqueEmailAddress
     private String email;
     private String password;
-    private Boolean ativo;
+    private Boolean active;
     private OM om;
     private Set<Role> role;
 
     public static DTOResponseUser toDTO(User value) {
-        return new DTOResponseUser(value.getId(), value.getUsername(), value.getEmail(), value.getPassword(), value.getAtivo(), value.getOm(), value.getRoles());
+        return new DTOResponseUser(value.getId(), value.getUsername(), value.getEmail(), value.getPassword(), value.getActive(), value.getOm(), value.getRoles());
     }
 }

@@ -40,7 +40,7 @@ public class User extends GenericEntity {
 	@NotBlank
 	@Size(max = 120)
 	private String password;
-	private Boolean ativo;
+	private Boolean active;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "om", nullable = false)
@@ -61,11 +61,11 @@ public class User extends GenericEntity {
 		this.email = email;
 		this.password = password;
 	}
-	public User(String username, String email, String password, Boolean ativo, OM om) {
+	public User(String username, String email, String password, Boolean active, OM om) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.ativo = ativo;
+		this.active = active;
 		this.om = om;
 	}
 }

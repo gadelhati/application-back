@@ -30,11 +30,11 @@ public class DTORequestUser {
     private String email;
     @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}")
     private String password;
-    private Boolean ativo;
+    private Boolean active;
     private OM om;
     private Set<Role> role;
 
     public User toObject(){
-        return new User(username, password, email, ativo, om);
+        return new User(username, password, email, active, om);
     }
 }
