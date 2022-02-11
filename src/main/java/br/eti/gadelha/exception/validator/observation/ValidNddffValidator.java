@@ -15,13 +15,13 @@ public class ValidNddffValidator implements ConstraintValidator<ValidNddff, DTOR
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
         if ( value == null ) {
             return false;
-        } else if(value.getDd().equals("00") && !value.getFf().equals("00")) {
+        } else if(value.getDd() != null && value.getFf() != null && value.getDd().equals("00") && !value.getFf().equals("00")) {
             return false;
 //            return value.getDdddddd() == null && value.getIii() != null || value.getDdddddd().equals("") && !value.getIii().equals("")
 //                    || value.getDdddddd() != null && value.getIii() == null || !value.getDdddddd().equals("") && value.getIii().equals("");
-        } else if(!value.getDd().isEmpty() && Integer.parseInt(value.getDd()) >= 0 && Integer.parseInt(value.getDd()) <= 36 && value.getFf().equals("00")){
+        } else if(value.getDd() != null && value.getFf() != null && !value.getDd().isEmpty() && Integer.parseInt(value.getDd()) >= 0 && Integer.parseInt(value.getDd()) <= 36 && value.getFf().equals("00")){
             return false;
-        } else if(value.getDd().equals("99") && value.getFf().equals("00")) {
+        } else if(value.getDd() != null && value.getFf() != null && value.getDd().equals("99") && value.getFf().equals("00")) {
             return false;
         } else {
             return true;

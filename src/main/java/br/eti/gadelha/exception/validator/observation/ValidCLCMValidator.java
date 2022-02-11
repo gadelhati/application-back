@@ -13,9 +13,9 @@ public class ValidCLCMValidator implements ConstraintValidator<ValidCLCM, DTOReq
     }
     @Override
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
-        if ( value == null && value.getCl() == null && value.getCm() == null ) {
+        if ( value == null ) {
             return false;
-        } else if( value.getCl().equals("0") && value.getCm().equals("/") ) {
+        } else if( value.getCl() != null && value.getCm() != null && value.getCl().equals("0") && value.getCm().equals("/") ) {
             return false;
         } else {
             return true;

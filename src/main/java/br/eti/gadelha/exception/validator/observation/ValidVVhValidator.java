@@ -15,7 +15,9 @@ public class ValidVVhValidator implements ConstraintValidator<ValidVVh, DTOReque
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
         if ( value == null ) {
             return false;
-        } else if(!value.getVv().isEmpty() && !value.getH().isEmpty() && Integer.parseInt(value.getVv()) >= 98 && Integer.parseInt(value.getVv()) <= 99 && !value.getH().equals("/") && Integer.parseInt(value.getH()) >= 0 && Integer.parseInt(value.getH()) <= 1 ) {
+        } else if( value.getVv() != null && value.getH() != null
+                && !value.getVv().isEmpty() && !value.getH().isEmpty()
+                && Integer.parseInt(value.getVv()) >= 98 && Integer.parseInt(value.getVv()) <= 99 && !value.getH().equals("/") && Integer.parseInt(value.getH()) >= 0 && Integer.parseInt(value.getH()) <= 1 ) {
             return false;
         } else {
             return true;

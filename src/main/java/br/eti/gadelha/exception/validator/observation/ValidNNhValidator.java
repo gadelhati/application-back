@@ -15,11 +15,11 @@ public class ValidNNhValidator implements ConstraintValidator<ValidNNh, DTOReque
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
         if ( value == null ) {
             return false;
-        } else if(!value.getN().isEmpty() && !value.getNh().isEmpty() && !value.getN().equals("/") && Integer.parseInt(value.getN()) < Integer.parseInt(value.getNh())) {
+        } else if(value.getN() != null && value.getNh() != null && !value.getN().isEmpty() && !value.getNh().isEmpty() && !value.getN().equals("/") && Integer.parseInt(value.getN()) < Integer.parseInt(value.getNh())) {
             return false;
-        } else if(!value.getN().isEmpty() && !value.getN().equals("/") && Integer.parseInt(value.getN()) >= 1 && Integer.parseInt(value.getN()) <= 8 && value.getNh().equals("0")) {
+        } else if(value.getN() != null && value.getNh() != null && !value.getN().isEmpty() && !value.getN().equals("/") && Integer.parseInt(value.getN()) >= 1 && Integer.parseInt(value.getN()) <= 8 && value.getNh().equals("0")) {
             return false;
-        } else if(!value.getN().isEmpty() && !value.getN().equals("/") && Integer.parseInt(value.getN()) >= 1 && Integer.parseInt(value.getN()) <= 8 && value.getNh().equals("/")) {
+        } else if(value.getN() != null && value.getNh() != null && !value.getN().isEmpty() && !value.getN().equals("/") && Integer.parseInt(value.getN()) >= 1 && Integer.parseInt(value.getN()) <= 8 && value.getNh().equals("/")) {
             return false;
         } else {
             return true;

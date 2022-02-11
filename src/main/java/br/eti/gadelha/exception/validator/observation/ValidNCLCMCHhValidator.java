@@ -13,13 +13,14 @@ public class ValidNCLCMCHhValidator implements ConstraintValidator<ValidNCLCMCHh
     }
     @Override
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
-        if ( value == null && value.getNh() == null && value.getCl() == null && value.getCm() == null && value.getCh() == null && value.getH() == null ) {
+        if ( value == null ) {
             return false;
-        } else if(value.getNh().equals("9")
-                && (!value.getCl().equals("/") && Integer.parseInt(value.getCl()) >= 0
-                || !value.getCm().equals("/") && Integer.parseInt(value.getCm()) >= 0
-                || !value.getCh().equals("/") && Integer.parseInt(value.getCh()) >= 0
-                || !value.getH().equals("/") && Integer.parseInt(value.getH()) >= 0 )) {
+        } else if( value.getNh() != null &&value.getCl() != null &&value.getCm() != null &&value.getCh() != null &&
+                value.getNh().equals("9")
+                && (!value.getCl().isEmpty() && !value.getCl().equals("/") && Integer.parseInt(value.getCl()) >= 0
+                || !value.getCm().isEmpty() && !value.getCm().equals("/") && Integer.parseInt(value.getCm()) >= 0
+                || !value.getCh().isEmpty() && !value.getCh().equals("/") && Integer.parseInt(value.getCh()) >= 0
+                || !value.getH().isEmpty() && !value.getH().equals("/") && Integer.parseInt(value.getH()) >= 0 )) {
             return false;
         } else {
             return true;

@@ -13,13 +13,12 @@ public class ValidTxTxTxValidator implements ConstraintValidator<ValidTxTxTx, DT
     }
     @Override
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
-        if ( value == null && value.getTtt() != null && value.getTxtxtx() == null ) {
+        if ( value == null ) {
             return false;
-        } else if(value.getTtt() != null && value.getTxtxtx() != null && !value.getTtt().equals("") && !value.getTxtxtx().equals("") )
-            if( Integer.parseInt(value.getTtt()) > Integer.parseInt(value.getTxtxtx()) ) {
+        } else if(value.getTtt() != null && value.getTxtxtx() != null
+                && !value.getTtt().isEmpty() && !value.getTxtxtx().isEmpty() && !value.getTtt().equals("") && !value.getTxtxtx().equals("")
+                && Integer.parseInt(value.getTtt()) > Integer.parseInt(value.getTxtxtx()) ) {
                 return false;
-            } else {
-                return true;
         } else {
             return true;
         }

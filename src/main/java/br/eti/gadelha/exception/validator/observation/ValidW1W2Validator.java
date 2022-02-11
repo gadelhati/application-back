@@ -15,7 +15,7 @@ public class ValidW1W2Validator implements ConstraintValidator<ValidW1W2, DTOReq
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
         if ( value == null ) {
             return false;
-        } else if(!value.getW1w2().isEmpty() && !value.getW1w2().substring(0,1).equals("/") && !value.getW1w2().substring(1).equals("/")
+        } else if(value.getW1w2() != null && !value.getW1w2().substring(0,1).equals("/") && !value.getW1w2().substring(1).equals("/")
                 && Integer.parseInt(value.getW1w2().substring(1)) > Integer.parseInt(value.getW1w2().substring(0,1)) ) {
             return false;
         } else {

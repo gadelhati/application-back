@@ -14,9 +14,11 @@ public class ValidNhCLCMhValidator implements ConstraintValidator<ValidNhCLCMh, 
     }
     @Override
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
-        if ( value == null && value.getNh() != null && value.getCl() == null && value.getCm() == null && value.getH() == null ) {
+        if ( value == null ) {
             return false;
-        } else if(value.getNh().equals("0") && !value.getCl().equals("0") && !value.getCm().equals("0") && !value.getH().equals("9")) {
+        } else if(
+                value.getNh() != null && value. getCl() != null && value.getCm() != null && value.getCh() != null
+                && value.getNh().equals("0") && !value.getCl().equals("0") && !value.getCm().equals("0") && !value.getH().equals("9")) {
             return false;
         } else {
             return true;

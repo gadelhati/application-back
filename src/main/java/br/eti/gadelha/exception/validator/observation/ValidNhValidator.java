@@ -13,13 +13,13 @@ public class ValidNhValidator implements ConstraintValidator<ValidNh, DTORequest
     }
     @Override
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
-        if ( value == null && value.getN() != null && value.getH() == null ) {
+        if ( value == null ) {
             return false;
-        } else if(value.getN().equals("0") && !value.getH().equals("9")) {
+        } else if(value.getN() != null && value.getH() != null && value.getN().equals("0") && !value.getH().equals("9")) {
             return false;
-        } else if(value.getN().equals("9") && !value.getH().equals("/")) {
+        } else if(value.getN() != null && value.getH() != null && value.getN().equals("9") && !value.getH().equals("/")) {
             return false;
-        } else if(value.getN().equals("/") && !value.getH().equals("/")) {
+        } else if(value.getN() != null && value.getH() != null && value.getN().equals("/") && !value.getH().equals("/")) {
             return false;
         } else {
             return true;

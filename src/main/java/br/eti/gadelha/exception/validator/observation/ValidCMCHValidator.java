@@ -13,9 +13,9 @@ public class ValidCMCHValidator implements ConstraintValidator<ValidCMCH, DTOReq
     }
     @Override
     public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
-        if ( value == null && value.getCm() == null && value.getCh() == null ) {
+        if ( value == null ) {
             return false;
-        } else if( value.getCm().equals("0") && value.getCh().equals("/") ) {
+        } else if( value.getCm() != null && value.getCh() != null && value.getCm().equals("0") && value.getCh().equals("/") ) {
             return false;
         } else {
             return true;
