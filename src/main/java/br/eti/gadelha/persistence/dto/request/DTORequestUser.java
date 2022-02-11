@@ -2,6 +2,7 @@ package br.eti.gadelha.persistence.dto.request;
 
 import br.eti.gadelha.exception.annotation.UniqueEmailAddress;
 import br.eti.gadelha.exception.annotation.UniqueUserName;
+import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.model.User;
 import lombok.Getter;
@@ -30,9 +31,10 @@ public class DTORequestUser {
     @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}")
     private String password;
     private Boolean ativo;
+    private OM om;
     private Set<Role> role;
 
     public User toObject(){
-        return new User(username, password, email, ativo);
+        return new User(username, password, email, ativo, om);
     }
 }

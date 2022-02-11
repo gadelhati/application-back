@@ -2,6 +2,7 @@ package br.eti.gadelha.persistence.dto.response;
 
 import br.eti.gadelha.exception.annotation.UniqueEmailAddress;
 import br.eti.gadelha.exception.annotation.UniqueNameRole;
+import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.model.User;
 import lombok.AllArgsConstructor;
@@ -29,9 +30,10 @@ public class DTOResponseUser {
     private String email;
     private String password;
     private Boolean ativo;
+    private OM om;
     private Set<Role> role;
 
     public static DTOResponseUser toDTO(User value) {
-        return new DTOResponseUser(value.getId(), value.getUsername(), value.getEmail(), value.getPassword(), value.getAtivo(), value.getRoles());
+        return new DTOResponseUser(value.getId(), value.getUsername(), value.getEmail(), value.getPassword(), value.getAtivo(), value.getOm(), value.getRoles());
     }
 }
