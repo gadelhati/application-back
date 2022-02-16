@@ -27,69 +27,52 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/om")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerOM
-{
+public class ControllerOM {
 
-    private final ServiceOM
-            service;
+    private final ServiceOM service;
 
-    public ControllerOM
-            (RepositoryOM
-                     repository) {
-        this.service = new ServiceOM
-                (repository) {};
+    public ControllerOM(RepositoryOM repository) {
+        this.service = new ServiceOM(repository) {};
     }
 
-    @PostMapping("") @PreAuthorize("hasAnyOM" +
-            "('ADMIN')")
-    public ResponseEntity<DTOResponseOM
-            > create(@RequestBody @Valid DTORequestOM
-                                            created){
+    @PostMapping("") //@PreAuthorize("hasAnyRole('ADMIN')")
+    public ResponseEntity<DTOResponseOM> create(@RequestBody @Valid DTORequestOM created){
         try {
             return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("") @PreAuthorize("hasAnyOM" +
-            "('USER', 'MODERATOR', 'ADMIN')")
+    @GetMapping("") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<Page<DTOResponseOM
             >> retrieve(Pageable pageable){
         return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
     }
-    @GetMapping("/{id}") @PreAuthorize("hasAnyOM" +
-            "('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseOM
-            > retrieve(@PathVariable UUID id){
+    @GetMapping("/{id}") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
+    public ResponseEntity<DTOResponseOM> retrieve(@PathVariable UUID id){
         try {
             return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/source") @PreAuthorize("hasAnyOM" +
-            "('USER', 'MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseOM
-            >> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
+    @GetMapping("/source") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
+    public ResponseEntity<Page<DTOResponseOM>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
             return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/{id}") @PreAuthorize("hasAnyOM" +
-            "('ADMIN')")
-    public ResponseEntity<DTOResponseOM
-            > update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestOM
-            updated){
+    @PutMapping("/{id}") //@PreAuthorize("hasAnyRole('ADMIN')")
+    public ResponseEntity<DTOResponseOM> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestOM updated){
         try {
             return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/{id}") @PreAuthorize("hasAnyOM" +
-            "('ADMIN')")
+    @DeleteMapping("/{id}") //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> delete(@PathVariable UUID id){
         try {
             service.delete(id);
@@ -98,8 +81,7 @@ public class ControllerOM
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("") @PreAuthorize("hasAnyOM" +
-            "('ADMIN')")
+    @DeleteMapping("") //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             service.delete();
