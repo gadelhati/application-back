@@ -54,7 +54,7 @@ public class ControllerUser {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/signup")	@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @PostMapping("/signup")	//@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<DTOResponseUser> registerUser(@Valid @RequestBody DTORequestUser dtoRequestUser) {
         try {
             return new ResponseEntity<>(serviceUser.signup(dtoRequestUser), HttpStatus.OK);
@@ -87,7 +87,7 @@ public class ControllerUser {
                         "Refresh token is not in database!"));
     }
 
-    @PostMapping("") @PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @PostMapping("") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<DTOResponseUser> create(@RequestBody @Valid DTORequestUser created){
         try {
             return new ResponseEntity<>(serviceUser.create(created), HttpStatus.CREATED);
@@ -95,11 +95,11 @@ public class ControllerUser {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("") @PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @GetMapping("") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<Page<DTOResponseUser>> retrieve(Pageable pageable){
         return new ResponseEntity<>(serviceUser.retrieve(pageable), HttpStatus.FOUND);
     }
-    @GetMapping("/{id}") @PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @GetMapping("/{id}") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<DTOResponseUser> retrieve(@PathVariable UUID id){
         try {
             return new ResponseEntity<>(serviceUser.retrieve(id), HttpStatus.FOUND);
@@ -107,7 +107,7 @@ public class ControllerUser {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/source") @PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @GetMapping("/source") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<Page<DTOResponseUser>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
             return new ResponseEntity<>(serviceUser.retrieveSource(pageable, q), HttpStatus.FOUND);
@@ -115,7 +115,7 @@ public class ControllerUser {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/{id}") @PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @PutMapping("/{id}") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<DTOResponseUser> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestUser updated){
         try {
             return new ResponseEntity<>(serviceUser.update(id, updated), HttpStatus.OK);
@@ -123,7 +123,7 @@ public class ControllerUser {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @DeleteMapping("/{id}") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> delete(@PathVariable UUID id){
         try {
             serviceUser.delete(id);
@@ -132,7 +132,7 @@ public class ControllerUser {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("") @PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
+    @DeleteMapping("") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceUser.delete();
