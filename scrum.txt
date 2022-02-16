@@ -1,0 +1,29 @@
+font-end:
+
+	adcionar paginação no front
+	escolher ícone nova para o sidebar
+	logout do signup conserva e-mail
+	signup precisa de OM
+	sidebar: minimizado excluir title
+	sidebar: minimizado exibir figura
+	sidebar: minimizado exibir tooltip como etiqueta
+	sidebar: mudar de cor durante o hover
+
+	header: alinha menu à esquerda
+	header: sanduiche restaurar body
+
+	login: assumir id visual
+
+	user: alterar senha
+	user: alterar ativo/inativo
+	user profile: alterar nome de usuário/ graduação
+
+back-end
+
+	response auth: padronizada
+	user: definir senha forte
+	swaggeer não está aparecendo (Whitelabel Error Page)
+	RestExceptionHandler
+	filtrar por OM
+	repository: ByIgnoreCaseAndOrderBy (Asc or Desc)
+	unificar (user & userDetails) ? ou separar
