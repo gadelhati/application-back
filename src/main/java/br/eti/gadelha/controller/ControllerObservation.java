@@ -48,7 +48,7 @@ public class ControllerObservation {
         this.service = new ServiceObservation(repository) {};
         this.serviceFile = new ServiceFile(repositoryFile) {};
     }
-    @PostMapping("") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_OPERATOR', 'ROLE_RECTIFIER')")
+    @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseObservation> create(@RequestBody @Valid DTORequestObservation created){
         try {
             return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
@@ -56,16 +56,15 @@ public class ControllerObservation {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/retrieve") //@PreAuthorize("hasAnyRole('USER', 'ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_OPERATOR', 'RECTIFIER')")
+    @GetMapping("/retrieve")
     public List<DTOResponseObservation> retrieveAll(){
         return service.retrieve();
     }
-
-    @GetMapping("") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_OPERATOR', 'ROLE_RECTIFIER')")
+    @GetMapping("")
     public ResponseEntity<Page<DTOResponseObservation>> retrieve(Pageable pageable){
         return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.OK);
     }
-    @GetMapping("/{id}") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_OPERATOR', 'ROLE_RECTIFIER')")
+    @GetMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseObservation> retrieve(@PathVariable UUID id){
         try {
             return new ResponseEntity<>(service.retrieve(id), HttpStatus.OK);
@@ -73,7 +72,7 @@ public class ControllerObservation {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/source") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_OPERATOR', 'ROLE_RECTIFIER')")
+    @GetMapping("/source")
     public ResponseEntity<Page<DTOResponseObservation>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
             return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.OK);
@@ -81,7 +80,7 @@ public class ControllerObservation {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/{id}") //@PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    @PutMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseObservation> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestObservation updated){
         try {
             return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
@@ -89,7 +88,7 @@ public class ControllerObservation {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/{id}") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_RECTIFIER')")
+    @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
     public ResponseEntity<DTOResponseObservation> delete(@PathVariable UUID id){
         try {
             return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
@@ -97,7 +96,7 @@ public class ControllerObservation {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("") //@PreAuthorize("hasAnyRole('ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_RECTIFIER')")
+    @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             service.delete();
@@ -106,7 +105,7 @@ public class ControllerObservation {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/upload") //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN', 'ROLE_OPERATOR', 'ROLE_RECTIFIER')")
+    @PostMapping("/upload") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public File upload(@RequestParam (value="file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
         interpret(fileName, file.getContentType(), file.getSize());
