@@ -153,9 +153,12 @@ serão criados dois arquivos com a extensão .war, o com nome menor é o que ser
 ### On Server
 
 ```
+systemctl stop tomcat
 rm /opt/tomcat/webapps/<old_version>.war
 rm -Rfv /opt/tomcat/webapps/<old_version>
-cp /home/<user>/application-back.war /opt/tomcat/webapps/
+cp /home/<user>/<application_name>.war /opt/tomcat/webapps/
+chown tomcat:tomcat /opt/tomcat/webapps/<application_name>.war
+systemctl start tomcat
 ```
 [comment]: <> ([![All Contributors]&#40;https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square&#41;]&#40;#contributors-&#41;)
 
