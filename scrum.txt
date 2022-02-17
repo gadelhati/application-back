@@ -17,6 +17,14 @@ font-end:
 	user: alterar senha
 	user: alterar ativo/inativo
 	user profile: alterar nome de usuário/ graduação
+		autocomplete=“off”
+		“Cache-Control: no-store”
+		“Usuário e/ou senha inválidos” para ambos os erros
+		letras maiúsculas, letras minúsculas, números e caracteres especiais (simultaneamente), com, no mínimo, 10 caracteres e sem limite máximo de tamanho.
+		quanto ao nome do usuário: utilizar, preferencialmente, o NIP
+		deve ser implementada, no SD, a desativação automática de contas de usuário após um número pré-definido de seguidas tentativas inválidas do login. Esta desativação da conta visa prevenir tentativas de invasão por força bruta. Recomenda-se que a autenticação seja travada:
+			I) após 3 (três) tentativas, para sistemas que hospedem assuntos de grau de sigilo RESERVADO e para o correio eletrônico adotado na MB; e
+			II) após 5 (cinco) tentativas para os demais sistemas.
 
 back-end
 
