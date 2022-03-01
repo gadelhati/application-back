@@ -12,7 +12,7 @@ import java.util.UUID;
 public class DTOResponseOM {
 
     private UUID id;
-    private String nome;
+    private String name;
 
     public static DTOResponseOM toDTO(OM om) {
         return new DTOResponseOM(om.getId(), om.getName());
