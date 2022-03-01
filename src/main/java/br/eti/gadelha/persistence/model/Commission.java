@@ -21,8 +21,8 @@ import java.util.Date;
 @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class Commission extends GenericEntity {
     private String name;
-    private Date start;
-    private Date end;
+    private Date open;
+    private Date close;
     private float latitudeMostBottom;
     private float latitudeMostTop;
     private float longitudeMostRight;
