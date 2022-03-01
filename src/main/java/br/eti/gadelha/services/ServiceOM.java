@@ -32,6 +32,15 @@ public class ServiceOM {
 //        OM role = MAPPER_ROLE.toObject(created);
         return DTOResponseOM.toDTO(repository.save(created.toObject()));
     }
+
+    public List<DTOResponseOM> retrieve(){
+        List<DTOResponseOM> list = new ArrayList<>();
+        for(OM om: repository.findAll()) {
+            list.add(DTOResponseOM.toDTO(om));
+        }
+        return list;
+    }
+
     public Page<DTOResponseOM> retrieve(Pageable pageable){
         List<DTOResponseOM> list = new ArrayList<>();
         for(OM role: repository.findAll()) {
