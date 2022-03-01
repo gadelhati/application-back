@@ -26,10 +26,10 @@ public class DTORequestStationSynop {
     private EnumEquipment equipment;
     private LocalDateTime first;
     private LocalDateTime last;
-    private Date latitudeMostBottom;
-    private Date latitudeMostTop;
-    private Date longitudeMostRight;
-    private Date longitudeMostLeft;
+    private float latitudeMostBottom;
+    private float latitudeMostTop;
+    private float longitudeMostRight;
+    private float longitudeMostLeft;
     private EnumMidia midia;
     private String fb;
 //    private Plataform plataform;
