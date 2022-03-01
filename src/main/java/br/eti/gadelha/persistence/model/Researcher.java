@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Audited @AuditTable(value = "audit_researcher")
 @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
-public class Researcher {
+public class Researcher extends GenericEntity {
     private String name;
     private String email;
     private String address;

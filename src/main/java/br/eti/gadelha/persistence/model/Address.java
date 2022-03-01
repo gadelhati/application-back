@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Audited @AuditTable(value = "audit_address")
 @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
-public class Address {
+public class Address extends GenericEntity {
     private Country country;
     private String street;
     private int number;
