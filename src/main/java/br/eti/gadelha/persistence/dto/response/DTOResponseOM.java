@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public class DTOResponseOM {
 
-    private String nome;
+    private String name;
 
     public static DTOResponseOM toDTO(OM om) {
         return new DTOResponseOM(om.getName());
