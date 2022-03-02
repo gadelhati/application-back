@@ -57,14 +57,14 @@ public class ControllerOM {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/source") //@PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Page<DTOResponseOM>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
-        try {
-            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    @GetMapping("/source") //@PreAuthorize("hasAnyRole('ADMIN')")
+//    public ResponseEntity<Page<DTOResponseOM>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
+//        try {
+//            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.FOUND);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
     @PutMapping("/{id}") //@PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestOM updated){
         try {
