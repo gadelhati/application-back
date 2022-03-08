@@ -4,12 +4,10 @@ import br.eti.gadelha.persistence.dto.request.DTORequestUser;
 import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.exception.enumeration.ERole;
-import br.eti.gadelha.persistence.model.RefreshToken;
-import br.eti.gadelha.persistence.model.Role;
-import br.eti.gadelha.persistence.model.User;
+import br.eti.gadelha.persistence.model.*;
 import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
 import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
-import br.eti.gadelha.persistence.model.UserDetailsImpl;
+import br.eti.gadelha.persistence.repository.RepositoryOM;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
@@ -50,10 +48,12 @@ public class ServiceUser implements UserDetailsService {
     PasswordEncoder encoder;
     private final RepositoryUser repositoryUser;
     private final RepositoryRole repositoryRole;
+    private final RepositoryOM repositoryOM;
 
-    public ServiceUser(RepositoryUser repository, RepositoryRole repositoryRole) {
+    public ServiceUser(RepositoryUser repository, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
         this.repositoryUser = repository;
         this.repositoryRole = repositoryRole;
+        this.repositoryOM = repositoryOM;
     }
     public DTOResponseJwt signin(DTORequestUserLogin dtoRequestUser) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestUser.getUsername(), dtoRequestUser.getPassword()));
@@ -68,7 +68,7 @@ public class ServiceUser implements UserDetailsService {
         serviceRefreshToken.deleteByUserId(value.getUserId());
     }
     public DTOResponseUser signup(DTORequestUser dtoRequestUser) {
-        User user = new User(dtoRequestUser.getUsername(), dtoRequestUser.getEmail(), encoder.encode(dtoRequestUser.getPassword()));
+        User user = new User(dtoRequestUser.getOm(), dtoRequestUser.getUsername(), dtoRequestUser.getEmail(), encoder.encode(dtoRequestUser.getPassword()), true);
         Set<Role> roles = new HashSet<>();
         roles.add(repositoryRole.findByName(ERole.ROLE_USER));
         user.setRoles(roles);

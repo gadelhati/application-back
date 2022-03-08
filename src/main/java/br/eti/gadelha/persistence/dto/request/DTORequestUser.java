@@ -36,6 +36,6 @@ public class DTORequestUser {
     private Set<Role> roles;
 
     public User toObject(){
-        return new User(username, password, email, active, om);
+        return new User(om, username, password, email, active);
     }
 }

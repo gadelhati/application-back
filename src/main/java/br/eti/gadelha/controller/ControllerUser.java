@@ -9,6 +9,7 @@ import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.persistence.model.RefreshToken;
 import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
 import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
+import br.eti.gadelha.persistence.repository.RepositoryOM;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
@@ -42,8 +43,8 @@ public class ControllerUser {
     @Autowired
     ServiceRefreshToken serviceRefreshToken;
 
-    public ControllerUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole) {
-        this.serviceUser = new ServiceUser(repositoryUser, repositoryRole) {};
+    public ControllerUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
+        this.serviceUser = new ServiceUser(repositoryUser, repositoryRole, repositoryOM) {};
     }
 
     @PostMapping("/signin")
