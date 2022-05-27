@@ -1,18 +1,13 @@
 package br.eti.gadelha.persistence.dto.request;
 
-import br.eti.gadelha.exception.annotation.UniqueEmailAddress;
-import br.eti.gadelha.exception.annotation.UniqueUserName;
+import br.eti.gadelha.exception.annotation.*;
 import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 /**
@@ -24,11 +19,11 @@ import java.util.Set;
 @Getter @Setter
 public class DTORequestUser {
 
-    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @UniqueUserName
+    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @UniqueUserName @ValidUserName @UserNameLength
     private String username;
     @NotBlank @Size(max = 50) @Email @UniqueEmailAddress
     private String email;
-    @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}")
+    @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}") @PasswordHasDigit @PasswordHasLetter @PasswordLength
     private String password;
     private Boolean active;
     @NotNull(message = "{om.not.null}")
