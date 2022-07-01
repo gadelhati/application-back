@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class DTORequestOM {
 
-    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @UniqueNameOM
+    @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") //@UniqueNameOM
     private String name;
 
     public OM toObject(){

@@ -14,16 +14,15 @@ public class UniqueNameOMValidator implements ConstraintValidator<UniqueNameOM, 
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        System.out.println(value);
-        if(value != null) {
-            if(serviceOM.isNameValid(value)) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
-//        return value != null && !serviceOM.isNameValid(value);
+//        if(value != null) {
+//            if(serviceOM.isNameValid(value)) {
+//                return false;
+//            } else {
+//                return true;
+//            }
+//        } else {
+//            return false;
+//        }
+        return value != null && !serviceOM.isNameValid(value);
     }
 }

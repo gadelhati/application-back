@@ -68,7 +68,7 @@ public class ServiceUser implements UserDetailsService {
         serviceRefreshToken.deleteByUserId(value.getUserId());
     }
     public DTOResponseUser signup(DTORequestUser dtoRequestUser) {
-        User user = new User(dtoRequestUser.getOm(), dtoRequestUser.getUsername(), dtoRequestUser.getEmail(), encoder.encode(dtoRequestUser.getPassword()), true);
+        User user = new User(dtoRequestUser.getUsername(), dtoRequestUser.getEmail(), encoder.encode(dtoRequestUser.getPassword()), true);
         Set<Role> roles = new HashSet<>();
         roles.add(repositoryRole.findByName(ERole.ROLE_USER));
         user.setRoles(roles);

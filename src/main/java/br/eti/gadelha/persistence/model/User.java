@@ -61,8 +61,7 @@ public class User extends GenericEntity {
 		this.email = email;
 		this.password = password;
 	}
-	public User(OM om, String username, String email, String password, Boolean active) {
-		this.om = om;
+	public User(String username, String email, String password, Boolean active) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
