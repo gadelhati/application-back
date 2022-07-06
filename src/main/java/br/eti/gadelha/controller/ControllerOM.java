@@ -36,7 +36,7 @@ public class ControllerOM {
     @PostMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> create(@RequestBody @Valid DTORequestOM created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
+            return new ResponseEntity<>(service.create(created), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -48,22 +48,22 @@ public class ControllerOM {
     @GetMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Page<DTOResponseOM
             >> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
+        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.OK);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(service.retrieve(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Page<DTOResponseOM>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.FOUND);
+            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
@@ -71,25 +71,24 @@ public class ControllerOM {
         try {
             return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<HttpStatus> delete(@PathVariable UUID id){
+    public ResponseEntity<DTOResponseOM> delete(@PathVariable UUID id){
         try {
-            service.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             service.delete();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

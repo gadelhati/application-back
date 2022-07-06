@@ -66,12 +66,14 @@ public class ServiceOM {
         return new PageImpl<DTOResponseOM>(list, pageable, list.size());
     }
     public DTOResponseOM update(UUID id, DTORequestOM updated){
-        OM role = repository.findById(id).get();
-        role.setName(updated.getName());
-        return DTOResponseOM.toDTO(repository.save(role));
+        OM object = repository.findById(id).get();
+        object.setName(updated.getName());
+        return DTOResponseOM.toDTO(repository.save(object));
     }
-    public void delete(UUID id){
+    public DTOResponseOM delete(UUID id){
+        OM object = repository.findById(id).get();
         repository.deleteById(id);
+        return DTOResponseOM.toDTO(object);
     }
     public void delete() {
         repository.deleteAll();
