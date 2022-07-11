@@ -24,6 +24,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -96,6 +97,10 @@ public class ControllerUser {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/retrieve")
+    public List<DTOResponseUser> retrieveAll(){
+        return serviceUser.retrieve();
+    }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseUser>> retrieve(Pageable pageable){
         return new ResponseEntity<>(serviceUser.retrieve(pageable), HttpStatus.FOUND);
@@ -103,17 +108,17 @@ public class ControllerUser {
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseUser> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(serviceUser.retrieve(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceUser.retrieve(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseUser>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(serviceUser.retrieveSource(pageable, q), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceUser.retrieveSource(pageable, q), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
@@ -121,23 +126,30 @@ public class ControllerUser {
         try {
             return new ResponseEntity<>(serviceUser.update(id, updated), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<HttpStatus> delete(@PathVariable UUID id){
+    public ResponseEntity<DTOResponseUser> delete(@PathVariable UUID id){
         try {
-            serviceUser.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(serviceUser.delete(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             serviceUser.delete();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/changePassword/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'USER')")
+    public ResponseEntity<DTOResponseUser> changePassword(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestUser updated){
+        try {
+            return new ResponseEntity<>(serviceUser.changePassword(id, updated), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

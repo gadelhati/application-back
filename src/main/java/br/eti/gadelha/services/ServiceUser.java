@@ -118,14 +118,16 @@ public class ServiceUser implements UserDetailsService {
         User user = repositoryUser.findById(id).get();
         user.setUsername(updated.getUsername());
         user.setEmail(updated.getEmail());
-        user.setPassword(encoder.encode(updated.getPassword()));
+//        user.setPassword(encoder.encode(updated.getPassword()));
         user.setActive(updated.getActive());
         user.setOm(updated.getOm());
         user.setRoles(updated.getRoles());
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
-    public void delete(UUID id){
+    public DTOResponseUser delete(UUID id){
+        User object = repositoryUser.findById(id).get();
         repositoryUser.deleteById(id);
+        return DTOResponseUser.toDTO(object);
     }
     public void delete() {
         repositoryUser.deleteAll();
@@ -143,6 +145,11 @@ public class ServiceUser implements UserDetailsService {
     }
     public User getCurrentUser() {
         return getUserByUsername(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+    }
+    public DTOResponseUser changePassword(UUID id, DTORequestUser updated){
+        User user = repositoryUser.findById(id).get();
+        user.setPassword(encoder.encode(updated.getPassword()));
+        return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
 
     @Override
