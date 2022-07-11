@@ -43,7 +43,7 @@ public class User extends GenericEntity {
 	private Boolean active;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "om", nullable = false)
+	@JoinColumn(name = "om")
 	private OM om;
 
 	@ManyToMany(fetch = FetchType.LAZY)

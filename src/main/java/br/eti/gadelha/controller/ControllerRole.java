@@ -36,7 +36,7 @@ public class ControllerRole {
         try {
             return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
