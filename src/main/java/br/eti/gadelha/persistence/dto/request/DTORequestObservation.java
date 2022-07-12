@@ -30,7 +30,7 @@ public class DTORequestObservation {
     //SECTION 0
 
     //AABB
-    @Pattern(regexp = "AAXX||BBXX", message = "{mimi.valid}") @JsonProperty("aabbxx")
+    @Pattern(regexp = "AAXX||BBXX", message = "{mimi.valid}")// @JsonProperty("aabbxx")
     private String mimi;
     @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;
@@ -118,7 +118,7 @@ public class DTORequestObservation {
     //7wwW1W2
     @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull
     private String ww;
-    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1W2.valid}") @NotNull
+    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1w2.valid}") @NotNull
     private String w1w2;
 //    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull
 //    private String w1;
