@@ -49,7 +49,7 @@ public class ControllerUser {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<DTOResponseJwt> authenticateUser(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
+    public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
         try {
             return new ResponseEntity<>(serviceUser.signin(dtoRequestUser), HttpStatus.OK);
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class ControllerUser {
         }
     }
     @PostMapping("/signup")	@PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseUser> registerUser(@Valid @RequestBody DTORequestUser dtoRequestUser) {
+    public ResponseEntity<DTOResponseUser> signup(@Valid @RequestBody DTORequestUser dtoRequestUser) {
         try {
             return new ResponseEntity<>(serviceUser.signup(dtoRequestUser), HttpStatus.OK);
         } catch (Exception e) {
