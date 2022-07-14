@@ -56,6 +56,15 @@ public class ControllerObservation {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
+    public List<DTOResponseObservation> createAll(@RequestBody @Valid List<DTORequestObservation> createds){
+        return service.create(createds);
+//        try {
+//            return new ResponseEntity<>(service.create(createds), HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+    }
     @GetMapping("/retrieve")
     public List<DTOResponseObservation> retrieveAll(){
         return service.retrieve();

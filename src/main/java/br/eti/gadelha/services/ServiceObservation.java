@@ -32,6 +32,15 @@ public class ServiceObservation {
         return DTOResponseObservation.toDTO(repository.save(created.toObject()));
     }
 
+    public List<DTOResponseObservation> create(List<DTORequestObservation> createds){
+        List<DTOResponseObservation> list = new ArrayList<>();
+        for(DTORequestObservation created : createds){
+            repository.save(created.toObject());
+            list.add(DTOResponseObservation.toDTO(created.toObject()));
+        }
+        return list;
+    }
+
     public List<DTOResponseObservation> retrieve(){
         List<DTOResponseObservation> list = new ArrayList<>();
         for(Observation observation: repository.findAll()) {
