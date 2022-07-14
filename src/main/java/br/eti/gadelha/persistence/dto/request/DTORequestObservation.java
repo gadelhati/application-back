@@ -82,7 +82,7 @@ public class DTORequestObservation {
     private String dd;
     @Pattern(regexp = "[0-9][0-9]||\\/\\/", message = "{ff.valid}") @NotNull
     private String ff;
-    @Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
+    //@Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
     private String fff;
     //1snTTT
     @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull
@@ -125,7 +125,7 @@ public class DTORequestObservation {
 //    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull
 //    private String w2;
     //7wawaWa1Wa2
-    @Pattern(regexp = "[0-9][0-9]", message = "{wawa.valid}")
+    //@Pattern(regexp = "[0-9][0-9]", message = "{wawa.valid}")
     private String wawa;
     @Pattern(regexp = "[0-9]||\\/", message = "{wa1.valid}")
     private String wa1;
