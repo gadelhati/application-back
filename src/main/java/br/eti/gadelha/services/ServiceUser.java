@@ -112,7 +112,7 @@ public class ServiceUser implements UserDetailsService {
         User user = repositoryUser.findById(id).get();
         user.setUsername(updated.getUsername());
         user.setEmail(updated.getEmail());
-//        user.setPassword(encoder.encode(updated.getPassword()));
+        user.setPassword(encoder.encode(updated.getPassword()));
         user.setActive(updated.isActive());
         user.setOm(updated.getOm());
         user.setRoles(updated.getRoles());
