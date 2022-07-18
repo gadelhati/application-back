@@ -1,5 +1,7 @@
 package br.eti.gadelha.controller;
 
+import javax.validation.Valid;
+
 import br.eti.gadelha.exception.TokenRefreshException;
 import br.eti.gadelha.persistence.dto.request.DTORequestTokenRefresh;
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
@@ -14,6 +16,7 @@ import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
 import br.eti.gadelha.services.ServiceRefreshToken;
+import br.eti.gadelha.services.ServiceRole;
 import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +26,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,12 +35,15 @@ import java.util.UUID;
  * @link	www.gadelha.eti.br
  **/
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerUser {
 
+    @Autowired
     private final ServiceUser serviceUser;
+    @Autowired
+    private final ServiceRole serviceRole;
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
@@ -46,8 +51,8 @@ public class ControllerUser {
 
     public ControllerUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
         this.serviceUser = new ServiceUser(repositoryUser, repositoryRole, repositoryOM) {};
+        this.serviceRole = new ServiceRole(repositoryRole) {};
     }
-
     @PostMapping("/signin")
     public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
         try {
@@ -56,16 +61,8 @@ public class ControllerUser {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/signup")	@PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseUser> signup(@Valid @RequestBody DTORequestUser dtoRequestUser) {
-        try {
-            return new ResponseEntity<>(serviceUser.signup(dtoRequestUser), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     @PostMapping("/logout")
-    public ResponseEntity<HttpStatus> logoutUser(@Valid @RequestBody DTORequestLogOut DTORequestLogOut) {
+    public ResponseEntity<HttpStatus> logout(@Valid @RequestBody DTORequestLogOut DTORequestLogOut) {
         try {
             serviceUser.logout(DTORequestLogOut);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -88,7 +85,6 @@ public class ControllerUser {
                 .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
                         "Refresh token is not in database!"));
     }
-
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseUser> create(@RequestBody @Valid DTORequestUser created){
         try {

@@ -67,18 +67,12 @@ public class ServiceUser implements UserDetailsService {
     public void logout(DTORequestLogOut value) {
         serviceRefreshToken.deleteByUserId(value.getUserId());
     }
-    public DTOResponseUser signup(DTORequestUser dtoRequestUser) {
-        User user = new User(dtoRequestUser.getUsername(), dtoRequestUser.getEmail(), encoder.encode(dtoRequestUser.getPassword()), true);
-        Set<Role> roles = new HashSet<>();
-        roles.add(repositoryRole.findByName(ERole.ROLE_USER));
-        user.setRoles(roles);
-        return DTOResponseUser.toDTO(repositoryUser.save(user));
-    }
     public DTOResponseUser create(DTORequestUser created){
+        User user = new User(created.getUsername(), created.getEmail(), encoder.encode(created.getPassword()).toString(), created.isActive());
         Set<Role> roles = new HashSet<>();
         roles.add(repositoryRole.findByName(ERole.ROLE_USER));
         created.setRoles(roles);
-        return DTOResponseUser.toDTO(repositoryUser.save(created.toObject()));
+        return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
     public Page<DTOResponseUser> retrieve(Pageable pageable){
         List<DTOResponseUser> list = new ArrayList<>();
@@ -119,7 +113,7 @@ public class ServiceUser implements UserDetailsService {
         user.setUsername(updated.getUsername());
         user.setEmail(updated.getEmail());
 //        user.setPassword(encoder.encode(updated.getPassword()));
-        user.setActive(updated.getActive());
+        user.setActive(updated.isActive());
         user.setOm(updated.getOm());
         user.setRoles(updated.getRoles());
         return DTOResponseUser.toDTO(repositoryUser.save(user));

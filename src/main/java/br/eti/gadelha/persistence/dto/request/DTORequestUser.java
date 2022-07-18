@@ -26,7 +26,7 @@ public class DTORequestUser {
     @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}") @PasswordHasDigit @PasswordHasLetter @PasswordLength
     private String password;
     @NotNull(message = "{active.not.null}")
-    private Boolean active;
+    private boolean active;
 //    @NotNull(message = "{om.not.null}")
     private OM om;
     private Set<Role> roles;
