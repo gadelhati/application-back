@@ -23,8 +23,7 @@ import java.util.UUID;
 public class DTOResponsePlataform {
 
     private UUID id;
-    private Country country;
-    private EnumTypePlatform typePlatform;
+    private String /*EnumTypePlatform*/ typePlatform;
     private String telegraphicCallsign;
     private String internationalCallsign;
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @UniqueUserName
@@ -32,8 +31,9 @@ public class DTOResponsePlataform {
     private String name;
     private String internationalName;
     private String visualCallsign;
+    private Country country;
 
     public static DTOResponsePlataform toDTO(Plataform value) {
-        return new DTOResponsePlataform(value.getId(), value.getCountry(), value.getTypePlatform(), value.getTelegraphicCallsign(), value.getInternationalCallsign(), value.getName(), value.getInternationalName(), value.getVisualCallsign());
+        return new DTOResponsePlataform(value.getId(), value.getTypePlatform(), value.getTelegraphicCallsign(), value.getInternationalCallsign(), value.getName(), value.getInternationalName(), value.getVisualCallsign(), value.getCountry());
     }
 }

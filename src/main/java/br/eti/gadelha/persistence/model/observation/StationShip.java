@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Audited @AuditTable(value = "audit_station_ship")
@@ -23,7 +22,7 @@ public class StationShip extends GenericEntity {
 	private int latitude;
 	private int longitude;
 	private String telegraphicCallsign;
-	private EnumEquipment equipment;
+//	private EnumEquipment equipment;
 	private EnumTypeComission commission;
 	private EnumTypeStation typeStation;
 	private EnumMidia midia;
@@ -38,6 +37,15 @@ public class StationShip extends GenericEntity {
 	private String obs;
 	private float collectionDepth;
 	private float loadedInAlpha;
+//	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//	@JoinColumn(name = "manufacturer")
+//	private Manufacturer manufacturer;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "plataform")
+	private Plataform plataform;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "equipment")
+	private Equipment equipment;
 
 //	public LocalDate DATA_HORA;// DATE,
 //            "LATITUDE" NUMBER(9,0),

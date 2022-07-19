@@ -4,11 +4,12 @@ import br.eti.gadelha.exception.enumeration.EnumEquipment;
 import br.eti.gadelha.exception.enumeration.EnumMidia;
 import br.eti.gadelha.exception.enumeration.EnumTypeComission;
 import br.eti.gadelha.exception.enumeration.EnumTypeStation;
+import br.eti.gadelha.persistence.model.observation.Equipment;
+import br.eti.gadelha.persistence.model.observation.Plataform;
 import br.eti.gadelha.persistence.model.observation.StationShip;
 import lombok.Getter;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -26,7 +27,7 @@ public class DTORequestStationShip {
     private int latitude;
     private int longitude;
     private String telegraphicCallsign;
-    private EnumEquipment equipment;
+//    private EnumEquipment equipment;
     private EnumTypeComission comission;
     private EnumTypeStation typeStation;
     private EnumMidia midia;
@@ -43,8 +44,17 @@ public class DTORequestStationShip {
     private String obs;
     private float collectionDepth;
     private float loadedInAlpha;
+//	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//	@JoinColumn(name = "manufacturer")
+//	private Manufacturer manufacturer;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "plataform")
+    private Plataform plataform;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "equipment")
+    private Equipment equipment;
 
     public StationShip toObject(){
-        return new StationShip(dataHora, latitude, longitude, telegraphicCallsign, equipment, comission, typeStation, midia, name, day, month, year, marsdenSquare, marsdenSubSquare_1, marsdenSubSquare_5, wmoSquare, obs, collectionDepth, loadedInAlpha);
+        return new StationShip(dataHora, latitude, longitude, telegraphicCallsign, comission, typeStation, midia, name, day, month, year, marsdenSquare, marsdenSubSquare_1, marsdenSubSquare_5, wmoSquare, obs, collectionDepth, loadedInAlpha, plataform, equipment);
     }
 }

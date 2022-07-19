@@ -1,12 +1,18 @@
 package br.eti.gadelha.persistence.dto.response;
 
-import br.eti.gadelha.exception.enumeration.EnumEquipment;
+import br.eti.gadelha.exception.enumeration.EnumTypeComission;
 import br.eti.gadelha.exception.enumeration.EnumMidia;
 import br.eti.gadelha.exception.enumeration.EnumTypeStation;
+import br.eti.gadelha.persistence.model.observation.Equipment;
+import br.eti.gadelha.persistence.model.observation.Plataform;
 import br.eti.gadelha.persistence.model.observation.StationShip;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -24,8 +30,8 @@ public class DTOResponseStationShip {
     private int latitude;
     private int longitude;
     private String telegraphicCallsign;
-    private EnumEquipment equipment;
-    //	private EnumCommission commission;
+//    private EnumEquipment equipment;
+    private EnumTypeComission commission;
     private EnumTypeStation typeStation;
     private EnumMidia midia;
     private String name;
@@ -39,8 +45,17 @@ public class DTOResponseStationShip {
     private String obs;
     private float collectionDepth;
     private float loadedInAlpha;
+//	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//	@JoinColumn(name = "manufacturer")
+//	private Manufacturer manufacturer;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "plataform")
+    private Plataform plataform;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "equipment")
+    private Equipment equipment;
 
     public static DTOResponseStationShip toDTO(StationShip value) {
-        return new DTOResponseStationShip(value.getId(), value.getDataHora(), value.getLatitude(), value.getLongitude(), value.getTelegraphicCallsign(), value.getEquipment(), /*value.getComission(),*/ value.getTypeStation(), value.getMidia(), value.getName(), value.getDay(), value.getMonth(), value.getYear(), value.getMarsdenSquare(), value.getMarsdenSubSquare_1(), value.getMarsdenSubSquare_5(), value.getWmoSquare(), value.getObs(), value.getCollectionDepth(), value.getLoadedInAlpha());
+        return new DTOResponseStationShip(value.getId(), value.getDataHora(), value.getLatitude(), value.getLongitude(), value.getTelegraphicCallsign(), value.getCommission(), value.getTypeStation(), value.getMidia(), value.getName(), value.getDay(), value.getMonth(), value.getYear(), value.getMarsdenSquare(), value.getMarsdenSubSquare_1(), value.getMarsdenSubSquare_5(), value.getWmoSquare(), value.getObs(), value.getCollectionDepth(), value.getLoadedInAlpha(), value.getPlataform(), value.getEquipment());
     }
 }
