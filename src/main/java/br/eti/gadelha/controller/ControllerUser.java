@@ -142,7 +142,7 @@ public class ControllerUser {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/changePassword/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'USER')")
+    @PutMapping("/changePassword/{id}")
     public ResponseEntity<DTOResponseUser> changePassword(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestUser updated){
         try {
             return new ResponseEntity<>(serviceUser.changePassword(id, updated), HttpStatus.OK);
