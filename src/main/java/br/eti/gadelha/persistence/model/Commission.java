@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -27,4 +26,10 @@ public class Commission extends GenericEntity {
     private float latitudeMostTop;
     private float longitudeMostRight;
     private float longitudeMostLeft;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "departure"/*, nullable = true*/)
+    private Harbor departure;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "arrival"/*, nullable = true*/)
+    private Harbor arrival;
 }
