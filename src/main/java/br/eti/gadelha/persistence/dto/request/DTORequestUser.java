@@ -21,7 +21,7 @@ public class DTORequestUser {
 
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") /*@UniqueUserName*/ @ValidUserName @UserNameLength
     private String username;
-    @NotBlank @Size(max = 50) @Email //@UniqueEmailAddress
+    @NotBlank @Size(max = 50) @Email //@UniqueEmail
     private String email;
     @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}") @PasswordHasDigit @PasswordHasLetter @PasswordLength
     private String password;
