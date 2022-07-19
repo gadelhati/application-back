@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.dto.response;
 
-import br.eti.gadelha.exception.annotation.UniqueEmailAddress;
+import br.eti.gadelha.exception.annotation.UniqueEmail;
 import br.eti.gadelha.exception.annotation.UniqueNameRole;
 import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.model.Role;
@@ -26,7 +26,7 @@ public class DTOResponseUser {
     private UUID id;
     @NotBlank @Size(min = 3, max = 20) @UniqueNameRole
     private String username;
-    @NotBlank @Size(max = 50) @Email @UniqueEmailAddress
+    @NotBlank @Size(max = 50) @Email @UniqueEmail
     private String email;
     private String password;
     private Boolean active;
