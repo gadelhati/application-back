@@ -22,18 +22,18 @@ import java.util.Date;
 @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class Commission extends GenericEntity {
     private String name;
-    private Date open;
-    private Date close;
+    private Date departure;
+    private Date arrival;
     private float latitudeMostBottom;
     private float latitudeMostTop;
     private float longitudeMostRight;
     private float longitudeMostLeft;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "departure"/*, nullable = true*/)
-    private Harbor departure;
+    @JoinColumn(name = "origin"/*, nullable = true*/)
+    private Harbor origin;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "arrival"/*, nullable = true*/)
-    private Harbor arrival;
+    @JoinColumn(name = "destination"/*, nullable = true*/)
+    private Harbor destination;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "responsible"/*, nullable = true*/)
     private Institution responsible;

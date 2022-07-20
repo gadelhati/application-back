@@ -16,10 +16,26 @@ import javax.persistence.*;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_platform_category")
+@Audited @AuditTable(value = "audit_component")
 @Entity @Table
 @AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
-public class PlatformCategory extends GenericEntity {
+public class Component extends GenericEntity {
 
     private String name;
+    private String j1;
+    private String k1;
+    private String k2;
+    private String l2;
+    private String m1;
+    private String m2;
+    private String n2;
+    private String o1;
+    private String p1;
+    private String q1;
+    private String s1;
+    private String s2;
+    private String t2;
+    private String v2;
+    private String type;
+    private String velocity;
 }

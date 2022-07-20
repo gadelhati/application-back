@@ -17,34 +17,13 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Audited @AuditTable(value = "audit_station_synop")
-@Entity @Table(name="station_synop")//, schema="shipsynopweb")
+@Entity @Table(name="station_synop")
 @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
-public class StationSynop extends GenericEntity {
-    private EnumTypeStation typeStation;
-    private EnumTypeComission typeComission;
-    private Platform platform;
-    private EnumEquipment equipment;
+public class StationSynop extends Station {
     private LocalDateTime first;
     private LocalDateTime last;
     private float latitudeMostBottom;
     private float latitudeMostTop;
     private float longitudeMostRight;
     private float longitudeMostLeft;
-    private EnumMidia midia;
-    private String fb;
-//    private Plataform plataform;
-
-//    "COD_TIPO_ESTACAO" NUMBER(3,0),
-//	"COD_COMISSAO" NUMBER(10,0),
-//	"NOME_PLATAFORMA" VARCHAR2(40 BYTE),
-//	"COD_EQUIPAMENTO" NUMBER(10,0),
-//	"DATA_HORA_INICIO" DATE,
-//            "DATA_HORA_FIM" DATE,
-//            "LAT_BOTTOMMOST" NUMBER(9,0),
-//	"LAT_TOPMOST" NUMBER,
-//            "LONG_RIGHTMOST" NUMBER(20,0),
-//	"LONG_LEFTMOST" NUMBER,
-//            "COD_MIDIA" NUMBER(10,0),
-//	"FB" VARCHAR2(50 BYTE),
-//	"PLATAFORMA_BATIMETRICA" VARCHAR2(50 BYTE)
 }

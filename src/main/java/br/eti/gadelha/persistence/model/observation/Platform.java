@@ -23,6 +23,6 @@ public class Platform extends GenericEntity {
 	@JoinColumn(name = "country")
 	private Country country;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "platformCategory", nullable = false)
+	@JoinColumn(name = "platformCategory")
 	private PlatformCategory platformCategory;
 }

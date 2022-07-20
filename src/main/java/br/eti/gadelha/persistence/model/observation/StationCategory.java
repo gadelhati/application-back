@@ -16,10 +16,10 @@ import javax.persistence.*;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_platform_category")
+@Audited
 @Entity @Table
 @AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
-public class PlatformCategory extends GenericEntity {
+public class StationCategory extends GenericEntity {
 
     private String name;
 }
