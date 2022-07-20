@@ -1,9 +1,9 @@
 package br.eti.gadelha.persistence.dto.response;
 
 import br.eti.gadelha.exception.annotation.UniqueUserName;
-import br.eti.gadelha.exception.enumeration.EnumTypePlatform;
 import br.eti.gadelha.persistence.model.Country;
-import br.eti.gadelha.persistence.model.observation.Plataform;
+import br.eti.gadelha.persistence.model.observation.Platform;
+import br.eti.gadelha.persistence.model.observation.PlatformCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -23,17 +23,17 @@ import java.util.UUID;
 public class DTOResponsePlataform {
 
     private UUID id;
-    private String /*EnumTypePlatform*/ typePlatform;
+    private String visualCallsign;
     private String telegraphicCallsign;
     private String internationalCallsign;
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @UniqueUserName
     @Enumerated(EnumType.STRING)
     private String name;
     private String internationalName;
-    private String visualCallsign;
     private Country country;
+    private PlatformCategory platformCategory;
 
-    public static DTOResponsePlataform toDTO(Plataform value) {
-        return new DTOResponsePlataform(value.getId(), value.getTypePlatform(), value.getTelegraphicCallsign(), value.getInternationalCallsign(), value.getName(), value.getInternationalName(), value.getVisualCallsign(), value.getCountry());
+    public static DTOResponsePlataform toDTO(Platform value) {
+        return new DTOResponsePlataform(value.getId(), value.getVisualCallsign(), value.getTelegraphicCallsign(), value.getInternationalCallsign(), value.getName(), value.getInternationalName(), value.getCountry(), value.getPlatformCategory());
     }
 }

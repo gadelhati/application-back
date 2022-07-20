@@ -4,13 +4,12 @@ import br.eti.gadelha.exception.enumeration.EnumEquipment;
 import br.eti.gadelha.exception.enumeration.EnumMidia;
 import br.eti.gadelha.exception.enumeration.EnumTypeComission;
 import br.eti.gadelha.exception.enumeration.EnumTypeStation;
-import br.eti.gadelha.persistence.model.observation.Plataform;
+import br.eti.gadelha.persistence.model.observation.Platform;
 import br.eti.gadelha.persistence.model.observation.StationSynop;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -25,7 +24,7 @@ public class DTOResponseStationSynop {
     private UUID id;
     private EnumTypeStation typeStation;
     private EnumTypeComission comission;
-    private Plataform plataform;
+    private Platform platform;
     private EnumEquipment equipment;
     private LocalDateTime first;
     private LocalDateTime last;
@@ -38,6 +37,6 @@ public class DTOResponseStationSynop {
 //    private Plataform plataform;
 
     public static DTOResponseStationSynop toDTO(StationSynop value) {
-        return new DTOResponseStationSynop(value.getId(), value.getTypeStation(), value.getTypeComission(), value.getPlataform(), value.getEquipment(), value.getFirst(), value.getLast(), value.getLatitudeMostBottom(), value.getLatitudeMostTop(), value.getLongitudeMostRight(), value.getLongitudeMostLeft(), value.getMidia(), value.getFb()/*, value.getPlataform()*/ );
+        return new DTOResponseStationSynop(value.getId(), value.getTypeStation(), value.getTypeComission(), value.getPlatform(), value.getEquipment(), value.getFirst(), value.getLast(), value.getLatitudeMostBottom(), value.getLatitudeMostTop(), value.getLongitudeMostRight(), value.getLongitudeMostLeft(), value.getMidia(), value.getFb()/*, value.getPlataform()*/ );
     }
 }

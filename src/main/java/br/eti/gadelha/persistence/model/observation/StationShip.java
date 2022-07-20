@@ -1,6 +1,5 @@
 package br.eti.gadelha.persistence.model.observation;
 
-import br.eti.gadelha.exception.enumeration.EnumEquipment;
 import br.eti.gadelha.exception.enumeration.EnumMidia;
 import br.eti.gadelha.exception.enumeration.EnumTypeComission;
 import br.eti.gadelha.exception.enumeration.EnumTypeStation;
@@ -42,7 +41,7 @@ public class StationShip extends GenericEntity {
 //	private Manufacturer manufacturer;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "plataform")
-	private Plataform plataform;
+	private Platform platform;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "equipment")
 	private Equipment equipment;

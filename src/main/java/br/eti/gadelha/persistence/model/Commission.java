@@ -1,5 +1,7 @@
 package br.eti.gadelha.persistence.model;
 
+import br.eti.gadelha.persistence.model.observation.Institution;
+import br.eti.gadelha.persistence.model.observation.Surveying;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,4 +34,13 @@ public class Commission extends GenericEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "arrival"/*, nullable = true*/)
     private Harbor arrival;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "responsible"/*, nullable = true*/)
+    private Institution responsible;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "coordinator"/*, nullable = true*/)
+    private Institution coordinator;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "surveying")
+    private Surveying surveying;
 }

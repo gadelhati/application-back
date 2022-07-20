@@ -15,7 +15,6 @@ import org.hibernate.envers.Audited;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Audited @AuditTable(value = "audit_station_synop")
 @Entity @Table(name="station_synop")//, schema="shipsynopweb")
@@ -23,7 +22,7 @@ import java.util.Date;
 public class StationSynop extends GenericEntity {
     private EnumTypeStation typeStation;
     private EnumTypeComission typeComission;
-    private Plataform plataform;
+    private Platform platform;
     private EnumEquipment equipment;
     private LocalDateTime first;
     private LocalDateTime last;

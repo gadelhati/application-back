@@ -1,11 +1,10 @@
 package br.eti.gadelha.persistence.dto.request;
 
-import br.eti.gadelha.exception.enumeration.EnumEquipment;
 import br.eti.gadelha.exception.enumeration.EnumMidia;
 import br.eti.gadelha.exception.enumeration.EnumTypeComission;
 import br.eti.gadelha.exception.enumeration.EnumTypeStation;
 import br.eti.gadelha.persistence.model.observation.Equipment;
-import br.eti.gadelha.persistence.model.observation.Plataform;
+import br.eti.gadelha.persistence.model.observation.Platform;
 import br.eti.gadelha.persistence.model.observation.StationShip;
 import lombok.Getter;
 
@@ -49,12 +48,12 @@ public class DTORequestStationShip {
 //	private Manufacturer manufacturer;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "plataform")
-    private Plataform plataform;
+    private Platform platform;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "equipment")
     private Equipment equipment;
 
     public StationShip toObject(){
-        return new StationShip(dataHora, latitude, longitude, telegraphicCallsign, comission, typeStation, midia, name, day, month, year, marsdenSquare, marsdenSubSquare_1, marsdenSubSquare_5, wmoSquare, obs, collectionDepth, loadedInAlpha, plataform, equipment);
+        return new StationShip(dataHora, latitude, longitude, telegraphicCallsign, comission, typeStation, midia, name, day, month, year, marsdenSquare, marsdenSubSquare_1, marsdenSubSquare_5, wmoSquare, obs, collectionDepth, loadedInAlpha, platform, equipment);
     }
 }

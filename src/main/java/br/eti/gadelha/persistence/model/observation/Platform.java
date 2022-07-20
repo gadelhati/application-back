@@ -1,6 +1,5 @@
 package br.eti.gadelha.persistence.model.observation;
 
-import br.eti.gadelha.exception.enumeration.EnumTypePlatform;
 import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
@@ -14,14 +13,16 @@ import javax.persistence.*;
 
 @Audited @AuditTable(value = "audit_plataform")
 @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
-public class Plataform extends GenericEntity {
-	private String /*EnumTypePlatform*/ typePlatform;
+public class Platform extends GenericEntity {
+	private String visualCallsign;
 	private String telegraphicCallsign;
 	private String internationalCallsign;
 	private String name;
 	private String internationalName;
-	private String visualCallsign;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "country")
 	private Country country;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "platformCategory", nullable = false)
+	private PlatformCategory platformCategory;
 }

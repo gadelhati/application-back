@@ -4,12 +4,11 @@ import br.eti.gadelha.exception.enumeration.EnumEquipment;
 import br.eti.gadelha.exception.enumeration.EnumMidia;
 import br.eti.gadelha.exception.enumeration.EnumTypeComission;
 import br.eti.gadelha.exception.enumeration.EnumTypeStation;
-import br.eti.gadelha.persistence.model.observation.Plataform;
+import br.eti.gadelha.persistence.model.observation.Platform;
 import br.eti.gadelha.persistence.model.observation.StationSynop;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -22,7 +21,7 @@ public class DTORequestStationSynop {
 
     private EnumTypeStation typeStation;
     private EnumTypeComission comission;
-    private Plataform plataform;
+    private Platform platform;
     private EnumEquipment equipment;
     private LocalDateTime first;
     private LocalDateTime last;
@@ -35,6 +34,6 @@ public class DTORequestStationSynop {
 //    private Plataform plataform;
 
     public StationSynop toObject(){
-        return new StationSynop(typeStation, comission, plataform, equipment, first, last, latitudeMostBottom, latitudeMostTop, longitudeMostRight, longitudeMostLeft, midia, fb/*, plataform*/);
+        return new StationSynop(typeStation, comission, platform, equipment, first, last, latitudeMostBottom, latitudeMostTop, longitudeMostRight, longitudeMostLeft, midia, fb/*, plataform*/);
     }
 }
