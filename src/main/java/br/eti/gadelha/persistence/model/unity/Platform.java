@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.unity;
 
 import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.model.GenericEntity;
@@ -11,8 +11,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-@Audited @AuditTable(value = "audit_plataform")
-@Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Platform extends GenericEntity {
 	private String visualCallsign;
 	private String telegraphicCallsign;

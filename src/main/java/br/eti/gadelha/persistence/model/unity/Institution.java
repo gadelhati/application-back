@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.unity;
 
 import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.model.GenericEntity;
@@ -17,9 +17,7 @@ import javax.persistence.*;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_institution")
-@Entity @Table
-@AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Institution extends GenericEntity {
 
     private String name;

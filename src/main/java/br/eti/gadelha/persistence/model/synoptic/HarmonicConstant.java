@@ -1,13 +1,10 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.synoptic;
 
 import br.eti.gadelha.persistence.model.GenericEntity;
-import br.eti.gadelha.persistence.model.observation.Component;
-import br.eti.gadelha.persistence.model.observation.Institution;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -18,8 +15,7 @@ import java.util.Date;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_harmonic_constant")
-@Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class HarmonicConstant extends GenericEntity {
     private Date starts;
     private Date ending;

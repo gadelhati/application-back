@@ -16,9 +16,7 @@ import javax.persistence.Table;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_om")
-@Entity @Table
-@AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class OM extends GenericEntity {
 
 	private String name;

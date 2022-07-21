@@ -1,10 +1,5 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.unity;
 
-import br.eti.gadelha.exception.enumeration.EnumEquipment;
-import br.eti.gadelha.exception.enumeration.EnumMidia;
-import br.eti.gadelha.exception.enumeration.EnumTypeComission;
-import br.eti.gadelha.exception.enumeration.EnumTypeStation;
-import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,9 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Audited @AuditTable(value = "audit_station_synop")
-@Entity @Table(name="station_synop")
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class StationSynop extends Station {
     private LocalDateTime first;
     private LocalDateTime last;

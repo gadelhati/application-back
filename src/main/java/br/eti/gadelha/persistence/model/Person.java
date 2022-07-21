@@ -1,15 +1,13 @@
-package br.eti.gadelha.persistence.model.sailingDirection;
+package br.eti.gadelha.persistence.model;
 
-import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -17,8 +15,11 @@ import javax.persistence.Table;
  * @link	www.gadelha.eti.br
  **/
 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class Radar extends GenericEntity {
-    private String morse;
-    private Structure structure;
+public abstract class Person extends GenericEntity {
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private Date birthdate;
 }

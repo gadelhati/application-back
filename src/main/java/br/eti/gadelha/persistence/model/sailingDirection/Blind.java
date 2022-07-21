@@ -16,8 +16,7 @@ import javax.persistence.Table;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_blind")
-@Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Blind extends Instalation {
     private String category;
 }

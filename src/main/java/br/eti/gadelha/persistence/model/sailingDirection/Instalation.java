@@ -9,6 +9,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -16,8 +17,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_instalation")
-@Entity @PrimaryKeyJoinColumn(name="id") @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@PrimaryKeyJoinColumn(name="id")
 public class Instalation extends Structure {
     private String orderNumber;
     private Maintainer maintainer;

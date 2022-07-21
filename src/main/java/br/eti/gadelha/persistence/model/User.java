@@ -20,8 +20,7 @@ import javax.validation.constraints.Size;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_user")
-@Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 @Table(	name = "user",
 		uniqueConstraints = { 
 			@UniqueConstraint(columnNames = "username"),

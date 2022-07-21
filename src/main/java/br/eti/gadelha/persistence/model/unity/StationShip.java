@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.unity;
 
 import br.eti.gadelha.exception.enumeration.EnumTypeVessel;
 import lombok.AllArgsConstructor;
@@ -18,8 +18,7 @@ import java.util.Date;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_station_ship")
-@Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class StationShip extends Station {
 //    private String imo;
     private String navalCallsign;

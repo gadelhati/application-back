@@ -1,9 +1,8 @@
 package br.eti.gadelha.persistence.repository;
 
-import br.eti.gadelha.persistence.model.observation.Observation;
+import br.eti.gadelha.persistence.model.synoptic.Observation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.UUID;
 
 /**

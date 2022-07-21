@@ -1,11 +1,9 @@
 package br.eti.gadelha.persistence.dto.response;
 
 import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.model.observation.Observation;
+import br.eti.gadelha.persistence.model.synoptic.Observation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.Type;
 import org.springframework.data.geo.Point;
 
 import javax.persistence.*;

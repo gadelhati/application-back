@@ -1,11 +1,14 @@
 package br.eti.gadelha.persistence.model;
 
 import br.eti.gadelha.exception.enumeration.EGender;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -13,7 +16,9 @@ import javax.persistence.Enumerated;
  * @link	www.gadelha.eti.br
  **/
 
-public class PessoaFisica extends Pessoa {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+public class Individual extends Person {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private EGender gender;

@@ -2,7 +2,7 @@ package br.eti.gadelha.persistence.dto.request;
 
 import br.eti.gadelha.exception.annotation.observation.*;
 import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.model.observation.Observation;
+import br.eti.gadelha.persistence.model.synoptic.Observation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

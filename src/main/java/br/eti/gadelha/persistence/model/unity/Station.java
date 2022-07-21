@@ -1,6 +1,6 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.unity;
 
-import br.eti.gadelha.persistence.model.Commission;
+import br.eti.gadelha.persistence.model.sailingDirection.Commission;
 import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
@@ -18,9 +18,8 @@ import java.time.LocalDateTime;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_station")
-@Entity @Table @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Station extends GenericEntity {
 
     private LocalDateTime dateTime;

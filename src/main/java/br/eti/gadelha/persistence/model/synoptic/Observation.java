@@ -1,20 +1,15 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.synoptic;
 
 import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.GenericEntity;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.util.Date;
 
-@Audited @AuditTable(value = "audit_observation")
-@Entity @Table(name="observation")//, schema="shipsynopweb")
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Observation extends GenericEntity {
 
     // https://www.baeldung.com/hibernate-spatial

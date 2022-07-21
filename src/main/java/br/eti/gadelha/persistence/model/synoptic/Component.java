@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.synoptic;
 
 import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
@@ -16,9 +16,7 @@ import javax.persistence.*;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_component")
-@Entity @Table
-@AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Component extends GenericEntity {
 
     private String name;

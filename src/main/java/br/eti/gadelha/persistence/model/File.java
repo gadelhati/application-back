@@ -10,9 +10,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Audited @AuditTable(value = "file_auditoria")
-@Entity @Table//(name="file", schema="shipsynopweb")
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class File extends GenericEntity {
     private String fileName;
     private String fileType;

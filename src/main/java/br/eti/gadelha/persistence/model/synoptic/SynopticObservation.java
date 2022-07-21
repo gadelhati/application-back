@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.synoptic;
 
 import br.eti.gadelha.exception.enumeration.EnumMiMiMjMj;
 import br.eti.gadelha.persistence.model.GenericEntity;
@@ -6,16 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-//@Audited @AuditTable(value = "audit_synoptic_observation")
-@Entity @Table(name="synoptic_observation")//, schema="shipsynopweb")
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class SynopticObservation extends GenericEntity {
 
     private String observer;

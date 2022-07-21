@@ -18,9 +18,7 @@ import javax.persistence.*;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_role")
-@Entity @Data @NoArgsConstructor @AllArgsConstructor @EqualsAndHashCode(callSuper = false)
-@Table(name = "role")
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Role extends GenericEntity {
 	@Enumerated(EnumType.STRING)
 	private ERole name;

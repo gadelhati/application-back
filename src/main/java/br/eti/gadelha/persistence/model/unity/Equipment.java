@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.unity;
 
 import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
@@ -16,10 +16,11 @@ import javax.persistence.*;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_manufacturer")
-@Entity @Table
-@AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
-public class Manufacturer extends GenericEntity {
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+public class Equipment extends GenericEntity {
 
     private String name;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "manufacturer")
+    private Manufacturer manufacturer;
 }

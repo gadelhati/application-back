@@ -11,6 +11,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
@@ -18,8 +19,8 @@ import javax.persistence.InheritanceType;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_structure")
-@Entity @Inheritance(strategy = InheritanceType.JOINED) @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Structure extends GenericEntity {
     private float altitude;
     private float height;

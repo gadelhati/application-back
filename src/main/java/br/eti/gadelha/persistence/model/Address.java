@@ -16,8 +16,7 @@ import javax.persistence.Table;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_address")
-@Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Address extends GenericEntity {
     private Country country;
     private String street;

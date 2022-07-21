@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.observation;
+package br.eti.gadelha.persistence.model.unity;
 
 import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
@@ -16,10 +16,8 @@ import javax.persistence.*;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_platform_category")
-@Entity @Table
-@AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
-public class PlatformCategory extends GenericEntity {
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+public class Surveying extends GenericEntity {
 
     private String name;
 }

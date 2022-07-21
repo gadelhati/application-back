@@ -16,8 +16,7 @@ import java.util.UUID;
  * @link	www.gadelha.eti.br
  **/
 
-@Data
-@MappedSuperclass //@EntityListeners(GenericEntity.class)
+@Data @MappedSuperclass //@EntityListeners(GenericEntity.class)
 public abstract class GenericEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

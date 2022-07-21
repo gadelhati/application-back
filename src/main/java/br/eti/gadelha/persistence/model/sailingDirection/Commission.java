@@ -1,12 +1,12 @@
-package br.eti.gadelha.persistence.model;
+package br.eti.gadelha.persistence.model.sailingDirection;
 
-import br.eti.gadelha.persistence.model.observation.Institution;
-import br.eti.gadelha.persistence.model.observation.Surveying;
+import br.eti.gadelha.persistence.model.GenericEntity;
+import br.eti.gadelha.persistence.model.unity.Institution;
+import br.eti.gadelha.persistence.model.unity.Surveying;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -18,8 +18,7 @@ import java.util.Date;
  * @link	www.gadelha.eti.br
  **/
 
-@Audited @AuditTable(value = "audit_commission")
-@Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Commission extends GenericEntity {
     private String name;
     private Date departure;
