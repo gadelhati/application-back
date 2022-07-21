@@ -15,12 +15,11 @@ import java.time.LocalDateTime;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
- * @mail	marcelo.gadelha@marinha.mil.br
  * @link	www.gadelha.eti.br
  **/
 
 @Audited @AuditTable(value = "audit_station")
-@Entity @Table
+@Entity @Table @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @AllArgsConstructor @NoArgsConstructor @Data @EqualsAndHashCode(callSuper = false)
 public class Station extends GenericEntity {
 
@@ -44,7 +43,7 @@ public class Station extends GenericEntity {
     @JoinColumn(name = "equipment")
     private Equipment equipment;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "equipment")
+    @JoinColumn(name = "surveying")
     private Surveying surveying;
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 //    @JoinColumn(name = "responsible"/*, nullable = true*/)
