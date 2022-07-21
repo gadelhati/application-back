@@ -62,8 +62,10 @@ public class ServiceRole {
         role.setName(updated.getName());
         return DTOResponseRole.toDTO(repository.save(role));
     }
-    public void delete(UUID id){
+    public DTOResponseRole delete(UUID id){
+        Role object = repository.findById(id).get();
         repository.deleteById(id);
+        return DTOResponseRole.toDTO(object);
     }
     public void delete() {
         repository.deleteAll();

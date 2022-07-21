@@ -166,12 +166,12 @@ public class DTOResponseSynopticObservation {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "file", nullable = true)
     private File file;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer", nullable = false)
-    private User observer;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "station", nullable = false)
-    private Station station;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "observer", nullable = false)
+//    private User observer;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "station", nullable = false)
+//    private Station station;
 
     public static DTOResponseSynopticObservation toDTO(SynopticObservation value) {
         return new DTOResponseSynopticObservation(
@@ -263,9 +263,10 @@ public class DTOResponseSynopticObservation {
                 value.getDataObservacao(),
                 value.getObservador(),
                 value.getEstacao(),
-                value.getFile(),
+                value.getFile()/*,
                 value.getObserver(),
                 value.getStation()
+                */
         );
     }
 }

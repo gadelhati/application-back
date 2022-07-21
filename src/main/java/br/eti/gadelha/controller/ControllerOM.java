@@ -16,12 +16,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @RestController
 @RequestMapping("/om")
 @CrossOrigin(origins = "*", maxAge = 3600)

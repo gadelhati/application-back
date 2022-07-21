@@ -1,13 +1,11 @@
 package br.eti.gadelha.persistence.model.synoptic;
 
-import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.GenericEntity;
 import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.*;
 import org.hibernate.envers.Audited;
-import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -162,10 +160,10 @@ public class SynopticObservation extends GenericEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "file")
     private File file;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer", nullable = false)
-    private User observer;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "station", nullable = false)
-    private Station station;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "observer", nullable = false)
+//    private User observer;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "station", nullable = false)
+//    private Station station;
 }

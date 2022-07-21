@@ -3,8 +3,6 @@ package br.eti.gadelha.controller;
 import br.eti.gadelha.persistence.dto.request.DTORequestFile;
 import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.dto.response.DTOResponseSynopticObservation;
-import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.repository.RepositoryFile;
 import br.eti.gadelha.persistence.repository.RepositoryObservation;
 import br.eti.gadelha.services.ServiceFile;
 import br.eti.gadelha.services.ServiceFileStorage;
@@ -20,18 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
-
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @link	www.gadelha.eti.br
- **/
 
 @RestController
 @RequestMapping("/observation")
@@ -39,13 +29,13 @@ import java.util.UUID;
 public class ControllerSynopticObservation {
 
     private final ServiceSynopticObservation service;
-    private final ServiceFile serviceFile;
-    @Autowired
-    private ServiceFileStorage fileStorageService;
+//    private final ServiceFile serviceFile;
+//    @Autowired
+//    private ServiceFileStorage fileStorageService;
 
-    public ControllerSynopticObservation(RepositoryObservation repository, RepositoryFile repositoryFile) {
+    public ControllerSynopticObservation(RepositoryObservation repository/*, RepositoryFile repositoryFile*/) {
         this.service = new ServiceSynopticObservation(repository) {};
-        this.serviceFile = new ServiceFile(repositoryFile) {};
+//        this.serviceFile = new ServiceFile(repositoryFile) {};
     }
     @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseSynopticObservation> create(@RequestBody @Valid DTORequestSynopticObservation created){
@@ -77,7 +67,7 @@ public class ControllerSynopticObservation {
         try {
             return new ResponseEntity<>(service.retrieve(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/source")
@@ -85,7 +75,7 @@ public class ControllerSynopticObservation {
         try {
             return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
@@ -93,7 +83,7 @@ public class ControllerSynopticObservation {
         try {
             return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
@@ -101,16 +91,16 @@ public class ControllerSynopticObservation {
         try {
             return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
     public ResponseEntity<HttpStatus> delete(){
         try {
             service.delete();
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 //    @PostMapping("/upload") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
