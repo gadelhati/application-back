@@ -9,17 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 public interface RepositoryUser extends JpaRepository<User, UUID> {
     List<User> findByUsernameContainingIgnoreCaseOrderByUsernameAsc(String name);
     boolean existsByUsername(String value);
     boolean existsByEmail(String email);
-    public User getUserByUsername(@Param("username") String username);
+    User getUserByUsername(@Param("username") String username);
     Optional<User> findByUsername(String username);
-    public List<User> findByOm(OM om);
+    List<User> findByOm(OM om);
 }

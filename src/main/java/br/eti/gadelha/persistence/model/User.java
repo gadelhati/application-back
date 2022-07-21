@@ -3,7 +3,6 @@ package br.eti.gadelha.persistence.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import java.util.HashSet;
@@ -13,12 +12,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
 
 @Audited @Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 @Table(	name = "user",

@@ -14,12 +14,6 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Getter @AllArgsConstructor
 public class DTOResponseUser {
 

@@ -1,17 +1,9 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestFile;
 import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.dto.response.DTOResponseSynopticObservation;
-import br.eti.gadelha.persistence.repository.RepositoryObservation;
-import br.eti.gadelha.services.ServiceFile;
-import br.eti.gadelha.services.ServiceFileStorage;
+import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
 import br.eti.gadelha.services.ServiceSynopticObservation;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -33,7 +25,7 @@ public class ControllerSynopticObservation {
 //    @Autowired
 //    private ServiceFileStorage fileStorageService;
 
-    public ControllerSynopticObservation(RepositoryObservation repository/*, RepositoryFile repositoryFile*/) {
+    public ControllerSynopticObservation(RepositorySynopticObservation repository/*, RepositoryFile repositoryFile*/) {
         this.service = new ServiceSynopticObservation(repository) {};
 //        this.serviceFile = new ServiceFile(repositoryFile) {};
     }

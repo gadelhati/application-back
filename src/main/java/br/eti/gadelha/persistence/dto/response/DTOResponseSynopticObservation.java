@@ -1,22 +1,13 @@
 package br.eti.gadelha.persistence.dto.response;
 
 import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
-import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
-
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
 
 @Getter @AllArgsConstructor
 public class DTOResponseSynopticObservation {
@@ -164,7 +155,7 @@ public class DTOResponseSynopticObservation {
     private String estacao;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "file", nullable = true)
+    @JoinColumn(name = "file")
     private File file;
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 //    @JoinColumn(name = "observer", nullable = false)

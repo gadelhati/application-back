@@ -10,12 +10,6 @@ import lombok.Setter;
 import javax.validation.constraints.*;
 import java.util.Set;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Getter @Setter
 public class DTORequestUser {
 

@@ -10,11 +10,6 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @link	www.gadelha.eti.br
- **/
-
 @Audited @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
 public class HarmonicConstant extends GenericEntity {
     private Date starts;

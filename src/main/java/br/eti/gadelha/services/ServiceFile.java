@@ -13,12 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Service
 public class ServiceFile {
 
@@ -36,10 +30,10 @@ public class ServiceFile {
         for(File file: repository.findAll()) {
             list.add(DTOResponseFile.toDTO(file));
         }
-        return new PageImpl<DTOResponseFile>(list, pageable, list.size());
+        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseFile retrieve(UUID id){
-        return DTOResponseFile.toDTO(repository.findById(id).get());
+        return DTOResponseFile.toDTO(repository.findById(id).orElse(null));
     }
     public Page<DTOResponseFile> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseFile> list = new ArrayList<>();
@@ -52,10 +46,10 @@ public class ServiceFile {
                 list.add(DTOResponseFile.toDTO(file));
             }
         }
-        return new PageImpl<DTOResponseFile>(list, pageable, list.size());
+        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseFile update(UUID id, DTORequestFile updated){
-        File file = repository.findById(id).get();
+        File file = repository.findById(id).orElse(null);
         file.setFileName(updated.getFileName());
         file.setFileType(updated.getFileType());
         file.setSize(updated.getSize());
@@ -66,7 +60,7 @@ public class ServiceFile {
     }
     public void delete() {
         repository.deleteAll();
-    };
+    }
 
     public boolean isFileNameValid(String value) {
         return repository.existsByFileName(value);

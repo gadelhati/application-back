@@ -2,26 +2,18 @@ package br.eti.gadelha.persistence.dto.request;
 
 import br.eti.gadelha.exception.annotation.observation.*;
 import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
-import br.eti.gadelha.persistence.model.unity.Station;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
-
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @link	www.gadelha.eti.br
- **/
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
 @ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh /*@ValidNW2*/ @ValidTdTdTd @ValidTnTnTn /*@ValidTTT*/ @ValidTxTxTx @ValidVVh @ValidVVWW /*@ValidW1W2*/

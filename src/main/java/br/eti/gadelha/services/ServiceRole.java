@@ -14,12 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Service
 public class ServiceRole {
 
@@ -41,7 +35,7 @@ public class ServiceRole {
         return new PageImpl<DTOResponseRole>(list, pageable, list.size());
     }
     public DTOResponseRole retrieve(UUID id){
-        return DTOResponseRole.toDTO(repository.findById(id).get());
+        return DTOResponseRole.toDTO(repository.findById(id).orElse(null));
     }
     public Page<DTOResponseRole> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseRole> list = new ArrayList<>();
@@ -55,21 +49,21 @@ public class ServiceRole {
 //                list.add(DTOResponseRole.toDTO(role));
 //            }
 //        }
-        return new PageImpl<DTOResponseRole>(list, pageable, list.size());
+        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseRole update(UUID id, DTORequestRole updated){
-        Role role = repository.findById(id).get();
+        Role role = repository.findById(id).orElse(null);
         role.setName(updated.getName());
         return DTOResponseRole.toDTO(repository.save(role));
     }
     public DTOResponseRole delete(UUID id){
-        Role object = repository.findById(id).get();
+        Role object = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return DTOResponseRole.toDTO(object);
     }
     public void delete() {
         repository.deleteAll();
-    };
+    }
 
     public boolean isNameValid(String value) {
         return repository.existsByName(value);

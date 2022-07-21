@@ -1,6 +1,5 @@
 package br.eti.gadelha.persistence.dto.request;
 
-import br.eti.gadelha.exception.annotation.UniqueNameOM;
 import br.eti.gadelha.persistence.model.OM;
 import lombok.Getter;
 

@@ -13,12 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Service
 public class ServiceOM {
 
@@ -49,7 +43,7 @@ public class ServiceOM {
         return new PageImpl<DTOResponseOM>(list, pageable, list.size());
     }
     public DTOResponseOM retrieve(UUID id){
-        return DTOResponseOM.toDTO(repository.findById(id).get());
+        return DTOResponseOM.toDTO(repository.findById(id).orElse(null));
     }
     public Page<DTOResponseOM> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseOM> list = new ArrayList<>();
@@ -63,21 +57,21 @@ public class ServiceOM {
 //                list.add(DTOResponseOM.toDTO(role));
 //            }
 //        }
-        return new PageImpl<DTOResponseOM>(list, pageable, list.size());
+        return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseOM update(UUID id, DTORequestOM updated){
-        OM object = repository.findById(id).get();
+        OM object = repository.findById(id).orElse(null);
         object.setName(updated.getName());
         return DTOResponseOM.toDTO(repository.save(object));
     }
     public DTOResponseOM delete(UUID id){
-        OM object = repository.findById(id).get();
+        OM object = repository.findById(id).orElse(null);
         repository.deleteById(id);
         return DTOResponseOM.toDTO(object);
     }
     public void delete() {
         repository.deleteAll();
-    };
+    }
 
     public boolean isNameValid(String value) {
         return repository.existsByName(value);

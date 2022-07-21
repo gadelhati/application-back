@@ -10,12 +10,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Individual extends Person {

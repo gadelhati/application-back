@@ -29,12 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Service
 public class ServiceUser implements UserDetailsService {
 
@@ -82,7 +76,7 @@ public class ServiceUser implements UserDetailsService {
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
     }
     public DTOResponseUser retrieve(UUID id){
-        return DTOResponseUser.toDTO(repositoryUser.findById(id).get());
+        return DTOResponseUser.toDTO(repositoryUser.findById(id).orElse(null));
     }
     public Page<DTOResponseUser> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseUser> list = new ArrayList<>();
@@ -109,10 +103,10 @@ public class ServiceUser implements UserDetailsService {
         return list;
     }
     public DTOResponseUser update(UUID id, DTORequestUser updated){
-        User user = repositoryUser.findById(id).get();
+        User user = repositoryUser.findById(id).orElse(null);
         user.setUsername(updated.getUsername());
         user.setEmail(updated.getEmail());
-        if(user.getPassword() != encoder.encode(updated.getPassword())) {
+        if(!user.getPassword().equals(encoder.encode(updated.getPassword()))) {
             user.setPassword(encoder.encode(updated.getPassword()));
         }
         user.setActive(updated.isActive());
@@ -121,13 +115,13 @@ public class ServiceUser implements UserDetailsService {
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
     public DTOResponseUser delete(UUID id){
-        User object = repositoryUser.findById(id).get();
+        User object = repositoryUser.findById(id).orElse(null);
         repositoryUser.deleteById(id);
         return DTOResponseUser.toDTO(object);
     }
     public void delete() {
         repositoryUser.deleteAll();
-    };
+    }
 
     public boolean isNameValid(String value) {
         return repositoryUser.existsByUsername(value);
@@ -143,7 +137,7 @@ public class ServiceUser implements UserDetailsService {
         return getUserByUsername(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
     }
     public DTOResponseUser changePassword(UUID id, DTORequestUser updated){
-        User user = repositoryUser.findById(id).get();
+        User user = repositoryUser.findById(id).orElse(null);
         user.setPassword(encoder.encode(updated.getPassword()));
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }

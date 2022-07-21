@@ -10,12 +10,6 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Harbor extends GenericEntity {
     private String name;

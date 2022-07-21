@@ -2,8 +2,6 @@ package br.eti.gadelha.persistence.model.synoptic;
 
 import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.GenericEntity;
-import br.eti.gadelha.persistence.model.User;
-import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.*;
 import org.hibernate.envers.Audited;
 

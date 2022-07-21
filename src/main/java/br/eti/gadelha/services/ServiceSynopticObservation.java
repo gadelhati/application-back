@@ -3,7 +3,7 @@ package br.eti.gadelha.services;
 import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.dto.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
-import br.eti.gadelha.persistence.repository.RepositoryObservation;
+import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,18 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 @Service
 public class ServiceSynopticObservation {
 
-    private final RepositoryObservation repository;
+    private final RepositorySynopticObservation repository;
 
-    public ServiceSynopticObservation(RepositoryObservation repository) {
+    public ServiceSynopticObservation(RepositorySynopticObservation repository) {
         this.repository = repository;
     }
 
@@ -57,7 +51,7 @@ public class ServiceSynopticObservation {
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
     }
     public DTOResponseSynopticObservation retrieve(UUID id){
-        return DTOResponseSynopticObservation.toDTO(repository.findById(id).get());
+        return DTOResponseSynopticObservation.toDTO(repository.findById(id).orElse(null));
     }
     public Page<DTOResponseSynopticObservation> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseSynopticObservation> list = new ArrayList<>();
@@ -73,7 +67,7 @@ public class ServiceSynopticObservation {
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
     }
     public DTOResponseSynopticObservation update(UUID id, DTORequestSynopticObservation updated){
-        SynopticObservation synopticObservation = repository.findById(id).get();
+        SynopticObservation synopticObservation = repository.findById(id).orElse(null);
         synopticObservation.setMimi(updated.getMimi());
         synopticObservation.setMjmj(updated.getMjmj());
         synopticObservation.setDdddddd(updated.getDdddddd());
@@ -164,7 +158,7 @@ public class ServiceSynopticObservation {
         return DTOResponseSynopticObservation.toDTO(repository.save(synopticObservation));
     }
     public DTOResponseSynopticObservation delete(UUID id){
-        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repository.findById(id).get());
+        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repository.findById(id).orElse(null));
         repository.deleteById(id);
         return deleted;
     }
