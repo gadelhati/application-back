@@ -1,18 +1,18 @@
 package br.eti.gadelha.exception.validator.observation;
 
 import br.eti.gadelha.exception.annotation.observation.ValidTTT;
-import br.eti.gadelha.persistence.dto.request.DTORequestObservation;
+import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ValidTTTValidator implements ConstraintValidator<ValidTTT, DTORequestObservation> {
+public class ValidTTTValidator implements ConstraintValidator<ValidTTT, DTORequestSynopticObservation> {
 
     @Override
     public void initialize(ValidTTT constraintAnnotation) {
     }
     @Override
-    public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
+    public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
         if ( value == null ) {
             return false;
         } else if(value.getSn1_1() != null) {

@@ -22,13 +22,8 @@ import java.time.LocalDateTime;
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Station extends GenericEntity {
 
-    private LocalDateTime dateTime;
-    private float latitude;
-    private float longitude;
-    private float collectionDepth;
     private float localDepth;
-    private int marsdenSquare_10;
-    private int marsdenSubSquare_1;
+    private String com;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "commission")
     private Commission commission;

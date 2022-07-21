@@ -2,18 +2,18 @@ package br.eti.gadelha.exception.validator.observation;
 
 
 import br.eti.gadelha.exception.annotation.observation.ValidNhCLCMh;
-import br.eti.gadelha.persistence.dto.request.DTORequestObservation;
+import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ValidNhCLCMhValidator implements ConstraintValidator<ValidNhCLCMh, DTORequestObservation> {
+public class ValidNhCLCMhValidator implements ConstraintValidator<ValidNhCLCMh, DTORequestSynopticObservation> {
 
     @Override
     public void initialize(ValidNhCLCMh constraintAnnotation) {
     }
     @Override
-    public boolean isValid(DTORequestObservation value, ConstraintValidatorContext context) {
+    public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
         if ( value == null ) {
             return false;
         } else if(

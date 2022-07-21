@@ -1,7 +1,9 @@
 package br.eti.gadelha.persistence.dto.response;
 
 import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.model.synoptic.Observation;
+import br.eti.gadelha.persistence.model.User;
+import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
+import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.geo.Point;
@@ -17,10 +19,10 @@ import java.util.UUID;
  **/
 
 @Getter @AllArgsConstructor
-public class DTOResponseObservation {
+public class DTOResponseSynopticObservation {
 
     private UUID id;
-    private Point coordinates;
+//    private Point coordinates;
     //SECTION 0
 
     //AABB
@@ -156,19 +158,25 @@ public class DTOResponseObservation {
     private String icp;
     private String icq;
 
-    private String observador;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
+    private String observador;
     private String estacao;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "file", nullable = true)
     private File file;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer", nullable = false)
+    private User observer;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "station", nullable = false)
+    private Station station;
 
-    public static DTOResponseObservation toDTO(Observation value) {
-        return new DTOResponseObservation(
+    public static DTOResponseSynopticObservation toDTO(SynopticObservation value) {
+        return new DTOResponseSynopticObservation(
                 value.getId(),
-                value.getCoordinates(),
+//                value.getCoordinates(),
                 value.getMimi(),
                 value.getMjmj(),
                 value.getDdddddd(),
@@ -252,10 +260,12 @@ public class DTOResponseObservation {
                 value.getIcf(),
                 value.getIcp(),
                 value.getIcq(),
-                value.getObservador(),
                 value.getDataObservacao(),
+                value.getObservador(),
                 value.getEstacao(),
-                value.getFile()
+                value.getFile(),
+                value.getObserver(),
+                value.getStation()
         );
     }
 }

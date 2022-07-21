@@ -10,6 +10,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -20,12 +21,17 @@ import java.util.Date;
 
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class StationShip extends Station {
+
+    private LocalDateTime first;
+    private LocalDateTime last;
+    private double latitudeMostBottom;
+    private double latitudeMostTop;
+    private double longitudeMostRight;
+    private double longitudeMostLeft;
+
 //    private String imo;
-    private String navalCallsign;
+//    private String navalCallsign;
 //    private String visualCallsign;
-//    private String telegraphicCallsign;
-//    private double latitude;
-//    private double longitude;
-    private EnumTypeVessel type;
-    private Date since;
+//    private EnumTypeVessel type;
+//    private Date since;
 }

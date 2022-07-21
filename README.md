@@ -223,10 +223,10 @@ INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 ### Features
 These are the paths to services:
 
-- [x] [CREATE](http://127.0.0.1/observation/) - path to item creation;
-- [x] [RETRIEVE](http://127.0.0.1/observation/id) - path to retrieve of an item by id;
-- [x] [RETRIEVE_ALL](http://127.0.0.1/observation/) - path to retrieve of all items;
-- [ ] [RETRIEVE](http://127.0.0.1/observation/id) - path to retrieve of an item by source;
-- [x] [UPDATE](http://127.0.0.1/observation/id) - path to update an item;
-- [x] [DELETE](http://127.0.0.1/observation/id) - path to delete an item;
-- [x] [DELETE_ALL](http://127.0.0.1/observation/) - path to delete all items;
+- [x] [CREATE](http://127.0.0.1/synopticObservation/) - path to item creation;
+- [x] [RETRIEVE](http://127.0.0.1/synopticObservation/id) - path to retrieve of an item by id;
+- [x] [RETRIEVE_ALL](http://127.0.0.1/synopticObservation/) - path to retrieve of all items;
+- [ ] [RETRIEVE](http://127.0.0.1/synopticObservation/id) - path to retrieve of an item by source;
+- [x] [UPDATE](http://127.0.0.1/synopticObservation/id) - path to update an item;
+- [x] [DELETE](http://127.0.0.1/synopticObservation/id) - path to delete an item;
+- [x] [DELETE_ALL](http://127.0.0.1/synopticObservation/) - path to delete all items;

@@ -1,104 +1,171 @@
 package br.eti.gadelha.persistence.model.synoptic;
 
-import br.eti.gadelha.exception.enumeration.EnumMiMiMjMj;
+import br.eti.gadelha.persistence.model.Country;
+import br.eti.gadelha.persistence.model.File;
 import br.eti.gadelha.persistence.model.GenericEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import br.eti.gadelha.persistence.model.User;
+import br.eti.gadelha.persistence.model.unity.Station;
+import lombok.*;
 import org.hibernate.envers.Audited;
+import org.springframework.data.geo.Point;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.util.Date;
 
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class SynopticObservation extends GenericEntity {
 
-    private String observer;
-    private LocalDateTime dateTime;
-    private String station;
+    // https://www.baeldung.com/hibernate-spatial
+//    @Column(columnDefinition = "POINT")
+//    private Point coordinates;
+    //SECTION 0
 
-    private EnumMiMiMjMj MiMiMjMj;//station identification group
-    private String DDDDDD;//ship’s call sign
-    private String A1;
+    //AABB
+    private String mimi;
+    private String mjmj;
+    //DDDDDDD
+    private String ddddddd;
+    //A1bwnbnbnb
+    private String a1;
     private String bw;
     private String nbnbnb;
-
-    private String YY;
-    private String GG;
+    //YYGGiw
+    private String yy;
+    private String gg;
     private String iw;
+    //IIiii
+    private String ii;
+    private String iii;
+    //99LaLaLa
+    private String lalala;
+    //QcLoLOLOLO
+    private String qc;
+    private String lolololo;
 
-    private String II;
-    private String iii;//WMO número 9
-    private String LaLaLa;
-    private String Qc;
-    private String LoLOLOLO;
+    //SECTION 1
 
-    private String iR;
-    private String iX;
+    //iRiXhVV
+    private String ir;
+    private String ix;
     private String h;
-    private String VV;
-    private String N;
+    private String vv;
+    //Nddff
+    private String n;
     private String dd;
     private String ff;
     private String fff;
-    private String sn1;
-    private String TTT;
-    private String sn2;
-    private String TdTdTd;
-    private String UUU;
-    private String P0P0P0P0;
-    private String PPPP;
+    //1snTTT
+    private String sn1_1;
+    private String ttt;
+    //2snTdTdTd (ou 29UUU)
+    private String sn2_1;
+    private String tdtdtd;
+    //3P0P0P0P0
+    private String p0p0p0p0;
+    //4PPPP
+    private String pppp;
+    //4a3hhh
+    private String a3;
+    private String hhh;
+    //5appp
     private String a;
     private String ppp;
-    private String RRR;
-    private String iR6;
+    //6RRRtR
+    private String rrr;
+    private String tr;
+    //7wwW1W2
     private String ww;
-    private String W1W2;
-    private String Nh;
-    private String CL;
-    private String CM;
-    private String CH;
-    private String GGgg;
+    private String w1w2;
+//    private String w1;
+//    private String w2;
+    //7wawaWa1Wa2
+    private String wawa;
+    private String wa1;
+    private String wa2;
+    //8NhCLCMCH
+    private String nh;
+    private String cl;
+    private String cm;
+    private String ch;
+    //9GGgg
+    private String gggg;
 
-    private String Ds;
-    private String Vs;
-    private String Ss;
-    private String TwTwTw;
-    private String PwaPwa;
-    private String HwaHwa;
-    private String PwPw;
-    private String HwHw;
+    //SECTION 2
+
+    //222DsVs
+    private String ds;
+    private String vs;
+    //0SsTwTwTw
+    private String ss;
+    private String twtwtw;
+    //1PwaPwaHwaHwa
+    private String pwapwa;
+    private String hwahwa;
+    //2PwPwHwHw
+    private String pwpw;
+    private String hwhw;
+    //3dw1dw1dw2dw2
     private String dw1dw1;
     private String dw2dw2;
-    private String Pw1Pw1;
-    private String Hw1Hw1;
-    private String Pw2Pw2;
-    private String Hw2Hw2;
-    private String Iese;
-    private String EsEs;
-    private String Rs;
-    private String HwaHwaHwa;
+    //4Pw1Pw1Hw1Hw1
+    private String pw1pw1;
+    private String hw1hw1;
+    //5Pw2Pw2Hw2Hw2
+    private String pw2pw2;
+    private String hw2hw2;
+    //6IsEsEsRs (ou ICING + lig. clara)
+    private String is_ice;
+    private String eses;
+    private String rs;
+    //70HwaHwaHwa
+    private String hwahwahwa;
+    //8swTbTbTb
     private String sw;
-    private String TbTbTb;
+    private String tbtbtb;
+    //ICE ciSibiDizi (ou ling. clara)
     private String ci;
-    private String Si;
+    private String si;
     private String bi;
-    private String Di;
+    private String di;
     private String zi;
 
-//    private String sn1;
-    private String TxTxTx;
-//    private String sn2;
-    private String TnTnTn;
-    private String _89;
-    private String P24P24P24;
+    //SECTION 3
 
+    //333
+    //1snTxTxTx
+    private String sn1_3;
+    private String txtxtx;
+    //2snTnTnTn
+    private String sn2_3;
+    private String tntntn;
+    //58/9P24P24P24
+    private String ind89;
+    private String p24p24p24;
+
+    //SECTION 5
+
+    //555
+    //chwicMcsicFicpicQ
     private String ichw;
-    private String icM;
+    private String icm;
     private String cs;
-    private String icF;
+    private String icf;
     private String icp;
-    private String icQ;
+    private String icq;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataObservacao;
+    private String observador;
+    private String estacao;
+
+    @Setter
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "file")
+    private File file;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer", nullable = false)
+    private User observer;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "station", nullable = false)
+    private Station station;
 }

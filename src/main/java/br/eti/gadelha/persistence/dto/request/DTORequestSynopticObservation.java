@@ -2,7 +2,9 @@ package br.eti.gadelha.persistence.dto.request;
 
 import br.eti.gadelha.exception.annotation.observation.*;
 import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.model.synoptic.Observation;
+import br.eti.gadelha.persistence.model.User;
+import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
+import br.eti.gadelha.persistence.model.unity.Station;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -18,15 +20,14 @@ import java.util.Date;
 
 /**
  * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
  * @link	www.gadelha.eti.br
  **/
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
 @ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn /*@ValidTTT*/ @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
-public class DTORequestObservation {
+public class DTORequestSynopticObservation {
 
-    private Point coordinates;
+//    private Point coordinates;
     //SECTION 0
 
     //AABB
@@ -244,17 +245,23 @@ public class DTORequestObservation {
     @Pattern(regexp = "[0-9]||''", message = "{icq.valid}")
     private String icq;
 
-    private String observador;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
+    private String observador;
     private String estacao;
 
     @Setter
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "file", nullable = true)
     private File file;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer", nullable = true)
+    private User observer;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "station", nullable = true)
+    private Station station;
 
-    public Observation toObject(){
-        return new Observation(coordinates, mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, observador, dataObservacao, estacao, file);
+    public SynopticObservation toObject(){
+        return new SynopticObservation(mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, dataObservacao, observador, estacao, file, observer, station);
     }
 }
