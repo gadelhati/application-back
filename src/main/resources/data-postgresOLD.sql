@@ -8658,3 +8658,52 @@ INSERT INTO synoptic_observation.component(id, name, j1, k1, k2, l2, m1, m2, n2,
 INSERT INTO synoptic_observation.component(id, name, j1, k1, k2, l2, m1, m2, n2, o1, p1, q1, s1, s2, t2, v2, type, velocity) VALUES ('2ac68a1f-d001-46d9-9cb2-bfcd2a90f7b6','TETA1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '15,5126');
 
 SELECT * FROM synoptic_observation.component;
+
+-- POPULANDO synoptic_observation.federative_unit
+
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('d7cbc23b-1158-4186-a771-36294b9685e9', 'AC', 'Acre', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('d9c0661b-b081-4aee-87cb-05a3bbfcc1c0', 'AL', 'Alagoas', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('fc954368-0e83-4364-9fc8-3275542b668d', 'AP', 'Amapá', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('371a7a6b-9221-4183-bac8-dea43884edbd', 'AM', 'Amazonas', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('2f23d1c1-8e44-4256-a32a-e505b7d4448a', 'BA', 'Bahia', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('4e39ce93-a0b8-4318-9478-5642a982f77e', 'CE', 'Ceará', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('3eccf143-72df-4892-a06f-100f2c33feab', 'ES', 'Espírito Santo', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('cbe97ffb-c8f2-4c32-b1ea-e8a0f4bbf4a9', 'GO', 'Goiás', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('d02fd548-d745-48c8-bb86-e606cf052b19', 'MA', 'Maranhão', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('4ebb33d8-a3d5-4641-93de-0f0f500a3ed2', 'MT', 'Mato Grosso', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('43c223e5-133c-4188-bfb2-276f821f5cdd', 'MS', 'Mato Grosso do Sul ', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('2429a13b-133b-4b3c-b1f2-3fb7d6717a0d', 'MG', 'Minas Gerais', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('f6ff745c-f292-484a-92dc-07b5064d7591', 'PA', 'Pará', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('deb70851-845e-45ce-bfc7-393581f632b5', 'PB', 'Paraíba', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('05deb38b-bda9-4f14-8c81-0358ccf719e5', 'PR', 'Paraná', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('7672830c-582d-4799-aab3-8f8b13f8b9ed', 'PE', 'Pernambuco', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('0adf74bb-d7b2-4ee9-a7c9-c0a645945c0c', 'PI', 'Piauí', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('61435b34-f4fb-402f-9dad-a3a5caecfdc1', 'RJ', 'Rio de Janeiro', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('24ee5d9b-af59-487f-8c79-edceda2ccea0', 'RN', 'Rio Grande do Norte', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('9c26c624-41b5-4315-92df-19d121c5d537', 'RS', 'Rio Grande do Sul ', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('0bc6a987-fd40-448a-9a5f-e7fe6376ce88', 'RO', 'Rondônia', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('a498f1c6-11f1-4df8-895e-5abf2027e56a', 'RR', 'Roraima', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('4acd05f7-aa52-4e7f-b704-ad8849a293e2', 'SC', 'Santa Catarina ', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('2345b88e-4591-418a-99d7-67c5eba9494a', 'SP', 'São Paulo', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('d3cac06a-c699-4eae-a736-77238912a55b', 'SE', 'Sergipe', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('e413986f-d8e7-4a97-ac4c-f8e96ba64bfb', 'TO', 'Tocantins', 'b2e72768-e154-43a5-ae0c-652579d67600');
+INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('59022c7c-0506-4354-a917-eac0dfde9ca4', 'DF', 'Distrito Federal ', 'b2e72768-e154-43a5-ae0c-652579d67600');
+
+SELECT * FROM synoptic_observation.federative_unit;
+
+-- POPULANDO synoptic_observation.surface_weather_station
+
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('d63eb464-9e0e-4a61-b06b-ea48360eb027', 'false', '3', '00º 31’ N', '050º 25’ W', 'Canivete', '82096', 'f6ff745c-f292-484a-92dc-07b5064d7591');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('8409c76d-af79-4796-aff1-aa7e72ba7d35', 'true', '26', '00º 37’ S', '047º 21’ W', 'Salinópolis', '82143', 'f6ff745c-f292-484a-92dc-07b5064d7591');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('c6ec0a83-2bf0-42b5-85d0-c3dc8eab20c0', 'true', '14', '05º 10’ S', '035º 29’ W', 'Calcanhar', '82595', '24ee5d9b-af59-487f-8c79-edceda2ccea0');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('e478121d-1332-4c93-b212-47ef99725c6d', 'true', '38', '17º 58’S', '038º 42’ W', 'Abrolhos', '83499', '2f23d1c1-8e44-4256-a32a-e505b7d4448a');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('418c2845-d8d0-4ea3-bead-cc04fc5435c7', 'true', '5', '20º 30’ S', '029º 19’ W', 'Ilha da Trindade', '83650', '3eccf143-72df-4892-a06f-100f2c33feab');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('11f86618-9aaa-4c85-96a0-e2c31d6bd5f9', 'true', '4', '22º 03’ S', '041º 03’ W', 'São Tomé', '83700', '61435b34-f4fb-402f-9dad-a3a5caecfdc1');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('5ad41e7b-93cd-4b50-b8f7-6e5af40eafcc', 'true', '75', '23º 04’ S', '043º 09’ W', 'Ilha Rasa', '83117', '61435b34-f4fb-402f-9dad-a3a5caecfdc1');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('72629316-11f5-4109-8527-179a84885ee5', 'false', '100', '24º 03’ S', '046º 16’ W', 'Ilha da Moela', '83599', '2345b88e-4591-418a-99d7-67c5eba9494a');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('66803b30-a6f3-4e7a-a527-eb76088e68c1', 'true', '4', '25º 29’ S', '048º 19’ W', 'Ilha do Mel', '83825', '05deb38b-bda9-4f14-8c81-0358ccf719e5');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('a7dde9ec-f4a9-445b-ac8e-90e8cb3d15e4', 'true', '52', '28º 36’ S', '048º 49’ W', 'Santa Marta', '83925', '4acd05f7-aa52-4e7f-b704-ad8849a293e2');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('b13adb49-c524-4134-a604-1793136a2823', 'true', '1', '31º 15’ S', '050º 54’ W', 'Mostardas', '83970', '9c26c624-41b5-4315-92df-19d121c5d537');
+INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('aaa83722-5343-4bd3-b0a5-f72ca28b8c4f', 'true', '13', '33º 45’ S', '053º 22’ W', 'Chuí', '83998', '9c26c624-41b5-4315-92df-19d121c5d537');
+
+SELECT * FROM synoptic_observation.surface_weather_station;
