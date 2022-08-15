@@ -8707,3 +8707,8 @@ INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, l
 INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('aaa83722-5343-4bd3-b0a5-f72ca28b8c4f', 'true', '13', '33º 45’ S', '053º 22’ W', 'Chuí', '83998', '9c26c624-41b5-4315-92df-19d121c5d537');
 
 SELECT * FROM synoptic_observation.surface_weather_station;
+
+-- POPULANDO synoptic_observation.researcher
+INSERT INTO synoptic_observation.researcher(id, address, email, name) VALUES ('d64d90a1-25de-4fa9-9abd-dd9c7245ce91', 'Researcher address', 'researcher@gmail.com', 'researcher');
+
+SELECT * FROM synoptic_observation.researcher;
