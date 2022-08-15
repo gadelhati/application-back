@@ -13,11 +13,6 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @link	www.gadelha.eti.br
- **/
-
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Station extends GenericEntity {

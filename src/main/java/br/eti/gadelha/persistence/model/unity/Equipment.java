@@ -10,12 +10,6 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	marcelo.gadelha@marinha.mil.br
- * @link	www.gadelha.eti.br
- **/
-
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Equipment extends GenericEntity {
 
