@@ -37,18 +37,17 @@ public class ServiceRole {
     public DTOResponseRole retrieve(UUID id){
         return DTOResponseRole.toDTO(repository.findById(id).orElse(null));
     }
-    public Page<DTOResponseRole> retrieveSource(Pageable pageable, String source){
+    public Page<DTOResponseRole> retrieve(Pageable pageable, String source){
         final List<DTOResponseRole> list = new ArrayList<>();
         if (source == null) {
             for (Role role : repository.findAll()) {
                 list.add(DTOResponseRole.toDTO(role));
             }
-        }
-//        } else {
+        } else {
 //            for (Role role : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
 //                list.add(DTOResponseRole.toDTO(role));
 //            }
-//        }
+        }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseRole update(UUID id, DTORequestRole updated){

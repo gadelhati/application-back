@@ -70,8 +70,8 @@ public class ServiceUser implements UserDetailsService {
     }
     public Page<DTOResponseUser> retrieve(Pageable pageable){
         List<DTOResponseUser> list = new ArrayList<>();
-        for(User user: repositoryUser.findAll()) {
-            list.add(DTOResponseUser.toDTO(user));
+        for(User object: repositoryUser.findAll()) {
+            list.add(DTOResponseUser.toDTO(object));
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
     }
@@ -85,8 +85,8 @@ public class ServiceUser implements UserDetailsService {
                 list.add(DTOResponseUser.toDTO(user));
             }
         } else {
-            for (User user : repositoryUser.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(source)) {
-                list.add(DTOResponseUser.toDTO(user));
+            for (User object : repositoryUser.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(source)) {
+                list.add(DTOResponseUser.toDTO(object));
             }
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());

@@ -50,7 +50,7 @@ public class ControllerRole {
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseRole>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.OK);
+            return new ResponseEntity<>(service.retrieve(pageable, q), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

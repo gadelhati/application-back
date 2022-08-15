@@ -51,12 +51,11 @@ public class ServiceOM {
             for (OM role : repository.findAll()) {
                 list.add(DTOResponseOM.toDTO(role));
             }
+        } else {
+            for (OM role : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+                list.add(DTOResponseOM.toDTO(role));
+            }
         }
-//        } else {
-//            for (OM role : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-//                list.add(DTOResponseOM.toDTO(role));
-//            }
-//        }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseOM update(UUID id, DTORequestOM updated){
