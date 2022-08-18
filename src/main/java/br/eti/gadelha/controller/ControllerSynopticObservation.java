@@ -40,24 +40,27 @@ public class ControllerSynopticObservation {
     }
     @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<List<DTOResponseSynopticObservation>> createAll(@RequestBody @Valid List<DTORequestSynopticObservation> createds){
-//    public List<DTOResponseSynopticObservation> createAll(@RequestBody @Valid List<DTORequestSynopticObservation> createds){
-//        return service.create(createds);
-        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsCreated = new ArrayList<>();
-        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsFailed = new ArrayList<>();
-        for(DTORequestSynopticObservation dtoRequestSynopticObservation : createds) {
-            try {
-//                service.create(dtoRequestSynopticObservation);
-                create(dtoRequestSynopticObservation);
-                dtoResponseSynopticObservationsCreated.add(new DTOResponseSynopticObservation().toDTO(dtoRequestSynopticObservation.toObject()));
-            } catch (Exception e) {
-                dtoResponseSynopticObservationsFailed.add(new DTOResponseSynopticObservation().toDTO(dtoRequestSynopticObservation.toObject()));
-            }
+        try {
+            return new ResponseEntity<>(service.create(createds), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if(!dtoResponseSynopticObservationsCreated.isEmpty()){
-            return new ResponseEntity<>(dtoResponseSynopticObservationsCreated, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(dtoResponseSynopticObservationsFailed, HttpStatus.BAD_REQUEST);
-        }
+//        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsCreated = new ArrayList<>();
+//        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsFailed = new ArrayList<>();
+//        for(DTORequestSynopticObservation dtoRequestSynopticObservation : createds) {
+//            try {
+////                service.create(dtoRequestSynopticObservation);
+//                create(dtoRequestSynopticObservation);
+//                dtoResponseSynopticObservationsCreated.add(new DTOResponseSynopticObservation().toDTO(dtoRequestSynopticObservation.toObject()));
+//            } catch (Exception e) {
+//                dtoResponseSynopticObservationsFailed.add(new DTOResponseSynopticObservation().toDTO(dtoRequestSynopticObservation.toObject()));
+//            }
+//        }
+//        if(!dtoResponseSynopticObservationsCreated.isEmpty()){
+//            return new ResponseEntity<>(dtoResponseSynopticObservationsCreated, HttpStatus.CREATED);
+//        } else {
+//            return new ResponseEntity<>(dtoResponseSynopticObservationsFailed, HttpStatus.BAD_REQUEST);
+//        }
     }
     @GetMapping("/retrieve")
     public List<DTOResponseSynopticObservation> retrieveAll(){

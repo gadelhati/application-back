@@ -4,19 +4,25 @@ import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.dto.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.beanvalidation.CustomValidatorBean;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.*;
 
 @Service
 public class ServiceSynopticObservation {
 
     private final RepositorySynopticObservation repository;
+    @Autowired
+    private Validator validator;
+//    LocalValidatorFactoryBean validator2 = new LocalValidatorFactoryBean();
 
     public ServiceSynopticObservation(RepositorySynopticObservation repository) {
         this.repository = repository;
@@ -28,9 +34,15 @@ public class ServiceSynopticObservation {
 
     public List<DTOResponseSynopticObservation> create(List<DTORequestSynopticObservation> createds){
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
+        Set<ConstraintViolation<DTORequestSynopticObservation>> violations = new HashSet<>();
+        System.out.println(""+createds);
         for(DTORequestSynopticObservation created : createds){
-            repository.save(created.toObject());
-            list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
+            System.out.println(""+created);
+//            violations = validator.validate(created, DTORequestSynopticObservation.class);
+//            if(!violations.isEmpty()) {
+                repository.save(created.toObject());
+                list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
+//            }
         }
         return list;
     }
