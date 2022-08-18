@@ -37,7 +37,7 @@ public class ControllerOM {
         }
     }
     @GetMapping("/retrieve")
-    public List<DTOResponseOM> retrieveAll(){
+    public List<DTOResponseOM> retrieve(){
         return service.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
@@ -54,7 +54,7 @@ public class ControllerOM {
         }
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Page<DTOResponseOM>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
+    public ResponseEntity<Page<DTOResponseOM>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
             return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.OK);
         } catch (Exception e) {

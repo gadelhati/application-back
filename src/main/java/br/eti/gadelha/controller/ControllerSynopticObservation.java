@@ -39,7 +39,7 @@ public class ControllerSynopticObservation {
         }
     }
     @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
-    public ResponseEntity<List<DTOResponseSynopticObservation>> createAll(@RequestBody @Valid List<DTORequestSynopticObservation> createds){
+    public ResponseEntity<List<DTOResponseSynopticObservation>> create(@RequestBody @Valid List<DTORequestSynopticObservation> createds){
         try {
             return new ResponseEntity<>(service.create(createds), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class ControllerSynopticObservation {
 //        }
     }
     @GetMapping("/retrieve")
-    public List<DTOResponseSynopticObservation> retrieveAll(){
+    public List<DTOResponseSynopticObservation> retrieve(){
         return service.retrieve();
     }
     @GetMapping("")
@@ -79,7 +79,7 @@ public class ControllerSynopticObservation {
         }
     }
     @GetMapping("/source")
-    public ResponseEntity<Page<DTOResponseSynopticObservation>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
+    public ResponseEntity<Page<DTOResponseSynopticObservation>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
             return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
