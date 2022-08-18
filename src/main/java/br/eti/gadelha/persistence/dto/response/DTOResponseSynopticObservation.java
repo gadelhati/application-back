@@ -6,12 +6,13 @@ import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
 import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
-@Getter @AllArgsConstructor
+@Getter @AllArgsConstructor @NoArgsConstructor
 public class DTOResponseSynopticObservation {
 
     private UUID id;
