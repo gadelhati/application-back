@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/observation")
+@RequestMapping("/synopticObservation")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerSynopticObservation {
 
