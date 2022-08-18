@@ -31,9 +31,9 @@ public class ControllerOM {
     @PostMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> create(@RequestBody @Valid DTORequestOM created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.OK);
+            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Actor Not Found", e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/retrieve")

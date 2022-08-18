@@ -59,7 +59,7 @@ public class ControllerSynopticObservation {
 //        if(!dtoResponseSynopticObservationsCreated.isEmpty()){
 //            return new ResponseEntity<>(dtoResponseSynopticObservationsCreated, HttpStatus.CREATED);
 //        } else {
-//            return new ResponseEntity<>(dtoResponseSynopticObservationsFailed, HttpStatus.BAD_REQUEST);
+//            return new ResponseEntity<>(dtoResponseSynopticObservationsFailed, HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
     }
     @GetMapping("/retrieve")
@@ -68,28 +68,28 @@ public class ControllerSynopticObservation {
     }
     @GetMapping("")
     public ResponseEntity<Page<DTOResponseSynopticObservation>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseSynopticObservation> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.OK);
+            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping("/source")
     public ResponseEntity<Page<DTOResponseSynopticObservation>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.OK);
+            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseSynopticObservation> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestSynopticObservation updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
+            return new ResponseEntity<>(service.update(id, updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -97,7 +97,7 @@ public class ControllerSynopticObservation {
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
     public ResponseEntity<DTOResponseSynopticObservation> delete(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+            return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -106,7 +106,7 @@ public class ControllerSynopticObservation {
     public ResponseEntity<HttpStatus> delete(){
         try {
             service.delete();
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

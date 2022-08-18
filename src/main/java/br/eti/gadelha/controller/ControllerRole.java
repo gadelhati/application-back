@@ -30,35 +30,35 @@ public class ControllerRole {
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> create(@RequestBody @Valid DTORequestRole created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.OK);
+            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseRole>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.OK);
+            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseRole>> retrieveSource(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieve(pageable, q), HttpStatus.OK);
+            return new ResponseEntity<>(service.retrieve(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestRole updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
+            return new ResponseEntity<>(service.update(id, updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -66,7 +66,7 @@ public class ControllerRole {
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> delete(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+            return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -75,7 +75,7 @@ public class ControllerRole {
     public ResponseEntity<HttpStatus> delete(){
         try {
             service.delete();
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
