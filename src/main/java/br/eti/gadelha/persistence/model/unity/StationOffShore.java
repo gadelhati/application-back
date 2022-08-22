@@ -6,12 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class StationShip extends Station {
+public class StationOffShore extends Station {
 
     private LocalDateTime first;
     private LocalDateTime last;
@@ -25,4 +24,8 @@ public class StationShip extends Station {
 //    private String visualCallsign;
 //    private EnumTypeVessel type;
 //    private Date since;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "platform")
+    private Platform platform;
 }

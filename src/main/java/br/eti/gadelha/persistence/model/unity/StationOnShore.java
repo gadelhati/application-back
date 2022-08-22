@@ -11,12 +11,13 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class StationSynop extends Station {
+public class StationOnShore extends Station {
 
+    private String name;
     private LocalDateTime dateTime;
     private double latitude;
     private double longitude;
-    private String telegraphicCallsign;
+//    private String telegraphicCallsign;
     private int marsdenSquare_10;
     private int marsdenSubSquare_1;
     private int wmoSquare;
