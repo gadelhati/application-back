@@ -8715,9 +8715,9 @@ INSERT INTO synoptic_observation.commission(id, arrival, departure, latitude_mos
 SELECT * FROM synoptic_observation.commission
 
 -- POPULANDO synoptic_observation.station_off_shore
-INSERT INTO synoptic_observation.station_off_shore(id, com, local_depth, country, first, last, latitude_most_bottom, latitude_most_top, longitude_most_left, longitude_most_right) VALUES ('20a78d7c-1b51-4c47-a6bf-7c12596c32f3', '?', 0, 'b2e72768-e154-43a5-ae0c-652579d67600', '2022-07-18 00:00:00', '2022-07-18 00:00:00', 0, 0, 0, 0);
+INSERT INTO synoptic_observation.station_off_shore(id, com, local_depth, country, first, last, latitude_most_bottom, latitude_most_top, longitude_most_left, longitude_most_right) VALUES ('20a78d7c-1b51-4c47-a6bf-7c12596c32f3', 'estação ship', 0, 'b2e72768-e154-43a5-ae0c-652579d67600', '2022-07-18 00:00:00', '2022-07-18 00:00:00', 0, 0, 0, 0);
 SELECT * FROM synoptic_observation.station_off_shore
 
 -- POPULANDO synoptic_observation.station_on_shore
-INSERT INTO synoptic_observation.station_on_shore(id, com, local_depth, collection_depth, date_time, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('b28f97a0-3923-4884-b189-79baca2e3757', '', 0, 0, '2022-07-18 00:00:00', 0, 0, 0, 0, 0, '', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, com, local_depth, collection_depth, date_time, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('b28f97a0-3923-4884-b189-79baca2e3757', 'estacao synop', 0, 0, '2022-07-18 00:00:00', 0, 0, 0, 0, 0, '', 0);
 SELECT * FROM synoptic_observation.station_on_shore
