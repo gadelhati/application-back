@@ -8706,13 +8706,13 @@ SELECT * FROM synoptic_observation.surface_weather_station;
 INSERT INTO synoptic_observation.researcher(id, address, email, name) VALUES ('d64d90a1-25de-4fa9-9abd-dd9c7245ce91', 'Researcher address', 'researcher@gmail.com', 'researcher');
 SELECT * FROM synoptic_observation.researcher;
 
--- POPULANDO synoptic_observation.station
-INSERT INTO synoptic_observation.station(id, com, local_depth, country) VALUES ('8ab973aa-e5bc-42d8-848b-b5adac7832aa', '?', 0, 'b2e72768-e154-43a5-ae0c-652579d67600');
-SELECT * FROM synoptic_observation.station;
-
 -- POPULANDO synoptic_observation.commission
 INSERT INTO synoptic_observation.commission(id, arrival, departure, latitude_most_bottom, latitude_most_top, longitude_most_left, longitude_most_right, name) VALUES ('081d2348-74e7-4f7a-be67-e27a86e260d0', '2022-07-18 00:00:00', '2022-07-19 00:00:00', 0, 0, 0, 0, '');
 SELECT * FROM synoptic_observation.commission
+
+-- POPULANDO synoptic_observation.station
+INSERT INTO synoptic_observation.station(id, com, local_depth, country) VALUES ('8ab973aa-e5bc-42d8-848b-b5adac7832aa', 'estação genérica', 0, 'b2e72768-e154-43a5-ae0c-652579d67600');
+SELECT * FROM synoptic_observation.station;
 
 -- POPULANDO synoptic_observation.station_off_shore
 INSERT INTO synoptic_observation.station_off_shore(id, com, local_depth, country, first, last, latitude_most_bottom, latitude_most_top, longitude_most_left, longitude_most_right) VALUES ('20a78d7c-1b51-4c47-a6bf-7c12596c32f3', 'estação ship', 0, 'b2e72768-e154-43a5-ae0c-652579d67600', '2022-07-18 00:00:00', '2022-07-18 00:00:00', 0, 0, 0, 0);
