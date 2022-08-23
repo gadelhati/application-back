@@ -8474,7 +8474,6 @@ INSERT INTO synoptic_observation.platform(id, platform_category, visual_callsign
 INSERT INTO synoptic_observation.platform(id, platform_category, visual_callsign, telegraphic_callsign, name, country) VALUES ('183f1283-4374-48a0-a55f-b4b251ce847e', 'aad3ae0d-ac02-4058-8bf0-e69a15816177', 'H33', 'PWNE', 'TAURUS', 'b2e72768-e154-43a5-ae0c-652579d67600');
 INSERT INTO synoptic_observation.platform(id, platform_category, visual_callsign, name, country) VALUES ('50986507-630e-4384-9e2a-1dd9ebef037d', 'ab0c5454-c9a8-4924-943e-df875b7796ad', 'A10', 'PROF BESNARD', 'b2e72768-e154-43a5-ae0c-652579d67600');
 INSERT INTO synoptic_observation.platform(id, platform_category, visual_callsign, country) VALUES ('e5df68b4-2e1e-42e2-94e7-db5636922daf', 'ab0c5454-c9a8-4924-943e-df875b7796ad', 'L01', 'b2e72768-e154-43a5-ae0c-652579d67600');
-
 SELECT * FROM synoptic_observation.platform;
 
 -- POPULANDO synoptic_observation.component;
@@ -8656,11 +8655,9 @@ INSERT INTO synoptic_observation.component(id, name, j1, k1, k2, l2, m1, m2, n2,
 INSERT INTO synoptic_observation.component(id, name, j1, k1, k2, l2, m1, m2, n2, o1, p1, q1, s1, s2, t2, v2, type, velocity) VALUES ('04a05a98-db9a-4dd6-a9cf-bb6e3c39b7e8','SSA', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0,0821373');
 INSERT INTO synoptic_observation.component(id, name, j1, k1, k2, l2, m1, m2, n2, o1, p1, q1, s1, s2, t2, v2, type, velocity) VALUES ('7350a879-c871-4962-9e5b-8e94e824f824','T2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '29,9589');
 INSERT INTO synoptic_observation.component(id, name, j1, k1, k2, l2, m1, m2, n2, o1, p1, q1, s1, s2, t2, v2, type, velocity) VALUES ('2ac68a1f-d001-46d9-9cb2-bfcd2a90f7b6','TETA1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '15,5126');
-
 SELECT * FROM synoptic_observation.component;
 
 -- POPULANDO synoptic_observation.federative_unit
-
 INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('d7cbc23b-1158-4186-a771-36294b9685e9', 'AC', 'Acre', 'b2e72768-e154-43a5-ae0c-652579d67600');
 INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('d9c0661b-b081-4aee-87cb-05a3bbfcc1c0', 'AL', 'Alagoas', 'b2e72768-e154-43a5-ae0c-652579d67600');
 INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('fc954368-0e83-4364-9fc8-3275542b668d', 'AP', 'Amapá', 'b2e72768-e154-43a5-ae0c-652579d67600');
@@ -8688,11 +8685,9 @@ INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VA
 INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('d3cac06a-c699-4eae-a736-77238912a55b', 'SE', 'Sergipe', 'b2e72768-e154-43a5-ae0c-652579d67600');
 INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('e413986f-d8e7-4a97-ac4c-f8e96ba64bfb', 'TO', 'Tocantins', 'b2e72768-e154-43a5-ae0c-652579d67600');
 INSERT INTO synoptic_observation.federative_unit(id, initials, name, country) VALUES ('59022c7c-0506-4354-a917-eac0dfde9ca4', 'DF', 'Distrito Federal ', 'b2e72768-e154-43a5-ae0c-652579d67600');
-
 SELECT * FROM synoptic_observation.federative_unit;
 
 -- POPULANDO synoptic_observation.surface_weather_station
-
 INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('d63eb464-9e0e-4a61-b06b-ea48360eb027', 'false', '3', '00º 31’ N', '050º 25’ W', 'Canivete', '82096', 'f6ff745c-f292-484a-92dc-07b5064d7591');
 INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('8409c76d-af79-4796-aff1-aa7e72ba7d35', 'true', '26', '00º 37’ S', '047º 21’ W', 'Salinópolis', '82143', 'f6ff745c-f292-484a-92dc-07b5064d7591');
 INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('c6ec0a83-2bf0-42b5-85d0-c3dc8eab20c0', 'true', '14', '05º 10’ S', '035º 29’ W', 'Calcanhar', '82595', '24ee5d9b-af59-487f-8c79-edceda2ccea0');
@@ -8705,10 +8700,24 @@ INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, l
 INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('a7dde9ec-f4a9-445b-ac8e-90e8cb3d15e4', 'true', '52', '28º 36’ S', '048º 49’ W', 'Santa Marta', '83925', '4acd05f7-aa52-4e7f-b704-ad8849a293e2');
 INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('b13adb49-c524-4134-a604-1793136a2823', 'true', '1', '31º 15’ S', '050º 54’ W', 'Mostardas', '83970', '9c26c624-41b5-4315-92df-19d121c5d537');
 INSERT INTO synoptic_observation.surface_weather_station(id, active, altitude, latitude, longitude, name, "number", federative_unit) VALUES ('aaa83722-5343-4bd3-b0a5-f72ca28b8c4f', 'true', '13', '33º 45’ S', '053º 22’ W', 'Chuí', '83998', '9c26c624-41b5-4315-92df-19d121c5d537');
-
 SELECT * FROM synoptic_observation.surface_weather_station;
 
 -- POPULANDO synoptic_observation.researcher
 INSERT INTO synoptic_observation.researcher(id, address, email, name) VALUES ('d64d90a1-25de-4fa9-9abd-dd9c7245ce91', 'Researcher address', 'researcher@gmail.com', 'researcher');
-
 SELECT * FROM synoptic_observation.researcher;
+
+-- POPULANDO synoptic_observation.station
+INSERT INTO synoptic_observation.station(id, com, local_depth, country) VALUES ('8ab973aa-e5bc-42d8-848b-b5adac7832aa', '?', 0, 'b2e72768-e154-43a5-ae0c-652579d67600');
+SELECT * FROM synoptic_observation.station;
+
+-- POPULANDO synoptic_observation.commission
+INSERT INTO synoptic_observation.commission(id, arrival, departure, latitude_most_bottom, latitude_most_top, longitude_most_left, longitude_most_right, name) VALUES ('081d2348-74e7-4f7a-be67-e27a86e260d0', '2022-07-18 00:00:00', '2022-07-19 00:00:00', 0, 0, 0, 0, '');
+SELECT * FROM synoptic_observation.commission
+
+-- POPULANDO synoptic_observation.station_off_shore
+INSERT INTO synoptic_observation.station_off_shore(id, com, local_depth, country, first, last, latitude_most_bottom, latitude_most_top, longitude_most_left, longitude_most_right) VALUES ('20a78d7c-1b51-4c47-a6bf-7c12596c32f3', '?', 0, 'b2e72768-e154-43a5-ae0c-652579d67600', '2022-07-18 00:00:00', '2022-07-18 00:00:00', 0, 0, 0, 0);
+SELECT * FROM synoptic_observation.station_off_shore
+
+-- POPULANDO synoptic_observation.station_on_shore
+INSERT INTO synoptic_observation.station_on_shore(id, com, local_depth, collection_depth, date_time, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('b28f97a0-3923-4884-b189-79baca2e3757', '', 0, 0, '2022-07-18 00:00:00', 0, 0, 0, 0, 0, '', 0);
+SELECT * FROM synoptic_observation.station_on_shore
