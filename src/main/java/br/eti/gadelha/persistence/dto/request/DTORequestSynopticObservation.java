@@ -18,16 +18,16 @@ import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
-@ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh /*@ValidNW2*/ @ValidTdTdTd @ValidTnTnTn /*@ValidTTT*/ @ValidTxTxTx @ValidVVh @ValidVVWW /*@ValidW1W2*/
+@ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
 public class DTORequestSynopticObservation {
 
 //    private Point coordinates;
     //SECTION 0
 
     //AABB
-    @Pattern(regexp = "AAXX||BBXX", message = "{mimi.valid}")// @JsonProperty("aabbxx")
+    @Pattern(regexp = "AAXX||BBXX", message = "{mimi.valid}") @JsonProperty("aabbxx")
     private String mimi;
-    @Pattern(regexp = "XX", message = "{mjmj.valid}")
+//    @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;
     //DDDDDDD
     private String ddddddd;
