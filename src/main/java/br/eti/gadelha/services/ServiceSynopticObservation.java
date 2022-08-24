@@ -35,9 +35,7 @@ public class ServiceSynopticObservation {
     public List<DTOResponseSynopticObservation> create(List<DTORequestSynopticObservation> createds){
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
         Set<ConstraintViolation<DTORequestSynopticObservation>> violations = new HashSet<>();
-        System.out.println(""+createds);
         for(DTORequestSynopticObservation created : createds){
-            System.out.println(""+created);
 //            violations = validator.validate(created, DTORequestSynopticObservation.class);
 //            if(!violations.isEmpty()) {
                 repository.save(created.toObject());
