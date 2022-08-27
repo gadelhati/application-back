@@ -21,13 +21,9 @@ import java.util.UUID;
 public class ControllerSynopticObservation {
 
     private final ServiceSynopticObservation service;
-//    private final ServiceFile serviceFile;
-//    @Autowired
-//    private ServiceFileStorage fileStorageService;
 
     public ControllerSynopticObservation(RepositorySynopticObservation repository/*, RepositoryFile repositoryFile*/) {
         this.service = new ServiceSynopticObservation(repository) {};
-//        this.serviceFile = new ServiceFile(repositoryFile) {};
     }
     @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseSynopticObservation> create(@RequestBody @Valid DTORequestSynopticObservation created){
@@ -110,41 +106,4 @@ public class ControllerSynopticObservation {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    @PostMapping("/upload") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
-//    public File upload(@RequestParam (value="file") MultipartFile file) {
-//        String fileName = fileStorageService.storeFile(file);
-//        interpret(fileName, file.getContentType(), file.getSize());
-//        return new File(fileName, file.getContentType(), file.getSize());
-//    }
-//    public void interpret(String fileName, String fileType, Long fileSize) {
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.setDateFormat(simpleDateFormat);
-//        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-//        try {
-//            List<DTORequestSynopticObservation> dtoRequestSynopticObservations = mapper.readerForListOf(DTORequestSynopticObservation.class).readValue(new java.io.File("./uploads/" + fileName));
-//            DTORequestFile dtoRequestFile = new DTORequestFile(fileName, fileType, fileSize);
-//            serviceFile.create(dtoRequestFile);
-//            for( DTORequestSynopticObservation dtoRequestSynopticObservation : dtoRequestSynopticObservations) {
-//                List<DTOResponseSynopticObservation> dtoResponseSynopticObservations = service.retrieve();
-//                boolean controle = true;
-//                for (DTOResponseSynopticObservation dtoResponseSynopticObservation : dtoResponseSynopticObservations) {
-//                    if (dtoRequestSynopticObservation.getDataObservacao() != null && dtoResponseSynopticObservation.getDataObservacao() != null){
-//                        if (simpleDateFormat.format(dtoRequestSynopticObservation.getDataObservacao()).equals(simpleDateFormat.format(dtoResponseSynopticObservation.getDataObservacao())) && dtoRequestSynopticObservation.getGg().equals(dtoResponseSynopticObservation.getGg())) {
-//                            controle = false;
-//                        }
-//                    }
-//                }
-//                if (controle){
-//                    create(dtoRequestSynopticObservation);
-//                }
-//            }
-//        } catch (JsonGenerationException e) {
-//            e.printStackTrace();
-//        } catch (JsonMappingException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
