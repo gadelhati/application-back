@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
@@ -39,16 +40,16 @@ public class DTORequestSynopticObservation {
 
     private String nbnbnb;
     //YYGGiw
-    @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}") @NotNull
+    @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}") @NotNull @NotBlank
     private String yy;
-    @Pattern(regexp = "00||03||06||09||12||15||18||21", message = "{gg.valid}") @NotNull
+    @Pattern(regexp = "00||03||06||09||12||15||18||21", message = "{gg.valid}") @NotNull @NotBlank
     private String gg;
-    @Pattern(regexp = "0||1||2||3||4", message = "{iw.valid}") @NotNull
+    @Pattern(regexp = "0||1||2||3||4", message = "{iw.valid}") @NotNull @NotBlank
     private String iw;
     //IIiii
     @Pattern(regexp = "82||83", message = "{ii.valid}")
     private String ii;
-//    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
+    //    @Pattern(regexp = "[0-9][0-9][0-9]", message = "{iii.valid}")
     private String iii;
     //99LaLaLa
     @Pattern(regexp = "[0-8][0-9][0-9]||900", message = "{lalala.valid}")
@@ -62,27 +63,27 @@ public class DTORequestSynopticObservation {
     //SECTION 1
 
     //iRiXhVV
-    @Pattern(regexp = "1||3||4", message = "{ir.valid}") @NotNull
+    @Pattern(regexp = "1||3||4", message = "{ir.valid}") @NotNull @NotBlank
     private String ir;
-    @Pattern(regexp = "[1-7]", message = "{ix.valid}") @NotNull
+    @Pattern(regexp = "[1-7]", message = "{ix.valid}") @NotNull @NotBlank
     private String ix;
-    @Pattern(regexp = "[0-9]||\\/", message = "{h.valid}") @NotNull
+    @Pattern(regexp = "[0-9]||\\/", message = "{h.valid}") @NotNull @NotBlank
     private String h;
-    @Pattern(regexp = "9[0-9]", message = "{vv.valid}") @NotNull
+    @Pattern(regexp = "9[0-9]", message = "{vv.valid}") @NotNull @NotBlank
     private String vv;
     //Nddff
-    @Pattern(regexp = "[0-8]||\\/", message = "{n.valid}") @NotNull
+    @Pattern(regexp = "[0-8]||\\/", message = "{n.valid}") @NotNull @NotBlank
     private String n;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99||\\/\\/", message = "{dd.valid}") @NotNull
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99||\\/\\/", message = "{dd.valid}") @NotNull @NotBlank
     private String dd;
-    @Pattern(regexp = "[0-9][0-9]||\\/\\/", message = "{ff.valid}") @NotNull
+    @Pattern(regexp = "[0-9][0-9]||\\/\\/", message = "{ff.valid}") @NotNull @NotBlank
     private String ff;
     //@Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
     private String fff;
     //1snTTT
-    @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull
+    @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull @NotBlank
     private String sn1_1;
-    @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{ttt.valid}") @NotNull
+    @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{ttt.valid}") @NotNull @NotBlank
     private String ttt;
     //2snTdTdTd (ou 29UUU)
     @Pattern(regexp = "0||1||9", message = "{sn2_1.valid}")
@@ -93,7 +94,7 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "0[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
     private String p0p0p0p0;
     //4PPPP
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]||[0-9][0-9][0-9][0-9||\\/]", message = "{pppp.valid}") @NotNull
+    @Pattern(regexp = "[0-9][0-9][0-9][0-9]||[0-9][0-9][0-9][0-9||\\/]", message = "{pppp.valid}") @NotNull @NotBlank
     private String pppp;
     //4a3hhh
     @Pattern(regexp = "1||2||5||7||8", message = "{a3.valid}")
@@ -111,13 +112,13 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "[0-9]||''", message = "{tr.valid}")
     private String tr;
     //7wwW1W2
-    @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull
+    @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull @NotBlank
     private String ww;
-//    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1w2.valid}") @NotNull
+    //    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1w2.valid}") @NotNull @NotBlank
     private String w1w2;
-//    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull
+    //    @Pattern(regexp = "[0-9]||\\/", message = "{w1.valid}") @NotNull @NotBlank
 //    private String w1;
-//    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull
+//    @Pattern(regexp = "[0-9]||\\/", message = "{w2.valid}") @NotNull @NotBlank
 //    private String w2;
     //7wawaWa1Wa2
     //@Pattern(regexp = "[0-9][0-9]", message = "{wawa.valid}")
