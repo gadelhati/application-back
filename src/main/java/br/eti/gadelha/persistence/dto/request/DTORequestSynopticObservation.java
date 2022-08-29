@@ -18,7 +18,7 @@ import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
-@ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2 @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
+/*@ValidNhCLCM*/ @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh /*@ValidNW2*/ @ValidTdTdTd @ValidTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
 public class DTORequestSynopticObservation {
 
 //    private Point coordinates;
