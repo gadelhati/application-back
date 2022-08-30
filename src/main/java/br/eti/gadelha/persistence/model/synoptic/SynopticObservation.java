@@ -1,17 +1,16 @@
 package br.eti.gadelha.persistence.model.synoptic;
 
-import br.eti.gadelha.persistence.model.File;
-import br.eti.gadelha.persistence.model.GenericEntity;
 import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.*;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@IdClass(SynopticObservationId.class)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class SynopticObservation extends GenericEntity {
+public class SynopticObservation /*extends GenericEntity*/ {
 
     // https://www.baeldung.com/hibernate-spatial
 //    @Column(columnDefinition = "POINT")
@@ -151,19 +150,16 @@ public class SynopticObservation extends GenericEntity {
     private String icp;
     private String icq;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataObservacao;
-    private String observador;
-    private String estacao;
+    @Id
+    private LocalDateTime dateObservation;
+    @Id
+    private String stationName;
+    private String observerName;
 
-    @Setter
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "file")
-    private File file;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer")
-    private User observer;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "station")
     private Station station;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer")
+    private User observer;
 }

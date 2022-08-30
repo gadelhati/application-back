@@ -16,6 +16,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
@@ -178,7 +179,7 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "[0-2][0-9]||30||''", message = "{hw2hw2.valid}")
     private String hw2hw2;
     //6IsEsEsRs (ou ICING + lig. clara)
-    @Pattern(regexp = "[1-5]||''", message = "{is_ice.valid}")  @JsonProperty("is")
+    @Pattern(regexp = "[1-5]||''", message = "{is_ice.valid}") @JsonProperty("is")
     private String is_ice;
     @Pattern(regexp = "[0-2][0-9]||30||''", message = "{eses.valid}")
     private String eses;
@@ -240,23 +241,20 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "[0-9]||''", message = "{icq.valid}")
     private String icq;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataObservacao;
-    private String observador;
-    private String estacao;
+    private LocalDateTime dateObservation;
+    @NotNull @NotBlank @JsonProperty("estacao")
+    private String stationName;
+    @NotNull @NotBlank @JsonProperty("observador")
+    private String observerName;
 
-    @Setter
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "file", nullable = true)
-    private File file;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer")
-    private User observer;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "station")
     private Station station;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer")
+    private User observer;
 
     public SynopticObservation toObject(){
-        return new SynopticObservation(mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, dataObservacao, observador, estacao, file, observer, station);
+        return new SynopticObservation(mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, dateObservation, observerName, stationName, station, observer);
     }
 }

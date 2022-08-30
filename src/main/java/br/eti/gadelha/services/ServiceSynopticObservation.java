@@ -161,10 +161,10 @@ public class ServiceSynopticObservation {
         synopticObservation.setIcf(updated.getIcf());
         synopticObservation.setIcp(updated.getIcp());
         synopticObservation.setIcq(updated.getIcq());
-        synopticObservation.setObservador(updated.getObservador());
-        synopticObservation.setDataObservacao(updated.getDataObservacao());
-        synopticObservation.setEstacao(updated.getEstacao());
-        synopticObservation.setFile(updated.getFile());
+        synopticObservation.setStationName(updated.getStationName());
+        synopticObservation.setObserverName(updated.getObserverName());
+        synopticObservation.setStation(updated.getStation());
+        synopticObservation.setDateObservation(updated.getDateObservation());
         return DTOResponseSynopticObservation.toDTO(repository.save(synopticObservation));
     }
     public DTOResponseSynopticObservation delete(UUID id){

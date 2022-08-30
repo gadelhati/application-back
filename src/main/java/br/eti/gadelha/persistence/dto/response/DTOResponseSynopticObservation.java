@@ -9,13 +9,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
 @Getter @AllArgsConstructor @NoArgsConstructor
 public class DTOResponseSynopticObservation {
 
-    private UUID id;
 //    private Point coordinates;
     //SECTION 0
 
@@ -152,24 +152,19 @@ public class DTOResponseSynopticObservation {
     private String icp;
     private String icq;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataObservacao;
-    private String observador;
-    private String estacao;
+    private LocalDateTime dateObservation;
+    private String stationName;
+    private String observerName;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "file")
-    private File file;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer")
-    private User observer;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "station")
     private Station station;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer")
+    private User observer;
 
     public static DTOResponseSynopticObservation toDTO(SynopticObservation value) {
         return new DTOResponseSynopticObservation(
-                value.getId(),
 //                value.getCoordinates(),
                 value.getMimi(),
                 value.getMjmj(),
@@ -254,12 +249,11 @@ public class DTOResponseSynopticObservation {
                 value.getIcf(),
                 value.getIcp(),
                 value.getIcq(),
-                value.getDataObservacao(),
-                value.getObservador(),
-                value.getEstacao(),
-                value.getFile(),
-                value.getObserver(),
-                value.getStation()
+                value.getDateObservation(),
+                value.getStationName(),
+                value.getObserverName(),
+                value.getStation(),
+                value.getObserver()
         );
     }
 }
