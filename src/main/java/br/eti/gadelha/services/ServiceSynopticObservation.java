@@ -29,19 +29,26 @@ public class ServiceSynopticObservation {
     }
 
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
+        System.out.println("3");
         return DTOResponseSynopticObservation.toDTO(repository.save(created.toObject()));
     }
 
     public List<DTOResponseSynopticObservation> create(List<DTORequestSynopticObservation> createds){
+        System.out.println("all 3");
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
+        System.out.println("all 4");
         Set<ConstraintViolation<DTORequestSynopticObservation>> violations = new HashSet<>();
+        System.out.println("all 5");
+        System.out.println(createds.size());
         for(DTORequestSynopticObservation created : createds){
+            System.out.println("all 6");
 //            violations = validator.validate(created, DTORequestSynopticObservation.class);
 //            if(!violations.isEmpty()) {
                 repository.save(created.toObject());
                 list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
 //            }
         }
+        System.out.println("all 7");
         return list;
     }
 
@@ -163,8 +170,8 @@ public class ServiceSynopticObservation {
         synopticObservation.setIcq(updated.getIcq());
         synopticObservation.setStationName(updated.getStationName());
         synopticObservation.setObserverName(updated.getObserverName());
-        synopticObservation.setStation(updated.getStation());
-        synopticObservation.setDateObservation(updated.getDateObservation());
+//        synopticObservation.setStation(updated.getStation());
+//        synopticObservation.setDateObservation(updated.getDateObservation());
         return DTOResponseSynopticObservation.toDTO(repository.save(synopticObservation));
     }
     public DTOResponseSynopticObservation delete(UUID id){

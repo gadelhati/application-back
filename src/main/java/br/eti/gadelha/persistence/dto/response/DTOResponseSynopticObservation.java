@@ -156,12 +156,12 @@ public class DTOResponseSynopticObservation {
     private String stationName;
     private String observerName;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "station")
-    private Station station;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer")
-    private User observer;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "station")
+//    private Station station;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "observer")
+//    private User observer;
 
     public static DTOResponseSynopticObservation toDTO(SynopticObservation value) {
         return new DTOResponseSynopticObservation(
@@ -251,9 +251,9 @@ public class DTOResponseSynopticObservation {
                 value.getIcq(),
                 value.getDateObservation(),
                 value.getStationName(),
-                value.getObserverName(),
-                value.getStation(),
-                value.getObserver()
+                value.getObserverName()
+//                value.getStation()
+//                value.getObserver()
         );
     }
 }

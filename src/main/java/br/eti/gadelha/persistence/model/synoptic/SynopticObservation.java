@@ -6,11 +6,12 @@ import lombok.*;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @IdClass(SynopticObservationId.class)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class SynopticObservation /*extends GenericEntity*/ {
+public class SynopticObservation /*extends GenericEntity*/ implements Serializable {
 
     // https://www.baeldung.com/hibernate-spatial
 //    @Column(columnDefinition = "POINT")
@@ -156,10 +157,10 @@ public class SynopticObservation /*extends GenericEntity*/ {
     private String stationName;
     private String observerName;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "station")
-    private Station station;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "observer")
-    private User observer;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "station")
+//    private Station station;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "observer")
+//    private User observer;
 }
