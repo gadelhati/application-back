@@ -8,6 +8,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @IdClass(SynopticObservationId.class)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
@@ -152,7 +153,8 @@ public class SynopticObservation /*extends GenericEntity*/ implements Serializab
     private String icq;
 
     @Id
-    private LocalDateTime dateObservation;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateObservation;
     @Id
     private String stationName;
     private String observerName;

@@ -242,7 +242,8 @@ public class DTORequestSynopticObservation {
     private String icq;
 
     @JsonProperty("dataObservacao")
-    private LocalDateTime dateObservation;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateObservation;
     @NotNull @NotBlank @JsonProperty("estacao")
     private String stationName;
     @NotNull @NotBlank @JsonProperty("observador")
