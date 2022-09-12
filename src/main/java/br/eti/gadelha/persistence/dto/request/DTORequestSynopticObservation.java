@@ -241,9 +241,9 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "[0-9]||''", message = "{icq.valid}")
     private String icq;
 
-    @JsonProperty("dataObservacao")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateObservation;
+    @JsonProperty("dataObservacao") @NotNull
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime dateObservation;
     @NotNull @NotBlank @JsonProperty("estacao")
     private String stationName;
     @NotNull @NotBlank @JsonProperty("observador")

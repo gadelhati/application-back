@@ -152,8 +152,8 @@ public class DTOResponseSynopticObservation {
     private String icp;
     private String icq;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateObservation;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime dateObservation;
     private String stationName;
     private String observerName;
 

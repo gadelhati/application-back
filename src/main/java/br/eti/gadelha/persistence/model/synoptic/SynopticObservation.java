@@ -153,8 +153,8 @@ public class SynopticObservation /*extends GenericEntity*/ implements Serializab
     private String icq;
 
     @Id
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateObservation;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime dateObservation;
     @Id
     private String stationName;
     private String observerName;
