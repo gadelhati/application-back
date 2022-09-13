@@ -41,11 +41,11 @@ public class DTORequestSynopticObservation {
 
     private String nbnbnb;
     //YYGGiw
-    @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-2][0-9]||3[0-1]", message = "{yy.valid}") @NotNull(message = "{yy.not.null}") @NotBlank(message = "{yy.not.blank}")
     private String yy;
-    @Pattern(regexp = "00||03||06||09||12||15||18||21", message = "{gg.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "00||03||06||09||12||15||18||21", message = "{gg.valid}") @NotNull(message = "{gg.not.null}") @NotBlank(message = "{gg.not.blank}")
     private String gg;
-    @Pattern(regexp = "0||1||2||3||4", message = "{iw.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "0||1||2||3||4", message = "{iw.valid}") @NotNull(message = "{iw.not.null}") @NotBlank(message = "{iw.not.blank}")
     private String iw;
     //IIiii
     @Pattern(regexp = "82||83", message = "{ii.valid}")
@@ -64,27 +64,27 @@ public class DTORequestSynopticObservation {
     //SECTION 1
 
     //iRiXhVV
-    @Pattern(regexp = "1||3||4", message = "{ir.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "1||3||4", message = "{ir.valid}") @NotNull(message = "{ir.not.null}") @NotBlank(message = "{ir.not.blank}")
     private String ir;
-    @Pattern(regexp = "[1-7]", message = "{ix.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[1-7]", message = "{ix.valid}") @NotNull(message = "{ix.not.null}") @NotBlank(message = "{ix.not.blank}")
     private String ix;
-    @Pattern(regexp = "[0-9]||\\/", message = "{h.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-9]||\\/", message = "{h.valid}") @NotNull(message = "{h.not.null}") @NotBlank(message = "{h.not.blank}")
     private String h;
-    @Pattern(regexp = "9[0-9]", message = "{vv.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "9[0-9]", message = "{vv.valid}") @NotNull(message = "{vv.not.null}") @NotBlank(message = "{vv.not.blank}")
     private String vv;
     //Nddff
-    @Pattern(regexp = "[0-8]||\\/", message = "{n.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-8]||\\/", message = "{n.valid}") @NotNull(message = "{n.not.null}") @NotBlank(message = "{n.not.blank}")
     private String n;
-    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99||\\/\\/", message = "{dd.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-2][0-9]||3[0-6]||99||\\/\\/", message = "{dd.valid}") @NotNull(message = "{dd.not.null}") @NotBlank(message = "{dd.not.blank}")
     private String dd;
-    @Pattern(regexp = "[0-9][0-9]||\\/\\/", message = "{ff.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-9][0-9]||\\/\\/", message = "{ff.valid}") @NotNull(message = "{ff.not.null}") @NotBlank(message = "{ff.not.blank}")
     private String ff;
     //@Pattern(regexp = "[1-9][0-9][0-9]", message = "{fff.valid}")
     private String fff;
     //1snTTT
-    @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-1]", message = "{sn1_1.valid}") @NotNull(message = "{sn1_1.not.null}") @NotBlank(message = "{sn1_1.not.blank}")
     private String sn1_1;
-    @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{ttt.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-4][0-9][0-9]||500||\\/\\/\\/", message = "{ttt.valid}") @NotNull(message = "{ttt.not.null}") @NotBlank(message = "{ttt.not.blank}")
     private String ttt;
     //2snTdTdTd (ou 29UUU)
     @Pattern(regexp = "0||1||9", message = "{sn2_1.valid}")
@@ -95,7 +95,7 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "0[0-9][0-9][0-9]||1000||8[7-9][0-9][0-9]||9[0-9][0-9][0-9]", message = "{p0p0p0p0.valid}")
     private String p0p0p0p0;
     //4PPPP
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]||[0-9][0-9][0-9][0-9||\\/]", message = "{pppp.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-9][0-9][0-9][0-9]||[0-9][0-9][0-9][0-9||\\/]", message = "{pppp.valid}") @NotNull(message = "{pppp.not.null}") @NotBlank(message = "{pppp.not.blank}")
     private String pppp;
     //4a3hhh
     @Pattern(regexp = "1||2||5||7||8", message = "{a3.valid}")
@@ -113,7 +113,7 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "[0-9]||''", message = "{tr.valid}")
     private String tr;
     //7wwW1W2
-    @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull @NotBlank
+    @Pattern(regexp = "[0-9][0-9]", message = "{ww.valid}") @NotNull(message = "{ww.not.null}") @NotBlank(message = "{ww.not.blank}")
     private String ww;
     //    @Pattern(regexp = "[0-9][0-9]||\\/\\/||[0-9]\\/||\\/[0-9]", message = "{w1w2.valid}") @NotNull @NotBlank
     private String w1w2;
@@ -241,12 +241,12 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "[0-9]||''", message = "{icq.valid}")
     private String icq;
 
-    @JsonProperty("dataObservacao") @NotNull
+    @JsonProperty("dataObservacao") @NotNull(message = "{dateObservation.not.null}")
 //    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dateObservation;
-    @NotNull @NotBlank @JsonProperty("estacao")
+    @NotNull(message = "{stationName.not.null}") @NotBlank(message = "{stationName.not.blank}") @JsonProperty("estacao")
     private String stationName;
-    @NotNull @NotBlank @JsonProperty("observador")
+    @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}") @JsonProperty("observador")
     private String observerName;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
