@@ -152,7 +152,8 @@ public class DTOResponseSynopticObservation {
     private String icp;
     private String icq;
 
-//    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataObservacao;
     private LocalDateTime dateObservation;
     private String stationName;
     private String observerName;
@@ -250,6 +251,7 @@ public class DTOResponseSynopticObservation {
                 value.getIcf(),
                 value.getIcp(),
                 value.getIcq(),
+                value.getDataObservacao(),
                 value.getDateObservation(),
                 value.getStationName(),
                 value.getObserverName()

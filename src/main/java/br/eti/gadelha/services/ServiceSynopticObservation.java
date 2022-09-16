@@ -14,6 +14,9 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.*;
 
 @Service
@@ -30,6 +33,8 @@ public class ServiceSynopticObservation {
 
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
         System.out.println("3");
+        System.out.println(created.getDataObservacao());
+        System.out.println(created.getDateObservation());
         return DTOResponseSynopticObservation.toDTO(repository.save(created.toObject()));
     }
 
@@ -42,6 +47,9 @@ public class ServiceSynopticObservation {
         System.out.println(createds.size());
         for(DTORequestSynopticObservation created : createds){
             System.out.println("all 6");
+            System.out.println("one: "+created.getDataObservacao());
+            System.out.println("two: "+created.getDateObservation());
+//            created
 //            violations = validator.validate(created, DTORequestSynopticObservation.class);
 //            if(!violations.isEmpty()) {
                 repository.save(created.toObject());
