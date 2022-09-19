@@ -27,7 +27,8 @@ public class DTORequestSynopticObservation {
     //SECTION 0
 
     //AABB
-    @Pattern(regexp = "AAXX||BBXX", message = "{mimi.valid}") @JsonProperty("aabbxx")
+    private String aabbxx;
+    @Pattern(regexp = "AA||BB", message = "{mimi.valid}")
     private String mimi;
     @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;

@@ -25,7 +25,6 @@ public class DTOResponseSynopticObservation {
     private String mimi;
     private String mjmj;
     //DDDDDDD
-    private String estacao;
     private String ddddddd;
     //A1bwnbnbnb
     private String a1;
@@ -158,7 +157,6 @@ public class DTOResponseSynopticObservation {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
     private LocalDateTime dateObservation;
-    private String observador;
     private String observerName;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
@@ -173,7 +171,6 @@ public class DTOResponseSynopticObservation {
 //                value.getCoordinates(),
                 value.getMimi(),
                 value.getMjmj(),
-                value.getDdddddd(),
                 value.getDdddddd(),
                 value.getA1(),
                 value.getBw(),
@@ -257,7 +254,6 @@ public class DTOResponseSynopticObservation {
                 value.getIcq(),
                 Date.from(value.getDateObservation().atZone(ZoneId.systemDefault()).toInstant()),
                 value.getDateObservation(),
-                value.getObserverName(),
                 value.getObserverName()
 //                value.getStation()
 //                value.getObserver()
