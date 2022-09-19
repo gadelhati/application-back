@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/synopticObservation")
@@ -67,9 +66,9 @@ public class ControllerSynopticObservation {
         return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
-    public ResponseEntity<DTOResponseSynopticObservation> retrieve(@PathVariable UUID id){
+    public ResponseEntity<DTOResponseSynopticObservation> retrieve(@RequestBody @Valid DTORequestSynopticObservation created){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(service.retrieve(created), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -83,17 +82,17 @@ public class ControllerSynopticObservation {
         }
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
-    public ResponseEntity<DTOResponseSynopticObservation> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestSynopticObservation updated){
+    public ResponseEntity<DTOResponseSynopticObservation> update(@PathVariable("id") String id, @RequestBody @Valid DTORequestSynopticObservation updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.update(updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
-    public ResponseEntity<DTOResponseSynopticObservation> delete(@PathVariable UUID id){
+    public ResponseEntity<DTOResponseSynopticObservation> delete(@RequestBody @Valid DTORequestSynopticObservation updated){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.delete(updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

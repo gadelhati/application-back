@@ -3,20 +3,17 @@ package br.eti.gadelha.services;
 import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.dto.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
+import br.eti.gadelha.persistence.model.synoptic.SynopticObservationId;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.beanvalidation.CustomValidatorBean;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.*;
 
 @Service
@@ -65,8 +62,8 @@ public class ServiceSynopticObservation {
         }
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
     }
-    public DTOResponseSynopticObservation retrieve(UUID id){
-        return DTOResponseSynopticObservation.toDTO(repository.findById(id).orElse(null));
+    public DTOResponseSynopticObservation retrieve(DTORequestSynopticObservation updated){
+        return DTOResponseSynopticObservation.toDTO(repository.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null));
     }
     public Page<DTOResponseSynopticObservation> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseSynopticObservation> list = new ArrayList<>();
@@ -81,8 +78,8 @@ public class ServiceSynopticObservation {
         }
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
     }
-    public DTOResponseSynopticObservation update(UUID id, DTORequestSynopticObservation updated){
-        SynopticObservation synopticObservation = repository.findById(id).orElse(null);
+    public DTOResponseSynopticObservation update(DTORequestSynopticObservation updated){
+        SynopticObservation synopticObservation = repository.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null);
         synopticObservation.setMimi(updated.getMimi());
         synopticObservation.setMjmj(updated.getMjmj());
         synopticObservation.setDdddddd(updated.getDdddddd());
@@ -171,9 +168,9 @@ public class ServiceSynopticObservation {
 //        synopticObservation.setDateObservation(updated.getDateObservation());
         return DTOResponseSynopticObservation.toDTO(repository.save(synopticObservation));
     }
-    public DTOResponseSynopticObservation delete(UUID id){
-        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repository.findById(id).orElse(null));
-        repository.deleteById(id);
+    public DTOResponseSynopticObservation delete(DTORequestSynopticObservation updated){
+        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repository.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null));
+        repository.deleteById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd()));
         return deleted;
     }
     public void delete() {
