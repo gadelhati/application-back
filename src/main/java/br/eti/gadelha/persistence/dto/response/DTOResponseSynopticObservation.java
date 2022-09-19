@@ -158,6 +158,7 @@ public class DTOResponseSynopticObservation {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataObservacao;
     private LocalDateTime dateObservation;
+    private String observador;
     private String observerName;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
@@ -256,6 +257,7 @@ public class DTOResponseSynopticObservation {
                 value.getIcq(),
                 Date.from(value.getDateObservation().atZone(ZoneId.systemDefault()).toInstant()),
                 value.getDateObservation(),
+                value.getObserverName(),
                 value.getObserverName()
 //                value.getStation()
 //                value.getObserver()

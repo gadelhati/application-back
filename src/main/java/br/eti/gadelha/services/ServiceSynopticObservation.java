@@ -41,6 +41,7 @@ public class ServiceSynopticObservation {
         for(DTORequestSynopticObservation created : createds){
             created.setDateObservation(created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
             created.setDdddddd(created.getEstacao());
+            created.setObserverName(created.getObservador());
             repository.save(created.toObject());
             list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
         }

@@ -247,7 +247,8 @@ public class DTORequestSynopticObservation {
     private Date dataObservacao;
     @NotNull(message = "{dateObservation.not.null}")
     private LocalDateTime dateObservation;
-    @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}") @JsonProperty("observador")
+    private String observador;
+    @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}")
     private String observerName;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
