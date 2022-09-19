@@ -39,7 +39,8 @@ public class ServiceSynopticObservation {
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
         Set<ConstraintViolation<DTORequestSynopticObservation>> violations = new HashSet<>();
         for(DTORequestSynopticObservation created : createds){
-            created.setDateObservation(created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+            created.setDateObservation(created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().withHour(Integer.parseInt(created.getGg())));
+            created.setDdddddd(created.getEstacao());
             repository.save(created.toObject());
             list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
         }
@@ -162,7 +163,6 @@ public class ServiceSynopticObservation {
         synopticObservation.setIcf(updated.getIcf());
         synopticObservation.setIcp(updated.getIcp());
         synopticObservation.setIcq(updated.getIcq());
-        synopticObservation.setStationName(updated.getStationName());
         synopticObservation.setObserverName(updated.getObserverName());
 //        synopticObservation.setStation(updated.getStation());
 //        synopticObservation.setDateObservation(updated.getDateObservation());

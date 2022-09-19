@@ -32,6 +32,8 @@ public class DTORequestSynopticObservation {
     @Pattern(regexp = "XX", message = "{mjmj.valid}")
     private String mjmj;
     //DDDDDDD
+    private String estacao;
+    @NotNull(message = "{ddddddd.not.null}") @NotBlank(message = "{ddddddd.not.blank}")
     private String ddddddd;
     //A1bwnbnbnb
 
@@ -245,8 +247,6 @@ public class DTORequestSynopticObservation {
     private Date dataObservacao;
     @NotNull(message = "{dateObservation.not.null}")
     private LocalDateTime dateObservation;
-    @NotNull(message = "{stationName.not.null}") @NotBlank(message = "{stationName.not.blank}") @JsonProperty("estacao")
-    private String stationName;
     @NotNull(message = "{observerName.not.null}") @NotBlank(message = "{observerName.not.blank}") @JsonProperty("observador")
     private String observerName;
 
@@ -258,6 +258,6 @@ public class DTORequestSynopticObservation {
 //    private User observer;
 
     public SynopticObservation toObject(){
-        return new SynopticObservation(mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, dateObservation, stationName, observerName/*, station, observer*/);
+        return new SynopticObservation(mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, dateObservation, observerName/*, station, observer*/);
     }
 }

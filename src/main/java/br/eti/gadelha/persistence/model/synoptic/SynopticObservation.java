@@ -23,6 +23,7 @@ public class SynopticObservation /*extends GenericEntity*/ implements Serializab
     private String mimi;
     private String mjmj;
     //DDDDDDD
+    @Id
     private String ddddddd;
     //A1bwnbnbnb
     private String a1;
@@ -156,8 +157,6 @@ public class SynopticObservation /*extends GenericEntity*/ implements Serializab
 //    private Date dataObservacao;
     @Id
     private LocalDateTime dateObservation;
-    @Id
-    private String stationName;
     private String observerName;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)

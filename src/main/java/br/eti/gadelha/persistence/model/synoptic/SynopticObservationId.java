@@ -11,5 +11,5 @@ import java.time.LocalDateTime;
 public class SynopticObservationId implements Serializable {
 
     private LocalDateTime dateObservation;
-    private String stationName;
+    private String ddddddd;
 }
