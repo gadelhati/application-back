@@ -32,31 +32,17 @@ public class ServiceSynopticObservation {
     }
 
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
-        System.out.println("3");
-        System.out.println(created.getDataObservacao());
-        System.out.println(created.getDateObservation());
         return DTOResponseSynopticObservation.toDTO(repository.save(created.toObject()));
     }
 
     public List<DTOResponseSynopticObservation> create(List<DTORequestSynopticObservation> createds){
-        System.out.println("all 3");
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
-        System.out.println("all 4");
         Set<ConstraintViolation<DTORequestSynopticObservation>> violations = new HashSet<>();
-        System.out.println("all 5");
-        System.out.println(createds.size());
         for(DTORequestSynopticObservation created : createds){
-            System.out.println("all 6");
-            System.out.println("one: "+created.getDataObservacao());
-            System.out.println("two: "+created.getDateObservation());
-//            created
-//            violations = validator.validate(created, DTORequestSynopticObservation.class);
-//            if(!violations.isEmpty()) {
-                repository.save(created.toObject());
-                list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
-//            }
+            created.setDateObservation(created.getDataObservacao().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+            repository.save(created.toObject());
+            list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
         }
-        System.out.println("all 7");
         return list;
     }
 

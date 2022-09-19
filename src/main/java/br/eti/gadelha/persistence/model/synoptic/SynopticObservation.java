@@ -152,8 +152,8 @@ public class SynopticObservation /*extends GenericEntity*/ implements Serializab
     private String icp;
     private String icq;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataObservacao;
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date dataObservacao;
     @Id
     private LocalDateTime dateObservation;
     @Id

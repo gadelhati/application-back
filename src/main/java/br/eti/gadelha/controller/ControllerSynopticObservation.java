@@ -27,9 +27,7 @@ public class ControllerSynopticObservation {
     }
     @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseSynopticObservation> create(@RequestBody @Valid DTORequestSynopticObservation created){
-        System.out.println("1");
         try {
-            System.out.println("2");
             return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e);
@@ -38,12 +36,9 @@ public class ControllerSynopticObservation {
     }
     @PostMapping("/createAll") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<List<DTOResponseSynopticObservation>> create(@RequestBody @Valid List<DTORequestSynopticObservation> createds){
-        System.out.println("all 1");
         try {
-            System.out.println("all 2");
             return new ResponseEntity<>(service.create(createds), HttpStatus.CREATED);
         } catch (Exception e) {
-            System.out.println("all 8");
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 //        List<DTOResponseSynopticObservation> dtoResponseSynopticObservationsCreated = new ArrayList<>();

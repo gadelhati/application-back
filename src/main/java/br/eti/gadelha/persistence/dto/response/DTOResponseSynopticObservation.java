@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.UUID;
 
@@ -251,7 +253,7 @@ public class DTOResponseSynopticObservation {
                 value.getIcf(),
                 value.getIcp(),
                 value.getIcq(),
-                value.getDataObservacao(),
+                Date.from(value.getDateObservation().atZone(ZoneId.systemDefault()).toInstant()),
                 value.getDateObservation(),
                 value.getStationName(),
                 value.getObserverName()
