@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -168,9 +169,11 @@ public class ServiceSynopticObservation {
 //        synopticObservation.setDateObservation(updated.getDateObservation());
         return DTOResponseSynopticObservation.toDTO(repository.save(synopticObservation));
     }
-    public DTOResponseSynopticObservation delete(DTORequestSynopticObservation updated){
-        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repository.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null));
-        repository.deleteById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd()));
+    public DTOResponseSynopticObservation delete(String dateObservation, String ddddddd){
+        String str = dateObservation;
+        LocalDateTime localDateTime = LocalDateTime.parse(str);
+        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repository.findById(new SynopticObservationId(localDateTime, ddddddd)).orElse(null));
+        repository.deleteById(new SynopticObservationId(localDateTime, ddddddd));
         return deleted;
     }
     public void delete() {

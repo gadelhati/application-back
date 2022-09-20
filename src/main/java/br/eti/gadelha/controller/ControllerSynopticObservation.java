@@ -12,7 +12,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/synopticObservation")
@@ -89,10 +92,10 @@ public class ControllerSynopticObservation {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN', 'RECTIFIER')")
-    public ResponseEntity<DTOResponseSynopticObservation> delete(@RequestBody @Valid DTORequestSynopticObservation updated){
+    @DeleteMapping("/{dateObservation}/{ddddddd}") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'RECTIFIER')")
+    public ResponseEntity<DTOResponseSynopticObservation> delete(@PathVariable String dateObservation, @PathVariable String ddddddd){
         try {
-            return new ResponseEntity<>(service.delete(updated), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.delete(dateObservation, ddddddd), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
