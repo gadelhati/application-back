@@ -19,12 +19,6 @@ public class StationOffShore extends Station {
     private double longitudeMostRight;
     private double longitudeMostLeft;
 
-//    private String imo;
-//    private String navalCallsign;
-//    private String visualCallsign;
-//    private EnumTypeVessel type;
-//    private Date since;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "platform")
     private Platform platform;

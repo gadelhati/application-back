@@ -18,6 +18,11 @@ public class Platform extends GenericEntity {
 	private String internationalCallsign;
 	private String name;
 	private String internationalName;
+//    private String imo;
+//    private String navalCallsign;
+//    private EnumTypeVessel type;
+//    private Date since;
+
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "country")
 	private Country country;
