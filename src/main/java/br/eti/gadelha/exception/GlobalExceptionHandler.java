@@ -25,12 +25,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders httpHeaders, HttpStatus httpStatus, WebRequest webRequest) {
         ErrorResponse errorResponse = new ErrorResponse(httpStatus, exception.getStackTrace().toString(), exception.getAllErrors().toString());
-        for(FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
-            errorResponse.addValidationError(fieldError.getField(), fieldError.getDefaultMessage());
-        }
         for(ObjectError objectError : exception.getBindingResult().getAllErrors()) {
             errorResponse.addValidationError(((FieldError) objectError).getField(), objectError.getDefaultMessage());
         }
+//        for(FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
+//            errorResponse.addValidationError(fieldError.getField(), fieldError.getDefaultMessage());
+//        }
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 //    @ExceptionHandler({ AccessDeniedException.class })
