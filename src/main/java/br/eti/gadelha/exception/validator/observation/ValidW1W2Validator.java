@@ -16,29 +16,29 @@ public class ValidW1W2Validator implements ConstraintValidator<ValidW1W2, DTOReq
     }
     @Override
     public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
-        try {
-            if ( value.getW1w2().substring(0,1).equals("/") && value.getW1w2().substring(1).equals("/")) {
-                if (Integer.parseInt(value.getW1w2().substring(1)) > Integer.parseInt(value.getW1w2().substring(0, 1))) {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        } catch (Exception e) {
-            return false;
-        }
-
-//        if ( value == null ) {
-//            return false;
-//        } else if ( isValidWithName(value.getW1w2()) && value.getW1w2().substring(0,1).equals("/") && value.getW1w2().substring(1).equals("/")){
-//            if(isValidWithNumber(value.getW1w2()) && Integer.parseInt(value.getW1w2().substring(1)) > Integer.parseInt(value.getW1w2().substring(0,1)) ) {
-//                return false;
+//        try {
+//            if ( value.getW1w2().substring(0,1).equals("/") && value.getW1w2().substring(1).equals("/")) {
+//                if (Integer.parseInt(value.getW1w2().substring(1)) > Integer.parseInt(value.getW1w2().substring(0, 1))) {
+//                    return false;
+//                } else {
+//                    return true;
+//                }
+//            } else {
+//                return true;
 //            }
-//            return true;
-//        } else {
-//            return true;
+//        } catch (Exception e) {
+//            return false;
 //        }
+
+        if ( value == null ) {
+            return false;
+        } else if ( isValidWithName(value.getW1w2()) && value.getW1w2().substring(0,1).equals("/") && value.getW1w2().substring(1).equals("/")){
+            if(isValidWithNumber(value.getW1w2()) && Integer.parseInt(value.getW1w2().substring(1)) > Integer.parseInt(value.getW1w2().substring(0,1)) ) {
+                return false;
+            }
+            return true;
+        } else {
+            return true;
+        }
     }
 }
