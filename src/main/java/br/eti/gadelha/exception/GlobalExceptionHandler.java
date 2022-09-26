@@ -26,7 +26,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders httpHeaders, HttpStatus httpStatus, WebRequest webRequest) {
         ErrorResponse errorResponse = new ErrorResponse(httpStatus, exception.getStackTrace().toString(), exception.getAllErrors().toString());
         for(ObjectError objectError : exception.getBindingResult().getAllErrors()) {
-            errorResponse.addValidationError(((FieldError) objectError).getField(), objectError.getDefaultMessage());
+//            if (((FieldError) objectError).getField() == null) {
+//                errorResponse.addValidationError("Group", "objectError.getDefaultMessage()");
+//            } else {
+                errorResponse.addValidationError(((FieldError) objectError).getField(), objectError.getDefaultMessage());
+//            }
         }
 //        for(FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
 //            errorResponse.addValidationError(fieldError.getField(), fieldError.getDefaultMessage());
