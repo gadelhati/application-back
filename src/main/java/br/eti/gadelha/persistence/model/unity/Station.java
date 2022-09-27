@@ -7,11 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
@@ -32,9 +29,9 @@ public class Station extends GenericEntity {
     @JoinColumn(name = "surveying")
     private Surveying surveying;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "responsible"/*, nullable = true*/)
+    @JoinColumn(name = "responsible")
     private Institution responsible;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "country"/*, nullable = true*/)
+    @JoinColumn(name = "country")
     private Country country;
 }
