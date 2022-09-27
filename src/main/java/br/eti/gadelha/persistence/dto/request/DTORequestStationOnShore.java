@@ -13,7 +13,7 @@ public class DTORequestStationOnShore extends DTORequestStation {
     private LocalDateTime dateTime;
     private double latitude;
     private double longitude;
-    //    private String telegraphicCallsign;
+    private String telegraphicCallsign;
     private int marsdenSquare_10;
     private int marsdenSubSquare_1;
     private int wmoSquare;
@@ -21,6 +21,6 @@ public class DTORequestStationOnShore extends DTORequestStation {
     private float collectionDepth;
 
     public StationOnShore toObject(){
-        return new StationOnShore(name, dateTime, latitude, longitude, marsdenSquare_10, marsdenSubSquare_1, wmoSquare, marsdenSubSquare_5, collectionDepth);
+        return new StationOnShore(name, dateTime, latitude, longitude, telegraphicCallsign, marsdenSquare_10, marsdenSubSquare_1, wmoSquare, marsdenSubSquare_5, collectionDepth);
     }
 }

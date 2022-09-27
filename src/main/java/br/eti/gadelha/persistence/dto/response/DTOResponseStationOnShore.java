@@ -12,7 +12,7 @@ public class DTOResponseStationOnShore extends DTOResponseStation {
     private LocalDateTime dateTime;
     private double latitude;
     private double longitude;
-    //    private String telegraphicCallsign;
+    private String telegraphicCallsign;
     private int marsdenSquare_10;
     private int marsdenSubSquare_1;
     private int wmoSquare;
@@ -25,6 +25,7 @@ public class DTOResponseStationOnShore extends DTOResponseStation {
         this.dateTime = value.getDateTime();
         this.latitude = value.getLatitude();
         this.longitude = value.getLongitude();
+        this.telegraphicCallsign = value.getTelegraphicCallsign();
         this.marsdenSquare_10 = value.getMarsdenSquare_10();
         this.marsdenSubSquare_1 = value.getMarsdenSubSquare_1();;
         this.wmoSquare = value.getWmoSquare();
