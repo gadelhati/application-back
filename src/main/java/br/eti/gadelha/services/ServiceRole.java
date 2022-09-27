@@ -1,8 +1,10 @@
 package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestRole;
+import br.eti.gadelha.persistence.dto.response.DTOResponseOM;
 import br.eti.gadelha.persistence.dto.response.DTOResponseRole;
 import br.eti.gadelha.exception.enumeration.ERole;
+import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,13 @@ public class ServiceRole {
     public DTOResponseRole create(DTORequestRole created){
 //        Role role = MAPPER_ROLE.toObject(created);
         return DTOResponseRole.toDTO(repository.save(created.toObject()));
+    }
+    public List<DTOResponseRole> retrieve(){
+        List<DTOResponseRole> list = new ArrayList<>();
+        for(Role role: repository.findAll()) {
+            list.add(DTOResponseRole.toDTO(role));
+        }
+        return list;
     }
     public Page<DTOResponseRole> retrieve(Pageable pageable){
         List<DTOResponseRole> list = new ArrayList<>();
