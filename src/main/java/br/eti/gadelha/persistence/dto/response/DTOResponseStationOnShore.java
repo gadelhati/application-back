@@ -20,7 +20,7 @@ public class DTOResponseStationOnShore extends DTOResponseStation {
     private float collectionDepth;
 
     public DTOResponseStationOnShore(StationOnShore value) {
-        super(value.getId(), value.getLocalDepth(), value.getCom(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
+        super(value.getId(), value.getLocalDepth(), value.getCom(), value.getActive(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
         this.name = value.getName();
         this.dateTime = value.getDateTime();
         this.latitude = value.getLatitude();
