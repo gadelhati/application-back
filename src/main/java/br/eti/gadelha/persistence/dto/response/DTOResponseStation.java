@@ -18,6 +18,7 @@ public class DTOResponseStation {
     private UUID id;
     private float localDepth;
     private String com;
+    private Boolean active;
     private Commission commission;
     private StationCategory stationCategory;
     private Equipment equipment;
@@ -26,6 +27,6 @@ public class DTOResponseStation {
     private Country country;
 
     public static DTOResponseStation toDTO(Station value) {
-        return new DTOResponseStation(value.getId(), value.getLocalDepth(), value.getCom(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
+        return new DTOResponseStation(value.getId(), value.getLocalDepth(), value.getCom(), value.getActive(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
     }
 }

@@ -10,6 +10,7 @@ public class DTORequestStation {
 
     private float localDepth;
     private String com;
+    private Boolean active;
     private Commission commission;
     private StationCategory stationCategory;
     private Equipment equipment;
@@ -18,6 +19,6 @@ public class DTORequestStation {
     private Country country;
 
     public Station toObject(){
-        return new Station(localDepth, com, commission, stationCategory, equipment, surveying, responsible, country);
+        return new Station(localDepth, com, active, commission, stationCategory, equipment, surveying, responsible, country);
     }
 }
