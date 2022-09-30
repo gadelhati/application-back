@@ -16,6 +16,7 @@ public class Station extends GenericEntity {
 
     private float localDepth;
     private String com;
+    private Boolean active;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "commission")
     private Commission commission;
