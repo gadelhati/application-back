@@ -17,7 +17,7 @@ public class DTOResponseStationOffShore extends DTOResponseStation {
     private Platform platform;
 
     public DTOResponseStationOffShore(StationOffShore value) {
-        super(value.getId(), value.getLocalDepth(), value.getCom(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
+        super(value.getId(), value.getLocalDepth(), value.getCom(), value.getActive(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
         this.first = value.getFirst();
         this.last = value.getLast();
         this.latitudeMostBottom = value.getLatitudeMostBottom();
