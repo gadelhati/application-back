@@ -69,6 +69,5 @@ public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, 
     public void delete() {
         repositoryEquipment.deleteAll();
     }
-
     public Equipment findByName(String value) { return  repositoryEquipment.findByName(value); }
 }

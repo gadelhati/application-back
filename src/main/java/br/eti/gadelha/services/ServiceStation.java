@@ -76,6 +76,5 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
     public void delete() {
         repositoryStation.deleteAll();
     }
-
     public Station findByName(String value) { return  repositoryStation.findByCom(value); }
 }

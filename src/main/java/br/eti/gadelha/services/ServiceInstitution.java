@@ -69,6 +69,5 @@ public class ServiceInstitution implements ServiceInterface<DTOResponseInstituti
     public void delete() {
         repositoryInstitution.deleteAll();
     }
-
     public Institution findByName(String value) { return  repositoryInstitution.findByName(value); }
 }

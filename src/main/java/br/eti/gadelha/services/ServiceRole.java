@@ -23,8 +23,10 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
     }
 
     public DTOResponseRole create(DTORequestRole created){
-//        Role role = MAPPER_ROLE.toObject(created);
         return DTOResponseRole.toDTO(repositoryRole.save(created.toObject()));
+    }
+    public DTOResponseRole retrieve(UUID id) {
+        return DTOResponseRole.toDTO(repositoryRole.findById(id).orElse(null));
     }
     public List<DTOResponseRole> retrieve(){
         List<DTOResponseRole> list = new ArrayList<>();
@@ -40,9 +42,6 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
         }
         return new PageImpl<DTOResponseRole>(list, pageable, list.size());
     }
-    public DTOResponseRole retrieve(UUID id){
-        return DTOResponseRole.toDTO(repositoryRole.findById(id).orElse(null));
-    }
     public Page<DTOResponseRole> retrieve(Pageable pageable, String source){
         final List<DTOResponseRole> list = new ArrayList<>();
         if (source == null) {
@@ -50,9 +49,9 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
                 list.add(DTOResponseRole.toDTO(role));
             }
         } else {
-//            for (Role role : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-//                list.add(DTOResponseRole.toDTO(role));
-//            }
+            for (Role role : repositoryRole.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+                list.add(DTOResponseRole.toDTO(role));
+            }
         }
         return new PageImpl<>(list, pageable, list.size());
     }

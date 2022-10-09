@@ -21,9 +21,6 @@ import java.util.*;
 public class ServiceSynopticObservation {
 
     private final RepositorySynopticObservation repositorySynopticObservation;
-    @Autowired
-    private Validator validator;
-//    LocalValidatorFactoryBean validator2 = new LocalValidatorFactoryBean();
 
     public ServiceSynopticObservation(RepositorySynopticObservation repositorySynopticObservation) {
         this.repositorySynopticObservation = repositorySynopticObservation;
@@ -32,7 +29,6 @@ public class ServiceSynopticObservation {
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
         return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.save(created.toObject()));
     }
-
     public List<DTOResponseSynopticObservation> create(List<DTORequestSynopticObservation> createds){
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
         Set<ConstraintViolation<DTORequestSynopticObservation>> violations = new HashSet<>();
@@ -47,7 +43,9 @@ public class ServiceSynopticObservation {
         }
         return list;
     }
-
+    public DTOResponseSynopticObservation retrieve(DTORequestSynopticObservation updated){
+        return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null));
+    }
     public List<DTOResponseSynopticObservation> retrieve(){
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
         for(SynopticObservation synopticObservation : repositorySynopticObservation.findAll()) {
@@ -55,16 +53,12 @@ public class ServiceSynopticObservation {
         }
         return list;
     }
-
     public Page<DTOResponseSynopticObservation> retrieve(Pageable pageable){
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
         for(SynopticObservation synopticObservation : repositorySynopticObservation.findAll()) {
             list.add(DTOResponseSynopticObservation.toDTO(synopticObservation));
         }
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
-    }
-    public DTOResponseSynopticObservation retrieve(DTORequestSynopticObservation updated){
-        return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null));
     }
     public Page<DTOResponseSynopticObservation> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseSynopticObservation> list = new ArrayList<>();
@@ -73,8 +67,8 @@ public class ServiceSynopticObservation {
                 list.add(DTOResponseSynopticObservation.toDTO(synopticObservation));
             }
         } else {
-//            for (Observation observation : repository.findByEstacaoContainingIgnoreCaseOrderByEstacaoAsc(source)) {
-//                list.add(DTOResponseObservation.toDTO(observation));
+//            for (SynopticObservation synopticObservation : repositorySynopticObservation.findByEstacaoContainingIgnoreCaseOrderByEstacaoAsc(source)) {
+//                list.add(DTOResponseSynopticObservation.toDTO(synopticObservation));
 //            }
         }
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());

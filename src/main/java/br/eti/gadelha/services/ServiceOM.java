@@ -83,9 +83,9 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, 
     public void delete() {
         repositoryOM.deleteAll();
     }
+    public OM findByName(String value) { return  repositoryOM.findByName(value); }
 
     public boolean isNameValid(String value) {
         return repositoryOM.existsByName(value);
     }
-    public OM findByName(String value) { return  repositoryOM.findByName(value); }
 }

@@ -49,7 +49,7 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
                 list.add(DTOResponseStationOffShore.toDTO(object));
             }
         } else {
-//            for (StationOffShore object : repository.findByLatitudeMostBottomContainingIgnoreCaseOrderByLatitudeMostBottomAsc(source)) {
+//            for (StationOffShore object : repositoryStationOffShore.findByLatitudeMostBottomContainingIgnoreCaseOrderByLatitudeMostBottomAsc(source)) {
 //                list.add(DTOResponseStationOffShore.toDTO(object));
 //            }
         }
@@ -83,7 +83,6 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
     public void delete() {
         repositoryStationOffShore.deleteAll();
     }
-
     @Override
     public StationOffShore findByName(String value) {
         return null;

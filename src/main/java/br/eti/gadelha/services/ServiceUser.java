@@ -50,24 +50,16 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
         this.repositoryRole = repositoryRole;
         this.repositoryOM = repositoryOM;
     }
-    public DTOResponseJwt signin(DTORequestUserLogin dtoRequestUser) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestUser.getUsername(), dtoRequestUser.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        String jwt = jwtUtils.generateJwtToken(userDetails);
-        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
-        RefreshToken refreshToken = serviceRefreshToken.createRefreshToken(userDetails.getId());
-        return new DTOResponseJwt(jwt, refreshToken.getToken(), userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles);
-    }
-    public void logout(DTORequestLogOut value) {
-        serviceRefreshToken.deleteByUserId(value.getUserId());
-    }
+
     public DTOResponseUser create(DTORequestUser created){
         User user = new User(created.getUsername(), created.getEmail(), encoder.encode(created.getPassword()), created.isActive());
         Set<Role> roles = new HashSet<>();
         roles.add(repositoryRole.findByName("ROLE_USER"));
         created.setRoles(roles);
         return DTOResponseUser.toDTO(repositoryUser.save(user));
+    }
+    public DTOResponseUser retrieve(UUID id){
+        return DTOResponseUser.toDTO(repositoryUser.findById(id).orElse(null));
     }
     public Page<DTOResponseUser> retrieve(Pageable pageable){
         List<DTOResponseUser> list = new ArrayList<>();
@@ -84,10 +76,6 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
             list.add(DTOResponseUser.toDTO(object));
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
-    }
-
-    public DTOResponseUser retrieve(UUID id){
-        return DTOResponseUser.toDTO(repositoryUser.findById(id).orElse(null));
     }
     public Page<DTOResponseUser> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseUser> list = new ArrayList<>();
@@ -135,12 +123,23 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public void delete() {
         repositoryUser.deleteAll();
     }
-
     @Override
     public User findByName(String value) {
         return null;
     }
 
+    public DTOResponseJwt signin(DTORequestUserLogin dtoRequestUser) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestUser.getUsername(), dtoRequestUser.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        String jwt = jwtUtils.generateJwtToken(userDetails);
+        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
+        RefreshToken refreshToken = serviceRefreshToken.createRefreshToken(userDetails.getId());
+        return new DTOResponseJwt(jwt, refreshToken.getToken(), userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles);
+    }
+    public void logout(DTORequestLogOut value) {
+        serviceRefreshToken.deleteByUserId(value.getUserId());
+    }
     public boolean isNameValid(String value) {
         return repositoryUser.existsByUsername(value);
     }
@@ -159,7 +158,6 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
         user.setPassword(encoder.encode(updated.getPassword()));
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
-
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

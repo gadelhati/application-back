@@ -68,6 +68,5 @@ public class ServicePlatformCategory implements ServiceInterface<DTOResponsePlat
     public void delete() {
         repositoryPlatformCategory.deleteAll();
     }
-
     public PlatformCategory findByName(String value) { return  repositoryPlatformCategory.findByName(value); }
 }
