@@ -23,6 +23,7 @@ public class ControllerSynopticObservation {
     public ControllerSynopticObservation(RepositorySynopticObservation repository/*, RepositoryFile repositoryFile*/) {
         this.serviceSynopticObservation = new ServiceSynopticObservation(repository) {};
     }
+
     @PostMapping("") @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN', 'OPERATOR', 'RECTIFIER')")
     public ResponseEntity<DTOResponseSynopticObservation> create(@RequestBody @Valid DTORequestSynopticObservation created){
         try {

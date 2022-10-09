@@ -42,40 +42,7 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
     public ControllerUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
         this.serviceUser = new ServiceUser(repositoryUser, repositoryRole, repositoryOM) {};
     }
-    @PostMapping("/signin")
-    public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
-        try {
-            return new ResponseEntity<>(serviceUser.signin(dtoRequestUser), HttpStatus.OK);
-//        } catch (ExpiredJwtException expiredJwtException) {
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @PostMapping("/logout")
-    public ResponseEntity<HttpStatus> logout(@Valid @RequestBody DTORequestLogOut DTORequestLogOut) {
-        try {
-            serviceUser.logout(DTORequestLogOut);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PostMapping("/refreshtoken")
-    public ResponseEntity<?> refreshtoken(@Valid @RequestBody DTORequestTokenRefresh request) {
-        String requestRefreshToken = request.getRefreshToken();
-
-        return serviceRefreshToken.findByToken(requestRefreshToken)
-                .map(serviceRefreshToken::verifyExpiration)
-                .map(RefreshToken::getUser)
-                .map(user -> {
-                    String token = jwtUtils.generateTokenFromUsername(user.getUsername());
-                    return ResponseEntity.ok(new DTOResponseTokenRefresh(token, requestRefreshToken));
-                })
-                .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
-                        "Refresh token is not in database!"));
-    }
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseUser> create(@RequestBody @Valid DTORequestUser created){
         try {
@@ -132,6 +99,40 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
+        try {
+            return new ResponseEntity<>(serviceUser.signin(dtoRequestUser), HttpStatus.OK);
+//        } catch (ExpiredJwtException expiredJwtException) {
+//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping("/logout")
+    public ResponseEntity<HttpStatus> logout(@Valid @RequestBody DTORequestLogOut DTORequestLogOut) {
+        try {
+            serviceUser.logout(DTORequestLogOut);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping("/refreshtoken")
+    public ResponseEntity<?> refreshtoken(@Valid @RequestBody DTORequestTokenRefresh request) {
+        String requestRefreshToken = request.getRefreshToken();
+
+        return serviceRefreshToken.findByToken(requestRefreshToken)
+                .map(serviceRefreshToken::verifyExpiration)
+                .map(RefreshToken::getUser)
+                .map(user -> {
+                    String token = jwtUtils.generateTokenFromUsername(user.getUsername());
+                    return ResponseEntity.ok(new DTOResponseTokenRefresh(token, requestRefreshToken));
+                })
+                .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
+                        "Refresh token is not in database!"));
     }
     @PutMapping("/changePassword/{id}")
     public ResponseEntity<DTOResponseUser> changePassword(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestUser updated){
