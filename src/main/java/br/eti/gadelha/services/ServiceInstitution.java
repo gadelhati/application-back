@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ServiceInstitution {
+public class ServiceInstitution implements ServiceInterface<DTOResponseInstitution, DTORequestInstitution, Institution> {
 
     private final RepositoryInstitution repositoryInstitution;
 

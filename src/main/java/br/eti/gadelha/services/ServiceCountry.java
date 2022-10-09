@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ServiceCountry {
+public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTORequestCountry, Country> {
 
     private final RepositoryCountry repositoryCountry;
 

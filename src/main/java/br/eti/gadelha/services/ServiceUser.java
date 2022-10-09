@@ -2,6 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
 import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
+import br.eti.gadelha.persistence.dto.response.DTOResponseCountry;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.exception.enumeration.ERole;
 import br.eti.gadelha.persistence.model.*;
@@ -30,7 +31,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class ServiceUser implements UserDetailsService {
+public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResponseUser, DTORequestUser, User> {
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -75,6 +76,16 @@ public class ServiceUser implements UserDetailsService {
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
     }
+
+    @Override
+    public Page<DTOResponseUser> retrieve(Pageable pageable, String source) {
+        List<DTOResponseUser> list = new ArrayList<>();
+        for(User object: repositoryUser.findAll()) {
+            list.add(DTOResponseUser.toDTO(object));
+        }
+        return new PageImpl<DTOResponseUser>(list, pageable, list.size());
+    }
+
     public DTOResponseUser retrieve(UUID id){
         return DTOResponseUser.toDTO(repositoryUser.findById(id).orElse(null));
     }
@@ -123,6 +134,11 @@ public class ServiceUser implements UserDetailsService {
     }
     public void delete() {
         repositoryUser.deleteAll();
+    }
+
+    @Override
+    public User findByName(String value) {
+        return null;
     }
 
     public boolean isNameValid(String value) {

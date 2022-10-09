@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ServiceRole {
+public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequestRole, Role> {
 
     private final RepositoryRole repositoryRole;
 

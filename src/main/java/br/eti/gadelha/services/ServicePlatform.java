@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ServicePlatform {
+public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DTORequestPlatform, Platform> {
 
     private final RepositoryPlatform repositoryPlatform;
 

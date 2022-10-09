@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ServiceResearcher {
+public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher, DTORequestResearcher, Researcher> {
 
     private final RepositoryResearcher repositoryResearcher;
 

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ServiceManufacturer {
+public class ServiceManufacturer implements ServiceInterface<DTOResponseManufacturer, DTORequestManufacturer, Manufacturer> {
 
     private final RepositoryManufacturer repositoryManufacturer;
 

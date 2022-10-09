@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ServiceStationOffShore {
+public class ServiceStationOffShore implements ServiceInterface<DTOResponseStationOffShore, DTORequestStationOffShore, StationOffShore> {
 
     private final RepositoryStationOffShore repositoryStationOffShore;
 
@@ -82,6 +82,11 @@ public class ServiceStationOffShore {
     }
     public void delete() {
         repositoryStationOffShore.deleteAll();
+    }
+
+    @Override
+    public StationOffShore findByName(String value) {
+        return null;
     }
 
 //    public StationOffShore findByLatitudeMostBottom(Double value) { return  repository.findByLatitudeMostBottom(value); }
