@@ -106,7 +106,7 @@ public class ServiceUser implements UserDetailsService {
         User user = repositoryUser.findById(id).orElse(null);
         user.setUsername(updated.getUsername());
         user.setEmail(updated.getEmail());
-        if(!user.getPassword().equals(encoder.encode(updated.getPassword()))) {
+        if(!user.getPassword().equals(repositoryUser.getUserByUsername(updated.getUsername()).getPassword())) {
             user.setPassword(encoder.encode(updated.getPassword()));
         }
         user.setActive(updated.isActive());
