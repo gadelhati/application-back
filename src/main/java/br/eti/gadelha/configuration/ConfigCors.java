@@ -22,7 +22,7 @@ public class ConfigCors {
                 registry.addMapping("/**")
                         .allowedOrigins("/**")
                         .allowedHeaders("*")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT", "OPTIONS", "PATCH")
                         .maxAge(3600);
             }
         };
