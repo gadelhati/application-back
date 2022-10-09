@@ -11,6 +11,6 @@ import javax.persistence.*;
 
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Role extends GenericEntity {
-	@Enumerated(EnumType.STRING)
-	private ERole name;
+//	@Enumerated(EnumType.STRING)
+	private String name;
 }

@@ -11,6 +11,7 @@ import lombok.Getter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class DTOResponseUser {
     private String password;
     private Boolean active;
     private OM om;
-    private Set<Role> roles;
+    private Collection<Role> roles;
 
     public static DTOResponseUser toDTO(User value) {
         return new DTOResponseUser(value.getId(), value.getUsername(), value.getEmail(), value.getPassword(), value.getActive(), value.getOm(), value.getRoles());

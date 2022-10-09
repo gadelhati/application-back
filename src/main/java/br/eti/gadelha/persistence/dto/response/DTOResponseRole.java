@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter @AllArgsConstructor
 public class DTOResponseRole {
 
-    private ERole name;
+    private String name;
 
     public static DTOResponseRole toDTO(Role value) {
         return new DTOResponseRole(value.getName());

@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface RepositoryRole extends JpaRepository<Role, UUID> {
 //    List<Role> findByNameContainingIgnoreCaseOrderByNameAsc(String name);
-    Role findByName(ERole name);
+    Role findByName(String name);
     boolean existsByName(String value);
 }

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Getter @Setter
@@ -23,7 +24,7 @@ public class DTORequestUser {
     private boolean active;
 //    @NotNull(message = "{om.not.null}")
     private OM om;
-    private Set<Role> roles;
+    private Collection<Role> roles;
 
     public User toObject(){
         return new User(username, email, password);

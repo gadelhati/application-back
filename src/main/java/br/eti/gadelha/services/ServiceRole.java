@@ -76,5 +76,5 @@ public class ServiceRole {
     public boolean isNameValid(String value) {
         return repository.existsByName(value);
     }
-    public Role findByName(ERole eRole) { return  repository.findByName(eRole); }
+    public Role findByName(String role) { return  repository.findByName(role); }
 }

@@ -64,7 +64,7 @@ public class ServiceUser implements UserDetailsService {
     public DTOResponseUser create(DTORequestUser created){
         User user = new User(created.getUsername(), created.getEmail(), encoder.encode(created.getPassword()), created.isActive());
         Set<Role> roles = new HashSet<>();
-        roles.add(repositoryRole.findByName(ERole.ROLE_USER));
+        roles.add(repositoryRole.findByName("ROLE_USER"));
         created.setRoles(roles);
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
@@ -97,7 +97,7 @@ public class ServiceUser implements UserDetailsService {
 //            if(getCurrentUser().getRoles().getNome().equals("ROLE_ADMIN")) {
 //                list.add(DTOResponseUser.toDTO(user));
 //            } else {
-                list.add(DTOResponseUser.toDTO(user));
+            list.add(DTOResponseUser.toDTO(user));
 //            }
         }
         return list;
