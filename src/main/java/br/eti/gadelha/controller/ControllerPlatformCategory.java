@@ -16,38 +16,37 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/platformCategory")
+@RestController @RequestMapping("/platformCategory")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerPlatformCategory {
+public class ControllerPlatformCategory implements ControllerInterface<DTOResponsePlatformCategory, DTORequestPlatformCategory> {
 
     @Autowired
-    private final ServicePlatformCategory service;
+    private final ServicePlatformCategory servicePlatformCategory;
 
     public ControllerPlatformCategory(RepositoryPlatformCategory repository) {
-        this.service = new ServicePlatformCategory(repository) {};
+        this.servicePlatformCategory = new ServicePlatformCategory(repository) {};
     }
 
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponsePlatformCategory> create(@RequestBody @Valid DTORequestPlatformCategory created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
+            return new ResponseEntity<>(servicePlatformCategory.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/retrieve")
     public List<DTOResponsePlatformCategory> retrieve(){
-        return service.retrieve();
+        return servicePlatformCategory.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponsePlatformCategory>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
+        return new ResponseEntity<>(servicePlatformCategory.retrieve(pageable), HttpStatus.FOUND);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponsePlatformCategory> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(servicePlatformCategory.retrieve(id), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -55,7 +54,7 @@ public class ControllerPlatformCategory {
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponsePlatformCategory>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieve(pageable, q), HttpStatus.FOUND);
+            return new ResponseEntity<>(servicePlatformCategory.retrieve(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -63,7 +62,7 @@ public class ControllerPlatformCategory {
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponsePlatformCategory> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestPlatformCategory updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(servicePlatformCategory.update(id, updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -71,7 +70,7 @@ public class ControllerPlatformCategory {
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponsePlatformCategory> delete(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(servicePlatformCategory.delete(id), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -79,7 +78,7 @@ public class ControllerPlatformCategory {
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
-            service.delete();
+            servicePlatformCategory.delete();
             return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

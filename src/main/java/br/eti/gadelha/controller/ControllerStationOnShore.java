@@ -16,38 +16,37 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/stationOnShore")
+@RestController @RequestMapping("/stationOnShore")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerStationOnShore {
+public class ControllerStationOnShore implements ControllerInterface<DTOResponseStationOnShore, DTORequestStationOnShore> {
 
     @Autowired
-    private final ServiceStationOnShore service;
+    private final ServiceStationOnShore serviceStationOnShore;
 
     public ControllerStationOnShore(RepositoryStationOnShore repository) {
-        this.service = new ServiceStationOnShore(repository) {};
+        this.serviceStationOnShore = new ServiceStationOnShore(repository) {};
     }
 
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStationOnShore> create(@RequestBody @Valid DTORequestStationOnShore created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
+            return new ResponseEntity<>(serviceStationOnShore.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/retrieve")
     public List<DTOResponseStationOnShore> retrieve(){
-        return service.retrieve();
+        return serviceStationOnShore.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseStationOnShore>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
+        return new ResponseEntity<>(serviceStationOnShore.retrieve(pageable), HttpStatus.FOUND);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStationOnShore> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceStationOnShore.retrieve(id), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -55,7 +54,7 @@ public class ControllerStationOnShore {
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseStationOnShore>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieve(pageable, q), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceStationOnShore.retrieve(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -63,7 +62,7 @@ public class ControllerStationOnShore {
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStationOnShore> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestStationOnShore updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceStationOnShore.update(id, updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -71,7 +70,7 @@ public class ControllerStationOnShore {
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStationOnShore> delete(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceStationOnShore.delete(id), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -79,7 +78,7 @@ public class ControllerStationOnShore {
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
-            service.delete();
+            serviceStationOnShore.delete();
             return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

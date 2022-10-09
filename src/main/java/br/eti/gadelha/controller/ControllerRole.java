@@ -16,38 +16,37 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/role")
+@RestController @RequestMapping("/role")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerRole {
+public class ControllerRole implements ControllerInterface<DTOResponseRole, DTORequestRole> {
 
     @Autowired
-    private final ServiceRole service;
+    private final ServiceRole serviceRole;
 
     public ControllerRole(RepositoryRole repository) {
-        this.service = new ServiceRole(repository) {};
+        this.serviceRole = new ServiceRole(repository) {};
     }
 
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> create(@RequestBody @Valid DTORequestRole created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
+            return new ResponseEntity<>(serviceRole.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/retrieve")
     public List<DTOResponseRole> retrieve(){
-        return service.retrieve();
+        return serviceRole.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseRole>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
+        return new ResponseEntity<>(serviceRole.retrieve(pageable), HttpStatus.FOUND);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceRole.retrieve(id), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -55,7 +54,7 @@ public class ControllerRole {
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseRole>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieve(pageable, q), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceRole.retrieve(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -63,7 +62,7 @@ public class ControllerRole {
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestRole updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceRole.update(id, updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -71,7 +70,7 @@ public class ControllerRole {
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseRole> delete(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceRole.delete(id), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -79,7 +78,7 @@ public class ControllerRole {
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
-            service.delete();
+            serviceRole.delete();
             return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

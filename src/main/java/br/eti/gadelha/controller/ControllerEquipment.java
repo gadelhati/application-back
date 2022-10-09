@@ -16,38 +16,37 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/equipment")
+@RestController @RequestMapping("/equipment")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerEquipment {
+public class ControllerEquipment implements ControllerInterface<DTOResponseEquipment, DTORequestEquipment> {
 
     @Autowired
-    private final ServiceEquipment service;
+    private final ServiceEquipment serviceEquipment;
 
     public ControllerEquipment(RepositoryEquipment repository) {
-        this.service = new ServiceEquipment(repository) {};
+        this.serviceEquipment = new ServiceEquipment(repository) {};
     }
 
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseEquipment> create(@RequestBody @Valid DTORequestEquipment created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
+            return new ResponseEntity<>(serviceEquipment.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/retrieve")
     public List<DTOResponseEquipment> retrieve(){
-        return service.retrieve();
+        return serviceEquipment.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseEquipment>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.FOUND);
+        return new ResponseEntity<>(serviceEquipment.retrieve(pageable), HttpStatus.FOUND);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseEquipment> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceEquipment.retrieve(id), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -55,7 +54,7 @@ public class ControllerEquipment {
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseEquipment>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieve(pageable, q), HttpStatus.FOUND);
+            return new ResponseEntity<>(serviceEquipment.retrieve(pageable, q), HttpStatus.FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -63,7 +62,7 @@ public class ControllerEquipment {
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseEquipment> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestEquipment updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceEquipment.update(id, updated), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -71,7 +70,7 @@ public class ControllerEquipment {
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseEquipment> delete(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceEquipment.delete(id), HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -79,7 +78,7 @@ public class ControllerEquipment {
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
-            service.delete();
+            serviceEquipment.delete();
             return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

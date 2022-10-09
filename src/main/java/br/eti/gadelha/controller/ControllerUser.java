@@ -28,10 +28,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/user")
+@RestController @RequestMapping("/user")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerUser {
+public class ControllerUser implements ControllerInterface<DTOResponseUser, DTORequestUser> {
 
     @Autowired
     private final ServiceUser serviceUser;

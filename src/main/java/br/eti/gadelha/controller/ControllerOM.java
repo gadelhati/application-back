@@ -11,44 +11,42 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/om")
+@RestController @RequestMapping("/om")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerOM {
+public class ControllerOM implements ControllerInterface<DTOResponseOM, DTORequestOM> {
 
-    private final ServiceOM service;
+    private final ServiceOM serviceOM;
 
     public ControllerOM(RepositoryOM repository) {
-        this.service = new ServiceOM(repository) {};
+        this.serviceOM = new ServiceOM(repository) {};
     }
 
     @PostMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> create(@RequestBody @Valid DTORequestOM created){
         try {
-            return new ResponseEntity<>(service.create(created), HttpStatus.CREATED);
+            return new ResponseEntity<>(serviceOM.create(created), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/retrieve")
     public List<DTOResponseOM> retrieve(){
-        return service.retrieve();
+        return serviceOM.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Page<DTOResponseOM
             >> retrieve(Pageable pageable){
-        return new ResponseEntity<>(service.retrieve(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(serviceOM.retrieve(pageable), HttpStatus.OK);
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> retrieve(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.retrieve(id), HttpStatus.OK);
+            return new ResponseEntity<>(serviceOM.retrieve(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -56,7 +54,7 @@ public class ControllerOM {
     @GetMapping("/source") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Page<DTOResponseOM>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(service.retrieveSource(pageable, q), HttpStatus.OK);
+            return new ResponseEntity<>(serviceOM.retrieveSource(pageable, q), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -64,7 +62,7 @@ public class ControllerOM {
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestOM updated){
         try {
-            return new ResponseEntity<>(service.update(id, updated), HttpStatus.OK);
+            return new ResponseEntity<>(serviceOM.update(id, updated), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -72,7 +70,7 @@ public class ControllerOM {
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> delete(@PathVariable UUID id){
         try {
-            return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+            return new ResponseEntity<>(serviceOM.delete(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -80,7 +78,7 @@ public class ControllerOM {
     @DeleteMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
-            service.delete();
+            serviceOM.delete();
             return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
