@@ -15,6 +15,7 @@ import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
 import br.eti.gadelha.services.ServiceRefreshToken;
 import br.eti.gadelha.services.ServiceUser;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,6 +47,8 @@ public class ControllerUser {
     public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestUserLogin dtoRequestUser) {
         try {
             return new ResponseEntity<>(serviceUser.signin(dtoRequestUser), HttpStatus.OK);
+//        } catch (ExpiredJwtException expiredJwtException) {
+//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
