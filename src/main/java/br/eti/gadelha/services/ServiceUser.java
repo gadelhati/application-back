@@ -111,7 +111,9 @@ public class ServiceUser implements UserDetailsService {
         }
         user.setActive(updated.isActive());
         user.setOm(updated.getOm());
-        user.setRoles(updated.getRoles());
+        Role role = repositoryRole.findByName(updated.getRoles().getClass().getName());
+        user.setRoles(Arrays.asList(role));
+//        user.setRoles(updated.getRoles());
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
     public DTOResponseUser delete(UUID id){
