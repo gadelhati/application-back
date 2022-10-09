@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServiceCountry {
 
-    private final RepositoryCountry repository;
+    private final RepositoryCountry repositoryCountry;
 
-    public ServiceCountry(RepositoryCountry repository) {
-        this.repository = repository;
+    public ServiceCountry(RepositoryCountry repositoryCountry) {
+        this.repositoryCountry = repositoryCountry;
     }
 
     public DTOResponseCountry create(DTORequestCountry created){
-        return DTOResponseCountry.toDTO(repository.save(created.toObject()));
+        return DTOResponseCountry.toDTO(repositoryCountry.save(created.toObject()));
     }
     public DTOResponseCountry retrieve(UUID id){
-        return DTOResponseCountry.toDTO(repository.findById(id).orElse(null));
+        return DTOResponseCountry.toDTO(repositoryCountry.findById(id).orElse(null));
     }
     public List<DTOResponseCountry> retrieve(){
         List<DTOResponseCountry> list = new ArrayList<>();
-        for(Country object: repository.findAll()) {
+        for(Country object: repositoryCountry.findAll()) {
             list.add(DTOResponseCountry.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseCountry> retrieve(Pageable pageable){
         List<DTOResponseCountry> list = new ArrayList<>();
-        for(Country object: repository.findAll()) {
+        for(Country object: repositoryCountry.findAll()) {
             list.add(DTOResponseCountry.toDTO(object));
         }
         return new PageImpl<DTOResponseCountry>(list, pageable, list.size());
@@ -45,29 +45,29 @@ public class ServiceCountry {
     public Page<DTOResponseCountry> retrieve(Pageable pageable, String source){
         final List<DTOResponseCountry> list = new ArrayList<>();
         if (source == null) {
-            for (Country object : repository.findAll()) {
+            for (Country object : repositoryCountry.findAll()) {
                 list.add(DTOResponseCountry.toDTO(object));
             }
         } else {
-            for (Country object : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+            for (Country object : repositoryCountry.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
                 list.add(DTOResponseCountry.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseCountry update(UUID id, DTORequestCountry updated){
-        Country object = repository.findById(id).orElse(null);
+        Country object = repositoryCountry.findById(id).orElse(null);
         object.setName(updated.getName());
-        return DTOResponseCountry.toDTO(repository.save(object));
+        return DTOResponseCountry.toDTO(repositoryCountry.save(object));
     }
     public DTOResponseCountry delete(UUID id){
-        Country object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        Country object = repositoryCountry.findById(id).orElse(null);
+        repositoryCountry.deleteById(id);
         return DTOResponseCountry.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryCountry.deleteAll();
     }
 
-    public Country findByName(String value) { return  repository.findByName(value); }
+    public Country findByName(String value) { return  repositoryCountry.findByName(value); }
 }

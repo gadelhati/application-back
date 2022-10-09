@@ -44,8 +44,8 @@ public class ServiceUser implements UserDetailsService {
     private final RepositoryRole repositoryRole;
     private final RepositoryOM repositoryOM;
 
-    public ServiceUser(RepositoryUser repository, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
-        this.repositoryUser = repository;
+    public ServiceUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
+        this.repositoryUser = repositoryUser;
         this.repositoryRole = repositoryRole;
         this.repositoryOM = repositoryOM;
     }

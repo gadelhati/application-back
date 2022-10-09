@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServiceStationOffShore {
 
-    private final RepositoryStationOffShore repository;
+    private final RepositoryStationOffShore repositoryStationOffShore;
 
-    public ServiceStationOffShore(RepositoryStationOffShore repository) {
-        this.repository = repository;
+    public ServiceStationOffShore(RepositoryStationOffShore repositoryStationOffShore) {
+        this.repositoryStationOffShore = repositoryStationOffShore;
     }
 
     public DTOResponseStationOffShore create(DTORequestStationOffShore created){
-        return DTOResponseStationOffShore.toDTO(repository.save(created.toObject()));
+        return DTOResponseStationOffShore.toDTO(repositoryStationOffShore.save(created.toObject()));
     }
     public DTOResponseStationOffShore retrieve(UUID id){
-        return DTOResponseStationOffShore.toDTO(repository.findById(id).orElse(null));
+        return DTOResponseStationOffShore.toDTO(repositoryStationOffShore.findById(id).orElse(null));
     }
     public List<DTOResponseStationOffShore> retrieve(){
         List<DTOResponseStationOffShore> list = new ArrayList<>();
-        for(StationOffShore object: repository.findAll()) {
+        for(StationOffShore object: repositoryStationOffShore.findAll()) {
             list.add(DTOResponseStationOffShore.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseStationOffShore> retrieve(Pageable pageable){
         List<DTOResponseStationOffShore> list = new ArrayList<>();
-        for(StationOffShore object: repository.findAll()) {
+        for(StationOffShore object: repositoryStationOffShore.findAll()) {
             list.add(DTOResponseStationOffShore.toDTO(object));
         }
         return new PageImpl<DTOResponseStationOffShore>(list, pageable, list.size());
@@ -45,7 +45,7 @@ public class ServiceStationOffShore {
     public Page<DTOResponseStationOffShore> retrieve(Pageable pageable, String source){
         final List<DTOResponseStationOffShore> list = new ArrayList<>();
         if (source == null) {
-            for (StationOffShore object : repository.findAll()) {
+            for (StationOffShore object : repositoryStationOffShore.findAll()) {
                 list.add(DTOResponseStationOffShore.toDTO(object));
             }
         } else {
@@ -56,7 +56,7 @@ public class ServiceStationOffShore {
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseStationOffShore update(UUID id, DTORequestStationOffShore updated){
-        StationOffShore object = repository.findById(id).orElse(null);
+        StationOffShore object = repositoryStationOffShore.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
         object.setCom(updated.getCom());
         object.setCommission(updated.getCommission());
@@ -73,15 +73,15 @@ public class ServiceStationOffShore {
         object.setLongitudeMostLeft(updated.getLongitudeMostLeft());
         object.setLongitudeMostRight(updated.getLongitudeMostRight());
         object.setPlatform(updated.getPlatform());
-        return DTOResponseStationOffShore.toDTO(repository.save(object));
+        return DTOResponseStationOffShore.toDTO(repositoryStationOffShore.save(object));
     }
     public DTOResponseStationOffShore delete(UUID id){
-        StationOffShore object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        StationOffShore object = repositoryStationOffShore.findById(id).orElse(null);
+        repositoryStationOffShore.deleteById(id);
         return DTOResponseStationOffShore.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryStationOffShore.deleteAll();
     }
 
 //    public StationOffShore findByLatitudeMostBottom(Double value) { return  repository.findByLatitudeMostBottom(value); }

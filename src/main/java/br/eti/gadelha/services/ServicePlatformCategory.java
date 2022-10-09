@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServicePlatformCategory {
 
-    private final RepositoryPlatformCategory repository;
+    private final RepositoryPlatformCategory repositoryPlatformCategory;
 
-    public ServicePlatformCategory(RepositoryPlatformCategory repository) {
-        this.repository = repository;
+    public ServicePlatformCategory(RepositoryPlatformCategory repositoryPlatformCategory) {
+        this.repositoryPlatformCategory = repositoryPlatformCategory;
     }
 
     public DTOResponsePlatformCategory create(DTORequestPlatformCategory created){
-        return DTOResponsePlatformCategory.toDTO(repository.save(created.toObject()));
+        return DTOResponsePlatformCategory.toDTO(repositoryPlatformCategory.save(created.toObject()));
     }
     public DTOResponsePlatformCategory retrieve(UUID id){
-        return DTOResponsePlatformCategory.toDTO(repository.findById(id).orElse(null));
+        return DTOResponsePlatformCategory.toDTO(repositoryPlatformCategory.findById(id).orElse(null));
     }
     public List<DTOResponsePlatformCategory> retrieve(){
         List<DTOResponsePlatformCategory> list = new ArrayList<>();
-        for(PlatformCategory object: repository.findAll()) {
+        for(PlatformCategory object: repositoryPlatformCategory.findAll()) {
             list.add(DTOResponsePlatformCategory.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponsePlatformCategory> retrieve(Pageable pageable){
         List<DTOResponsePlatformCategory> list = new ArrayList<>();
-        for(PlatformCategory object: repository.findAll()) {
+        for(PlatformCategory object: repositoryPlatformCategory.findAll()) {
             list.add(DTOResponsePlatformCategory.toDTO(object));
         }
         return new PageImpl<DTOResponsePlatformCategory>(list, pageable, list.size());
@@ -45,29 +45,29 @@ public class ServicePlatformCategory {
     public Page<DTOResponsePlatformCategory> retrieve(Pageable pageable, String source){
         final List<DTOResponsePlatformCategory> list = new ArrayList<>();
         if (source == null) {
-            for (PlatformCategory object : repository.findAll()) {
+            for (PlatformCategory object : repositoryPlatformCategory.findAll()) {
                 list.add(DTOResponsePlatformCategory.toDTO(object));
             }
         } else {
-            for (PlatformCategory object : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+            for (PlatformCategory object : repositoryPlatformCategory.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
                 list.add(DTOResponsePlatformCategory.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponsePlatformCategory update(UUID id, DTORequestPlatformCategory updated){
-        PlatformCategory object = repository.findById(id).orElse(null);
+        PlatformCategory object = repositoryPlatformCategory.findById(id).orElse(null);
         object.setName(updated.getName());
-        return DTOResponsePlatformCategory.toDTO(repository.save(object));
+        return DTOResponsePlatformCategory.toDTO(repositoryPlatformCategory.save(object));
     }
     public DTOResponsePlatformCategory delete(UUID id){
-        PlatformCategory object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        PlatformCategory object = repositoryPlatformCategory.findById(id).orElse(null);
+        repositoryPlatformCategory.deleteById(id);
         return DTOResponsePlatformCategory.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryPlatformCategory.deleteAll();
     }
 
-    public PlatformCategory findByName(String value) { return  repository.findByName(value); }
+    public PlatformCategory findByName(String value) { return  repositoryPlatformCategory.findByName(value); }
 }

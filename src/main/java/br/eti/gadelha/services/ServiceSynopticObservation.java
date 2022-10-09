@@ -20,17 +20,17 @@ import java.util.*;
 @Service
 public class ServiceSynopticObservation {
 
-    private final RepositorySynopticObservation repository;
+    private final RepositorySynopticObservation repositorySynopticObservation;
     @Autowired
     private Validator validator;
 //    LocalValidatorFactoryBean validator2 = new LocalValidatorFactoryBean();
 
-    public ServiceSynopticObservation(RepositorySynopticObservation repository) {
-        this.repository = repository;
+    public ServiceSynopticObservation(RepositorySynopticObservation repositorySynopticObservation) {
+        this.repositorySynopticObservation = repositorySynopticObservation;
     }
 
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
-        return DTOResponseSynopticObservation.toDTO(repository.save(created.toObject()));
+        return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.save(created.toObject()));
     }
 
     public List<DTOResponseSynopticObservation> create(List<DTORequestSynopticObservation> createds){
@@ -42,7 +42,7 @@ public class ServiceSynopticObservation {
             created.setObserverName(created.getObservador());
             created.setMimi(created.getAabbxx().substring(0,2));
             created.setMjmj("XX");
-            repository.save(created.toObject());
+            repositorySynopticObservation.save(created.toObject());
             list.add(DTOResponseSynopticObservation.toDTO(created.toObject()));
         }
         return list;
@@ -50,7 +50,7 @@ public class ServiceSynopticObservation {
 
     public List<DTOResponseSynopticObservation> retrieve(){
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
-        for(SynopticObservation synopticObservation : repository.findAll()) {
+        for(SynopticObservation synopticObservation : repositorySynopticObservation.findAll()) {
             list.add(DTOResponseSynopticObservation.toDTO(synopticObservation));
         }
         return list;
@@ -58,18 +58,18 @@ public class ServiceSynopticObservation {
 
     public Page<DTOResponseSynopticObservation> retrieve(Pageable pageable){
         List<DTOResponseSynopticObservation> list = new ArrayList<>();
-        for(SynopticObservation synopticObservation : repository.findAll()) {
+        for(SynopticObservation synopticObservation : repositorySynopticObservation.findAll()) {
             list.add(DTOResponseSynopticObservation.toDTO(synopticObservation));
         }
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
     }
     public DTOResponseSynopticObservation retrieve(DTORequestSynopticObservation updated){
-        return DTOResponseSynopticObservation.toDTO(repository.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null));
+        return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null));
     }
     public Page<DTOResponseSynopticObservation> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseSynopticObservation> list = new ArrayList<>();
         if (source == null) {
-            for (SynopticObservation synopticObservation : repository.findAll()) {
+            for (SynopticObservation synopticObservation : repositorySynopticObservation.findAll()) {
                 list.add(DTOResponseSynopticObservation.toDTO(synopticObservation));
             }
         } else {
@@ -80,7 +80,7 @@ public class ServiceSynopticObservation {
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
     }
     public DTOResponseSynopticObservation update(DTORequestSynopticObservation updated){
-        SynopticObservation synopticObservation = repository.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null);
+        SynopticObservation synopticObservation = repositorySynopticObservation.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null);
         synopticObservation.setMimi(updated.getMimi());
         synopticObservation.setMjmj(updated.getMjmj());
         synopticObservation.setDdddddd(updated.getDdddddd());
@@ -167,17 +167,17 @@ public class ServiceSynopticObservation {
         synopticObservation.setObserverName(updated.getObserverName());
 //        synopticObservation.setStation(updated.getStation());
 //        synopticObservation.setDateObservation(updated.getDateObservation());
-        return DTOResponseSynopticObservation.toDTO(repository.save(synopticObservation));
+        return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.save(synopticObservation));
     }
     public DTOResponseSynopticObservation delete(String dateObservation, String ddddddd){
         String str = dateObservation;
         LocalDateTime localDateTime = LocalDateTime.parse(str);
-        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repository.findById(new SynopticObservationId(localDateTime, ddddddd)).orElse(null));
-        repository.deleteById(new SynopticObservationId(localDateTime, ddddddd));
+        DTOResponseSynopticObservation deleted = DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.findById(new SynopticObservationId(localDateTime, ddddddd)).orElse(null));
+        repositorySynopticObservation.deleteById(new SynopticObservationId(localDateTime, ddddddd));
         return deleted;
     }
     public void delete() {
-        repository.deleteAll();
+        repositorySynopticObservation.deleteAll();
     };
 
 //    public boolean isEstacaoValid(String value) {

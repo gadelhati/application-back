@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServiceResearcher {
 
-    private final RepositoryResearcher repository;
+    private final RepositoryResearcher repositoryResearcher;
 
-    public ServiceResearcher(RepositoryResearcher repository) {
-        this.repository = repository;
+    public ServiceResearcher(RepositoryResearcher repositoryResearcher) {
+        this.repositoryResearcher = repositoryResearcher;
     }
 
     public DTOResponseResearcher create(DTORequestResearcher created){
-        return DTOResponseResearcher.toDTO(repository.save(created.toObject()));
+        return DTOResponseResearcher.toDTO(repositoryResearcher.save(created.toObject()));
     }
     public DTOResponseResearcher retrieve(UUID id){
-        return DTOResponseResearcher.toDTO(repository.findById(id).orElse(null));
+        return DTOResponseResearcher.toDTO(repositoryResearcher.findById(id).orElse(null));
     }
     public List<DTOResponseResearcher> retrieve(){
         List<DTOResponseResearcher> list = new ArrayList<>();
-        for(Researcher object: repository.findAll()) {
+        for(Researcher object: repositoryResearcher.findAll()) {
             list.add(DTOResponseResearcher.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseResearcher> retrieve(Pageable pageable){
         List<DTOResponseResearcher> list = new ArrayList<>();
-        for(Researcher object: repository.findAll()) {
+        for(Researcher object: repositoryResearcher.findAll()) {
             list.add(DTOResponseResearcher.toDTO(object));
         }
         return new PageImpl<DTOResponseResearcher>(list, pageable, list.size());
@@ -45,31 +45,31 @@ public class ServiceResearcher {
     public Page<DTOResponseResearcher> retrieve(Pageable pageable, String source){
         final List<DTOResponseResearcher> list = new ArrayList<>();
         if (source == null) {
-            for (Researcher object : repository.findAll()) {
+            for (Researcher object : repositoryResearcher.findAll()) {
                 list.add(DTOResponseResearcher.toDTO(object));
             }
         } else {
-            for (Researcher object : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+            for (Researcher object : repositoryResearcher.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
                 list.add(DTOResponseResearcher.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseResearcher update(UUID id, DTORequestResearcher updated){
-        Researcher object = repository.findById(id).orElse(null);
+        Researcher object = repositoryResearcher.findById(id).orElse(null);
         object.setName(updated.getName());
         object.setEmail(updated.getEmail());
         object.setAddress(updated.getAddress());
-        return DTOResponseResearcher.toDTO(repository.save(object));
+        return DTOResponseResearcher.toDTO(repositoryResearcher.save(object));
     }
     public DTOResponseResearcher delete(UUID id){
-        Researcher object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        Researcher object = repositoryResearcher.findById(id).orElse(null);
+        repositoryResearcher.deleteById(id);
         return DTOResponseResearcher.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryResearcher.deleteAll();
     }
 
-    public Researcher findByName(String value) { return  repository.findByName(value); }
+    public Researcher findByName(String value) { return  repositoryResearcher.findByName(value); }
 }

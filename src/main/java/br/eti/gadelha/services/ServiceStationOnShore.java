@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServiceStationOnShore {
 
-    private final RepositoryStationOnShore repository;
+    private final RepositoryStationOnShore repositoryStationOnShore;
 
-    public ServiceStationOnShore(RepositoryStationOnShore repository) {
-        this.repository = repository;
+    public ServiceStationOnShore(RepositoryStationOnShore repositoryStationOnShore) {
+        this.repositoryStationOnShore = repositoryStationOnShore;
     }
 
     public DTOResponseStationOnShore create(DTORequestStationOnShore created){
-        return DTOResponseStationOnShore.toDTO(repository.save(created.toObject()));
+        return DTOResponseStationOnShore.toDTO(repositoryStationOnShore.save(created.toObject()));
     }
     public DTOResponseStationOnShore retrieve(UUID id){
-        return DTOResponseStationOnShore.toDTO(repository.findById(id).orElse(null));
+        return DTOResponseStationOnShore.toDTO(repositoryStationOnShore.findById(id).orElse(null));
     }
     public List<DTOResponseStationOnShore> retrieve(){
         List<DTOResponseStationOnShore> list = new ArrayList<>();
-        for(StationOnShore object: repository.findAll()) {
+        for(StationOnShore object: repositoryStationOnShore.findAll()) {
             list.add(DTOResponseStationOnShore.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseStationOnShore> retrieve(Pageable pageable){
         List<DTOResponseStationOnShore> list = new ArrayList<>();
-        for(StationOnShore object: repository.findAll()) {
+        for(StationOnShore object: repositoryStationOnShore.findAll()) {
             list.add(DTOResponseStationOnShore.toDTO(object));
         }
         return new PageImpl<DTOResponseStationOnShore>(list, pageable, list.size());
@@ -45,18 +45,18 @@ public class ServiceStationOnShore {
     public Page<DTOResponseStationOnShore> retrieve(Pageable pageable, String source){
         final List<DTOResponseStationOnShore> list = new ArrayList<>();
         if (source == null) {
-            for (StationOnShore object : repository.findAll()) {
+            for (StationOnShore object : repositoryStationOnShore.findAll()) {
                 list.add(DTOResponseStationOnShore.toDTO(object));
             }
         } else {
-            for (StationOnShore object : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+            for (StationOnShore object : repositoryStationOnShore.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
                 list.add(DTOResponseStationOnShore.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseStationOnShore update(UUID id, DTORequestStationOnShore updated){
-        StationOnShore object = repository.findById(id).orElse(null);
+        StationOnShore object = repositoryStationOnShore.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
         object.setCom(updated.getCom());
         object.setCommission(updated.getCommission());
@@ -75,16 +75,16 @@ public class ServiceStationOnShore {
         object.setWmoSquare(updated.getWmoSquare());
         object.setMarsdenSubSquare_5(updated.getMarsdenSubSquare_5());
         object.setCollectionDepth(updated.getCollectionDepth());
-        return DTOResponseStationOnShore.toDTO(repository.save(object));
+        return DTOResponseStationOnShore.toDTO(repositoryStationOnShore.save(object));
     }
     public DTOResponseStationOnShore delete(UUID id){
-        StationOnShore object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        StationOnShore object = repositoryStationOnShore.findById(id).orElse(null);
+        repositoryStationOnShore.deleteById(id);
         return DTOResponseStationOnShore.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryStationOnShore.deleteAll();
     }
 
-    public StationOnShore findByName(String value) { return  repository.findByName(value); }
+    public StationOnShore findByName(String value) { return  repositoryStationOnShore.findByName(value); }
 }

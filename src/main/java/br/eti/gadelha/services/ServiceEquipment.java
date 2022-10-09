@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServiceEquipment {
 
-    private final RepositoryEquipment repository;
+    private final RepositoryEquipment repositoryEquipment;
 
-    public ServiceEquipment(RepositoryEquipment repository) {
-        this.repository = repository;
+    public ServiceEquipment(RepositoryEquipment repositoryEquipment) {
+        this.repositoryEquipment = repositoryEquipment;
     }
 
     public DTOResponseEquipment create(DTORequestEquipment created){
-        return DTOResponseEquipment.toDTO(repository.save(created.toObject()));
+        return DTOResponseEquipment.toDTO(repositoryEquipment.save(created.toObject()));
     }
     public DTOResponseEquipment retrieve(UUID id){
-        return DTOResponseEquipment.toDTO(repository.findById(id).orElse(null));
+        return DTOResponseEquipment.toDTO(repositoryEquipment.findById(id).orElse(null));
     }
     public List<DTOResponseEquipment> retrieve(){
         List<DTOResponseEquipment> list = new ArrayList<>();
-        for(Equipment object: repository.findAll()) {
+        for(Equipment object: repositoryEquipment.findAll()) {
             list.add(DTOResponseEquipment.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseEquipment> retrieve(Pageable pageable){
         List<DTOResponseEquipment> list = new ArrayList<>();
-        for(Equipment object: repository.findAll()) {
+        for(Equipment object: repositoryEquipment.findAll()) {
             list.add(DTOResponseEquipment.toDTO(object));
         }
         return new PageImpl<DTOResponseEquipment>(list, pageable, list.size());
@@ -45,30 +45,30 @@ public class ServiceEquipment {
     public Page<DTOResponseEquipment> retrieve(Pageable pageable, String source){
         final List<DTOResponseEquipment> list = new ArrayList<>();
         if (source == null) {
-            for (Equipment object : repository.findAll()) {
+            for (Equipment object : repositoryEquipment.findAll()) {
                 list.add(DTOResponseEquipment.toDTO(object));
             }
         } else {
-            for (Equipment object : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+            for (Equipment object : repositoryEquipment.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
                 list.add(DTOResponseEquipment.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseEquipment update(UUID id, DTORequestEquipment updated){
-        Equipment object = repository.findById(id).orElse(null);
+        Equipment object = repositoryEquipment.findById(id).orElse(null);
         object.setName(updated.getName());
         object.setManufacturer(updated.getManufacturer());
-        return DTOResponseEquipment.toDTO(repository.save(object));
+        return DTOResponseEquipment.toDTO(repositoryEquipment.save(object));
     }
     public DTOResponseEquipment delete(UUID id){
-        Equipment object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        Equipment object = repositoryEquipment.findById(id).orElse(null);
+        repositoryEquipment.deleteById(id);
         return DTOResponseEquipment.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryEquipment.deleteAll();
     }
 
-    public Equipment findByName(String value) { return  repository.findByName(value); }
+    public Equipment findByName(String value) { return  repositoryEquipment.findByName(value); }
 }

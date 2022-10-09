@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServiceManufacturer {
 
-    private final RepositoryManufacturer repository;
+    private final RepositoryManufacturer repositoryManufacturer;
 
-    public ServiceManufacturer(RepositoryManufacturer repository) {
-        this.repository = repository;
+    public ServiceManufacturer(RepositoryManufacturer repositoryManufacturer) {
+        this.repositoryManufacturer = repositoryManufacturer;
     }
 
     public DTOResponseManufacturer create(DTORequestManufacturer created){
-        return DTOResponseManufacturer.toDTO(repository.save(created.toObject()));
+        return DTOResponseManufacturer.toDTO(repositoryManufacturer.save(created.toObject()));
     }
     public DTOResponseManufacturer retrieve(UUID id){
-        return DTOResponseManufacturer.toDTO(repository.findById(id).orElse(null));
+        return DTOResponseManufacturer.toDTO(repositoryManufacturer.findById(id).orElse(null));
     }
     public List<DTOResponseManufacturer> retrieve(){
         List<DTOResponseManufacturer> list = new ArrayList<>();
-        for(Manufacturer object: repository.findAll()) {
+        for(Manufacturer object: repositoryManufacturer.findAll()) {
             list.add(DTOResponseManufacturer.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseManufacturer> retrieve(Pageable pageable){
         List<DTOResponseManufacturer> list = new ArrayList<>();
-        for(Manufacturer object: repository.findAll()) {
+        for(Manufacturer object: repositoryManufacturer.findAll()) {
             list.add(DTOResponseManufacturer.toDTO(object));
         }
         return new PageImpl<DTOResponseManufacturer>(list, pageable, list.size());
@@ -45,29 +45,29 @@ public class ServiceManufacturer {
     public Page<DTOResponseManufacturer> retrieve(Pageable pageable, String source){
         final List<DTOResponseManufacturer> list = new ArrayList<>();
         if (source == null) {
-            for (Manufacturer object : repository.findAll()) {
+            for (Manufacturer object : repositoryManufacturer.findAll()) {
                 list.add(DTOResponseManufacturer.toDTO(object));
             }
         } else {
-            for (Manufacturer object : repository.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
+            for (Manufacturer object : repositoryManufacturer.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
                 list.add(DTOResponseManufacturer.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseManufacturer update(UUID id, DTORequestManufacturer updated){
-        Manufacturer object = repository.findById(id).orElse(null);
+        Manufacturer object = repositoryManufacturer.findById(id).orElse(null);
         object.setName(updated.getName());
-        return DTOResponseManufacturer.toDTO(repository.save(object));
+        return DTOResponseManufacturer.toDTO(repositoryManufacturer.save(object));
     }
     public DTOResponseManufacturer delete(UUID id){
-        Manufacturer object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        Manufacturer object = repositoryManufacturer.findById(id).orElse(null);
+        repositoryManufacturer.deleteById(id);
         return DTOResponseManufacturer.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryManufacturer.deleteAll();
     }
 
-    public Manufacturer findByName(String value) { return  repository.findByName(value); }
+    public Manufacturer findByName(String value) { return  repositoryManufacturer.findByName(value); }
 }

@@ -16,28 +16,28 @@ import java.util.UUID;
 @Service
 public class ServiceStation {
 
-    private final RepositoryStation repository;
+    private final RepositoryStation repositoryStation;
 
-    public ServiceStation(RepositoryStation repository) {
-        this.repository = repository;
+    public ServiceStation(RepositoryStation repositoryStation) {
+        this.repositoryStation = repositoryStation;
     }
 
     public DTOResponseStation create(DTORequestStation created){
-        return DTOResponseStation.toDTO(repository.save(created.toObject()));
+        return DTOResponseStation.toDTO(repositoryStation.save(created.toObject()));
     }
     public DTOResponseStation retrieve(UUID id){
-        return DTOResponseStation.toDTO(repository.findById(id).orElse(null));
+        return DTOResponseStation.toDTO(repositoryStation.findById(id).orElse(null));
     }
     public List<DTOResponseStation> retrieve(){
         List<DTOResponseStation> list = new ArrayList<>();
-        for(Station object: repository.findAll()) {
+        for(Station object: repositoryStation.findAll()) {
             list.add(DTOResponseStation.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseStation> retrieve(Pageable pageable){
         List<DTOResponseStation> list = new ArrayList<>();
-        for(Station object: repository.findAll()) {
+        for(Station object: repositoryStation.findAll()) {
             list.add(DTOResponseStation.toDTO(object));
         }
         return new PageImpl<DTOResponseStation>(list, pageable, list.size());
@@ -45,18 +45,18 @@ public class ServiceStation {
     public Page<DTOResponseStation> retrieve(Pageable pageable, String source){
         final List<DTOResponseStation> list = new ArrayList<>();
         if (source == null) {
-            for (Station object : repository.findAll()) {
+            for (Station object : repositoryStation.findAll()) {
                 list.add(DTOResponseStation.toDTO(object));
             }
         } else {
-            for (Station object : repository.findByComContainingIgnoreCaseOrderByComAsc(source)) {
+            for (Station object : repositoryStation.findByComContainingIgnoreCaseOrderByComAsc(source)) {
                 list.add(DTOResponseStation.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseStation update(UUID id, DTORequestStation updated){
-        Station object = repository.findById(id).orElse(null);
+        Station object = repositoryStation.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
         object.setCom(updated.getCom());
         object.setCommission(updated.getCommission());
@@ -66,16 +66,16 @@ public class ServiceStation {
         object.setSurveying(updated.getSurveying());
         object.setResponsible(updated.getResponsible());
         object.setCountry(updated.getCountry());
-        return DTOResponseStation.toDTO(repository.save(object));
+        return DTOResponseStation.toDTO(repositoryStation.save(object));
     }
     public DTOResponseStation delete(UUID id){
-        Station object = repository.findById(id).orElse(null);
-        repository.deleteById(id);
+        Station object = repositoryStation.findById(id).orElse(null);
+        repositoryStation.deleteById(id);
         return DTOResponseStation.toDTO(object);
     }
     public void delete() {
-        repository.deleteAll();
+        repositoryStation.deleteAll();
     }
 
-    public Station findByName(String value) { return  repository.findByCom(value); }
+    public Station findByName(String value) { return  repositoryStation.findByCom(value); }
 }
