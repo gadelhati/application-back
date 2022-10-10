@@ -70,4 +70,7 @@ public class ServiceInstitution implements ServiceInterface<DTOResponseInstituti
         repositoryInstitution.deleteAll();
     }
     public Institution findByName(String value) { return  repositoryInstitution.findByName(value); }
+    public boolean existsByName(String value) {
+        return repositoryInstitution.existsByName(value);
+    }
 }

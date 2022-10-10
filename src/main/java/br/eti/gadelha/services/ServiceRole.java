@@ -73,4 +73,7 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
         return repositoryRole.existsByName(value);
     }
     public Role findByName(String role) { return  repositoryRole.findByName(role); }
+    public boolean existsByName(String value) {
+        return repositoryRole.existsByName(value);
+    }
 }

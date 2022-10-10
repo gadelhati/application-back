@@ -69,4 +69,7 @@ public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTOR
         repositoryCountry.deleteAll();
     }
     public Country findByName(String value) { return  repositoryCountry.findByName(value); }
+    public boolean existsByName(String value) {
+        return repositoryCountry.existsByName(value);
+    }
 }

@@ -71,4 +71,7 @@ public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher
         repositoryResearcher.deleteAll();
     }
     public Researcher findByName(String value) { return  repositoryResearcher.findByName(value); }
+    public boolean existsByName(String value) {
+        return repositoryResearcher.existsByName(value);
+    }
 }

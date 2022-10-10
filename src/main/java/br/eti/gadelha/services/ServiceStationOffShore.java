@@ -83,8 +83,10 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
     public void delete() {
         repositoryStationOffShore.deleteAll();
     }
-    @Override
     public StationOffShore findByName(String value) {
         return null;
+    }
+    public boolean existsByName(String value) {
+        return false;
     }
 }

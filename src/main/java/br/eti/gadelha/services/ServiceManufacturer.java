@@ -69,4 +69,7 @@ public class ServiceManufacturer implements ServiceInterface<DTOResponseManufact
         repositoryManufacturer.deleteAll();
     }
     public Manufacturer findByName(String value) { return  repositoryManufacturer.findByName(value); }
+    public boolean existsByName(String value) {
+        return repositoryManufacturer.existsByName(value);
+    }
 }

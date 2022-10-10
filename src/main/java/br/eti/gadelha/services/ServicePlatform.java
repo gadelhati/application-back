@@ -75,4 +75,7 @@ public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DT
         repositoryPlatform.deleteAll();
     }
     public Platform findByName(String value) { return  repositoryPlatform.findByName(value); }
+    public boolean existsByName(String value) {
+        return repositoryPlatform.existsByName(value);
+    }
 }

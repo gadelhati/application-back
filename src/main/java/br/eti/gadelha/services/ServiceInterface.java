@@ -16,4 +16,5 @@ public interface ServiceInterface<T, S, R> {
     public T delete(UUID id);
     public void delete();
     public R findByName(String value);
+    public boolean existsByName(String value);
 }

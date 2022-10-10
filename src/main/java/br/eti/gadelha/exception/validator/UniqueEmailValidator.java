@@ -20,7 +20,7 @@ public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, DT
     public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
         if ( value == null ) {
             return false;
-        } else if(!serviceUser.isEmailValid(value.getEmail())) {
+        } else if(!serviceUser.existsByEmail(value.getEmail())) {
             return false;
         } else {
             return true;

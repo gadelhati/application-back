@@ -123,9 +123,15 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public void delete() {
         repositoryUser.deleteAll();
     }
-    @Override
     public User findByName(String value) {
-        return null;
+        return repositoryUser.findByUsername(value).orElse(null);
+    }
+
+    public boolean existsByName(String value) {
+        return repositoryUser.existsByUsername(value);
+    }
+    public boolean existsByEmail(String value) {
+        return repositoryUser.existsByEmail(value);
     }
 
     public DTOResponseJwt signin(DTORequestUserLogin dtoRequestUser) {
@@ -140,19 +146,6 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public void logout(DTORequestLogOut value) {
         serviceRefreshToken.deleteByUserId(value.getUserId());
     }
-    public boolean isNameValid(String value) {
-        return repositoryUser.existsByUsername(value);
-    }
-    public boolean isEmailValid(String value) {
-        return repositoryUser.existsByEmail(value);
-    }
-
-    public User getUserByUsername(String username) {
-        return repositoryUser.getUserByUsername(username);
-    }
-    public User getCurrentUser() {
-        return getUserByUsername(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
-    }
     public DTOResponseUser changePassword(UUID id, DTORequestUser updated){
         User user = repositoryUser.findById(id).orElse(null);
         user.setPassword(encoder.encode(updated.getPassword()));
@@ -165,5 +158,8 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
         return UserDetailsImpl.build(user);
+    }
+    public User getCurrentUser() {
+        return findByName(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
     }
 }

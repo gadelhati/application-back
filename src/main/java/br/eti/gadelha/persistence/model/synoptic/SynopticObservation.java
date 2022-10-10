@@ -8,13 +8,12 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @IdClass(SynopticObservationId.class)
 @Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class SynopticObservation /*extends GenericEntity*/ implements Serializable {
+public class SynopticObservation implements Serializable {
 
-    // https://www.baeldung.com/hibernate-spatial
+//    https://www.baeldung.com/hibernate-spatial
 //    @Column(columnDefinition = "POINT")
 //    private Point coordinates;
     //SECTION 0
@@ -153,8 +152,6 @@ public class SynopticObservation /*extends GenericEntity*/ implements Serializab
     private String icp;
     private String icq;
 
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date dataObservacao;
     @Id
     private LocalDateTime dateObservation;
     private String observerName;
