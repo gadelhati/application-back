@@ -105,24 +105,24 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestJwt dtoRequestUser) {
+    public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestJwt dtoRequestJwt) {
         try {
-            return new ResponseEntity<>(serviceUser.signin(dtoRequestUser), HttpStatus.OK);
-//        } catch (SignatureException e) {
-////            logger.error("Invalid JWT signature: {}", e.getMessage());
-//            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-//        } catch (MalformedJwtException e) {
-////            logger.error("Invalid JWT token: {}", e.getMessage());
-//            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-//        } catch (ExpiredJwtException e) {
-////            logger.error("JWT token is expired: {}", e.getMessage());
-//            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-//        } catch (UnsupportedJwtException e) {
-////            logger.error("JWT token is unsupported: {}", e.getMessage());
-//            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-//        } catch (IllegalArgumentException e) {
-////            logger.error("JWT claims string is empty: {}", e.getMessage());
-//            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(serviceUser.signin(dtoRequestJwt), HttpStatus.OK);
+        } catch (SignatureException e) {
+//            logger.error("Invalid JWT signature: {}", e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        } catch (MalformedJwtException e) {
+//            logger.error("Invalid JWT token: {}", e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        } catch (ExpiredJwtException e) {
+//            logger.error("JWT token is expired: {}", e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        } catch (UnsupportedJwtException e) {
+//            logger.error("JWT token is unsupported: {}", e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        } catch (IllegalArgumentException e) {
+//            logger.error("JWT claims string is empty: {}", e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

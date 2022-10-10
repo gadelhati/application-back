@@ -133,8 +133,8 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public boolean existsByEmail(String value) {
         return repositoryUser.existsByEmail(value);
     }
-    public DTOResponseJwt signin(DTORequestJwt dtoRequestUser) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestUser.getUsername(), dtoRequestUser.getPassword()));
+    public DTOResponseJwt signin(DTORequestJwt dtoRequestJwt) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestJwt.getUsername(), dtoRequestJwt.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         String jwt = jwtUtils.generateJwtToken(userDetails);
