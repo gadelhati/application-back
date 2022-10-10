@@ -2,9 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
 import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
-import br.eti.gadelha.persistence.dto.response.DTOResponseCountry;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
-import br.eti.gadelha.exception.enumeration.ERole;
 import br.eti.gadelha.persistence.model.*;
 import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
 import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
@@ -68,7 +66,6 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
     }
-
     @Override
     public Page<DTOResponseUser> retrieve(Pageable pageable, String source) {
         List<DTOResponseUser> list = new ArrayList<>();
@@ -110,9 +107,12 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
         }
         user.setActive(updated.isActive());
         user.setOm(updated.getOm());
-        Role role = repositoryRole.findByName(updated.getRoles().getClass().getName());
-        user.setRoles(Arrays.asList(role));
-//        user.setRoles(updated.getRoles());
+        List<Role> roleList = new ArrayList<>();
+        for(Role role: updated.getRoles()) {
+            Role search = repositoryRole.findByName(role.getName());
+            roleList.add(search);
+        }
+        user.setRoles(roleList);
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
     public DTOResponseUser delete(UUID id){
