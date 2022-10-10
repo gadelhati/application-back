@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.eti.gadelha.exception.TokenRefreshException;
-import br.eti.gadelha.persistence.repository.RefreshTokenRepository;
+import br.eti.gadelha.persistence.repository.RepositoryRefreshToken;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 
 @Service
@@ -20,13 +20,13 @@ public class ServiceRefreshToken {
   private Long refreshTokenDurationMs;
 
   @Autowired
-  private RefreshTokenRepository refreshTokenRepository;
+  private RepositoryRefreshToken repositoryRefreshToken;
 
   @Autowired
   private RepositoryUser repositoryUser;
 
   public Optional<RefreshToken> findByToken(String token) {
-    return refreshTokenRepository.findByToken(token);
+    return repositoryRefreshToken.findByToken(token);
   }
 
   public RefreshToken createRefreshToken(UUID userId) {
@@ -36,13 +36,13 @@ public class ServiceRefreshToken {
     refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
     refreshToken.setToken(UUID.randomUUID().toString());
 
-    refreshToken = refreshTokenRepository.save(refreshToken);
+    refreshToken = repositoryRefreshToken.save(refreshToken);
     return refreshToken;
   }
 
   public RefreshToken verifyExpiration(RefreshToken token) {
     if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
-      refreshTokenRepository.delete(token);
+      repositoryRefreshToken.delete(token);
       throw new TokenRefreshException(token.getToken(), "Refresh token was expired. Please make a new signin request");
     }
 
@@ -51,6 +51,6 @@ public class ServiceRefreshToken {
 
   @Transactional
   public int deleteByUserId(UUID userId) {
-    return refreshTokenRepository.deleteByUser(repositoryUser.findById(userId).orElse(null));
+    return repositoryRefreshToken.deleteByUser(repositoryUser.findById(userId).orElse(null));
   }
 }
