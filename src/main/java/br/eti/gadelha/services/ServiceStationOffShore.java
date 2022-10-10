@@ -87,6 +87,4 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
     public StationOffShore findByName(String value) {
         return null;
     }
-
-//    public StationOffShore findByLatitudeMostBottom(Double value) { return  repository.findByLatitudeMostBottom(value); }
 }
