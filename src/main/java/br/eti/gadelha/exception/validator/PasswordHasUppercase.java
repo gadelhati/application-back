@@ -1,2 +1,4 @@
-package br.eti.gadelha.exception.validator;public class PasswordHasUppercase {
+package br.eti.gadelha.exception.validator;
+
+public class PasswordHasUppercase {
 }

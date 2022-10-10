@@ -8,12 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 public class EnumValidValidator implements ConstraintValidator<EnumValid, CharSequence> {
     private List<String> acceptedValues;
 

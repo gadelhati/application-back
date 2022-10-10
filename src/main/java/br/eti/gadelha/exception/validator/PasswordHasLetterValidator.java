@@ -5,12 +5,6 @@ import br.eti.gadelha.exception.annotation.PasswordHasLetter;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-/**
- * @author	Marcelo Ribeiro Gadelha
- * @mail	gadelha.ti@gmail.com
- * @link	www.gadelha.eti.br
- **/
-
 public class PasswordHasLetterValidator implements ConstraintValidator<PasswordHasLetter, String> {
 
     @Override
