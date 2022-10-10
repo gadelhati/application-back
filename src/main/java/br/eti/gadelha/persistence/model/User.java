@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -59,5 +57,12 @@ public class User extends GenericEntity {
 		this.email = email;
 		this.password = password;
 		this.active = active;
+	}
+	public User(String username, String email, String password, Boolean active, Collection<Role> roles) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.active = active;
+		this.roles = roles;
 	}
 }

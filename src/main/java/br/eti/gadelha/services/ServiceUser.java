@@ -50,10 +50,22 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     }
 
     public DTOResponseUser create(DTORequestUser created){
-        User user = new User(created.getUsername(), created.getEmail(), encoder.encode(created.getPassword()), created.isActive());
-        Set<Role> roles = new HashSet<>();
-        roles.add(repositoryRole.findByName("ROLE_USER"));
-        created.setRoles(roles);
+        Collection<Role> roleList = new ArrayList<>();
+        for(Role role: created.getRoles()) {
+            Role search = repositoryRole.findByName(role.getName());
+            roleList.add(search);
+        }
+        if(roleList == null) {
+            created.setRoles(Arrays.asList(repositoryRole.findByName("ROLE_USER")));
+        }
+        created.setRoles(roleList);
+        User user = new User(
+                created.getUsername(),
+                created.getEmail(),
+                encoder.encode(created.getPassword()),
+                created.isActive(),
+                created.getRoles()
+        );
         return DTOResponseUser.toDTO(repositoryUser.save(user));
     }
     public DTOResponseUser retrieve(UUID id){
