@@ -1,7 +1,7 @@
 package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestUser;
-import br.eti.gadelha.persistence.dto.request.DTORequestUserLogin;
+import br.eti.gadelha.persistence.dto.request.DTORequestJwt;
 import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
 import br.eti.gadelha.persistence.model.*;
 import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
@@ -133,7 +133,7 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public boolean existsByEmail(String value) {
         return repositoryUser.existsByEmail(value);
     }
-    public DTOResponseJwt signin(DTORequestUserLogin dtoRequestUser) {
+    public DTOResponseJwt signin(DTORequestJwt dtoRequestUser) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestUser.getUsername(), dtoRequestUser.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();

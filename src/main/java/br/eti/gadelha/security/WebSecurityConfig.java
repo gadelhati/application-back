@@ -1,5 +1,6 @@
 package br.eti.gadelha.security;
 
+import br.eti.gadelha.security.jwt.AuthTokenFilter;
 import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import br.eti.gadelha.security.jwt.AuthEntryPointJwt;
-import br.eti.gadelha.security.jwt.AuthTokenFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter @Setter
-public class DTORequestUserLogin {
+public class DTORequestJwt {
 
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}")
     private String username;
