@@ -12,7 +12,7 @@ public enum EnumMiMiMjMj {
     TRACKOB("NNXX"),
     SYNOP_MOBIL("OOXX"),
     ROCOB("SSXX"),
-    //    BATHY("?"),//PÁGINA 331, https://library.wmo.int/doc_num.php?explnum_id=10235
+//    BATHY("?"),//PÁGINA 331, https://library.wmo.int/doc_num.php?explnum_id=10235
 //    TESAC("?"),
     SARAD("WWXX"),
     SATOB("YYXX"),
