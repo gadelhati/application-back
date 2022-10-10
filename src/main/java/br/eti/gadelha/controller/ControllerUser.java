@@ -15,7 +15,6 @@ import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
 import br.eti.gadelha.services.ServiceRefreshToken;
 import br.eti.gadelha.services.ServiceUser;
-import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
