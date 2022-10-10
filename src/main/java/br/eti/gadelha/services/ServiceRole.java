@@ -68,10 +68,6 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
     public void delete() {
         repositoryRole.deleteAll();
     }
-
-    public boolean isNameValid(String value) {
-        return repositoryRole.existsByName(value);
-    }
     public Role findByName(String role) { return  repositoryRole.findByName(role); }
     public boolean existsByName(String value) {
         return repositoryRole.existsByName(value);

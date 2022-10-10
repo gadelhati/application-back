@@ -1,9 +1,7 @@
 package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.dto.request.DTORequestOM;
-import br.eti.gadelha.persistence.dto.response.DTOResponseCountry;
 import br.eti.gadelha.persistence.dto.response.DTOResponseOM;
-import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.repository.RepositoryOM;
 import org.springframework.data.domain.Page;
@@ -25,10 +23,8 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, 
     }
 
     public DTOResponseOM create(DTORequestOM created){
-//        OM role = MAPPER_ROLE.toObject(created);
         return DTOResponseOM.toDTO(repositoryOM.save(created.toObject()));
     }
-
     public List<DTOResponseOM> retrieve(){
         List<DTOResponseOM> list = new ArrayList<>();
         for(OM om: repositoryOM.findAll()) {
@@ -36,7 +32,6 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, 
         }
         return list;
     }
-
     public Page<DTOResponseOM> retrieve(Pageable pageable){
         List<DTOResponseOM> list = new ArrayList<>();
         for(OM role: repositoryOM.findAll()) {
@@ -44,8 +39,6 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, 
         }
         return new PageImpl<DTOResponseOM>(list, pageable, list.size());
     }
-
-    @Override
     public Page<DTOResponseOM> retrieve(Pageable pageable, String source) {
         List<DTOResponseOM> list = new ArrayList<>();
         for(OM object: repositoryOM.findAll()) {
@@ -53,7 +46,6 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, 
         }
         return new PageImpl<DTOResponseOM>(list, pageable, list.size());
     }
-
     public DTOResponseOM retrieve(UUID id){
         return DTOResponseOM.toDTO(repositoryOM.findById(id).orElse(null));
     }

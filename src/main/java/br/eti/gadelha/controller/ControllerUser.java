@@ -69,7 +69,7 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseUser>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
         try {
-            return new ResponseEntity<>(serviceUser.retrieveSource(pageable, q), HttpStatus.OK);
+            return new ResponseEntity<>(serviceUser.retrieve(pageable, q), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

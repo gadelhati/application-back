@@ -59,6 +59,13 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public DTOResponseUser retrieve(UUID id){
         return DTOResponseUser.toDTO(repositoryUser.findById(id).orElse(null));
     }
+    public List<DTOResponseUser> retrieve(){
+        List<DTOResponseUser> list = new ArrayList<>();
+        for(User user: repositoryUser.findAll()) {
+            list.add(DTOResponseUser.toDTO(user));
+        }
+        return list;
+    }
     public Page<DTOResponseUser> retrieve(Pageable pageable){
         List<DTOResponseUser> list = new ArrayList<>();
         for(User object: repositoryUser.findAll()) {
@@ -66,15 +73,7 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
     }
-    @Override
-    public Page<DTOResponseUser> retrieve(Pageable pageable, String source) {
-        List<DTOResponseUser> list = new ArrayList<>();
-        for(User object: repositoryUser.findAll()) {
-            list.add(DTOResponseUser.toDTO(object));
-        }
-        return new PageImpl<DTOResponseUser>(list, pageable, list.size());
-    }
-    public Page<DTOResponseUser> retrieveSource(Pageable pageable, String source){
+    public Page<DTOResponseUser> retrieve(Pageable pageable, String source){
         final List<DTOResponseUser> list = new ArrayList<>();
         if (source == null) {
             for (User user : repositoryUser.findAll()) {
@@ -86,17 +85,6 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
             }
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
-    }
-    public List<DTOResponseUser> retrieve(){
-        List<DTOResponseUser> list = new ArrayList<>();
-        for(User user: repositoryUser.findAll()) {
-//            if(getCurrentUser().getRoles().getNome().equals("ROLE_ADMIN")) {
-//                list.add(DTOResponseUser.toDTO(user));
-//            } else {
-            list.add(DTOResponseUser.toDTO(user));
-//            }
-        }
-        return list;
     }
     public DTOResponseUser update(UUID id, DTORequestUser updated){
         User user = repositoryUser.findById(id).orElse(null);
@@ -126,14 +114,13 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public User findByName(String value) {
         return repositoryUser.findByUsername(value).orElse(null);
     }
-
     public boolean existsByName(String value) {
         return repositoryUser.existsByUsername(value);
     }
+
     public boolean existsByEmail(String value) {
         return repositoryUser.existsByEmail(value);
     }
-
     public DTOResponseJwt signin(DTORequestUserLogin dtoRequestUser) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dtoRequestUser.getUsername(), dtoRequestUser.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
