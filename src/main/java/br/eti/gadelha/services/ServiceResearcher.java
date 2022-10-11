@@ -1,7 +1,7 @@
 package br.eti.gadelha.services;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestResearcher;
-import br.eti.gadelha.persistence.dto.response.DTOResponseResearcher;
+import br.eti.gadelha.persistence.payload.request.DTORequestResearcher;
+import br.eti.gadelha.persistence.payload.response.DTOResponseResearcher;
 import br.eti.gadelha.persistence.model.Researcher;
 import br.eti.gadelha.persistence.repository.RepositoryResearcher;
 import org.springframework.data.domain.Page;

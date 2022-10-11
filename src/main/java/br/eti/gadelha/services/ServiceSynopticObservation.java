@@ -1,18 +1,16 @@
 package br.eti.gadelha.services;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
-import br.eti.gadelha.persistence.dto.response.DTOResponseSynopticObservation;
+import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
+import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservationId;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;

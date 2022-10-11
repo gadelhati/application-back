@@ -1,7 +1,7 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestRole;
-import br.eti.gadelha.persistence.dto.response.DTOResponseRole;
+import br.eti.gadelha.persistence.payload.request.DTORequestRole;
+import br.eti.gadelha.persistence.payload.response.DTOResponseRole;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.services.ServiceRole;
 import org.springframework.beans.factory.annotation.Autowired;

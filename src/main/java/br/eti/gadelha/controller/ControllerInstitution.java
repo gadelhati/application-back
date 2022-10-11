@@ -1,7 +1,7 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestInstitution;
-import br.eti.gadelha.persistence.dto.response.DTOResponseInstitution;
+import br.eti.gadelha.persistence.payload.request.DTORequestInstitution;
+import br.eti.gadelha.persistence.payload.response.DTOResponseInstitution;
 import br.eti.gadelha.persistence.repository.RepositoryInstitution;
 import br.eti.gadelha.services.ServiceInstitution;
 import org.springframework.beans.factory.annotation.Autowired;

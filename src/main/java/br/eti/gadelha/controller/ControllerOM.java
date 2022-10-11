@@ -1,7 +1,7 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestOM;
-import br.eti.gadelha.persistence.dto.response.DTOResponseOM;
+import br.eti.gadelha.persistence.payload.request.DTORequestOM;
+import br.eti.gadelha.persistence.payload.response.DTOResponseOM;
 import br.eti.gadelha.persistence.repository.RepositoryOM;
 import br.eti.gadelha.services.ServiceOM;
 import org.springframework.data.domain.Page;

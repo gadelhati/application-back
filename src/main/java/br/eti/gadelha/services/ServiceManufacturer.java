@@ -1,7 +1,7 @@
 package br.eti.gadelha.services;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestManufacturer;
-import br.eti.gadelha.persistence.dto.response.DTOResponseManufacturer;
+import br.eti.gadelha.persistence.payload.request.DTORequestManufacturer;
+import br.eti.gadelha.persistence.payload.response.DTOResponseManufacturer;
 import br.eti.gadelha.persistence.model.unity.Manufacturer;
 import br.eti.gadelha.persistence.repository.RepositoryManufacturer;
 import org.springframework.data.domain.Page;

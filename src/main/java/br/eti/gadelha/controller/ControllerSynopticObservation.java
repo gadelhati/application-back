@@ -1,7 +1,7 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
-import br.eti.gadelha.persistence.dto.response.DTOResponseSynopticObservation;
+import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
+import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
 import br.eti.gadelha.services.ServiceSynopticObservation;
 import org.springframework.data.domain.Page;

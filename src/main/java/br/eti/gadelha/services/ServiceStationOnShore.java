@@ -1,7 +1,7 @@
 package br.eti.gadelha.services;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestStationOnShore;
-import br.eti.gadelha.persistence.dto.response.DTOResponseStationOnShore;
+import br.eti.gadelha.persistence.payload.request.DTORequestStationOnShore;
+import br.eti.gadelha.persistence.payload.response.DTOResponseStationOnShore;
 import br.eti.gadelha.persistence.model.unity.StationOnShore;
 import br.eti.gadelha.persistence.repository.RepositoryStationOnShore;
 import org.springframework.data.domain.Page;

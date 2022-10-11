@@ -1,7 +1,7 @@
 package br.eti.gadelha.exception.validator.observation;
 
 import br.eti.gadelha.exception.annotation.observation.ValidNCLCMCH;
-import br.eti.gadelha.persistence.dto.request.DTORequestSynopticObservation;
+import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

@@ -1,7 +1,7 @@
 package br.eti.gadelha.services;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestCountry;
-import br.eti.gadelha.persistence.dto.response.DTOResponseCountry;
+import br.eti.gadelha.persistence.payload.request.DTORequestCountry;
+import br.eti.gadelha.persistence.payload.response.DTOResponseCountry;
 import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.repository.RepositoryCountry;
 import org.springframework.data.domain.Page;

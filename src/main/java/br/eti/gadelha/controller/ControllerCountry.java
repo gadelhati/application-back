@@ -1,7 +1,7 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.dto.request.DTORequestCountry;
-import br.eti.gadelha.persistence.dto.response.DTOResponseCountry;
+import br.eti.gadelha.persistence.payload.request.DTORequestCountry;
+import br.eti.gadelha.persistence.payload.response.DTOResponseCountry;
 import br.eti.gadelha.persistence.repository.RepositoryCountry;
 import br.eti.gadelha.services.ServiceCountry;
 import org.springframework.beans.factory.annotation.Autowired;

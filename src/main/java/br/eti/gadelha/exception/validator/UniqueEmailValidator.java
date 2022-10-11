@@ -1,7 +1,7 @@
 package br.eti.gadelha.exception.validator;
 
 import br.eti.gadelha.exception.annotation.UniqueEmail;
-import br.eti.gadelha.persistence.dto.request.DTORequestUser;
+import br.eti.gadelha.persistence.payload.request.DTORequestUser;
 import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 

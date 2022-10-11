@@ -1,14 +1,14 @@
 package br.eti.gadelha.controller;
 
 import br.eti.gadelha.exception.TokenRefreshException;
-import br.eti.gadelha.persistence.dto.request.DTORequestTokenRefresh;
-import br.eti.gadelha.persistence.dto.request.DTORequestUser;
-import br.eti.gadelha.persistence.dto.request.DTORequestJwt;
-import br.eti.gadelha.persistence.dto.response.DTOResponseTokenRefresh;
-import br.eti.gadelha.persistence.dto.response.DTOResponseUser;
+import br.eti.gadelha.persistence.payload.request.DTORequestTokenRefresh;
+import br.eti.gadelha.persistence.payload.request.DTORequestUser;
+import br.eti.gadelha.persistence.payload.request.DTORequestJwt;
+import br.eti.gadelha.persistence.payload.response.DTOResponseTokenRefresh;
+import br.eti.gadelha.persistence.payload.response.DTOResponseUser;
 import br.eti.gadelha.persistence.model.RefreshToken;
-import br.eti.gadelha.persistence.dto.request.DTORequestLogOut;
-import br.eti.gadelha.persistence.dto.response.DTOResponseJwt;
+import br.eti.gadelha.persistence.payload.request.DTORequestLogOut;
+import br.eti.gadelha.persistence.payload.response.DTOResponseJwt;
 import br.eti.gadelha.persistence.repository.RepositoryOM;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
