@@ -47,26 +47,24 @@ SELECT * FROM synoptic_observation.role;
 -- POPULANDO synoptic_observation.user
 INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('b4c48fe3-4cf2-411d-9d4b-82f7c63eff9c', '00038059', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'marcelo.gadelha@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('9063f71e-9599-4b43-9754-f4a5ba00ca50', '14148102', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'diego.pinto@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('825622ce-9567-4072-88c7-ee73cd000f73', '14144468', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'ariane.coelho@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
+INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('f7c8f99b-90c8-47af-a237-753a58781114', '21185042', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'thamyres.lima@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('e8b255ae-90cd-4d55-9561-9f85e7932c3d', '86768646', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'jeferson.lessa@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('f2199ebe-0306-4ade-943c-db708c418fae', '14088185', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'thiago.gomes@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('38108890-55b7-4b8c-80c0-f363b003083b', '18090311', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'barreto.lopes@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('1818580a-48da-4ce4-8482-213d0563ce6c', '21403724', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'siqueira.felipe@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('21161d05-df8e-44fb-80b8-08ecc18cb110', '14147203', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'matheus.augusto@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user(id, username, password, email, active, om) VALUES ('f7c8f99b-90c8-47af-a237-753a58781114', '21185042', '$2a$10$v5q8rJ5T/OlmZ2NKSYB2YOOxkn9AI1K04Bn9pemlEZTAMybsq6ona', 'thamyres.lima@marinha.mil.br', true, 'da65d957-d0ab-426b-b53e-4b28e195c32f') ON CONFLICT DO NOTHING;
 
 SELECT * FROM synoptic_observation.user;
 
--- POPULANDO synoptic_observation.user_role
+ POPULANDO synoptic_observation.user_role
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('b4c48fe3-4cf2-411d-9d4b-82f7c63eff9c', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('9063f71e-9599-4b43-9754-f4a5ba00ca50', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('825622ce-9567-4072-88c7-ee73cd000f73', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
+INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f7c8f99b-90c8-47af-a237-753a58781114', '52c57a80-4e3b-4a41-a864-58d0cea25b14') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('e8b255ae-90cd-4d55-9561-9f85e7932c3d', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f2199ebe-0306-4ade-943c-db708c418fae', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('38108890-55b7-4b8c-80c0-f363b003083b', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('1818580a-48da-4ce4-8482-213d0563ce6c', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('21161d05-df8e-44fb-80b8-08ecc18cb110', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f7c8f99b-90c8-47af-a237-753a58781114', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 
 SELECT * FROM synoptic_observation.user_roles;
 
