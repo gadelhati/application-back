@@ -21,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -105,7 +106,8 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
         try {
             return new ResponseEntity<>(serviceUser.signin(dtoRequestJwt), HttpStatus.OK);
         } catch (Exception e) {
-            ErrorResponse errorResponse = new ErrorResponse(HttpStatus.FORBIDDEN, e.getMessage(), "Acesso Negado!");
+            ErrorResponse errorResponse = new ErrorResponse(HttpStatus.FORBIDDEN, e.getStackTrace().toString(), e.toString());
+            errorResponse.addValidationError(e.getMessage(), e.getMessage());
             return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
         }
     }
