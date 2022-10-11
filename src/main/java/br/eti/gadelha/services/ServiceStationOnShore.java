@@ -59,17 +59,19 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
         StationOnShore object = repositoryStationOnShore.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
         object.setCom(updated.getCom());
+        object.setActive(updated.getActive());
         object.setCommission(updated.getCommission());
         object.setStationCategory(updated.getStationCategory());
-        object.setCountry(updated.getCountry());
         object.setEquipment(updated.getEquipment());
         object.setSurveying(updated.getSurveying());
         object.setResponsible(updated.getResponsible());
         object.setCountry(updated.getCountry());
+
         object.setName(updated.getName());
         object.setDateTime(updated.getDateTime());
         object.setLatitude(updated.getLatitude());
         object.setLongitude(updated.getLongitude());
+        object.setTelegraphicCallsign(updated.getTelegraphicCallsign());
         object.setMarsdenSquare_10(updated.getMarsdenSquare_10());
         object.setMarsdenSubSquare_1(updated.getMarsdenSubSquare_1());
         object.setWmoSquare(updated.getWmoSquare());

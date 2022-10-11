@@ -59,9 +59,9 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
         Station object = repositoryStation.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
         object.setCom(updated.getCom());
+        object.setActive(updated.getActive());
         object.setCommission(updated.getCommission());
         object.setStationCategory(updated.getStationCategory());
-        object.setCountry(updated.getCountry());
         object.setEquipment(updated.getEquipment());
         object.setSurveying(updated.getSurveying());
         object.setResponsible(updated.getResponsible());

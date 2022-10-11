@@ -59,13 +59,14 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
         StationOffShore object = repositoryStationOffShore.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
         object.setCom(updated.getCom());
+        object.setActive(updated.getActive());
         object.setCommission(updated.getCommission());
         object.setStationCategory(updated.getStationCategory());
-        object.setCountry(updated.getCountry());
         object.setEquipment(updated.getEquipment());
         object.setSurveying(updated.getSurveying());
         object.setResponsible(updated.getResponsible());
         object.setCountry(updated.getCountry());
+
         object.setFirst(updated.getFirst());
         object.setLast(updated.getLast());
         object.setLatitudeMostBottom(updated.getLatitudeMostBottom());
