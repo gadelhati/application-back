@@ -56,7 +56,7 @@ INSERT INTO synoptic_observation.user(id, username, password, email, active, om)
 
 SELECT * FROM synoptic_observation.user;
 
- POPULANDO synoptic_observation.user_role
+-- POPULANDO synoptic_observation.user_role
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('b4c48fe3-4cf2-411d-9d4b-82f7c63eff9c', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('9063f71e-9599-4b43-9754-f4a5ba00ca50', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f7c8f99b-90c8-47af-a237-753a58781114', '52c57a80-4e3b-4a41-a864-58d0cea25b14') ON CONFLICT DO NOTHING;
