@@ -1,5 +1,6 @@
 package br.eti.gadelha.controller;
 
+import br.eti.gadelha.exception.ErrorResponse;
 import br.eti.gadelha.exception.TokenRefreshException;
 import br.eti.gadelha.persistence.payload.request.DTORequestTokenRefresh;
 import br.eti.gadelha.persistence.payload.request.DTORequestUser;
@@ -8,17 +9,12 @@ import br.eti.gadelha.persistence.payload.response.DTOResponseTokenRefresh;
 import br.eti.gadelha.persistence.payload.response.DTOResponseUser;
 import br.eti.gadelha.persistence.model.RefreshToken;
 import br.eti.gadelha.persistence.payload.request.DTORequestLogOut;
-import br.eti.gadelha.persistence.payload.response.DTOResponseJwt;
 import br.eti.gadelha.persistence.repository.RepositoryOM;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
 import br.eti.gadelha.services.ServiceRefreshToken;
 import br.eti.gadelha.services.ServiceUser;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -105,26 +101,12 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<DTOResponseJwt> signin(@Valid @RequestBody DTORequestJwt dtoRequestJwt) {
+    public ResponseEntity<?> signin(@Valid @RequestBody DTORequestJwt dtoRequestJwt) {
         try {
             return new ResponseEntity<>(serviceUser.signin(dtoRequestJwt), HttpStatus.OK);
-        } catch (SignatureException e) {
-//            logger.error("Invalid JWT signature: {}", e.getMessage());
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-        } catch (MalformedJwtException e) {
-//            logger.error("Invalid JWT token: {}", e.getMessage());
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-        } catch (ExpiredJwtException e) {
-//            logger.error("JWT token is expired: {}", e.getMessage());
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-        } catch (UnsupportedJwtException e) {
-//            logger.error("JWT token is unsupported: {}", e.getMessage());
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-        } catch (IllegalArgumentException e) {
-//            logger.error("JWT claims string is empty: {}", e.getMessage());
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErrorResponse errorResponse = new ErrorResponse(HttpStatus.FORBIDDEN, e.getMessage(), "Acesso Negado!");
+            return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
         }
     }
     @PostMapping("/logout")
