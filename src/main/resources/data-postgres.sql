@@ -57,14 +57,14 @@ INSERT INTO synoptic_observation.user(id, username, password, email, active, om)
 SELECT * FROM synoptic_observation.user;
 
 -- POPULANDO synoptic_observation.user_role
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('b4c48fe3-4cf2-411d-9d4b-82f7c63eff9c', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('9063f71e-9599-4b43-9754-f4a5ba00ca50', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f7c8f99b-90c8-47af-a237-753a58781114', '52c57a80-4e3b-4a41-a864-58d0cea25b14') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('e8b255ae-90cd-4d55-9561-9f85e7932c3d', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f2199ebe-0306-4ade-943c-db708c418fae', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('38108890-55b7-4b8c-80c0-f363b003083b', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('1818580a-48da-4ce4-8482-213d0563ce6c', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('21161d05-df8e-44fb-80b8-08ecc18cb110', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('b4c48fe3-4cf2-411d-9d4b-82f7c63eff9c', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('9063f71e-9599-4b43-9754-f4a5ba00ca50', '7c12004d-e843-4e00-be40-01845ad75834') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f7c8f99b-90c8-47af-a237-753a58781114', '52c57a80-4e3b-4a41-a864-58d0cea25b14') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('e8b255ae-90cd-4d55-9561-9f85e7932c3d', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('f2199ebe-0306-4ade-943c-db708c418fae', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('38108890-55b7-4b8c-80c0-f363b003083b', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('1818580a-48da-4ce4-8482-213d0563ce6c', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
+--INSERT INTO synoptic_observation.user_roles(user_id, role_id) VALUES ('21161d05-df8e-44fb-80b8-08ecc18cb110', '8652ec73-0a53-433c-93be-420f1d90c681') ON CONFLICT DO NOTHING;
 
 SELECT * FROM synoptic_observation.user_roles;
 
@@ -8721,5 +8721,16 @@ INSERT INTO synoptic_observation.station_off_shore(id, com, local_depth, country
 SELECT * FROM synoptic_observation.station_off_shore;
 
 -- POPULANDO synoptic_observation.station_on_shore
-INSERT INTO synoptic_observation.station_on_shore(id, com, local_depth, collection_depth, date_time, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('b28f97a0-3923-4884-b189-79baca2e3757', 'estacao synop', 0, 0, '2022-07-18 00:00:00', 0, 0, 0, 0, 0, '', 0) ON CONFLICT DO NOTHING;
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('765893d6-00f3-4bb8-86ad-35763ff26390', false, '82096', 0, 0, 0, 0, 0, 0, 0, 'Canivete', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('edd317a2-b9fa-4bb9-a510-502d48b4e11d', true, '82143', 0, 0, 0, 0, 0, 0, 0, 'Salinópolis', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('43131248-9991-4609-9f6e-807ac717a4d4', true, '82595', 0, 0, 0, 0, 0, 0, 0, 'Calcanhar', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('99433520-c9b4-4cd5-bfe3-05b4aa162169', true, '83499', 0, 0, 0, 0, 0, 0, 0, 'Abrolhos', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('8af380e1-8bcd-4646-b388-03580eb97108', true, '83650', 0, 0, 0, 0, 0, 0, 0, 'Ilha da Trindade', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('a1f2af7f-546e-43bd-9b6d-5d1795420a14', true, '83700', 0, 0, 0, 0, 0, 0, 0, 'São Tomé', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('37d7924e-9ae0-40cb-8f07-0ff0efdcaf4f', true, '83117', 0, 0, 0, 0, 0, 0, 0, 'Ilha Rasa', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('7da0a439-3675-4040-b6ea-79fdd0205bbc', false, '83599', 0, 0, 0, 0, 0, 0, 0, 'Ilha da Moela', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('ab3f5b67-69be-48e0-8a59-e5c279056885', true, '83825', 0, 0, 0, 0, 0, 0, 0, 'Ilha do Mel', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('718023eb-7c9f-4d9e-b024-d2d7d169956f', true, '83925', 0, 0, 0, 0, 0, 0, 0, 'Santa Marta', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('66c31ade-e4e9-4c45-bba7-f12fe40d85ef', true, '83970', 0, 0, 0, 0, 0, 0, 0, 'Mostardas', 0);
+INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('8e58bda1-800e-40c4-adbb-538ed1add778', true, '83998', 0, 0, 0, 0, 0, 0, 0, 'Chuí', 0);
 SELECT * FROM synoptic_observation.station_on_shore;
