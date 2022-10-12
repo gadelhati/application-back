@@ -1,6 +1,5 @@
 package br.eti.gadelha.persistence.repository;
 
-import br.eti.gadelha.persistence.model.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

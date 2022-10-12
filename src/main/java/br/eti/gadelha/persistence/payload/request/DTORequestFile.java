@@ -1,6 +1,5 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.persistence.model.File;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
