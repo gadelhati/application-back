@@ -97,7 +97,7 @@ SOFTWARE.
 ### Roadmap
 
 [//]: # (q1 If you have ideas for releases in the future, it is a good idea to list them in the README.)
-- [ ] filter by OM
+- [ ] add data Point of PostGis
 - [ ] filter by Role
 - [ ] set up Role and Privileges
 - [ ] set up Role Hierarchy
