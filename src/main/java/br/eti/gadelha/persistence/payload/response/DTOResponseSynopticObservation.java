@@ -16,6 +16,8 @@ public class DTOResponseSynopticObservation {
 
     @Column(columnDefinition = "POINT")
     private Point coordinates;
+    private String latitude;
+    private String longitude;
     //SECTION 0
 
     //AABB
@@ -166,6 +168,8 @@ public class DTOResponseSynopticObservation {
     public static DTOResponseSynopticObservation toDTO(SynopticObservation value) {
         return new DTOResponseSynopticObservation(
                 value.getCoordinates(),
+                value.getLatitude(),
+                value.getLongitude(),
                 value.getMimi(),
                 value.getMjmj(),
                 value.getDdddddd(),

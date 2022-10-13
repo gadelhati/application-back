@@ -5,6 +5,10 @@ import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservatio
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservationId;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -71,8 +75,13 @@ public class ServiceSynopticObservation {
         }
         return new PageImpl<DTOResponseSynopticObservation>(list, pageable, list.size());
     }
-    public DTOResponseSynopticObservation update(DTORequestSynopticObservation updated){
+    public Geometry wktToGeometry(String wellKnownText) throws ParseException {
+        return new WKTReader().read(wellKnownText);
+    }
+    public DTOResponseSynopticObservation update(DTORequestSynopticObservation updated) throws ParseException {
         SynopticObservation synopticObservation = repositorySynopticObservation.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null);
+//        Geometry geometry = wktToGeometry("POINT (2 5)");
+//        synopticObservation.setCoordinates((Point) new WKTReader().read("POINT (2 5)"));
         synopticObservation.setMimi(updated.getMimi());
         synopticObservation.setMjmj(updated.getMjmj());
         synopticObservation.setDdddddd(updated.getDdddddd());
