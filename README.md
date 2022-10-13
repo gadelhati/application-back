@@ -104,7 +104,7 @@ SOFTWARE.
 - [ ] change default jwt to personal jwt
 - [ ] change application.properties to [dev using h2, and prod using postgres]
 - [ ] add Internationalization to ValidationMessages.properties
-- [ ] sggeer something is not showing (Whitelabel Error Page)
+- [ ] swagger something is not showing (Whitelabel Error Page)
 
 
 ### how to create this project
