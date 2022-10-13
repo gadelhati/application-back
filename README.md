@@ -95,15 +95,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 ### Roadmap
-- [ ] q1 If you have ideas for releases in the future, it is a good idea to list them in the README.
+
+[//]: # (q1 If you have ideas for releases in the future, it is a good idea to list them in the README.)
+- [ ] filter by OM
+- [ ] filter by Role
 - [ ] set up Role and Privileges
 - [ ] set up Role Hierarchy
 - [ ] change default jwt to personal jwt
-- [ ] change application.properties to [dev-prod]
+- [ ] change application.properties to [dev using h2, and prod using postgres]
 - [ ] add Internationalization to ValidationMessages.properties
 - [ ] sggeer something is not showing (Whitelabel Error Page)
-- [ ] filter by OM
-- [ ] filter by Role
+
 
 ### how to create this project
 > [https://start.spring.io/](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.4.5.RELEASE&packaging=war&jvmVersion=1.8&groupId=br.eti.gadelha&artifactId=gadelha&name=gadelha&description=Demo%20project%20for%20Spring%20Boot%20to%20Gadelha&packageName=br.eti.gadelha.gadelha&dependencies=lombok,web,h2,devtools,configuration-processor,jersey,security,data-jpa,postgresql,cloud-config-server,actuator,validation)
