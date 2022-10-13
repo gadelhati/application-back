@@ -20,3 +20,4 @@ back-end
 
 	swaggeer something is not showing (Whitelabel Error Page)
 	filter by OM
+	filter by Role
