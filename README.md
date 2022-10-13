@@ -70,26 +70,50 @@ Stations on board ships (SHIP).
 A inciativa de criar um
 The initiative to create a program in which the code is typed instead of being filled out on paper. Automating the exchange and its consequent inclusion in historical database.
 
-## Support
+### LICENCE
+```
+MIT License
 
-## Roadmap
-q1 If you have ideas for releases in the future, it is a good idea to list them in the README.
+Copyright (c) 2020 Jason Watmore
 
-### License
-For open source projects, say how it is licensed.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### Acknowledgments
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-### Link to create a similar project, access:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+### Roadmap
+- [ ] q1 If you have ideas for releases in the future, it is a good idea to list them in the README.
+- [ ] set up Role and Privileges
+- [ ] set up Role Hierarchy
+- [ ] change default jwt to personal jwt
+- [ ] change application.properties to [dev-prod]
+- [ ] add Internationalization to ValidationMessages.properties
+- [ ] sggeer something is not showing (Whitelabel Error Page)
+- [ ] filter by OM
+- [ ] filter by Role
 
+### how to create this project
 > [https://start.spring.io/](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.4.5.RELEASE&packaging=war&jvmVersion=1.8&groupId=br.eti.gadelha&artifactId=gadelha&name=gadelha&description=Demo%20project%20for%20Spring%20Boot%20to%20Gadelha&packageName=br.eti.gadelha.gadelha&dependencies=lombok,web,h2,devtools,configuration-processor,jersey,security,data-jpa,postgresql,cloud-config-server,actuator,validation)
-Relative links
 
+### how to stop application on localhost
 ```
 netstat -a -n -o
 tskill "NÚMERO DO PID"
 ```
-To run the API, use the command:
+## how to run project
 ```
 mvn spring-boot:run
 ```
@@ -97,7 +121,6 @@ Isso irá gerar a Base de dados. Acessível através da url.
 Para abrir console do banco de dados **H2**, acesse:
 
 > [http://localhost:8080/h2-ui](http://localhost:8080/h2-ui)
-Relative links
 
 ### Deploy
 ```
@@ -115,18 +138,16 @@ mvn -N io.takari:maven:0.7.7:wrapper
 mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
 mvnw clean install
 ```
-Relative links
-### Altere a JDBC URL para o path descrito no console:
+
+### Alter JDBC URL to path described on console:
 ```
 2021-04-18 21:44:01.317  INFO 7560 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-ui'. Database available at 'jdbc:h2:mem:testdb'
 ```
-no caso:
+in case:
 ```
 jdbc:h2:mem:testdb
 ```
-Aplicação _Spring Boot_ para: [Acompanhamento do projeto no redemine](https://redmine.chm.mb/projects/siscoep){:target="_blank"}
-
-Relative links
+Aplication _Spring Boot_ for: [projet on redemine](https://redmine.chm.mb/projects/siscoep){:target="_blank"}
 
 ### Requirements
 For building and running the application you need:
@@ -139,16 +160,14 @@ For building and running the application you need:
 First, clone the project and build locally:
 
 ```
-git clone http://10.5.193.26/00038059/siscoep
+git clone http://10.5.193.26/00038059/application-back
 ```
-
-Para criar o arquivo _.war_, digite no terminal do _intellij_:
+## how to create file _.war_, type on intellij terminal:
 
 ```
 mvn clean package
 ```
-
-serão criados dois arquivos com a extensão .war, o com nome menor é o que será utilizado.
+two files with the extension .war will be created, the one with the shortest name will be used.
 
 ### On Server
 
@@ -160,7 +179,6 @@ cp /home/<user>/<application_name>.war /opt/tomcat/webapps/
 chown tomcat:tomcat /opt/tomcat/webapps/<application_name>.war
 systemctl start tomcat
 ```
-[comment]: <> ([![All Contributors]&#40;https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square&#41;]&#40;#contributors-&#41;)
 
 ## Dependency
 ```xml
@@ -196,37 +214,26 @@ systemctl start tomcat
 Open `src/main/resources/application.properties`
 
 ```properties
-spring.datasource.url= jdbc:mysql://localhost:3306/testdb?useSSL=false
-spring.datasource.username= root
-spring.datasource.password= 123456
+spring.datasource.url= jdbc:postgresql://localhost:5432/synoptic_observation
+spring.datasource.username= postgres
+spring.datasource.password= password
 
-spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.MySQL5InnoDBDialect
-spring.jpa.hibernate.ddl-auto= update
+spring.jpa.properties.hibernate.dialect= org.hibernate.spatial.dialect.postgis.PostgisDialect
+spring.jpa.hibernate.ddl-auto= create
 
 # App Properties
-bezkoder.app.jwtSecret= bezKoderSecretKey
-bezkoder.app.jwtExpirationMs= 3600000
-bezkoder.app.jwtRefreshExpirationMs= 86400000
+gadelha.app.jwtSecret= gadelhaSecretKey
+gadelha.app.jwtExpirationMs= 604800000
+gadelha.app.jwtRefreshExpirationMs= 12000000
 ```
 
-## Run Spring Boot application
-```
-mvn spring-boot:run
-```
-
-## Run following SQL insert statements
-```
-INSERT INTO roles(name) VALUES('ROLE_USER');
-INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
-```
 ### Features
 These are the paths to services:
 
-- [x] [CREATE](http://127.0.0.1/synopticObservation/) - path to item creation;
-- [x] [RETRIEVE](http://127.0.0.1/synopticObservation/id) - path to retrieve of an item by id;
-- [x] [RETRIEVE_ALL](http://127.0.0.1/synopticObservation/) - path to retrieve of all items;
-- [ ] [RETRIEVE](http://127.0.0.1/synopticObservation/id) - path to retrieve of an item by source;
-- [x] [UPDATE](http://127.0.0.1/synopticObservation/id) - path to update an item;
-- [x] [DELETE](http://127.0.0.1/synopticObservation/id) - path to delete an item;
-- [x] [DELETE_ALL](http://127.0.0.1/synopticObservation/) - path to delete all items;
+- [x] [CREATE](http://127.0.0.1/application-back/synopticObservation/) - path to item creation;
+- [x] [RETRIEVE_ALL](http://127.0.0.1/application-back/synopticObservation/) - path to retrieve of all items;
+- [ ] [RETRIEVE](http://127.0.0.1/application-back/synopticObservation/id) - path to retrieve of an item by id;
+- [ ] [RETRIEVE](http://127.0.0.1/application-back/synopticObservation/id) - path to retrieve of an item by source;
+- [x] [UPDATE](http://127.0.0.1/application-back/synopticObservation/id) - path to update an item;
+- [x] [DELETE](http://127.0.0.1/application-back/synopticObservation/id) - path to delete an item;
+- [x] [DELETE_ALL](http://127.0.0.1/application-back/synopticObservation/) - path to delete all items;
