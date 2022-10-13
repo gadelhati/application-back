@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +14,8 @@ import java.util.Date;
 @Getter @AllArgsConstructor @NoArgsConstructor
 public class DTOResponseSynopticObservation {
 
-//    private Point coordinates;
+    @Column(columnDefinition = "POINT")
+    private Point coordinates;
     //SECTION 0
 
     //AABB
@@ -163,7 +165,7 @@ public class DTOResponseSynopticObservation {
 
     public static DTOResponseSynopticObservation toDTO(SynopticObservation value) {
         return new DTOResponseSynopticObservation(
-//                value.getCoordinates(),
+                value.getCoordinates(),
                 value.getMimi(),
                 value.getMjmj(),
                 value.getDdddddd(),

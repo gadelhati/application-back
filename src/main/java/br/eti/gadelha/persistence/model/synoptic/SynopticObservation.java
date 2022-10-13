@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.model.User;
 import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.*;
 import org.hibernate.envers.Audited;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,8 +15,8 @@ import java.time.LocalDateTime;
 public class SynopticObservation implements Serializable {
 
 //    https://www.baeldung.com/hibernate-spatial
-//    @Column(columnDefinition = "POINT")
-//    private Point coordinates;
+    @Column(columnDefinition = "POINT")
+    private Point coordinates;
     //SECTION 0
 
     //AABB
