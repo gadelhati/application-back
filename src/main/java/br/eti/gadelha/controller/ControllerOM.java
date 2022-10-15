@@ -2,8 +2,8 @@ package br.eti.gadelha.controller;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestOM;
 import br.eti.gadelha.persistence.payload.response.DTOResponseOM;
-import br.eti.gadelha.persistence.repository.RepositoryOM;
 import br.eti.gadelha.services.ServiceOM;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -11,69 +11,47 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-@RestController @RequestMapping("/om")
+@RestController @RequestMapping("/om") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerOM implements ControllerInterface<DTOResponseOM, DTORequestOM> {
 
     private final ServiceOM serviceOM;
 
-    public ControllerOM(RepositoryOM repository) {
-        this.serviceOM = new ServiceOM(repository) {};
-    }
-
     @PostMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> create(@RequestBody @Valid DTORequestOM created){
-        try {
-            return new ResponseEntity<>(serviceOM.create(created), HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/om").toUriString());
+        return ResponseEntity.created(uri).body(serviceOM.create(created));
     }
     @GetMapping("/retrieve")
     public List<DTOResponseOM> retrieve(){
         return serviceOM.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Page<DTOResponseOM
-            >> retrieve(Pageable pageable){
-        return new ResponseEntity<>(serviceOM.retrieve(pageable), HttpStatus.OK);
+    public ResponseEntity<Page<DTOResponseOM>> retrieve(Pageable pageable){
+        return ResponseEntity.ok().body(serviceOM.retrieve(pageable));
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> retrieve(@PathVariable UUID id){
-        try {
-            return new ResponseEntity<>(serviceOM.retrieve(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.ok().body(serviceOM.retrieve(id));
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Page<DTOResponseOM>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
-        try {
-            return new ResponseEntity<>(serviceOM.retrieveSource(pageable, q), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.ok().body(serviceOM.retrieveSource(pageable, q));
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestOM updated){
-        try {
-            return new ResponseEntity<>(serviceOM.update(id, updated), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.accepted().body(serviceOM.update(id, updated));
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<DTOResponseOM> delete(@PathVariable UUID id){
-        try {
-            return new ResponseEntity<>(serviceOM.delete(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.accepted().body(serviceOM.delete(id));
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
@@ -81,7 +59,7 @@ public class ControllerOM implements ControllerInterface<DTOResponseOM, DTOReque
             serviceOM.delete();
             return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);
         }
     }
 }

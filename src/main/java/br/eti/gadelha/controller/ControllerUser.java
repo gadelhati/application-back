@@ -9,26 +9,25 @@ import br.eti.gadelha.persistence.payload.response.DTOResponseTokenRefresh;
 import br.eti.gadelha.persistence.payload.response.DTOResponseUser;
 import br.eti.gadelha.persistence.model.RefreshToken;
 import br.eti.gadelha.persistence.payload.request.DTORequestLogOut;
-import br.eti.gadelha.persistence.repository.RepositoryOM;
-import br.eti.gadelha.persistence.repository.RepositoryRole;
-import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
 import br.eti.gadelha.services.ServiceRefreshToken;
 import br.eti.gadelha.services.ServiceUser;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-@RestController @RequestMapping("/user")
+@RestController @RequestMapping("/user") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerUser implements ControllerInterface<DTOResponseUser, DTORequestUser> {
 
@@ -39,17 +38,10 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
     @Autowired
     ServiceRefreshToken serviceRefreshToken;
 
-    public ControllerUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
-        this.serviceUser = new ServiceUser(repositoryUser, repositoryRole, repositoryOM) {};
-    }
-
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseUser> create(@RequestBody @Valid DTORequestUser created){
-        try {
-            return new ResponseEntity<>(serviceUser.create(created), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user").toUriString());
+        return ResponseEntity.created(uri).body(serviceUser.create(created));
     }
     @GetMapping("/retrieve")
     public List<DTOResponseUser> retrieve(){
@@ -57,39 +49,23 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseUser>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(serviceUser.retrieve(pageable), HttpStatus.OK);
+        return ResponseEntity.ok().body(serviceUser.retrieve(pageable));
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseUser> retrieve(@PathVariable UUID id){
-        try {
-            return new ResponseEntity<>(serviceUser.retrieve(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.ok().body(serviceUser.retrieve(id));
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseUser>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
-        try {
-            return new ResponseEntity<>(serviceUser.retrieve(pageable, q), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.ok().body(serviceUser.retrieve(pageable, q));
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseUser> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestUser updated){
-        try {
-            return new ResponseEntity<>(serviceUser.update(id, updated), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.accepted().body(serviceUser.update(id, updated));
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseUser> delete(@PathVariable UUID id){
-        try {
-            return new ResponseEntity<>(serviceUser.delete(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.accepted().body(serviceUser.delete(id));
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
@@ -97,7 +73,7 @@ public class ControllerUser implements ControllerInterface<DTOResponseUser, DTOR
             serviceUser.delete();
             return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);
         }
     }
 

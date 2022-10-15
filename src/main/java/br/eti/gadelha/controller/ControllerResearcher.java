@@ -2,8 +2,8 @@ package br.eti.gadelha.controller;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestResearcher;
 import br.eti.gadelha.persistence.payload.response.DTOResponseResearcher;
-import br.eti.gadelha.persistence.repository.RepositoryResearcher;
 import br.eti.gadelha.services.ServiceResearcher;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,29 +11,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-@RestController @RequestMapping("/researcher")
+@RestController @RequestMapping("/researcher") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerResearcher implements ControllerInterface<DTOResponseResearcher, DTORequestResearcher> {
 
     @Autowired
     private final ServiceResearcher serviceResearcher;
 
-    public ControllerResearcher(RepositoryResearcher repository) {
-        this.serviceResearcher = new ServiceResearcher(repository) {};
-    }
-
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseResearcher> create(@RequestBody @Valid DTORequestResearcher created){
-        try {
-            return new ResponseEntity<>(serviceResearcher.create(created), HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/researcher").toUriString());
+        return ResponseEntity.created(uri).body(serviceResearcher.create(created));
     }
     @GetMapping("/retrieve")
     public List<DTOResponseResearcher> retrieve(){
@@ -41,39 +36,23 @@ public class ControllerResearcher implements ControllerInterface<DTOResponseRese
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseResearcher>> retrieve(Pageable pageable){
-        return new ResponseEntity<>(serviceResearcher.retrieve(pageable), HttpStatus.ACCEPTED);
+        return ResponseEntity.ok().body(serviceResearcher.retrieve(pageable));
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseResearcher> retrieve(@PathVariable UUID id){
-        try {
-            return new ResponseEntity<>(serviceResearcher.retrieve(id), HttpStatus.FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok().body(serviceResearcher.retrieve(id));
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseResearcher>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
-        try {
-            return new ResponseEntity<>(serviceResearcher.retrieve(pageable, q), HttpStatus.FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok().body(serviceResearcher.retrieve(pageable, q));
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseResearcher> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestResearcher updated){
-        try {
-            return new ResponseEntity<>(serviceResearcher.update(id, updated), HttpStatus.ACCEPTED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.accepted().body(serviceResearcher.update(id, updated));
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseResearcher> delete(@PathVariable UUID id){
-        try {
-            return new ResponseEntity<>(serviceResearcher.delete(id), HttpStatus.ACCEPTED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.accepted().body(serviceResearcher.delete(id));
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
@@ -81,7 +60,7 @@ public class ControllerResearcher implements ControllerInterface<DTOResponseRese
             serviceResearcher.delete();
             return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);
         }
     }
 }
