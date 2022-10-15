@@ -79,6 +79,7 @@ public class ServiceSynopticObservation {
         SynopticObservation synopticObservation = repositorySynopticObservation.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null);
 //        Geometry geometry = wktToGeometry("POINT (2 5)");
 //        synopticObservation.setCoordinates((Point) new WKTReader().read("POINT (2 5)"));
+//        synopticObservation.setCoordinates(wktToGeometry("POINT (2 5)"));
         synopticObservation.setMimi(updated.getMimi());
         synopticObservation.setMjmj(updated.getMjmj());
         synopticObservation.setDdddddd(updated.getDdddddd());
