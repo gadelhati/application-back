@@ -103,6 +103,7 @@ SOFTWARE.
 - [ ] set up Role and Privileges
 - [ ] set up Role Hierarchy
 - [ ] change default jwt to personal jwt
+- [ ] improve refresh token
 - [ ] change application.properties to [dev using h2, and prod using postgres]
 - [ ] add Internationalization to ValidationMessages.properties
 - [ ] swagger something is not showing (Whitelabel Error Page)
