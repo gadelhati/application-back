@@ -1,7 +1,5 @@
 package br.eti.gadelha.persistence.model.synoptic;
 
-import br.eti.gadelha.persistence.model.User;
-import br.eti.gadelha.persistence.model.unity.Station;
 import lombok.*;
 import org.hibernate.envers.Audited;
 import org.locationtech.jts.geom.Point;
@@ -11,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @IdClass(SynopticObservationId.class)
-@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor
 public class SynopticObservation implements Serializable {
 
 //    https://www.baeldung.com/hibernate-spatial

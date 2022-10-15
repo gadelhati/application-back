@@ -10,6 +10,7 @@ import br.eti.gadelha.persistence.repository.RepositoryOM;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
 import br.eti.gadelha.persistence.repository.RepositoryUser;
 import br.eti.gadelha.security.jwt.JwtUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -28,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResponseUser, DTORequestUser, User> {
 
     @Autowired
@@ -42,12 +43,6 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     private final RepositoryUser repositoryUser;
     private final RepositoryRole repositoryRole;
     private final RepositoryOM repositoryOM;
-
-    public ServiceUser(RepositoryUser repositoryUser, RepositoryRole repositoryRole, RepositoryOM repositoryOM) {
-        this.repositoryUser = repositoryUser;
-        this.repositoryRole = repositoryRole;
-        this.repositoryOM = repositoryOM;
-    }
 
     public DTOResponseUser create(DTORequestUser created){
         Collection<Role> roleList = new ArrayList<>();
