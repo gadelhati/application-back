@@ -12,7 +12,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import java.util.Date;
 
-@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Commission extends GenericEntity {
     private String name;
     private Date departure;
