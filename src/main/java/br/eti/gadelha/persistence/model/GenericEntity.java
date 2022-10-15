@@ -1,6 +1,7 @@
 package br.eti.gadelha.persistence.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -10,7 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data @MappedSuperclass //@EntityListeners(GenericEntity.class)
+@Data @MappedSuperclass @EqualsAndHashCode(callSuper = false)
 public abstract class GenericEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

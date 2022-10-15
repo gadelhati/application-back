@@ -8,7 +8,7 @@ import java.time.Instant;
 
 import javax.persistence.*;
 
-@Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper=false)
+@Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class RefreshToken extends GenericEntity {
   @OneToOne
   @JoinColumn(name = "user_id", referencedColumnName = "id")

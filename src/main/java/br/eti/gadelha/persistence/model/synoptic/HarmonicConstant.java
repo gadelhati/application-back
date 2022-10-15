@@ -10,7 +10,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import java.util.Date;
 
-@Audited @Entity @Table @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Data
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor
 public class HarmonicConstant extends GenericEntity {
     private Date starts;
     private Date ending;

@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Individual extends Person {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)

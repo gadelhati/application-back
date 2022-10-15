@@ -11,7 +11,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Harbor extends GenericEntity {
     private String name;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)

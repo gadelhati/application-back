@@ -9,7 +9,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Observer extends GenericEntity {
 
     private String name;

@@ -10,7 +10,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Maintainer extends GenericEntity {
     private String name;
 }

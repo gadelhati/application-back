@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Audited @Entity @Table @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Country extends GenericEntity {
     @NotNull
     private String name;
