@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestManufacturer;
 import br.eti.gadelha.persistence.payload.response.DTOResponseManufacturer;
 import br.eti.gadelha.persistence.model.unity.Manufacturer;
 import br.eti.gadelha.persistence.repository.RepositoryManufacturer;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceManufacturer implements ServiceInterface<DTOResponseManufacturer, DTORequestManufacturer, Manufacturer> {
 
     private final RepositoryManufacturer repositoryManufacturer;
-
-    public ServiceManufacturer(RepositoryManufacturer repositoryManufacturer) {
-        this.repositoryManufacturer = repositoryManufacturer;
-    }
 
     public DTOResponseManufacturer create(DTORequestManufacturer created){
         return DTOResponseManufacturer.toDTO(repositoryManufacturer.save(created.toObject()));

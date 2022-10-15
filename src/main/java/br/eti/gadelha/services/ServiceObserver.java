@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestObserver;
 import br.eti.gadelha.persistence.payload.response.DTOResponseObserver;
 import br.eti.gadelha.persistence.model.unity.Observer;
 import br.eti.gadelha.persistence.repository.RepositoryObserver;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceObserver implements ServiceInterface<DTOResponseObserver, DTORequestObserver, Observer> {
 
     private final RepositoryObserver repositoryObserver;
-
-    public ServiceObserver(RepositoryObserver repositoryObserver) {
-        this.repositoryObserver = repositoryObserver;
-    }
 
     public DTOResponseObserver create(DTORequestObserver created){
         return DTOResponseObserver.toDTO(repositoryObserver.save(created.toObject()));

@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestOM;
 import br.eti.gadelha.persistence.payload.response.DTOResponseOM;
 import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.repository.RepositoryOM;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, OM> {
 
     private final RepositoryOM repositoryOM;
-
-    public ServiceOM(RepositoryOM repositoryOM) {
-        this.repositoryOM = repositoryOM;
-    }
 
     public DTOResponseOM create(DTORequestOM created){
         return DTOResponseOM.toDTO(repositoryOM.save(created.toObject()));

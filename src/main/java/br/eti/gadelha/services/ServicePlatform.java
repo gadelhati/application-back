@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestPlatform;
 import br.eti.gadelha.persistence.payload.response.DTOResponsePlatform;
 import br.eti.gadelha.persistence.model.unity.Platform;
 import br.eti.gadelha.persistence.repository.RepositoryPlatform;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DTORequestPlatform, Platform> {
 
     private final RepositoryPlatform repositoryPlatform;
-
-    public ServicePlatform(RepositoryPlatform repositoryPlatform) {
-        this.repositoryPlatform = repositoryPlatform;
-    }
 
     public DTOResponsePlatform create(DTORequestPlatform created){
         return DTOResponsePlatform.toDTO(repositoryPlatform.save(created.toObject()));

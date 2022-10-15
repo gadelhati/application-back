@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestInstitution;
 import br.eti.gadelha.persistence.payload.response.DTOResponseInstitution;
 import br.eti.gadelha.persistence.model.unity.Institution;
 import br.eti.gadelha.persistence.repository.RepositoryInstitution;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceInstitution implements ServiceInterface<DTOResponseInstitution, DTORequestInstitution, Institution> {
 
     private final RepositoryInstitution repositoryInstitution;
-
-    public ServiceInstitution(RepositoryInstitution repositoryInstitution) {
-        this.repositoryInstitution = repositoryInstitution;
-    }
 
     public DTOResponseInstitution create(DTORequestInstitution created){
         return DTOResponseInstitution.toDTO(repositoryInstitution.save(created.toObject()));

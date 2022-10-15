@@ -5,6 +5,7 @@ import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservatio
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
 import br.eti.gadelha.persistence.model.synoptic.SynopticObservationId;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
+import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.io.ParseException;
@@ -19,14 +20,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceSynopticObservation {
 
     private final RepositorySynopticObservation repositorySynopticObservation;
-
-    public ServiceSynopticObservation(RepositorySynopticObservation repositorySynopticObservation) {
-        this.repositorySynopticObservation = repositorySynopticObservation;
-    }
 
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
         return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.save(created.toObject()));
@@ -78,7 +75,7 @@ public class ServiceSynopticObservation {
     public Geometry wktToGeometry(String wellKnownText) throws ParseException {
         return new WKTReader().read(wellKnownText);
     }
-    public DTOResponseSynopticObservation update(DTORequestSynopticObservation updated) throws ParseException {
+    public DTOResponseSynopticObservation update(DTORequestSynopticObservation updated) {
         SynopticObservation synopticObservation = repositorySynopticObservation.findById(new SynopticObservationId(updated.getDateObservation(), updated.getDdddddd())).orElse(null);
 //        Geometry geometry = wktToGeometry("POINT (2 5)");
 //        synopticObservation.setCoordinates((Point) new WKTReader().read("POINT (2 5)"));

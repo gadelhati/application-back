@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestStation;
 import br.eti.gadelha.persistence.payload.response.DTOResponseStation;
 import br.eti.gadelha.persistence.model.unity.Station;
 import br.eti.gadelha.persistence.repository.RepositoryStation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceStation implements ServiceInterface<DTOResponseStation, DTORequestStation, Station> {
 
     private final RepositoryStation repositoryStation;
-
-    public ServiceStation(RepositoryStation repositoryStation) {
-        this.repositoryStation = repositoryStation;
-    }
 
     public DTOResponseStation create(DTORequestStation created){
         return DTOResponseStation.toDTO(repositoryStation.save(created.toObject()));

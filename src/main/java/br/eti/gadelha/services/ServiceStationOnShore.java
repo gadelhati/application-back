@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestStationOnShore;
 import br.eti.gadelha.persistence.payload.response.DTOResponseStationOnShore;
 import br.eti.gadelha.persistence.model.unity.StationOnShore;
 import br.eti.gadelha.persistence.repository.RepositoryStationOnShore;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceStationOnShore implements ServiceInterface<DTOResponseStationOnShore, DTORequestStationOnShore, StationOnShore> {
 
     private final RepositoryStationOnShore repositoryStationOnShore;
-
-    public ServiceStationOnShore(RepositoryStationOnShore repositoryStationOnShore) {
-        this.repositoryStationOnShore = repositoryStationOnShore;
-    }
 
     public DTOResponseStationOnShore create(DTORequestStationOnShore created){
         return DTOResponseStationOnShore.toDTO(repositoryStationOnShore.save(created.toObject()));

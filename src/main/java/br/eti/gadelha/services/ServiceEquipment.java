@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestEquipment;
 import br.eti.gadelha.persistence.payload.response.DTOResponseEquipment;
 import br.eti.gadelha.persistence.model.unity.Equipment;
 import br.eti.gadelha.persistence.repository.RepositoryEquipment;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, DTORequestEquipment, Equipment> {
 
     private final RepositoryEquipment repositoryEquipment;
-
-    public ServiceEquipment(RepositoryEquipment repositoryEquipment) {
-        this.repositoryEquipment = repositoryEquipment;
-    }
 
     public DTOResponseEquipment create(DTORequestEquipment created){
         return DTOResponseEquipment.toDTO(repositoryEquipment.save(created.toObject()));

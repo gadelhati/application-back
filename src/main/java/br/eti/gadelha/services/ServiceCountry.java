@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestCountry;
 import br.eti.gadelha.persistence.payload.response.DTOResponseCountry;
 import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.repository.RepositoryCountry;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTORequestCountry, Country> {
 
     private final RepositoryCountry repositoryCountry;
-
-    public ServiceCountry(RepositoryCountry repositoryCountry) {
-        this.repositoryCountry = repositoryCountry;
-    }
 
     public DTOResponseCountry create(DTORequestCountry created){
         return DTOResponseCountry.toDTO(repositoryCountry.save(created.toObject()));

@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestRole;
 import br.eti.gadelha.persistence.payload.response.DTOResponseRole;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.repository.RepositoryRole;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequestRole, Role> {
 
     private final RepositoryRole repositoryRole;
-
-    public ServiceRole(RepositoryRole repositoryRole) {
-        this.repositoryRole = repositoryRole;
-    }
 
     public DTOResponseRole create(DTORequestRole created){
         return DTOResponseRole.toDTO(repositoryRole.save(created.toObject()));

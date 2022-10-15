@@ -4,6 +4,7 @@ import br.eti.gadelha.persistence.payload.request.DTORequestPlatformCategory;
 import br.eti.gadelha.persistence.payload.response.DTOResponsePlatformCategory;
 import br.eti.gadelha.persistence.model.unity.PlatformCategory;
 import br.eti.gadelha.persistence.repository.RepositoryPlatformCategory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ServicePlatformCategory implements ServiceInterface<DTOResponsePlatformCategory, DTORequestPlatformCategory, PlatformCategory> {
 
     private final RepositoryPlatformCategory repositoryPlatformCategory;
-
-    public ServicePlatformCategory(RepositoryPlatformCategory repositoryPlatformCategory) {
-        this.repositoryPlatformCategory = repositoryPlatformCategory;
-    }
 
     public DTOResponsePlatformCategory create(DTORequestPlatformCategory created){
         return DTOResponsePlatformCategory.toDTO(repositoryPlatformCategory.save(created.toObject()));
