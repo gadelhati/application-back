@@ -99,7 +99,7 @@ SOFTWARE.
 [//]: # (q1 If you have ideas for releases in the future, it is a good idea to list them in the README.)
 - [ ] add data Point of PostGis
 - [ ] service to provide sidebar access
-- [ ] filter by Role
+- [ ] filter by Source
 - [ ] set up Role and Privileges
 - [ ] set up Role Hierarchy
 - [ ] change default jwt to personal jwt
