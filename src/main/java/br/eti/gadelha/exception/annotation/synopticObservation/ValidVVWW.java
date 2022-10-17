@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidVVWW {
 
-    String message() default "Para o código VV digitado, o campo ww não é aceito. Favor verificar VV ou ww";
+    String message() default "{validVVWW.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidCLCM {
 
-    String message() default "Para o código CL digitado, o campo CM não é aceito. Favor verificar CL ou CM";
+    String message() default "{validCLCM.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

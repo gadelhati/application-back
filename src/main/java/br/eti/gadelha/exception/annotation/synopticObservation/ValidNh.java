@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidNh {
 
-    String message() default "Para o código N digitado, o campo h não é aceito. Favor verificar N ou h";
+    String message() default "{validNh.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

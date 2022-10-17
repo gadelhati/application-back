@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidTxTxTx {
 
-    String message() default "TxTxTx não pode ser maior que TTT. Favor verificar";
+    String message() default "{validTxTxTx.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

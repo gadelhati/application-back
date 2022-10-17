@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidNddff {
 
-    String message() default "Para o código dd digitado, o campo ff≠00 não é aceito. Favor informar dd ou ff correto";
+    String message() default "{validNddff.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

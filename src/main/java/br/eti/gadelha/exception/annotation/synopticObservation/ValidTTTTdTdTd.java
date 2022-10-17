@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidTTTTdTdTd {
 
-    String message() default "Verificar o valor de TdTdTd. O mesmo deve ser menor ou igual TTT";
+    String message() default "{validTTTTdTdTd.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

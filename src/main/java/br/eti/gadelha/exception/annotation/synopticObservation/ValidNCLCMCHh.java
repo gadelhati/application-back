@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidNCLCMCHh {
 
-    String message() default "Para o código N digitado, os campos CL CM CH ou h não são aceitos. Favor verificar N CL CM CH ou h";
+    String message() default "{validNCLCMCHh.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

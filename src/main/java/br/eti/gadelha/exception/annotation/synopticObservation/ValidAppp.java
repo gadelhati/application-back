@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidAppp {
 
-    String message() default "Para o código a digitado, o campo ppp não é aceito. Favor verificar a ou ppp";
+    String message() default "{validAppp.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

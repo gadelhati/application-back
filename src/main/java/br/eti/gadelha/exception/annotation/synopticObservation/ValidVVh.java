@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidVVh {
 
-    String message() default "Para o código VV digitado, o campo h não é aceito. Favor verificar VV ou h";
+    String message() default "{validVVh.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

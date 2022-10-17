@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidCMCH {
 
-    String message() default "Para o código CM digitado, o campo CH não é aceito. Favor verificar CM ou CH";
+    String message() default "{validCMCH}.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

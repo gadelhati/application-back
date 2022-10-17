@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidNW2 {
 
-    String message() default "Para o código N digitado, o campo W2 não é aceito. Favor verificar N ou W2";
+    String message() default "{validNW2.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

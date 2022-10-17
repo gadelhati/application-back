@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidTTT {
 
-    String message() default "Para o código TTT digitado, o campo ww não é aceito. Favor verificar TTT ou ww";
+    String message() default "{validTTT.valid}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }
