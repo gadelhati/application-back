@@ -6,6 +6,8 @@ import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import static br.eti.gadelha.exception.validator.GlobalValidation.isValidWithNumber;
+
 public class ValidTTTTdTdTdValidator implements ConstraintValidator<ValidTTTTdTdTd, DTORequestSynopticObservation> {
 
     @Override
@@ -13,11 +15,7 @@ public class ValidTTTTdTdTdValidator implements ConstraintValidator<ValidTTTTdTd
     }
     @Override
     public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
-        if ( value == null ) {
-            return false;
-        } else if( value.getTtt() !=null && !value.getTtt().equals("///")
-                && value.getTdtdtd() != null && !value.getTdtdtd().equals("///")
-                && Integer.parseInt(value.getTtt()) < Integer.parseInt(value.getTdtdtd()) ) {
+        if(isValidWithNumber(value.getTdtdtd()) && isValidWithNumber(value.getTtt()) && Integer.parseInt(value.getTdtdtd()) > Integer.parseInt(value.getTtt())) {
             return false;
         } else {
             return true;
