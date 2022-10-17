@@ -6,6 +6,8 @@ import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import static br.eti.gadelha.exception.validator.GlobalValidation.isValidWithNumber;
+
 public class ValidTTTValidator implements ConstraintValidator<ValidTTT, DTORequestSynopticObservation> {
 
     @Override
@@ -13,55 +15,39 @@ public class ValidTTTValidator implements ConstraintValidator<ValidTTT, DTOReque
     }
     @Override
     public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
-//        if ( value == null ) {
-//            return false;
-//        } else if(value.getSn1_1() != null) {
-//            if (value.getTntntn() == null || value.getWw() == null) {
-//                return false;
-//            }
-//            else {
-//                if (value.getSn1_1().equals("0")) {
-//                    if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 50 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 70 && Integer.parseInt(value.getWw()) <= 79) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 50 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 85 && Integer.parseInt(value.getWw()) <= 85) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 120 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 68 && Integer.parseInt(value.getWw()) <= 69) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 120 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 83 && Integer.parseInt(value.getWw()) <= 85) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 30 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 48 && Integer.parseInt(value.getWw()) <= 49) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 30 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 56 && Integer.parseInt(value.getWw()) <= 57) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 30 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 66 && Integer.parseInt(value.getWw()) <= 67) {
-//                        return false;
-//                    } else {
-//                        return true;
-//                    }
-//                } else if (value.getSn1_1().equals("1")) {
-//                    if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 20 && Integer.parseInt(value.getWw()) >= 70 && Integer.parseInt(value.getWw()) <= 79) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 20 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 50 && Integer.parseInt(value.getWw()) <= 55) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 20 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 80 && Integer.parseInt(value.getWw()) <= 82) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 50 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 68 && Integer.parseInt(value.getWw()) <= 69) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 50 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 83 && Integer.parseInt(value.getWw()) <= 84) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 100 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 56 && Integer.parseInt(value.getWw()) <= 57) {
-//                        return false;
-//                    } else if (!value.getTtt().isEmpty() && Integer.parseInt(value.getTtt()) > 100 && !value.getWw().isEmpty() && Integer.parseInt(value.getWw()) >= 66 && Integer.parseInt(value.getWw()) <= 67) {
-//                        return false;
-//                    } else {
-//                        return true;
-//                    }
-//                } else {
-//                    return false;
-//                }
-//            }
-//        }else {
-            return true;
-//        }
+        if (isValidWithNumber(value.getTtt()) && isValidWithNumber(value.getWw())) {
+            if(value.getSn1_1().equals("0")){
+                if (Integer.parseInt(value.getTtt()) > 50 && Integer.parseInt(value.getWw()) >= 70 && Integer.parseInt(value.getWw()) >= 79 ||
+                        Integer.parseInt(value.getTtt()) > 50 && Integer.parseInt(value.getWw()) >= 85 && Integer.parseInt(value.getWw()) >= 88 ||
+                        Integer.parseInt(value.getTtt()) > 120 && Integer.parseInt(value.getWw()) >= 68 && Integer.parseInt(value.getWw()) >= 69 ||
+                        Integer.parseInt(value.getTtt()) > 120 && Integer.parseInt(value.getWw()) >= 83 && Integer.parseInt(value.getWw()) >= 85 ||
+                        Integer.parseInt(value.getTtt()) > 30 && Integer.parseInt(value.getWw()) >= 48 && Integer.parseInt(value.getWw()) >= 49 ||
+                        Integer.parseInt(value.getTtt()) > 30 && Integer.parseInt(value.getWw()) >= 56 && Integer.parseInt(value.getWw()) >= 57 ||
+                        Integer.parseInt(value.getTtt()) > 30 && Integer.parseInt(value.getWw()) >= 66 && Integer.parseInt(value.getWw()) >= 67) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else if (value.getSn1_1().equals("1")) {
+                if (Integer.parseInt(value.getTtt()) > 20 && Integer.parseInt(value.getWw()) >= 50 && Integer.parseInt(value.getWw()) >= 55 ||
+                        Integer.parseInt(value.getTtt()) > 20 && Integer.parseInt(value.getWw()) >= 58 && Integer.parseInt(value.getWw()) >= 65 ||
+                        Integer.parseInt(value.getTtt()) > 20 && Integer.parseInt(value.getWw()) >= 80 && Integer.parseInt(value.getWw()) >= 82 ||
+                        Integer.parseInt(value.getTtt()) > 50 && Integer.parseInt(value.getWw()) >= 68 && Integer.parseInt(value.getWw()) >= 69 ||
+                        Integer.parseInt(value.getTtt()) > 50 && Integer.parseInt(value.getWw()) >= 83 && Integer.parseInt(value.getWw()) >= 84 ||
+                        Integer.parseInt(value.getTtt()) > 100 && Integer.parseInt(value.getWw()) >= 56 && Integer.parseInt(value.getWw()) >= 57 ||
+                        Integer.parseInt(value.getTtt()) > 100 && Integer.parseInt(value.getWw()) >= 66 && Integer.parseInt(value.getWw()) >= 67) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        } else {
+            if (value.getTtt().equals("///")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 }
