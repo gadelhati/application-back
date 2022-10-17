@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class SynopticObservation implements Serializable {
 
 //    https://www.baeldung.com/hibernate-spatial
-    @Column(columnDefinition = "geography")
+    @Column(columnDefinition = "POINT")
     private Point coordinates;
     private String latitude;
     private String longitude;

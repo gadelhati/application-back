@@ -21,7 +21,7 @@ import java.util.Date;
 /*@ValidNhCLCM*/ @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh /*@ValidNW2*/ @ValidTdTdTd @ValidTnTnTn /*@ValidTTT*/ @ValidTxTxTx @ValidVVh /*@ValidVVWW*/ @ValidW1W2
 public class DTORequestSynopticObservation {
 
-    @Column(columnDefinition = "geography")
+    @Column(columnDefinition = "POINT")
     private Point coordinates;
     private String latitude;
     private String longitude;
