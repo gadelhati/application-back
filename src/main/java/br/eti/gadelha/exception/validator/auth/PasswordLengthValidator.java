@@ -1,6 +1,6 @@
-package br.eti.gadelha.exception.validator;
+package br.eti.gadelha.exception.validator.auth;
 
-import br.eti.gadelha.exception.annotation.PasswordLength;
+import br.eti.gadelha.exception.annotation.auth.PasswordLength;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

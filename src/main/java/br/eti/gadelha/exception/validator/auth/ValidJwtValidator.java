@@ -1,7 +1,6 @@
-package br.eti.gadelha.exception.validator;
+package br.eti.gadelha.exception.validator.auth;
 
-import br.eti.gadelha.exception.annotation.ValidJwt;
-import io.jsonwebtoken.*;
+import br.eti.gadelha.exception.annotation.auth.ValidJwt;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

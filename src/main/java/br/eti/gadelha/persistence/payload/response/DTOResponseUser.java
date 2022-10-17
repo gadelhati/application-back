@@ -1,7 +1,7 @@
 package br.eti.gadelha.persistence.payload.response;
 
-import br.eti.gadelha.exception.annotation.UniqueEmail;
-import br.eti.gadelha.exception.annotation.UniqueNameRole;
+import br.eti.gadelha.exception.annotation.auth.UniqueEmail;
+import br.eti.gadelha.exception.annotation.auth.UniqueNameRole;
 import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.model.Role;
 import br.eti.gadelha.persistence.model.User;

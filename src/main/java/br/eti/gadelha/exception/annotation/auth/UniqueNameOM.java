@@ -1,6 +1,6 @@
-package br.eti.gadelha.exception.annotation;
+package br.eti.gadelha.exception.annotation.auth;
 
-import br.eti.gadelha.exception.validator.UniqueEmailValidator;
+import br.eti.gadelha.exception.validator.auth.UniqueNameOMValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,8 +9,8 @@ import java.lang.annotation.*;
 @Documented
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueEmailValidator.class)
-public @interface UniqueEmail {
+@Constraint(validatedBy = UniqueNameOMValidator.class)
+public @interface UniqueNameOM {
     public String message() default "{unique}";
     public Class<?>[] groups() default { };
     public Class<? extends Payload>[] payload() default{ };

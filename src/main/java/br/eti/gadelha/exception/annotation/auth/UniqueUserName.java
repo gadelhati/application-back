@@ -1,6 +1,6 @@
-package br.eti.gadelha.exception.annotation;
+package br.eti.gadelha.exception.annotation.auth;
 
-import br.eti.gadelha.exception.validator.ValidUserNameValidator;
+import br.eti.gadelha.exception.validator.auth.UniqueUserNameValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,9 +9,9 @@ import java.lang.annotation.*;
 @Documented
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ValidUserNameValidator.class)
-public @interface ValidUserName {
-    public String message() default "{valid.username}";
+@Constraint(validatedBy = UniqueUserNameValidator.class)
+public @interface UniqueUserName {
+    public String message() default "{unique}";
     public Class<?>[] groups() default { };
     public Class<? extends Payload>[] payload() default{ };
 }

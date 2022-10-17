@@ -1,7 +1,6 @@
-package br.eti.gadelha.exception.validator;
+package br.eti.gadelha.exception.validator.auth;
 
-import br.eti.gadelha.exception.annotation.UniqueUserName;
-import br.eti.gadelha.services.ServiceRole;
+import br.eti.gadelha.exception.annotation.auth.UniqueUserName;
 import br.eti.gadelha.services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 

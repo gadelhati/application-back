@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.exception.annotation.UniqueUserName;
+import br.eti.gadelha.exception.annotation.auth.UniqueUserName;
 import br.eti.gadelha.persistence.model.Role;
 import lombok.Getter;
 
