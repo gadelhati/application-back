@@ -15,7 +15,7 @@ public class ValidVVWWValidator implements ConstraintValidator<ValidVVWW, DTOReq
     }
     @Override
     public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
-        if(isValidWithNumber(value.getWw()) && isValidWithNumber(value.getWw())) {
+        if(isValidWithNumber(value.getVv()) && isValidWithNumber(value.getWw())) {
             if (Integer.parseInt(value.getVv()) < Integer.parseInt(value.getWw())) {
                 return false;
             } else if (Integer.parseInt(value.getVv()) >= 94 && Integer.parseInt(value.getVv()) <= 99 &&
