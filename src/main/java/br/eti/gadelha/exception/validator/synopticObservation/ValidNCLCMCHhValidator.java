@@ -6,6 +6,8 @@ import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import static br.eti.gadelha.exception.validator.GlobalValidation.isValidWithNumber;
+
 public class ValidNCLCMCHhValidator implements ConstraintValidator<ValidNCLCMCHh, DTORequestSynopticObservation> {
 
     @Override
@@ -13,15 +15,12 @@ public class ValidNCLCMCHhValidator implements ConstraintValidator<ValidNCLCMCHh
     }
     @Override
     public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
-        if ( value == null ) {
-            return false;
-        } else if( value.getNh() != null &&value.getCl() != null &&value.getCm() != null &&value.getCh() != null &&
-                value.getNh().equals("9")
-                && (!value.getCl().isEmpty() && !value.getCl().equals("/") && Integer.parseInt(value.getCl()) >= 0
-                || !value.getCm().isEmpty() && !value.getCm().equals("/") && Integer.parseInt(value.getCm()) >= 0
-                || !value.getCh().isEmpty() && !value.getCh().equals("/") && Integer.parseInt(value.getCh()) >= 0
-                || !value.getH().isEmpty() && !value.getH().equals("/") && Integer.parseInt(value.getH()) >= 0 )) {
-            return false;
+        if(value.getN() != null && isValidWithNumber(value.getCl()) && isValidWithNumber(value.getCm()) && isValidWithNumber(value.getCh()) && value.getH() != null) {
+            if(value.getN().equals("0") && Integer.parseInt(value.getCl()) > 0 || Integer.parseInt(value.getCm()) > 0 || Integer.parseInt(value.getCh()) > 0 || !value.getH().equals("9") ) {
+                return false;
+            } else {
+                return true;
+            }
         } else {
             return true;
         }

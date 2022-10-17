@@ -15,8 +15,12 @@ public class ValidTTTTdTdTdValidator implements ConstraintValidator<ValidTTTTdTd
     }
     @Override
     public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
-        if(isValidWithNumber(value.getTdtdtd()) && isValidWithNumber(value.getTtt()) && Integer.parseInt(value.getTdtdtd()) > Integer.parseInt(value.getTtt())) {
-            return false;
+        if(isValidWithNumber(value.getTdtdtd()) && isValidWithNumber(value.getTtt())) {
+            if(Integer.parseInt(value.getTdtdtd()) > Integer.parseInt(value.getTtt())) {
+                return false;
+            } else {
+                return true;
+            }
         } else {
             return true;
         }

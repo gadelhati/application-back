@@ -17,21 +17,14 @@ public class ValidNddffValidator implements ConstraintValidator<ValidNddff, DTOR
     }
     @Override
     public boolean isValid(DTORequestSynopticObservation value, ConstraintValidatorContext context) {
-        if ( value == null ) {
-            return false;
-        } else if ( isValidWithName(value.getDd()) && isValidWithName(value.getFf())) {
-            if(value.getDd().equals("00") && !value.getFf().equals("00")) {
+        if( isValidWithNumber(value.getDd()) && isValidWithNumber(value.getFf())) {
+            if (Integer.parseInt(value.getDd()) == 0 && Integer.parseInt(value.getFf()) != 0 ||
+                    Integer.parseInt(value.getDd()) >= 0 && Integer.parseInt(value.getDd()) <= 36 && Integer.parseInt(value.getFf()) == 0 ||
+                    Integer.parseInt(value.getDd()) == 99 && Integer.parseInt(value.getFf()) == 0) {
                 return false;
+            } else {
+                return true;
             }
-            if(value.getDd().equals("99") && value.getFf().equals("00")) {
-                return false;
-            }
-            if (isValidWithNumber(value.getDd()) && isValidWithNumber(value.getFf())){
-                if(Integer.parseInt(value.getDd()) >= 0 && Integer.parseInt(value.getDd()) <= 36 && value.getFf().equals("00")){
-                    return false;
-                }
-            }
-            return true;
         } else {
             return true;
         }

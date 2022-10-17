@@ -40,14 +40,11 @@ public class ValidTTTValidator implements ConstraintValidator<ValidTTT, DTOReque
                 } else {
                     return true;
                 }
+            } else {
+                return true;
             }
         } else {
-            if (value.getTtt().equals("///")) {
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         }
-        return false;
     }
 }
