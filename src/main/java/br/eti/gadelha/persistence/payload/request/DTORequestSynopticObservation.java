@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.exception.annotation.observation.*;
+import br.eti.gadelha.exception.annotation.synopticObservation.*;
 import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
