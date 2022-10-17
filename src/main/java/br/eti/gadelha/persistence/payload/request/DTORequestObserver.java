@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.persistence.model.unity.Observer;
+import br.eti.gadelha.persistence.model.synopticObservation.Observer;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;

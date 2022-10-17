@@ -2,7 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestInstitution;
 import br.eti.gadelha.persistence.payload.response.DTOResponseInstitution;
-import br.eti.gadelha.persistence.model.unity.Institution;
+import br.eti.gadelha.persistence.model.Institution;
 import br.eti.gadelha.persistence.repository.RepositoryInstitution;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

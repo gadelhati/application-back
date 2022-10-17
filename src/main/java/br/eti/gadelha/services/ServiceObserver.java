@@ -2,7 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestObserver;
 import br.eti.gadelha.persistence.payload.response.DTOResponseObserver;
-import br.eti.gadelha.persistence.model.unity.Observer;
+import br.eti.gadelha.persistence.model.synopticObservation.Observer;
 import br.eti.gadelha.persistence.repository.RepositoryObserver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

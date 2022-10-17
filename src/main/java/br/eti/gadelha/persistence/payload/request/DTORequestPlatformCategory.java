@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.persistence.model.unity.PlatformCategory;
+import br.eti.gadelha.persistence.model.synopticObservation.PlatformCategory;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;

@@ -1,8 +1,9 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.persistence.model.Country;
+import br.eti.gadelha.persistence.model.*;
 import br.eti.gadelha.persistence.model.sailingDirection.Commission;
-import br.eti.gadelha.persistence.model.unity.*;
+import br.eti.gadelha.persistence.model.synopticObservation.Station;
+import br.eti.gadelha.persistence.model.synopticObservation.StationCategory;
 import lombok.Getter;
 
 @Getter

@@ -1,7 +1,7 @@
 package br.eti.gadelha.persistence.payload.response;
 
-import br.eti.gadelha.persistence.model.unity.Equipment;
-import br.eti.gadelha.persistence.model.unity.Manufacturer;
+import br.eti.gadelha.persistence.model.Equipment;
+import br.eti.gadelha.persistence.model.Manufacturer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

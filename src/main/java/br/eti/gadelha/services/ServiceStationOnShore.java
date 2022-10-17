@@ -2,7 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestStationOnShore;
 import br.eti.gadelha.persistence.payload.response.DTOResponseStationOnShore;
-import br.eti.gadelha.persistence.model.unity.StationOnShore;
+import br.eti.gadelha.persistence.model.synopticObservation.StationOnShore;
 import br.eti.gadelha.persistence.repository.RepositoryStationOnShore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

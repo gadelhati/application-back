@@ -1,8 +1,7 @@
-package br.eti.gadelha.persistence.model.unity;
+package br.eti.gadelha.persistence.model.synopticObservation;
 
+import br.eti.gadelha.persistence.model.*;
 import br.eti.gadelha.persistence.model.sailingDirection.Commission;
-import br.eti.gadelha.persistence.model.Country;
-import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

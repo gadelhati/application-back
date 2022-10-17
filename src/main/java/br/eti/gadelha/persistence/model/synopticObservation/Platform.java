@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.unity;
+package br.eti.gadelha.persistence.model.synopticObservation;
 
 import br.eti.gadelha.persistence.model.Country;
 import br.eti.gadelha.persistence.model.GenericEntity;

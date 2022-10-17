@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.persistence.model.unity.Manufacturer;
+import br.eti.gadelha.persistence.model.Manufacturer;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;

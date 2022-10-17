@@ -1,6 +1,7 @@
 package br.eti.gadelha.persistence.payload.response;
 
-import br.eti.gadelha.persistence.model.unity.*;
+import br.eti.gadelha.persistence.model.synopticObservation.Platform;
+import br.eti.gadelha.persistence.model.synopticObservation.StationOffShore;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

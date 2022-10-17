@@ -1,8 +1,8 @@
 package br.eti.gadelha.persistence.model.sailingDirection;
 
 import br.eti.gadelha.persistence.model.GenericEntity;
-import br.eti.gadelha.persistence.model.unity.Institution;
-import br.eti.gadelha.persistence.model.unity.Surveying;
+import br.eti.gadelha.persistence.model.Institution;
+import br.eti.gadelha.persistence.model.Surveying;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

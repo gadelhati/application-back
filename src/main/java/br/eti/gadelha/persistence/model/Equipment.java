@@ -1,6 +1,5 @@
-package br.eti.gadelha.persistence.model.unity;
+package br.eti.gadelha.persistence.model;
 
-import br.eti.gadelha.persistence.model.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

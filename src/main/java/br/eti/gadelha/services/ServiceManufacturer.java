@@ -2,7 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestManufacturer;
 import br.eti.gadelha.persistence.payload.response.DTOResponseManufacturer;
-import br.eti.gadelha.persistence.model.unity.Manufacturer;
+import br.eti.gadelha.persistence.model.Manufacturer;
 import br.eti.gadelha.persistence.repository.RepositoryManufacturer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

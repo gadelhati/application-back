@@ -1,12 +1,12 @@
 package br.eti.gadelha.persistence.payload.response;
 
 import br.eti.gadelha.persistence.model.Country;
-import br.eti.gadelha.persistence.model.unity.Station;
+import br.eti.gadelha.persistence.model.synopticObservation.Station;
 import br.eti.gadelha.persistence.model.sailingDirection.Commission;
-import br.eti.gadelha.persistence.model.unity.Equipment;
-import br.eti.gadelha.persistence.model.unity.Institution;
-import br.eti.gadelha.persistence.model.unity.StationCategory;
-import br.eti.gadelha.persistence.model.unity.Surveying;
+import br.eti.gadelha.persistence.model.Equipment;
+import br.eti.gadelha.persistence.model.Institution;
+import br.eti.gadelha.persistence.model.synopticObservation.StationCategory;
+import br.eti.gadelha.persistence.model.Surveying;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

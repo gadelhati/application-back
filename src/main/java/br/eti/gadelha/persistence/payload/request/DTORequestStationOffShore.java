@@ -1,6 +1,7 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.persistence.model.unity.*;
+import br.eti.gadelha.persistence.model.synopticObservation.Platform;
+import br.eti.gadelha.persistence.model.synopticObservation.StationOffShore;
 import lombok.Builder;
 import lombok.Getter;
 

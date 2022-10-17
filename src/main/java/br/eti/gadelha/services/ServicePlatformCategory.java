@@ -2,7 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestPlatformCategory;
 import br.eti.gadelha.persistence.payload.response.DTOResponsePlatformCategory;
-import br.eti.gadelha.persistence.model.unity.PlatformCategory;
+import br.eti.gadelha.persistence.model.synopticObservation.PlatformCategory;
 import br.eti.gadelha.persistence.repository.RepositoryPlatformCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.payload.response;
 
-import br.eti.gadelha.persistence.model.unity.PlatformCategory;
+import br.eti.gadelha.persistence.model.synopticObservation.PlatformCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

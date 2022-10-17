@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.repository;
 
-import br.eti.gadelha.persistence.model.unity.PlatformCategory;
+import br.eti.gadelha.persistence.model.synopticObservation.PlatformCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

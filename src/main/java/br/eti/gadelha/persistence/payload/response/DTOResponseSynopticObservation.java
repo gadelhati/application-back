@@ -1,6 +1,6 @@
 package br.eti.gadelha.persistence.payload.response;
 
-import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
+import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

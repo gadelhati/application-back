@@ -1,4 +1,4 @@
-package br.eti.gadelha.persistence.model.synoptic;
+package br.eti.gadelha.persistence.model.synopticObservation;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

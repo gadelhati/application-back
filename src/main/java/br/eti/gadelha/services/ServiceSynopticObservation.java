@@ -2,12 +2,11 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservation;
-import br.eti.gadelha.persistence.model.synoptic.SynopticObservation;
-import br.eti.gadelha.persistence.model.synoptic.SynopticObservationId;
+import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservation;
+import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservationId;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
 import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 import org.springframework.data.domain.Page;
