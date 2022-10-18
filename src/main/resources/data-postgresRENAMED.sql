@@ -8734,3 +8734,8 @@ INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, 
 INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('66c31ade-e4e9-4c45-bba7-f12fe40d85ef', true, '83970', 0, 0, 0, 0, 0, 0, 0, 'Mostardas', 0) ON CONFLICT DO NOTHING;
 INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, collection_depth, latitude, longitude, marsden_square_10, marsden_sub_square_1, marsden_sub_square_5, name, wmo_square) VALUES ('8e58bda1-800e-40c4-adbb-538ed1add778', true, '83998', 0, 0, 0, 0, 0, 0, 0, 'Chuí', 0) ON CONFLICT DO NOTHING;
 SELECT * FROM synoptic_observation.station_on_shore;
+
+-- POPULANDO synoptic_observation.observer
+INSERT INTO synoptic_observation.observer(id, name) VALUES ('c0fc0704-e17c-4a81-9024-4a9c62ff2e8a', 'Andréa') ON CONFLICT DO NOTHING;
+INSERT INTO synoptic_observation.observer(id, name) VALUES ('37647911-c4f4-4f8a-a942-71c766795dac', 'Gael') ON CONFLICT DO NOTHING;
+SELECT * FROM synoptic_observation.observer;
