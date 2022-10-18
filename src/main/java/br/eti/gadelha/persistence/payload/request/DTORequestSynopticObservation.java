@@ -18,14 +18,10 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor @JsonIgnoreProperties(ignoreUnknown = true)
-/*@ValidNhCLCM*/ @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh /*@ValidNW2*/
-@ValidTTTTnTnTn /*@ValidTTT*/ @ValidTxTxTx @ValidVVh /*@ValidVVWW*/ @ValidW1W2
+@ValidNhCLCM @ValidTTTTdTdTd @ValidAppp @ValidCLCM @ValidCMCH @ValidNCLCMCH @ValidNCLCMCHh @ValidNddff @ValidNh @ValidNhCLCMCHh @ValidNhCLCMh @ValidNNh @ValidNW2
+@ValidTTTTnTnTn @ValidTTT @ValidTxTxTx @ValidVVh @ValidVVWW @ValidW1W2
 public class DTORequestSynopticObservation {
 
-    @Column(columnDefinition = "POINT")
-    private Point coordinates;
-    private String latitude;
-    private String longitude;
     //SECTION 0
 
     //AABB
@@ -262,6 +258,6 @@ public class DTORequestSynopticObservation {
 //    private User observer;
 
     public SynopticObservation toObject(){
-        return new SynopticObservation(coordinates, latitude, longitude, mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, dateObservation, observerName/*, station, observer*/);
+        return new SynopticObservation(mimi, mjmj, ddddddd, a1, bw, nbnbnb, yy, gg, iw, ii, iii, lalala, qc, lolololo, ir, ix, h, vv, n, dd, ff, fff, sn1_1, ttt, sn2_1, tdtdtd, p0p0p0p0, pppp, a3, hhh, a, ppp, rrr, tr, ww, w1w2, /*w1, w2,*/ wawa, wa1, wa2, nh, cl, cm, ch, gggg, ds, vs, ss, twtwtw, pwapwa, hwahwa, pwpw, hwhw, dw1dw1, dw2dw2, pw1pw1, hw1hw1, pw2pw2, hw2hw2, is_ice, eses, rs, hwahwahwa, sw, tbtbtb, ci, si, bi, di, zi, sn1_3, txtxtx, sn2_3, tntntn, ind89, p24p24p24, ichw, icm, cs, icf, icp, icq, dateObservation, observerName/*, station, observer*/);
     }
 }
