@@ -226,10 +226,6 @@ spring.datasource.password= password
 spring.jpa.properties.hibernate.dialect= org.hibernate.spatial.dialect.postgis.PostgisDialect
 spring.jpa.hibernate.ddl-auto= create
 
-# App Properties
-gadelha.app.jwtSecret= gadelhaSecretKey
-gadelha.app.jwtExpirationMs= 604800000
-gadelha.app.jwtRefreshExpirationMs= 12000000
 ```
 
 ### Features
