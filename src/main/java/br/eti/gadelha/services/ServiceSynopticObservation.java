@@ -1,9 +1,13 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.model.synopticObservation.Observer;
+import br.eti.gadelha.persistence.model.synopticObservation.StationOnShore;
 import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservation;
 import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservationId;
+import br.eti.gadelha.persistence.repository.RepositoryObserver;
+import br.eti.gadelha.persistence.repository.RepositoryStationOnShore;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
 import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Geometry;
@@ -23,8 +27,14 @@ import java.util.*;
 public class ServiceSynopticObservation {
 
     private final RepositorySynopticObservation repositorySynopticObservation;
+    private final RepositoryStationOnShore repositoryStationOnShore;
+    private final RepositoryObserver repositoryObserver;
 
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
+        StationOnShore stationOnShore = repositoryStationOnShore.findByName(created.getDdddddd());
+        created.setStation(stationOnShore);
+        Observer observer = repositoryObserver.findByName(created.getObserverName());
+        created.setObserver(observer);
         return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.save(created.toObject()));
     }
     public List<DTOResponseSynopticObservation> create(List<DTORequestSynopticObservation> createds){
@@ -159,9 +169,13 @@ public class ServiceSynopticObservation {
         synopticObservation.setIcf(updated.getIcf());
         synopticObservation.setIcp(updated.getIcp());
         synopticObservation.setIcq(updated.getIcq());
-        synopticObservation.setObserverName(updated.getObserverName());
-//        synopticObservation.setStation(updated.getStation());
-//        synopticObservation.setDateObservation(updated.getDateObservation());
+        synopticObservation.setDateObservation(updated.getDateObservation());
+
+        StationOnShore stationOnShore = repositoryStationOnShore.findByName(updated.getDdddddd());
+        synopticObservation.setStation(stationOnShore);
+        Observer observer = repositoryObserver.findByName(updated.getObserverName());
+        synopticObservation.setObserver(observer);
+
         return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.save(synopticObservation));
     }
     public DTOResponseSynopticObservation delete(String dateObservation, String ddddddd){

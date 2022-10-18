@@ -1,8 +1,8 @@
 package br.eti.gadelha.persistence.model.synopticObservation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.envers.Audited;
-import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -150,12 +150,13 @@ public class SynopticObservation implements Serializable {
 
     @Id
     private LocalDateTime dateObservation;
+    @Transient
     private String observerName;
 
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-//    @JoinColumn(name = "station")
-//    private Station station;
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-//    @JoinColumn(name = "observer")
-//    private User observer;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "station")
+    private Station station;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "observer")
+    private Observer observer;
 }
