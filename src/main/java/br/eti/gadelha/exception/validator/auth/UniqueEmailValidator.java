@@ -18,9 +18,7 @@ public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, DT
     }
     @Override
     public boolean isValid(DTORequestUser value, ConstraintValidatorContext context) {
-        if ( value == null ) {
-            return false;
-        } else if(!serviceUser.existsByEmail(value.getEmail())) {
+        if ( value != null && !serviceUser.existsByEmail(value.getEmail())) {
             return false;
         } else {
             return true;

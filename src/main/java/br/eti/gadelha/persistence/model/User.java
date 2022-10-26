@@ -12,12 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Audited @Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-@Table(	name = "user",
-		uniqueConstraints = { 
-			@UniqueConstraint(columnNames = "username"),
-			@UniqueConstraint(columnNames = "email") 
-		})
+@Audited @Entity @Data @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"username", "email"}))
 public class User extends GenericEntity {
 	@NotBlank
 	@Size(max = 20)

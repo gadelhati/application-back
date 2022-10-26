@@ -1,5 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
+import br.eti.gadelha.exception.annotation.UniqueStationOnShore;
 import br.eti.gadelha.persistence.model.synopticObservation.StationOnShore;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter @Builder
 public class DTORequestStationOnShore extends DTORequestStation {
 
+    @UniqueStationOnShore
     private String name;
     private LocalDateTime dateTime;
     private double latitude;

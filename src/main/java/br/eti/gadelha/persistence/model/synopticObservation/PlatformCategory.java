@@ -9,7 +9,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 public class PlatformCategory extends GenericEntity {
 
     private String name;

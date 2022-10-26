@@ -14,6 +14,10 @@ public class UniqueNameRoleValidator implements ConstraintValidator<UniqueNameRo
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value != null && !serviceRole.existsByName(value);
+        if (value != null && !serviceRole.existsByName(value)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

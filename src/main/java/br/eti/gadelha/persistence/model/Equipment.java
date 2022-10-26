@@ -7,7 +7,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 public class Equipment extends GenericEntity {
 
     private String name;

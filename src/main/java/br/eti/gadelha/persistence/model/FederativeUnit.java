@@ -9,7 +9,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "initials"}))
 public class FederativeUnit extends GenericEntity {
 
     @NotNull
