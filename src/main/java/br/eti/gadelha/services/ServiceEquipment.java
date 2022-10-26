@@ -68,6 +68,6 @@ public class ServiceEquipment implements ServiceInterface<DTOResponseEquipment, 
     }
     public Equipment findByName(String value) { return  repositoryEquipment.findByName(value); }
     public boolean existsByName(String value) {
-        return repositoryEquipment.existsByName(value);
+        return repositoryEquipment.existsByNameContainingIgnoreCase(value);
     }
 }

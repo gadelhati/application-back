@@ -73,7 +73,7 @@ public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DT
     }
     public Platform findByName(String value) { return  repositoryPlatform.findByName(value); }
     public boolean existsByName(String value) {
-        return repositoryPlatform.existsByName(value);
+        return repositoryPlatform.existsByNameContainingIgnoreCase(value);
     }
     public boolean existsByTelegraphicCallsign(String value) {
         return repositoryPlatform.existsByTelegraphicCallsign(value);

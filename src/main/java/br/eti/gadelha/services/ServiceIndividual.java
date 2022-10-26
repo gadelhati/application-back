@@ -77,6 +77,6 @@ public class ServiceIndividual implements ServiceInterface<DTOResponseIndividual
     }
     public Individual findByName(String value) { return  repositoryIndividual.findByName(value); }
     public boolean existsByName(String value) {
-        return repositoryIndividual.existsByName(value);
+        return repositoryIndividual.existsByNameContainingIgnoreCase(value);
     }
 }

@@ -74,6 +74,6 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, 
     }
     public OM findByName(String value) { return  repositoryOM.findByName(value); }
     public boolean existsByName(String value) {
-        return repositoryOM.existsByName(value);
+        return repositoryOM.existsByNameContainingIgnoreCase(value);
     }
 }

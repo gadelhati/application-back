@@ -122,7 +122,7 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
         return repositoryUser.findByUsername(value).orElse(null);
     }
     public boolean existsByName(String value) {
-        return repositoryUser.existsByUsername(value);
+        return repositoryUser.existsByUsernameContainingIgnoreCase(value);
     }
 
     public boolean existsByEmail(String value) {

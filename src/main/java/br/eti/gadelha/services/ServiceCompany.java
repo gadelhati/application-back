@@ -74,6 +74,6 @@ public class ServiceCompany implements ServiceInterface<DTOResponseCompany, DTOR
     }
     public Company findByName(String value) { return  repositoryCompany.findByName(value); }
     public boolean existsByName(String value) {
-        return repositoryCompany.existsByName(value);
+        return repositoryCompany.existsByNameContainingIgnoreCase(value);
     }
 }

@@ -77,6 +77,6 @@ public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFedera
         return repositoryFederativeUnit.existsByName(value);
     }
     public boolean existsByInitials(String value) {
-        return repositoryFederativeUnit.existsByInitials(value);
+        return repositoryFederativeUnit.existsByInitialsIgnoreCase(value);
     }
 }

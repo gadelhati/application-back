@@ -74,6 +74,6 @@ public class ServiceSurveying implements ServiceInterface<DTOResponseSurveying, 
     }
     public Surveying findByName(String value) { return  repositorySurveying.findByName(value); }
     public boolean existsByName(String value) {
-        return repositorySurveying.existsByName(value);
+        return repositorySurveying.existsByNameContainingIgnoreCase(value);
     }
 }

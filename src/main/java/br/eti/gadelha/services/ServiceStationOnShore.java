@@ -86,6 +86,6 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
     }
     public StationOnShore findByName(String value) { return  repositoryStationOnShore.findByName(value); }
     public boolean existsByName(String value) {
-        return repositoryStationOnShore.existsByName(value);
+        return repositoryStationOnShore.existsByNameContainingIgnoreCase(value);
     }
 }

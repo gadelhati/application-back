@@ -69,4 +69,5 @@ public class ServicePlatformCategory implements ServiceInterface<DTOResponsePlat
     public boolean existsByName(String value) {
         return repositoryPlatformCategory.existsByName(value);
     }
+    public boolean existsByNameContainingIgnoreCase(String value) { return repositoryPlatformCategory.existsByNameContainingIgnoreCase(value); }
 }

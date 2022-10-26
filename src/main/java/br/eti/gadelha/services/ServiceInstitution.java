@@ -68,6 +68,6 @@ public class ServiceInstitution implements ServiceInterface<DTOResponseInstituti
     }
     public Institution findByName(String value) { return  repositoryInstitution.findByName(value); }
     public boolean existsByName(String value) {
-        return repositoryInstitution.existsByName(value);
+        return repositoryInstitution.existsByNameContainingIgnoreCase(value);
     }
 }

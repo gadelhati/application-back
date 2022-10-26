@@ -19,8 +19,8 @@ public class ValidatorUniquePlatform implements ConstraintValidator<UniquePlatfo
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null &&
                 !servicePlatform.existsByName(value) &&
-                !servicePlatform.existsByTelegraphicCallsign(value) ||
-                !servicePlatform.existsByInternationalCallsign(value) ||
+                !servicePlatform.existsByTelegraphicCallsign(value) &&
+                !servicePlatform.existsByInternationalCallsign(value) &&
                 !servicePlatform.existsByInternationalName(value)
         ) {
             return false;
