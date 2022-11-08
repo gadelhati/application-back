@@ -7,5 +7,4 @@ public interface RepositoryInterface<T> {
     T findByName(String name);
     boolean existsByName(String value);
     boolean existsByNameContainingIgnoreCase(String value);
-    boolean existsByNipContainingIgnoreCase(String value);
 }
