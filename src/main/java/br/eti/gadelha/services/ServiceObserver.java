@@ -69,4 +69,7 @@ public class ServiceObserver implements ServiceInterface<DTOResponseObserver, DT
     public boolean existsByName(String value) {
         return repositoryObserver.existsByNameContainingIgnoreCase(value);
     }
+    public boolean existsByNip(String value) {
+        return repositoryObserver.existsByNipContainingIgnoreCase(value);
+    }
 }
