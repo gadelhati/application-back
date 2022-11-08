@@ -10,8 +10,9 @@ import java.util.UUID;
 public class DTOResponseObserver {
     private UUID id;
     private String name;
+    private String nip;
 
     public static DTOResponseObserver toDTO(Observer value) {
-        return new DTOResponseObserver(value.getId(), value.getName());
+        return new DTOResponseObserver(value.getId(), value.getName(), value.getNip());
     }
 }

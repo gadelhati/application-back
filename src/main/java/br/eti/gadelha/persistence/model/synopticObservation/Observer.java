@@ -13,4 +13,5 @@ import javax.persistence.*;
 public class Observer extends GenericEntity {
 
     private String name;
+    private String nip;
 }

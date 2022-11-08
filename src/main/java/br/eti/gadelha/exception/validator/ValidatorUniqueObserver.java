@@ -18,9 +18,9 @@ public class ValidatorUniqueObserver implements ConstraintValidator<UniqueObserv
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceObserver.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }
