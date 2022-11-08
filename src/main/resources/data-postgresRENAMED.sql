@@ -8876,6 +8876,6 @@ INSERT INTO synoptic_observation.station_on_shore(id, active, com, local_depth, 
 SELECT * FROM synoptic_observation.station_on_shore;
 
 -- POPULANDO synoptic_observation.observer
-INSERT INTO synoptic_observation.observer(id, name) VALUES ('c0fc0704-e17c-4a81-9024-4a9c62ff2e8a', 'Andréa') ON CONFLICT DO NOTHING;
-INSERT INTO synoptic_observation.observer(id, name) VALUES ('37647911-c4f4-4f8a-a942-71c766795dac', 'Gael') ON CONFLICT DO NOTHING;
+INSERT INTO synoptic_observation.observer(id, name, nip) VALUES ('c0fc0704-e17c-4a81-9024-4a9c62ff2e8a', 'Andréa', '00000000') ON CONFLICT DO NOTHING;
+INSERT INTO synoptic_observation.observer(id, name, nip) VALUES ('37647911-c4f4-4f8a-a942-71c766795dac', 'Gael', '11111111') ON CONFLICT DO NOTHING;
 SELECT * FROM synoptic_observation.observer;
