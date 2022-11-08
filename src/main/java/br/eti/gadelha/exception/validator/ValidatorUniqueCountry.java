@@ -18,9 +18,9 @@ public class ValidatorUniqueCountry implements ConstraintValidator<UniqueCountry
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceCountry.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

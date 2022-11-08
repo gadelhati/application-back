@@ -23,9 +23,9 @@ public class ValidatorUniquePlatform implements ConstraintValidator<UniquePlatfo
                 !servicePlatform.existsByInternationalCallsign(value) &&
                 !servicePlatform.existsByInternationalName(value)
         ) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

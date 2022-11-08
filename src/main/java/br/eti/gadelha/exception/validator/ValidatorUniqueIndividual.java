@@ -18,9 +18,9 @@ public class ValidatorUniqueIndividual implements ConstraintValidator<UniqueIndi
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceIndividual.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

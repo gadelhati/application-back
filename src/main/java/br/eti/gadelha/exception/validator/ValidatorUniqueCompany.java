@@ -18,9 +18,9 @@ public class ValidatorUniqueCompany implements ConstraintValidator<UniqueCompany
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceCompany.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

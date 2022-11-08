@@ -18,9 +18,9 @@ public class ValidatorUniqueManufacturer implements ConstraintValidator<UniqueMa
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceManufacturer.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

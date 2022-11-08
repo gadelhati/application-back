@@ -18,9 +18,9 @@ public class ValidatorUniqueFederativeUnit implements ConstraintValidator<Unique
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceFederativeUnit.existsByName(value) && !serviceFederativeUnit.existsByInitials(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

@@ -18,9 +18,9 @@ public class ValidatorUniqueOM implements ConstraintValidator<UniqueOM, String> 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceOM.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

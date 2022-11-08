@@ -18,9 +18,9 @@ public class ValidatorUniqueSurveying implements ConstraintValidator<UniqueSurve
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceSurveying.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

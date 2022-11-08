@@ -18,9 +18,9 @@ public class ValidatorUniqueStationOnShore implements ConstraintValidator<Unique
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !stationOnShore.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

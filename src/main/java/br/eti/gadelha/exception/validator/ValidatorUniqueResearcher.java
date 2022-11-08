@@ -18,9 +18,9 @@ public class ValidatorUniqueResearcher implements ConstraintValidator<UniqueRese
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceResearcher.existsByName(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

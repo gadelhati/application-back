@@ -18,9 +18,9 @@ public class ValidatorUniquePlatformCategory implements ConstraintValidator<Uniq
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && servicePlatformCategory.existsByNameContainingIgnoreCase(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

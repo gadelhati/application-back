@@ -18,9 +18,9 @@ public class ValidatorUniqueResearcherEmail implements ConstraintValidator<Uniqu
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if ( value != null && !serviceResearcher.existsByEmail(value)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }
