@@ -55,6 +55,7 @@ public class ServiceObserver implements ServiceInterface<DTOResponseObserver, DT
     public DTOResponseObserver update(UUID id, DTORequestObserver updated){
         Observer object = repositoryObserver.findById(id).orElse(null);
         object.setName(updated.getName());
+        object.setNip(updated.getNip());
         return DTOResponseObserver.toDTO(repositoryObserver.save(object));
     }
     public DTOResponseObserver delete(UUID id){
