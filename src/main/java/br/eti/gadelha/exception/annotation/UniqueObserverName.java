@@ -1,18 +1,18 @@
 package br.eti.gadelha.exception.annotation;
 
-import br.eti.gadelha.exception.validator.ValidatorUniqueObserver;
+import br.eti.gadelha.exception.validator.ValidatorUniqueObserverName;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-@Target(ElementType.FIELD)
+@Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = { ValidatorUniqueObserver.class })
+@Constraint(validatedBy = { ValidatorUniqueObserverName.class })
 @Documented
-public @interface UniqueObserver {
+public @interface UniqueObserverName {
 
-    String message() default "{unique.observer}";
+    String message() default "{unique.observer.name}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }
