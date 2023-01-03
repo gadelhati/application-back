@@ -19,7 +19,8 @@ public class ValidatorUniqueObserverName implements ConstraintValidator<UniqueOb
     @Override
     public boolean isValid(DTORequestObserver value, ConstraintValidatorContext context) {
         if (value != null && value.getId() == null && !serviceObserver.existsByName(value.getName()) ||
-                value != null && value.getId() != null && value.getName() != null && serviceObserver.existsByNameAndIdNot(value.getName(), value.getId())) {
+                value != null && value.getId() != null && value.getName() != null && serviceObserver.existsByNameAndIdNot(value.getName(), value.getId()) &&
+                        value != null && value.getId() != null && value.getNip() != null && serviceObserver.existsByNipAndIdNot(value.getNip(), value.getId())) {
             return true;
         } else {
             return false;
