@@ -185,6 +185,7 @@ rm /opt/tomcat/webapps/<old_version>.war
 rm -Rfv /opt/tomcat/webapps/<old_version>
 cp /home/<user>/<application_name>.war /opt/tomcat/webapps/
 chown tomcat:tomcat /opt/tomcat/webapps/<application_name>.war
+chmod 755 <application_name>
 systemctl start tomcat
 ```
 
