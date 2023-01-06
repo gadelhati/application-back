@@ -3,6 +3,7 @@ package br.eti.gadelha.persistence.model.sailingDirection;
 import br.eti.gadelha.persistence.model.GenericEntity;
 import br.eti.gadelha.persistence.model.Institution;
 import br.eti.gadelha.persistence.model.Surveying;
+import br.eti.gadelha.persistence.model.synopticObservation.Platform;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,4 +37,7 @@ public class Commission extends GenericEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "surveying")
     private Surveying surveying;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "platform")
+    private Platform platform;
 }
