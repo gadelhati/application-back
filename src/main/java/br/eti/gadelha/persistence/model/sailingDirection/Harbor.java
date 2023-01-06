@@ -18,6 +18,6 @@ public class Harbor extends GenericEntity {
     @JoinColumn(name = "institution", nullable = false)
     private Institution institution;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "station", nullable = false)
+    @JoinColumn(name = "station")
     private Station station;
 }
