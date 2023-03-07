@@ -6,22 +6,18 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class StationOnShore extends Station {
 
+    private long number;
     private String name;
-    private LocalDateTime dateTime;
     private double latitude;
     private double longitude;
-    private String telegraphicCallsign;
-    private int marsdenSquare_10;
-    private int marsdenSubSquare_1;
-    private int wmoSquare;
-    private int marsdenSubSquare_5;
-    private float collectionDepth;
+    private long altitude;
+    private boolean status;
+    private LocalDateTime activation;
+    private LocalDateTime deactivation;
 }

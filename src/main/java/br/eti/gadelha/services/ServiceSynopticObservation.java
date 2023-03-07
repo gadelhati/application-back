@@ -1,13 +1,13 @@
 package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.model.synopticObservation.Observer;
-import br.eti.gadelha.persistence.model.synopticObservation.StationOnShore;
+import br.eti.gadelha.persistence.model.synopticObservation.StationShip;
 import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservation;
 import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservationId;
 import br.eti.gadelha.persistence.repository.RepositoryObserver;
-import br.eti.gadelha.persistence.repository.RepositoryStationOnShore;
+import br.eti.gadelha.persistence.repository.RepositoryStationShip;
 import br.eti.gadelha.persistence.repository.RepositorySynopticObservation;
 import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Geometry;
@@ -27,12 +27,12 @@ import java.util.*;
 public class ServiceSynopticObservation {
 
     private final RepositorySynopticObservation repositorySynopticObservation;
-    private final RepositoryStationOnShore repositoryStationOnShore;
+    private final RepositoryStationShip repositoryStationShip;
     private final RepositoryObserver repositoryObserver;
 
     public DTOResponseSynopticObservation create(DTORequestSynopticObservation created){
-        StationOnShore stationOnShore = repositoryStationOnShore.findByName(created.getDdddddd());
-        created.setStation(stationOnShore);
+//        StationShip stationShip = repositoryStationShip.findByName(created.getDdddddd());
+//        created.setStation(stationShip);
         Observer observer = repositoryObserver.findByName(created.getObserverName());
         created.setObserver(observer);
         return DTOResponseSynopticObservation.toDTO(repositorySynopticObservation.save(created.toObject()));
@@ -171,8 +171,8 @@ public class ServiceSynopticObservation {
         synopticObservation.setIcq(updated.getIcq());
         synopticObservation.setDateObservation(updated.getDateObservation());
 
-        StationOnShore stationOnShore = repositoryStationOnShore.findByName(updated.getDdddddd());
-        synopticObservation.setStation(stationOnShore);
+//        StationShip stationShip = repositoryStationShip.findByName(updated.getDdddddd());
+//        synopticObservation.setStation(stationShip);
         Observer observer = repositoryObserver.findByName(updated.getObserverName());
         synopticObservation.setObserver(observer);
 

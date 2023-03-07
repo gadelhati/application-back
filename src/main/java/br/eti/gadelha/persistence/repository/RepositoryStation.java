@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface RepositoryStation extends JpaRepository<Station, UUID> {
-    List<Station> findByComContainingIgnoreCaseOrderByComAsc(String com);
-    Station findByCom(String com);
-    boolean existsByCom(String com);
+//    List<Station> findByComContainingIgnoreCaseOrderByComAsc(String com);
+//    Station findByCom(String com);
+//    boolean existsByCom(String com);
 }

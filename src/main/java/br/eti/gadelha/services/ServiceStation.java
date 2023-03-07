@@ -46,18 +46,15 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
                 list.add(DTOResponseStation.toDTO(object));
             }
         } else {
-            for (Station object : repositoryStation.findByComContainingIgnoreCaseOrderByComAsc(source)) {
-                list.add(DTOResponseStation.toDTO(object));
-            }
+//            for (Station object : repositoryStation.findByComContainingIgnoreCaseOrderByComAsc(source)) {
+//                list.add(DTOResponseStation.toDTO(object));
+//            }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseStation update(UUID id, DTORequestStation updated){
         Station object = repositoryStation.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
-        object.setCom(updated.getCom());
-        object.setActive(updated.getActive());
-        object.setCommission(updated.getCommission());
         object.setStationCategory(updated.getStationCategory());
         object.setEquipment(updated.getEquipment());
         object.setSurveying(updated.getSurveying());
@@ -73,8 +70,8 @@ public class ServiceStation implements ServiceInterface<DTOResponseStation, DTOR
     public void delete() {
         repositoryStation.deleteAll();
     }
-    public Station findByName(String value) { return  repositoryStation.findByCom(value); }
+    public Station findByName(String value) { return  null; }
     public boolean existsByName(String value) {
-        return repositoryStation.existsByCom(value);
+        return false;
     }
 }

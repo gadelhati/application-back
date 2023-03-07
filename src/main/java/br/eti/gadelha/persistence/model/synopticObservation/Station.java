@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Station extends GenericEntity {
 
-    private float localDepth;
-    private String com;
-    private Boolean active;
+    private float localDepth;//altitude => synop = onshore
+//    private String com;
+//    private Boolean active;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "stationCategory")

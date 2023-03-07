@@ -22,7 +22,7 @@ public class DTOResponseStationShip extends DTOResponseStation {
     private Commission commission;//ship
 
     public DTOResponseStationShip(StationShip value) {
-        super(value.getId(), value.getLocalDepth(), value.getCom(), value.getActive(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
+        super(value.getId(), value.getLocalDepth(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
 //        this.name = value.getName();
         this.dateTime = value.getDateTime();
         this.latitude = value.getLatitude();

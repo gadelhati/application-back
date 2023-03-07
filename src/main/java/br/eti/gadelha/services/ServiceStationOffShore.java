@@ -1,8 +1,8 @@
 package br.eti.gadelha.services;
 
-import br.eti.gadelha.persistence.payload.request.DTORequestStationOffShore;
-import br.eti.gadelha.persistence.payload.response.DTOResponseStationOffShore;
-import br.eti.gadelha.persistence.model.synopticObservation.StationOffShore;
+import br.eti.gadelha.persistence.payload.request.DTORequestStationOnShore;
+import br.eti.gadelha.persistence.payload.response.DTOResponseStationOnShore;
+import br.eti.gadelha.persistence.model.synopticObservation.StationOnShore;
 import br.eti.gadelha.persistence.repository.RepositoryStationOffShore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,35 +15,35 @@ import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceStationOffShore implements ServiceInterface<DTOResponseStationOffShore, DTORequestStationOffShore, StationOffShore> {
+public class ServiceStationOffShore implements ServiceInterface<DTOResponseStationOnShore, DTORequestStationOnShore, StationOnShore> {
 
     private final RepositoryStationOffShore repositoryStationOffShore;
 
-    public DTOResponseStationOffShore create(DTORequestStationOffShore created){
-        return DTOResponseStationOffShore.toDTO(repositoryStationOffShore.save(created.toObject()));
+    public DTOResponseStationOnShore create(DTORequestStationOnShore created){
+        return DTOResponseStationOnShore.toDTO(repositoryStationOffShore.save(created.toObject()));
     }
-    public DTOResponseStationOffShore retrieve(UUID id){
-        return DTOResponseStationOffShore.toDTO(repositoryStationOffShore.findById(id).orElse(null));
+    public DTOResponseStationOnShore retrieve(UUID id){
+        return DTOResponseStationOnShore.toDTO(repositoryStationOffShore.findById(id).orElse(null));
     }
-    public List<DTOResponseStationOffShore> retrieve(){
-        List<DTOResponseStationOffShore> list = new ArrayList<>();
-        for(StationOffShore object: repositoryStationOffShore.findAll()) {
-            list.add(DTOResponseStationOffShore.toDTO(object));
+    public List<DTOResponseStationOnShore> retrieve(){
+        List<DTOResponseStationOnShore> list = new ArrayList<>();
+        for(StationOnShore object: repositoryStationOffShore.findAll()) {
+            list.add(DTOResponseStationOnShore.toDTO(object));
         }
         return list;
     }
-    public Page<DTOResponseStationOffShore> retrieve(Pageable pageable){
-        List<DTOResponseStationOffShore> list = new ArrayList<>();
-        for(StationOffShore object: repositoryStationOffShore.findAll()) {
-            list.add(DTOResponseStationOffShore.toDTO(object));
+    public Page<DTOResponseStationOnShore> retrieve(Pageable pageable){
+        List<DTOResponseStationOnShore> list = new ArrayList<>();
+        for(StationOnShore object: repositoryStationOffShore.findAll()) {
+            list.add(DTOResponseStationOnShore.toDTO(object));
         }
-        return new PageImpl<DTOResponseStationOffShore>(list, pageable, list.size());
+        return new PageImpl<DTOResponseStationOnShore>(list, pageable, list.size());
     }
-    public Page<DTOResponseStationOffShore> retrieve(Pageable pageable, String source){
-        final List<DTOResponseStationOffShore> list = new ArrayList<>();
+    public Page<DTOResponseStationOnShore> retrieve(Pageable pageable, String source){
+        final List<DTOResponseStationOnShore> list = new ArrayList<>();
         if (source == null) {
-            for (StationOffShore object : repositoryStationOffShore.findAll()) {
-                list.add(DTOResponseStationOffShore.toDTO(object));
+            for (StationOnShore object : repositoryStationOffShore.findAll()) {
+                list.add(DTOResponseStationOnShore.toDTO(object));
             }
         } else {
 //            for (StationOffShore object : repositoryStationOffShore.findByLatitudeMostBottomContainingIgnoreCaseOrderByLatitudeMostBottomAsc(source)) {
@@ -52,36 +52,35 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
         }
         return new PageImpl<>(list, pageable, list.size());
     }
-    public DTOResponseStationOffShore update(UUID id, DTORequestStationOffShore updated){
-        StationOffShore object = repositoryStationOffShore.findById(id).orElse(null);
+    public DTOResponseStationOnShore update(UUID id, DTORequestStationOnShore updated){
+        StationOnShore object = repositoryStationOffShore.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
-        object.setCom(updated.getCom());
-        object.setActive(updated.getActive());
-        object.setCommission(updated.getCommission());
+
         object.setStationCategory(updated.getStationCategory());
         object.setEquipment(updated.getEquipment());
         object.setSurveying(updated.getSurveying());
         object.setResponsible(updated.getResponsible());
         object.setCountry(updated.getCountry());
 
-        object.setFirst(updated.getFirst());
-        object.setLast(updated.getLast());
-        object.setLatitudeMostBottom(updated.getLatitudeMostBottom());
-        object.setLatitudeMostTop(updated.getLatitudeMostTop());
-        object.setLongitudeMostLeft(updated.getLongitudeMostLeft());
-        object.setLongitudeMostRight(updated.getLongitudeMostRight());
-        object.setPlatform(updated.getPlatform());
-        return DTOResponseStationOffShore.toDTO(repositoryStationOffShore.save(object));
+        object.setNumber(updated.getNumber());
+        object.setName(updated.getName());
+        object.setLatitude(updated.getLongitude());
+        object.setLongitude(updated.getLongitude());
+        object.setAltitude(updated.getAltitude());
+        object.setStatus(updated.isStatus());
+        object.setActivation(updated.getActivation());
+        object.setDeactivation(updated.getDeactivation());
+        return DTOResponseStationOnShore.toDTO(repositoryStationOffShore.save(object));
     }
-    public DTOResponseStationOffShore delete(UUID id){
-        StationOffShore object = repositoryStationOffShore.findById(id).orElse(null);
+    public DTOResponseStationOnShore delete(UUID id){
+        StationOnShore object = repositoryStationOffShore.findById(id).orElse(null);
         repositoryStationOffShore.deleteById(id);
-        return DTOResponseStationOffShore.toDTO(object);
+        return DTOResponseStationOnShore.toDTO(object);
     }
     public void delete() {
         repositoryStationOffShore.deleteAll();
     }
-    public StationOffShore findByName(String value) {
+    public StationOnShore findByName(String value) {
         return null;
     }
     public boolean existsByName(String value) {

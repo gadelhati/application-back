@@ -55,8 +55,6 @@ public class ServiceStationShip implements ServiceInterface<DTOResponseStationSh
     public DTOResponseStationShip update(UUID id, DTORequestStationShip updated){
         StationShip object = repositoryStationShip.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
-        object.setCom(updated.getCom());
-        object.setActive(updated.getActive());
         object.setCommission(updated.getCommission());
         object.setStationCategory(updated.getStationCategory());
         object.setEquipment(updated.getEquipment());
