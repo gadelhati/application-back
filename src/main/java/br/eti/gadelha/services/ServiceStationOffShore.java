@@ -62,11 +62,10 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
         object.setResponsible(updated.getResponsible());
         object.setCountry(updated.getCountry());
 
-        object.setDateTime(updated.getDateTime());
         object.setLatitude(updated.getLatitude());
         object.setLongitude(updated.getLongitude());
         object.setTelegraphicCallsign(updated.getTelegraphicCallsign());
-        object.setMarsdenSquare(updated.getMarsdenSquare_10());
+        object.setMarsdenSquare(updated.getMarsdenSquare());
         object.setMarsdenSubSquare_1(updated.getMarsdenSubSquare_1());
         object.setWmoSquare(updated.getWmoSquare());
         object.setMarsdenSubSquare_5(updated.getMarsdenSubSquare_5());

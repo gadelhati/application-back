@@ -14,10 +14,7 @@ public class StationOnShore extends Station {
 
     private long number;
     private String name;
-    private double latitude;
-    private double longitude;
     private long altitude;
     private boolean status;
-    private LocalDateTime activation;
     private LocalDateTime deactivation;
 }

@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Getter
 public class DTOResponseStationShip extends DTOResponseStation {
 
-    private LocalDateTime dateTime;
     private double latitude;
     private double longitude;
     private String telegraphicCallsign;
@@ -22,7 +21,6 @@ public class DTOResponseStationShip extends DTOResponseStation {
 
     public DTOResponseStationShip(StationOffShore value) {
         super(value.getId(), value.getLocalDepth(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
-        this.dateTime = value.getDateTime();
         this.latitude = value.getLatitude();
         this.longitude = value.getLongitude();
         this.telegraphicCallsign = value.getTelegraphicCallsign();
