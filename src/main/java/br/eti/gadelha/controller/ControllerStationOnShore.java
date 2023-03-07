@@ -18,7 +18,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-@RestController @RequestMapping("/stationOffShore") @RequiredArgsConstructor
+@RestController @RequestMapping("/stationOnShore") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ControllerStationOnShore implements ControllerInterface<DTOResponseStationOnShore, DTORequestStationOnShore> {
 
