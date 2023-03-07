@@ -1,6 +1,6 @@
 package br.eti.gadelha.exception.annotation;
 
-import br.eti.gadelha.exception.validator.ValidatorUniqueStationOnShore;
+import br.eti.gadelha.exception.validator.ValidatorUniqueStationShip;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -8,9 +8,9 @@ import java.lang.annotation.*;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = { ValidatorUniqueStationOnShore.class })
+@Constraint(validatedBy = { ValidatorUniqueStationShip.class })
 @Documented
-public @interface UniqueStationOnShore {
+public @interface UniqueStationShip {
 
     String message() default "{unique.stationOnShore}";
     Class<?>[] groups() default { };

@@ -1,5 +1,6 @@
 package br.eti.gadelha.persistence.model.synopticObservation;
 
+import br.eti.gadelha.persistence.model.sailingDirection.Commission;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,16 +11,18 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class StationOffShore extends Station {
+public class StationShip extends Station {
 
-    private LocalDateTime first;
-    private LocalDateTime last;
-    private double latitudeMostBottom;
-    private double latitudeMostTop;
-    private double longitudeMostRight;
-    private double longitudeMostLeft;
+    private LocalDateTime dateTime;
+    private double latitude;
+    private double longitude;
+    private String telegraphicCallsign;
+    private int marsdenSquare;
+    private int marsdenSubSquare_1;
+    private int wmoSquare;
+    private int marsdenSubSquare_5;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "platform")
-    private Platform platform;
+    @JoinColumn(name = "commission")
+    private Commission commission;
 }

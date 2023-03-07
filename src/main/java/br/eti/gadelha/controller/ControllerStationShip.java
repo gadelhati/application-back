@@ -1,8 +1,8 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.payload.request.DTORequestStationOnShore;
-import br.eti.gadelha.persistence.payload.response.DTOResponseStationOnShore;
-import br.eti.gadelha.services.ServiceStationOnShore;
+import br.eti.gadelha.persistence.payload.request.DTORequestStationShip;
+import br.eti.gadelha.persistence.payload.response.DTOResponseStationShip;
+import br.eti.gadelha.services.ServiceStationShip;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,44 +20,44 @@ import java.util.UUID;
 
 @RestController @RequestMapping("/stationOnShore") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerStationOnShore implements ControllerInterface<DTOResponseStationOnShore, DTORequestStationOnShore> {
+public class ControllerStationShip implements ControllerInterface<DTOResponseStationShip, DTORequestStationShip> {
 
     @Autowired
-    private final ServiceStationOnShore serviceStationOnShore;
+    private final ServiceStationShip serviceStationShip;
 
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseStationOnShore> create(@RequestBody @Valid DTORequestStationOnShore created){
+    public ResponseEntity<DTOResponseStationShip> create(@RequestBody @Valid DTORequestStationShip created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/stationOnShore").toUriString());
-        return ResponseEntity.created(uri).body(serviceStationOnShore.create(created));
+        return ResponseEntity.created(uri).body(serviceStationShip.create(created));
     }
     @GetMapping("/retrieve")
-    public List<DTOResponseStationOnShore> retrieve(){
-        return serviceStationOnShore.retrieve();
+    public List<DTOResponseStationShip> retrieve(){
+        return serviceStationShip.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseStationOnShore>> retrieve(Pageable pageable){
-        return ResponseEntity.ok().body(serviceStationOnShore.retrieve(pageable));
+    public ResponseEntity<Page<DTOResponseStationShip>> retrieve(Pageable pageable){
+        return ResponseEntity.ok().body(serviceStationShip.retrieve(pageable));
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseStationOnShore> retrieve(@PathVariable UUID id){
-        return ResponseEntity.ok().body(serviceStationOnShore.retrieve(id));
+    public ResponseEntity<DTOResponseStationShip> retrieve(@PathVariable UUID id){
+        return ResponseEntity.ok().body(serviceStationShip.retrieve(id));
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<Page<DTOResponseStationOnShore>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
-        return ResponseEntity.ok().body(serviceStationOnShore.retrieve(pageable, q));
+    public ResponseEntity<Page<DTOResponseStationShip>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
+        return ResponseEntity.ok().body(serviceStationShip.retrieve(pageable, q));
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseStationOnShore> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestStationOnShore updated){
-        return ResponseEntity.accepted().body(serviceStationOnShore.update(id, updated));
+    public ResponseEntity<DTOResponseStationShip> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestStationShip updated){
+        return ResponseEntity.accepted().body(serviceStationShip.update(id, updated));
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseStationOnShore> delete(@PathVariable UUID id){
-        return ResponseEntity.accepted().body(serviceStationOnShore.delete(id));
+    public ResponseEntity<DTOResponseStationShip> delete(@PathVariable UUID id){
+        return ResponseEntity.accepted().body(serviceStationShip.delete(id));
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
-            serviceStationOnShore.delete();
+            serviceStationShip.delete();
             return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);

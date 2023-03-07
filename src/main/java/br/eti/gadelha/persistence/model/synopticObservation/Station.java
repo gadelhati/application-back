@@ -16,15 +16,13 @@ public class Station extends GenericEntity {
     private float localDepth;
     private String com;
     private Boolean active;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "commission")
-    private Commission commission;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "stationCategory")
-    private StationCategory stationCategory;
+    private StationCategory stationCategory;//ship//on
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "equipment")
-    private Equipment equipment;
+    private Equipment equipment;//ship//on
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "surveying")
     private Surveying surveying;

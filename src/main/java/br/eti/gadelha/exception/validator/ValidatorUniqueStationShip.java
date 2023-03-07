@@ -1,16 +1,16 @@
 package br.eti.gadelha.exception.validator;
 
 import br.eti.gadelha.exception.annotation.UniqueResearcher;
-import br.eti.gadelha.services.ServiceStationOnShore;
+import br.eti.gadelha.services.ServiceStationShip;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ValidatorUniqueStationOnShore implements ConstraintValidator<UniqueResearcher, String> {
+public class ValidatorUniqueStationShip implements ConstraintValidator<UniqueResearcher, String> {
 
     @Autowired
-    private ServiceStationOnShore stationOnShore;
+    private ServiceStationShip stationOnShore;
 
     @Override
     public void initialize(UniqueResearcher constraintAnnotation) {
