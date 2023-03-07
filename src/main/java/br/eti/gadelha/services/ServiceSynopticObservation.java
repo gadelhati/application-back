@@ -1,7 +1,6 @@
 package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.model.synopticObservation.Observer;
-import br.eti.gadelha.persistence.model.synopticObservation.StationShip;
 import br.eti.gadelha.persistence.payload.request.DTORequestSynopticObservation;
 import br.eti.gadelha.persistence.payload.response.DTOResponseSynopticObservation;
 import br.eti.gadelha.persistence.model.synopticObservation.SynopticObservation;

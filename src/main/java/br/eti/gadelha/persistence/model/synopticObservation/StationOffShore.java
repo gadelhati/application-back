@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
-public class StationShip extends Station {
+public class StationOffShore extends Station {
 
     private LocalDateTime dateTime;
     private double latitude;

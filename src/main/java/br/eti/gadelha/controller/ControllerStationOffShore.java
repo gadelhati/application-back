@@ -1,8 +1,8 @@
 package br.eti.gadelha.controller;
 
-import br.eti.gadelha.persistence.payload.request.DTORequestStationShip;
+import br.eti.gadelha.persistence.payload.request.DTORequestStationOffShore;
 import br.eti.gadelha.persistence.payload.response.DTOResponseStationShip;
-import br.eti.gadelha.services.ServiceStationShip;
+import br.eti.gadelha.services.ServiceStationOffShore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,44 +20,44 @@ import java.util.UUID;
 
 @RestController @RequestMapping("/stationOnShore") @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class ControllerStationShip implements ControllerInterface<DTOResponseStationShip, DTORequestStationShip> {
+public class ControllerStationOffShore implements ControllerInterface<DTOResponseStationShip, DTORequestStationOffShore> {
 
     @Autowired
-    private final ServiceStationShip serviceStationShip;
+    private final ServiceStationOffShore serviceStationOffShore;
 
     @PostMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseStationShip> create(@RequestBody @Valid DTORequestStationShip created){
+    public ResponseEntity<DTOResponseStationShip> create(@RequestBody @Valid DTORequestStationOffShore created){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/stationOnShore").toUriString());
-        return ResponseEntity.created(uri).body(serviceStationShip.create(created));
+        return ResponseEntity.created(uri).body(serviceStationOffShore.create(created));
     }
     @GetMapping("/retrieve")
     public List<DTOResponseStationShip> retrieve(){
-        return serviceStationShip.retrieve();
+        return serviceStationOffShore.retrieve();
     }
     @GetMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseStationShip>> retrieve(Pageable pageable){
-        return ResponseEntity.ok().body(serviceStationShip.retrieve(pageable));
+        return ResponseEntity.ok().body(serviceStationOffShore.retrieve(pageable));
     }
     @GetMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStationShip> retrieve(@PathVariable UUID id){
-        return ResponseEntity.ok().body(serviceStationShip.retrieve(id));
+        return ResponseEntity.ok().body(serviceStationOffShore.retrieve(id));
     }
     @GetMapping("/source") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<Page<DTOResponseStationShip>> retrieve(Pageable pageable, @RequestParam(required = false) String q){
-        return ResponseEntity.ok().body(serviceStationShip.retrieve(pageable, q));
+        return ResponseEntity.ok().body(serviceStationOffShore.retrieve(pageable, q));
     }
     @PutMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
-    public ResponseEntity<DTOResponseStationShip> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestStationShip updated){
-        return ResponseEntity.accepted().body(serviceStationShip.update(id, updated));
+    public ResponseEntity<DTOResponseStationShip> update(@PathVariable("id") UUID id, @RequestBody @Valid DTORequestStationOffShore updated){
+        return ResponseEntity.accepted().body(serviceStationOffShore.update(id, updated));
     }
     @DeleteMapping("/{id}") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<DTOResponseStationShip> delete(@PathVariable UUID id){
-        return ResponseEntity.accepted().body(serviceStationShip.delete(id));
+        return ResponseEntity.accepted().body(serviceStationOffShore.delete(id));
     }
     @DeleteMapping("") @PreAuthorize("hasAnyRole('MODERATOR', 'ADMIN')")
     public ResponseEntity<HttpStatus> delete(){
         try {
-            serviceStationShip.delete();
+            serviceStationOffShore.delete();
             return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(HttpStatus.BAD_REQUEST);
