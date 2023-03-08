@@ -8,7 +8,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
-@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false) @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
+@Audited @Entity @Data @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(callSuper = false)
 public class Surveying extends GenericEntity {
 
     private String name;
