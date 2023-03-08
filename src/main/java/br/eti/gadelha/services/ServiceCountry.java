@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestCountry;
 import br.eti.gadelha.persistence.payload.response.DTOResponseCountry;
 import br.eti.gadelha.persistence.model.Country;
@@ -20,22 +21,22 @@ public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTOR
     private final RepositoryCountry repositoryCountry;
 
     public DTOResponseCountry create(DTORequestCountry created){
-        return DTOResponseCountry.toDTO(repositoryCountry.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryCountry.save(MapStruct.MAPPER.toObject(created)));
     }
     public DTOResponseCountry retrieve(UUID id){
-        return DTOResponseCountry.toDTO(repositoryCountry.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryCountry.findById(id).orElse(null));
     }
     public List<DTOResponseCountry> retrieve(){
         List<DTOResponseCountry> list = new ArrayList<>();
         for(Country object: repositoryCountry.findAll()) {
-            list.add(DTOResponseCountry.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseCountry> retrieve(Pageable pageable){
         List<DTOResponseCountry> list = new ArrayList<>();
         for(Country object: repositoryCountry.findAll()) {
-            list.add(DTOResponseCountry.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseCountry>(list, pageable, list.size());
     }
@@ -43,24 +44,22 @@ public class ServiceCountry implements ServiceInterface<DTOResponseCountry, DTOR
         final List<DTOResponseCountry> list = new ArrayList<>();
         if (source == null) {
             for (Country object : repositoryCountry.findAll()) {
-                list.add(DTOResponseCountry.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         } else {
             for (Country object : repositoryCountry.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponseCountry.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseCountry update(UUID id, DTORequestCountry updated){
-        Country object = repositoryCountry.findById(id).orElse(null);
-        object.setName(updated.getName());
-        return DTOResponseCountry.toDTO(repositoryCountry.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryCountry.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseCountry delete(UUID id){
         Country object = repositoryCountry.findById(id).orElse(null);
         repositoryCountry.deleteById(id);
-        return DTOResponseCountry.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryCountry.deleteAll();

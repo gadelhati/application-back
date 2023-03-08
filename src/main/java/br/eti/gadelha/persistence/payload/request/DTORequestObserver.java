@@ -2,7 +2,6 @@ package br.eti.gadelha.persistence.payload.request;
 
 import br.eti.gadelha.exception.annotation.UniqueObserverName;
 import br.eti.gadelha.exception.annotation.UniqueObserverNip;
-import br.eti.gadelha.persistence.model.synopticObservation.Observer;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -18,8 +17,4 @@ public class DTORequestObserver {
     private String name;
     @Pattern(regexp = "[0-9]{8}", message = "{nip.valid}") @NotNull(message = "{nip.not.null}") @NotBlank(message = "{nip.not.blank}")
     private String nip;
-
-    public Observer toObject(){
-        return new Observer(name, nip);
-    }
 }

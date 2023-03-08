@@ -2,7 +2,6 @@ package br.eti.gadelha.persistence.payload.request;
 
 import br.eti.gadelha.exception.annotation.UniqueIndividual;
 import br.eti.gadelha.exception.enumeration.EGender;
-import br.eti.gadelha.persistence.model.Individual;
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.validator.constraints.br.CPF;
@@ -19,7 +18,4 @@ public class DTORequestIndividual extends DTORequestPerson {
     private EGender gender;
     @NotNull(message = "{name.not.null}") @NotBlank(message = "{name.not.blank}") @CPF @UniqueIndividual
     private String cpf;
-    public Individual toObject(){
-        return new Individual(gender, cpf);
-    }
 }

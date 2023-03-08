@@ -1,7 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
 import br.eti.gadelha.exception.annotation.UniqueResearcher;
-import br.eti.gadelha.persistence.model.Researcher;
 import lombok.Getter;
 
 import javax.validation.constraints.Email;
@@ -16,8 +15,4 @@ public class DTORequestResearcher {
     @NotNull(message = "{email.not.null}") @NotBlank(message = "{email.not.blank}") @Email
     private String email;
     private String address;
-
-    public Researcher toObject(){
-        return new Researcher(name, email, address);
-    }
 }

@@ -4,10 +4,8 @@ import br.eti.gadelha.persistence.model.sailingDirection.Commission;
 import br.eti.gadelha.persistence.model.synopticObservation.StationOffShore;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
-public class DTOResponseStationShip extends DTOResponseStation {
+public class DTOResponseStationOffShore extends DTOResponseStation {
 
     private double latitude;
     private double longitude;
@@ -19,7 +17,7 @@ public class DTOResponseStationShip extends DTOResponseStation {
 
     private Commission commission;
 
-    public DTOResponseStationShip(StationOffShore value) {
+    public DTOResponseStationOffShore(StationOffShore value) {
         super(value.getId(), value.getLocalDepth(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
         this.latitude = value.getLatitude();
         this.longitude = value.getLongitude();
@@ -29,9 +27,5 @@ public class DTOResponseStationShip extends DTOResponseStation {
         this.wmoSquare = value.getWmoSquare();
         this.marsdenSubSquare_5 = value.getMarsdenSubSquare_5();
         this.commission = value.getCommission();
-    }
-
-    public static DTOResponseStationShip toDTO(StationOffShore value) {
-        return new DTOResponseStationShip(value);
     }
 }

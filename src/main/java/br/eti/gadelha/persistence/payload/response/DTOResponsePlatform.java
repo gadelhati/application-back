@@ -19,8 +19,4 @@ public class DTOResponsePlatform {
     private String internationalName;
     private Country country;
     private PlatformCategory platformCategory;
-
-    public static DTOResponsePlatform toDTO(Platform value) {
-        return new DTOResponsePlatform(value.getId(), value.getVisualCallsign(), value.getTelegraphicCallsign(), value.getInternationalCallsign(), value.getName(), value.getInternationalName(), value.getCountry(), value.getPlatformCategory());
-    }
 }

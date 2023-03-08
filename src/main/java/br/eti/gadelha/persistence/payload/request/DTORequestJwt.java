@@ -1,6 +1,5 @@
 package br.eti.gadelha.persistence.payload.request;
 
-import br.eti.gadelha.persistence.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +13,4 @@ public class DTORequestJwt {
     private String username;
     @NotNull(message = "{password.not.null}") @NotBlank(message = "{password.not.blank}")
     private String password;
-
-    public User toObject(){
-        return new User(username, password);
-    }
 }

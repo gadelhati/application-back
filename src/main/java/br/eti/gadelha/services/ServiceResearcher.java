@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestResearcher;
 import br.eti.gadelha.persistence.payload.response.DTOResponseResearcher;
 import br.eti.gadelha.persistence.model.Researcher;
@@ -20,22 +21,22 @@ public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher
     private final RepositoryResearcher repositoryResearcher;
 
     public DTOResponseResearcher create(DTORequestResearcher created){
-        return DTOResponseResearcher.toDTO(repositoryResearcher.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryResearcher.save(MapStruct.MAPPER.toObject(created)));
     }
     public DTOResponseResearcher retrieve(UUID id){
-        return DTOResponseResearcher.toDTO(repositoryResearcher.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryResearcher.findById(id).orElse(null));
     }
     public List<DTOResponseResearcher> retrieve(){
         List<DTOResponseResearcher> list = new ArrayList<>();
         for(Researcher object: repositoryResearcher.findAll()) {
-            list.add(DTOResponseResearcher.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseResearcher> retrieve(Pageable pageable){
         List<DTOResponseResearcher> list = new ArrayList<>();
         for(Researcher object: repositoryResearcher.findAll()) {
-            list.add(DTOResponseResearcher.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseResearcher>(list, pageable, list.size());
     }
@@ -43,26 +44,22 @@ public class ServiceResearcher implements ServiceInterface<DTOResponseResearcher
         final List<DTOResponseResearcher> list = new ArrayList<>();
         if (source == null) {
             for (Researcher object : repositoryResearcher.findAll()) {
-                list.add(DTOResponseResearcher.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         } else {
             for (Researcher object : repositoryResearcher.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponseResearcher.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseResearcher update(UUID id, DTORequestResearcher updated){
-        Researcher object = repositoryResearcher.findById(id).orElse(null);
-        object.setName(updated.getName());
-        object.setEmail(updated.getEmail());
-        object.setAddress(updated.getAddress());
-        return DTOResponseResearcher.toDTO(repositoryResearcher.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryResearcher.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseResearcher delete(UUID id){
         Researcher object = repositoryResearcher.findById(id).orElse(null);
         repositoryResearcher.deleteById(id);
-        return DTOResponseResearcher.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryResearcher.deleteAll();

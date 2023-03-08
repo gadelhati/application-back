@@ -3,7 +3,6 @@ package br.eti.gadelha.persistence.payload.request;
 import br.eti.gadelha.exception.annotation.auth.*;
 import br.eti.gadelha.persistence.model.OM;
 import br.eti.gadelha.persistence.model.Role;
-import br.eti.gadelha.persistence.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,11 +23,6 @@ public class DTORequestUser {
     private String password;
     @NotNull(message = "{active.not.null}")
     private boolean active;
-//    @NotNull(message = "{om.not.null}")
     private OM om;
     private Collection<Role> roles;
-
-    public User toObject(){
-        return new User(username, email, password);
-    }
 }

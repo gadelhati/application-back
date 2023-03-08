@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestStationOnShore;
 import br.eti.gadelha.persistence.payload.response.DTOResponseStationOnShore;
 import br.eti.gadelha.persistence.model.synopticObservation.StationOnShore;
@@ -20,22 +21,22 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
     private final RepositoryStationOffShore repositoryStationOffShore;
 
     public DTOResponseStationOnShore create(DTORequestStationOnShore created){
-        return DTOResponseStationOnShore.toDTO(repositoryStationOffShore.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryStationOffShore.save(MapStruct.MAPPER.toObject(created)));
     }
     public DTOResponseStationOnShore retrieve(UUID id){
-        return DTOResponseStationOnShore.toDTO(repositoryStationOffShore.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryStationOffShore.findById(id).orElse(null));
     }
     public List<DTOResponseStationOnShore> retrieve(){
         List<DTOResponseStationOnShore> list = new ArrayList<>();
         for(StationOnShore object: repositoryStationOffShore.findAll()) {
-            list.add(DTOResponseStationOnShore.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseStationOnShore> retrieve(Pageable pageable){
         List<DTOResponseStationOnShore> list = new ArrayList<>();
         for(StationOnShore object: repositoryStationOffShore.findAll()) {
-            list.add(DTOResponseStationOnShore.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseStationOnShore>(list, pageable, list.size());
     }
@@ -43,7 +44,7 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
         final List<DTOResponseStationOnShore> list = new ArrayList<>();
         if (source == null) {
             for (StationOnShore object : repositoryStationOffShore.findAll()) {
-                list.add(DTOResponseStationOnShore.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         } else {
 //            for (StationOffShore object : repositoryStationOffShore.findByLatitudeMostBottomContainingIgnoreCaseOrderByLatitudeMostBottomAsc(source)) {
@@ -53,29 +54,12 @@ public class ServiceStationOnShore implements ServiceInterface<DTOResponseStatio
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseStationOnShore update(UUID id, DTORequestStationOnShore updated){
-        StationOnShore object = repositoryStationOffShore.findById(id).orElse(null);
-        object.setLocalDepth(updated.getLocalDepth());
-
-        object.setStationCategory(updated.getStationCategory());
-        object.setEquipment(updated.getEquipment());
-        object.setSurveying(updated.getSurveying());
-        object.setResponsible(updated.getResponsible());
-        object.setCountry(updated.getCountry());
-
-        object.setNumber(updated.getNumber());
-        object.setName(updated.getName());
-        object.setLatitude(updated.getLongitude());
-        object.setLongitude(updated.getLongitude());
-        object.setAltitude(updated.getAltitude());
-        object.setStatus(updated.isStatus());
-        object.setActivation(updated.getActivation());
-        object.setDeactivation(updated.getDeactivation());
-        return DTOResponseStationOnShore.toDTO(repositoryStationOffShore.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryStationOffShore.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseStationOnShore delete(UUID id){
         StationOnShore object = repositoryStationOffShore.findById(id).orElse(null);
         repositoryStationOffShore.deleteById(id);
-        return DTOResponseStationOnShore.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryStationOffShore.deleteAll();

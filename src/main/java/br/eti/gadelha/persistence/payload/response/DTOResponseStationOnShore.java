@@ -26,7 +26,6 @@ public class DTOResponseStationOnShore extends DTOResponseStation {
     private LocalDateTime deactivation;
 
     public DTOResponseStationOnShore(StationOnShore value) {
-//        super(value.getId(), value.getLocalDepth(), value.getCom(), value.getActive(), value.getCommission(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
         super(value.getId(), value.getLocalDepth(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
         this.number = value.getNumber();
         this.name = value.getName();
@@ -36,9 +35,5 @@ public class DTOResponseStationOnShore extends DTOResponseStation {
         this.status = value.isStatus();
         this.activation = value.getActivation();
         this.deactivation = value.getDeactivation();
-    }
-
-    public static DTOResponseStationOnShore toDTO(StationOnShore value) {
-        return new DTOResponseStationOnShore(value);
     }
 }

@@ -2,7 +2,6 @@ package br.eti.gadelha.persistence.payload.request;
 
 import br.eti.gadelha.exception.annotation.UniquePlatform;
 import br.eti.gadelha.persistence.model.Country;
-import br.eti.gadelha.persistence.model.synopticObservation.Platform;
 import br.eti.gadelha.persistence.model.synopticObservation.PlatformCategory;
 import lombok.Getter;
 
@@ -21,8 +20,4 @@ public class DTORequestPlatform {
     private String internationalName;
     private Country country;
     private PlatformCategory platformCategory;
-
-    public Platform toObject(){
-        return new Platform(visualCallsign, telegraphicCallsign, internationalCallsign, name, internationalName, country, platformCategory);
-    }
 }

@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestSurveying;
 import br.eti.gadelha.persistence.payload.response.DTOResponseSurveying;
 import br.eti.gadelha.persistence.model.Surveying;
@@ -20,41 +21,41 @@ public class ServiceSurveying implements ServiceInterface<DTOResponseSurveying, 
     private final RepositorySurveying repositorySurveying;
 
     public DTOResponseSurveying create(DTORequestSurveying created){
-        return DTOResponseSurveying.toDTO(repositorySurveying.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositorySurveying.save(MapStruct.MAPPER.toObject(created)));
     }
     public List<DTOResponseSurveying> retrieve(){
         List<DTOResponseSurveying> list = new ArrayList<>();
         for(Surveying om: repositorySurveying.findAll()) {
-            list.add(DTOResponseSurveying.toDTO(om));
+            list.add(MapStruct.MAPPER.toDTO(om));
         }
         return list;
     }
     public Page<DTOResponseSurveying> retrieve(Pageable pageable){
         List<DTOResponseSurveying> list = new ArrayList<>();
         for(Surveying role: repositorySurveying.findAll()) {
-            list.add(DTOResponseSurveying.toDTO(role));
+            list.add(MapStruct.MAPPER.toDTO(role));
         }
         return new PageImpl<DTOResponseSurveying>(list, pageable, list.size());
     }
     public Page<DTOResponseSurveying> retrieve(Pageable pageable, String source) {
         List<DTOResponseSurveying> list = new ArrayList<>();
         for(Surveying object: repositorySurveying.findAll()) {
-            list.add(DTOResponseSurveying.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseSurveying>(list, pageable, list.size());
     }
     public DTOResponseSurveying retrieve(UUID id){
-        return DTOResponseSurveying.toDTO(repositorySurveying.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositorySurveying.findById(id).orElse(null));
     }
     public Page<DTOResponseSurveying> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseSurveying> list = new ArrayList<>();
         if (source == null) {
             for (Surveying role : repositorySurveying.findAll()) {
-                list.add(DTOResponseSurveying.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         } else {
             for (Surveying role : repositorySurveying.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponseSurveying.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
@@ -62,12 +63,12 @@ public class ServiceSurveying implements ServiceInterface<DTOResponseSurveying, 
     public DTOResponseSurveying update(UUID id, DTORequestSurveying updated){
         Surveying object = repositorySurveying.findById(id).orElse(null);
         object.setName(updated.getName());
-        return DTOResponseSurveying.toDTO(repositorySurveying.save(object));
+        return MapStruct.MAPPER.toDTO(repositorySurveying.save(object));
     }
     public DTOResponseSurveying delete(UUID id){
         Surveying object = repositorySurveying.findById(id).orElse(null);
         repositorySurveying.deleteById(id);
-        return DTOResponseSurveying.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositorySurveying.deleteAll();

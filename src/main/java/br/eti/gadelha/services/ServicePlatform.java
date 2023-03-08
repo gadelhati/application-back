@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestPlatform;
 import br.eti.gadelha.persistence.payload.response.DTOResponsePlatform;
 import br.eti.gadelha.persistence.model.synopticObservation.Platform;
@@ -20,22 +21,22 @@ public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DT
     private final RepositoryPlatform repositoryPlatform;
 
     public DTOResponsePlatform create(DTORequestPlatform created){
-        return DTOResponsePlatform.toDTO(repositoryPlatform.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryPlatform.save(MapStruct.MAPPER.toObject(created)));
     }
     public DTOResponsePlatform retrieve(UUID id){
-        return DTOResponsePlatform.toDTO(repositoryPlatform.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryPlatform.findById(id).orElse(null));
     }
     public List<DTOResponsePlatform> retrieve(){
         List<DTOResponsePlatform> list = new ArrayList<>();
         for(Platform object: repositoryPlatform.findAll()) {
-            list.add(DTOResponsePlatform.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponsePlatform> retrieve(Pageable pageable){
         List<DTOResponsePlatform> list = new ArrayList<>();
         for(Platform object: repositoryPlatform.findAll()) {
-            list.add(DTOResponsePlatform.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponsePlatform>(list, pageable, list.size());
     }
@@ -43,30 +44,22 @@ public class ServicePlatform implements ServiceInterface<DTOResponsePlatform, DT
         final List<DTOResponsePlatform> list = new ArrayList<>();
         if (source == null) {
             for (Platform object : repositoryPlatform.findAll()) {
-                list.add(DTOResponsePlatform.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         } else {
             for (Platform object : repositoryPlatform.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponsePlatform.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponsePlatform update(UUID id, DTORequestPlatform updated){
-        Platform object = repositoryPlatform.findById(id).orElse(null);
-        object.setVisualCallsign(updated.getVisualCallsign());
-        object.setTelegraphicCallsign(updated.getTelegraphicCallsign());
-        object.setInternationalCallsign(updated.getInternationalCallsign());
-        object.setName(updated.getName());
-        object.setInternationalName(updated.getInternationalName());
-        object.setCountry(updated.getCountry());
-        object.setPlatformCategory(updated.getPlatformCategory());
-        return DTOResponsePlatform.toDTO(repositoryPlatform.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryPlatform.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponsePlatform delete(UUID id){
         Platform object = repositoryPlatform.findById(id).orElse(null);
         repositoryPlatform.deleteById(id);
-        return DTOResponsePlatform.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryPlatform.deleteAll();

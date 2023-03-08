@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestOM;
 import br.eti.gadelha.persistence.payload.response.DTOResponseOM;
 import br.eti.gadelha.persistence.model.OM;
@@ -20,54 +21,52 @@ public class ServiceOM implements ServiceInterface<DTOResponseOM, DTORequestOM, 
     private final RepositoryOM repositoryOM;
 
     public DTOResponseOM create(DTORequestOM created){
-        return DTOResponseOM.toDTO(repositoryOM.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryOM.save(MapStruct.MAPPER.toObject(created)));
     }
     public List<DTOResponseOM> retrieve(){
         List<DTOResponseOM> list = new ArrayList<>();
         for(OM om: repositoryOM.findAll()) {
-            list.add(DTOResponseOM.toDTO(om));
+            list.add(MapStruct.MAPPER.toDTO(om));
         }
         return list;
     }
     public Page<DTOResponseOM> retrieve(Pageable pageable){
         List<DTOResponseOM> list = new ArrayList<>();
         for(OM role: repositoryOM.findAll()) {
-            list.add(DTOResponseOM.toDTO(role));
+            list.add(MapStruct.MAPPER.toDTO(role));
         }
         return new PageImpl<DTOResponseOM>(list, pageable, list.size());
     }
     public Page<DTOResponseOM> retrieve(Pageable pageable, String source) {
         List<DTOResponseOM> list = new ArrayList<>();
         for(OM object: repositoryOM.findAll()) {
-            list.add(DTOResponseOM.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseOM>(list, pageable, list.size());
     }
     public DTOResponseOM retrieve(UUID id){
-        return DTOResponseOM.toDTO(repositoryOM.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryOM.findById(id).orElse(null));
     }
     public Page<DTOResponseOM> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseOM> list = new ArrayList<>();
         if (source == null) {
             for (OM role : repositoryOM.findAll()) {
-                list.add(DTOResponseOM.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         } else {
             for (OM role : repositoryOM.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponseOM.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseOM update(UUID id, DTORequestOM updated){
-        OM object = repositoryOM.findById(id).orElse(null);
-        object.setName(updated.getName());
-        return DTOResponseOM.toDTO(repositoryOM.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryOM.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseOM delete(UUID id){
         OM object = repositoryOM.findById(id).orElse(null);
         repositoryOM.deleteById(id);
-        return DTOResponseOM.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryOM.deleteAll();

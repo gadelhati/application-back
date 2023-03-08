@@ -1,7 +1,6 @@
 package br.eti.gadelha.persistence.payload.request;
 
 import br.eti.gadelha.persistence.model.*;
-import br.eti.gadelha.persistence.model.synopticObservation.Station;
 import br.eti.gadelha.persistence.model.synopticObservation.StationCategory;
 import lombok.Getter;
 
@@ -24,8 +23,4 @@ public class DTORequestStation {
     private Surveying surveying;
     private Institution responsible;
     private Country country;
-
-    public Station toObject(){
-        return new Station(localDepth, activation, latitude, longitude, marsdenSquare, marsdenSubSquare_1, wmoSquare, marsdenSubSquare_5, stationCategory, equipment, surveying, responsible, country);
-    }
 }

@@ -1,8 +1,6 @@
 package br.eti.gadelha.persistence.payload.response;
 
 import br.eti.gadelha.persistence.model.Country;
-import br.eti.gadelha.persistence.model.synopticObservation.Station;
-import br.eti.gadelha.persistence.model.sailingDirection.Commission;
 import br.eti.gadelha.persistence.model.Equipment;
 import br.eti.gadelha.persistence.model.Institution;
 import br.eti.gadelha.persistence.model.synopticObservation.StationCategory;
@@ -22,8 +20,4 @@ public class DTOResponseStation {
     private Surveying surveying;
     private Institution responsible;
     private Country country;
-
-    public static DTOResponseStation toDTO(Station value) {
-        return new DTOResponseStation(value.getId(), value.getLocalDepth(), value.getStationCategory(), value.getEquipment(), value.getSurveying(), value.getResponsible(), value.getCountry());
-    }
 }

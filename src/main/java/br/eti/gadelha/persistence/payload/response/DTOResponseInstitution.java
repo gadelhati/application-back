@@ -1,7 +1,6 @@
 package br.eti.gadelha.persistence.payload.response;
 
 import br.eti.gadelha.persistence.model.Country;
-import br.eti.gadelha.persistence.model.Institution;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,8 +12,4 @@ public class DTOResponseInstitution {
     private UUID id;
     private String name;
     private Country country;
-
-    public static DTOResponseInstitution toDTO(Institution value) {
-        return new DTOResponseInstitution(value.getId(), value.getName(), value.getCountry());
-    }
 }

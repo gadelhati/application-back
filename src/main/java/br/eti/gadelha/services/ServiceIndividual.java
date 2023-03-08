@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestIndividual;
 import br.eti.gadelha.persistence.payload.response.DTOResponseIndividual;
 import br.eti.gadelha.persistence.model.Individual;
@@ -20,57 +21,52 @@ public class ServiceIndividual implements ServiceInterface<DTOResponseIndividual
     private final RepositoryIndividual repositoryIndividual;
 
     public DTOResponseIndividual create(DTORequestIndividual created){
-        return DTOResponseIndividual.toDTO(repositoryIndividual.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryIndividual.save(MapStruct.MAPPER.toObject(created)));
     }
     public List<DTOResponseIndividual> retrieve(){
         List<DTOResponseIndividual> list = new ArrayList<>();
         for(Individual om: repositoryIndividual.findAll()) {
-            list.add(DTOResponseIndividual.toDTO(om));
+            list.add(MapStruct.MAPPER.toDTO(om));
         }
         return list;
     }
     public Page<DTOResponseIndividual> retrieve(Pageable pageable){
         List<DTOResponseIndividual> list = new ArrayList<>();
         for(Individual role: repositoryIndividual.findAll()) {
-            list.add(DTOResponseIndividual.toDTO(role));
+            list.add(MapStruct.MAPPER.toDTO(role));
         }
         return new PageImpl<DTOResponseIndividual>(list, pageable, list.size());
     }
     public Page<DTOResponseIndividual> retrieve(Pageable pageable, String source) {
         List<DTOResponseIndividual> list = new ArrayList<>();
         for(Individual object: repositoryIndividual.findAll()) {
-            list.add(DTOResponseIndividual.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseIndividual>(list, pageable, list.size());
     }
     public DTOResponseIndividual retrieve(UUID id){
-        return DTOResponseIndividual.toDTO(repositoryIndividual.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryIndividual.findById(id).orElse(null));
     }
     public Page<DTOResponseIndividual> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseIndividual> list = new ArrayList<>();
         if (source == null) {
             for (Individual role : repositoryIndividual.findAll()) {
-                list.add(DTOResponseIndividual.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         } else {
             for (Individual role : repositoryIndividual.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponseIndividual.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseIndividual update(UUID id, DTORequestIndividual updated){
-        Individual object = repositoryIndividual.findById(id).orElse(null);
-        object.setName(updated.getName());
-        object.setBirthdate(updated.getBirthdate());
-        object.setGender(updated.getGender());
-        object.setCpf(updated.getCpf());
-        return DTOResponseIndividual.toDTO(repositoryIndividual.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryIndividual.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseIndividual delete(UUID id){
         Individual object = repositoryIndividual.findById(id).orElse(null);
         repositoryIndividual.deleteById(id);
-        return DTOResponseIndividual.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryIndividual.deleteAll();

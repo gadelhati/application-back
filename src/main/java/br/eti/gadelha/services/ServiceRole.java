@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestRole;
 import br.eti.gadelha.persistence.payload.response.DTOResponseRole;
 import br.eti.gadelha.persistence.model.Role;
@@ -20,22 +21,22 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
     private final RepositoryRole repositoryRole;
 
     public DTOResponseRole create(DTORequestRole created){
-        return DTOResponseRole.toDTO(repositoryRole.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryRole.save(MapStruct.MAPPER.toObject(created)));
     }
     public DTOResponseRole retrieve(UUID id) {
-        return DTOResponseRole.toDTO(repositoryRole.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryRole.findById(id).orElse(null));
     }
     public List<DTOResponseRole> retrieve(){
         List<DTOResponseRole> list = new ArrayList<>();
         for(Role role: repositoryRole.findAll()) {
-            list.add(DTOResponseRole.toDTO(role));
+            list.add(MapStruct.MAPPER.toDTO(role));
         }
         return list;
     }
     public Page<DTOResponseRole> retrieve(Pageable pageable){
         List<DTOResponseRole> list = new ArrayList<>();
         for(Role role: repositoryRole.findAll()) {
-            list.add(DTOResponseRole.toDTO(role));
+            list.add(MapStruct.MAPPER.toDTO(role));
         }
         return new PageImpl<DTOResponseRole>(list, pageable, list.size());
     }
@@ -43,24 +44,22 @@ public class ServiceRole implements ServiceInterface<DTOResponseRole, DTORequest
         final List<DTOResponseRole> list = new ArrayList<>();
         if (source == null) {
             for (Role role : repositoryRole.findAll()) {
-                list.add(DTOResponseRole.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         } else {
             for (Role role : repositoryRole.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponseRole.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseRole update(UUID id, DTORequestRole updated){
-        Role role = repositoryRole.findById(id).orElse(null);
-        role.setName(updated.getName());
-        return DTOResponseRole.toDTO(repositoryRole.save(role));
+        return MapStruct.MAPPER.toDTO(repositoryRole.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseRole delete(UUID id){
         Role object = repositoryRole.findById(id).orElse(null);
         repositoryRole.deleteById(id);
-        return DTOResponseRole.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryRole.deleteAll();

@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.model.synopticObservation.StationOffShore;
 import br.eti.gadelha.persistence.payload.request.DTORequestStationOffShore;
 import br.eti.gadelha.persistence.payload.response.DTOResponseStationOffShore;
@@ -20,22 +21,22 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
     private final RepositoryStationShip repositoryStationShip;
 
     public DTOResponseStationOffShore create(DTORequestStationOffShore created){
-        return DTOResponseStationOffShore.toDTO(repositoryStationShip.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryStationShip.save(MapStruct.MAPPER.toObject(created)));
     }
     public DTOResponseStationOffShore retrieve(UUID id){
-        return DTOResponseStationOffShore.toDTO(repositoryStationShip.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryStationShip.findById(id).orElse(null));
     }
     public List<DTOResponseStationOffShore> retrieve(){
         List<DTOResponseStationOffShore> list = new ArrayList<>();
         for(StationOffShore object: repositoryStationShip.findAll()) {
-            list.add(DTOResponseStationOffShore.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return list;
     }
     public Page<DTOResponseStationOffShore> retrieve(Pageable pageable){
         List<DTOResponseStationOffShore> list = new ArrayList<>();
         for(StationOffShore object: repositoryStationShip.findAll()) {
-            list.add(DTOResponseStationOffShore.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseStationOffShore>(list, pageable, list.size());
     }
@@ -43,38 +44,22 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
         final List<DTOResponseStationOffShore> list = new ArrayList<>();
         if (source == null) {
             for (StationOffShore object : repositoryStationShip.findAll()) {
-                list.add(DTOResponseStationOffShore.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         } else {
 //            for (StationShip object : repositoryStationShip.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-//                list.add(DTOResponseStationShip.toDTO(object));
+//                list.add(MapStruct.MAPPER.toDTO(object));
 //            }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseStationOffShore update(UUID id, DTORequestStationOffShore updated){
-        StationOffShore object = repositoryStationShip.findById(id).orElse(null);
-        object.setLocalDepth(updated.getLocalDepth());
-        object.setCommission(updated.getCommission());
-        object.setStationCategory(updated.getStationCategory());
-        object.setEquipment(updated.getEquipment());
-        object.setSurveying(updated.getSurveying());
-        object.setResponsible(updated.getResponsible());
-        object.setCountry(updated.getCountry());
-
-        object.setLatitude(updated.getLatitude());
-        object.setLongitude(updated.getLongitude());
-        object.setTelegraphicCallsign(updated.getTelegraphicCallsign());
-        object.setMarsdenSquare(updated.getMarsdenSquare());
-        object.setMarsdenSubSquare_1(updated.getMarsdenSubSquare_1());
-        object.setWmoSquare(updated.getWmoSquare());
-        object.setMarsdenSubSquare_5(updated.getMarsdenSubSquare_5());
-        return DTOResponseStationOffShore.toDTO(repositoryStationShip.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryStationShip.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseStationOffShore delete(UUID id){
         StationOffShore object = repositoryStationShip.findById(id).orElse(null);
         repositoryStationShip.deleteById(id);
-        return DTOResponseStationOffShore.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryStationShip.deleteAll();

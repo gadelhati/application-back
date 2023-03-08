@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestUser;
 import br.eti.gadelha.persistence.payload.request.DTORequestJwt;
 import br.eti.gadelha.persistence.payload.response.DTOResponseUser;
@@ -61,22 +62,22 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
                 created.isActive(),
                 created.getRoles()
         );
-        return DTOResponseUser.toDTO(repositoryUser.save(user));
+        return MapStruct.MAPPER.toDTO(repositoryUser.save(user));
     }
     public DTOResponseUser retrieve(UUID id){
-        return DTOResponseUser.toDTO(repositoryUser.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryUser.findById(id).orElse(null));
     }
     public List<DTOResponseUser> retrieve(){
         List<DTOResponseUser> list = new ArrayList<>();
         for(User user: repositoryUser.findAll()) {
-            list.add(DTOResponseUser.toDTO(user));
+            list.add(MapStruct.MAPPER.toDTO(user));
         }
         return list;
     }
     public Page<DTOResponseUser> retrieve(Pageable pageable){
         List<DTOResponseUser> list = new ArrayList<>();
         for(User object: repositoryUser.findAll()) {
-            list.add(DTOResponseUser.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
     }
@@ -84,11 +85,11 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
         final List<DTOResponseUser> list = new ArrayList<>();
         if (source == null) {
             for (User user : repositoryUser.findAll()) {
-                list.add(DTOResponseUser.toDTO(user));
+                list.add(MapStruct.MAPPER.toDTO(user));
             }
         } else {
             for (User object : repositoryUser.findByUsernameContainingIgnoreCaseOrderByUsernameAsc(source)) {
-                list.add(DTOResponseUser.toDTO(object));
+                list.add(MapStruct.MAPPER.toDTO(object));
             }
         }
         return new PageImpl<DTOResponseUser>(list, pageable, list.size());
@@ -108,12 +109,12 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
             roleList.add(search);
         }
         user.setRoles(roleList);
-        return DTOResponseUser.toDTO(repositoryUser.save(user));
+        return MapStruct.MAPPER.toDTO(repositoryUser.save(user));
     }
     public DTOResponseUser delete(UUID id){
         User object = repositoryUser.findById(id).orElse(null);
         repositoryUser.deleteById(id);
-        return DTOResponseUser.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryUser.deleteAll();
@@ -143,7 +144,7 @@ public class ServiceUser implements UserDetailsService, ServiceInterface<DTOResp
     public DTOResponseUser changePassword(UUID id, DTORequestUser updated){
         User user = repositoryUser.findById(id).orElse(null);
         user.setPassword(encoder.encode(updated.getPassword()));
-        return DTOResponseUser.toDTO(repositoryUser.save(user));
+        return MapStruct.MAPPER.toDTO(repositoryUser.save(user));
     }
     @Override
     @Transactional

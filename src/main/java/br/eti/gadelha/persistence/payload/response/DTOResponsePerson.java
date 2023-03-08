@@ -5,8 +5,9 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-@Getter @AllArgsConstructor
-public class DTOResponseCountry {
+@AllArgsConstructor
+@Getter
+public class DTOResponsePerson {
 
     private UUID id;
     private String name;

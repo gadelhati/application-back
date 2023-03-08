@@ -1,5 +1,6 @@
 package br.eti.gadelha.services;
 
+import br.eti.gadelha.persistence.MapStruct;
 import br.eti.gadelha.persistence.payload.request.DTORequestFederativeUnit;
 import br.eti.gadelha.persistence.payload.response.DTOResponseFederativeUnit;
 import br.eti.gadelha.persistence.model.FederativeUnit;
@@ -20,54 +21,52 @@ public class ServiceFederativeUnit implements ServiceInterface<DTOResponseFedera
     private final RepositoryFederativeUnit repositoryFederativeUnit;
 
     public DTOResponseFederativeUnit create(DTORequestFederativeUnit created){
-        return DTOResponseFederativeUnit.toDTO(repositoryFederativeUnit.save(created.toObject()));
+        return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.save(MapStruct.MAPPER.toObject(created)));
     }
     public List<DTOResponseFederativeUnit> retrieve(){
         List<DTOResponseFederativeUnit> list = new ArrayList<>();
         for(FederativeUnit om: repositoryFederativeUnit.findAll()) {
-            list.add(DTOResponseFederativeUnit.toDTO(om));
+            list.add(MapStruct.MAPPER.toDTO(om));
         }
         return list;
     }
     public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable){
         List<DTOResponseFederativeUnit> list = new ArrayList<>();
         for(FederativeUnit role: repositoryFederativeUnit.findAll()) {
-            list.add(DTOResponseFederativeUnit.toDTO(role));
+            list.add(MapStruct.MAPPER.toDTO(role));
         }
         return new PageImpl<DTOResponseFederativeUnit>(list, pageable, list.size());
     }
     public Page<DTOResponseFederativeUnit> retrieve(Pageable pageable, String source) {
         List<DTOResponseFederativeUnit> list = new ArrayList<>();
         for(FederativeUnit object: repositoryFederativeUnit.findAll()) {
-            list.add(DTOResponseFederativeUnit.toDTO(object));
+            list.add(MapStruct.MAPPER.toDTO(object));
         }
         return new PageImpl<DTOResponseFederativeUnit>(list, pageable, list.size());
     }
     public DTOResponseFederativeUnit retrieve(UUID id){
-        return DTOResponseFederativeUnit.toDTO(repositoryFederativeUnit.findById(id).orElse(null));
+        return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.findById(id).orElse(null));
     }
     public Page<DTOResponseFederativeUnit> retrieveSource(Pageable pageable, String source){
         final List<DTOResponseFederativeUnit> list = new ArrayList<>();
         if (source == null) {
             for (FederativeUnit role : repositoryFederativeUnit.findAll()) {
-                list.add(DTOResponseFederativeUnit.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         } else {
             for (FederativeUnit role : repositoryFederativeUnit.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
-                list.add(DTOResponseFederativeUnit.toDTO(role));
+                list.add(MapStruct.MAPPER.toDTO(role));
             }
         }
         return new PageImpl<>(list, pageable, list.size());
     }
     public DTOResponseFederativeUnit update(UUID id, DTORequestFederativeUnit updated){
-        FederativeUnit object = repositoryFederativeUnit.findById(id).orElse(null);
-        object.setName(updated.getName());
-        return DTOResponseFederativeUnit.toDTO(repositoryFederativeUnit.save(object));
+        return MapStruct.MAPPER.toDTO(repositoryFederativeUnit.save(MapStruct.MAPPER.toObject(updated)));
     }
     public DTOResponseFederativeUnit delete(UUID id){
         FederativeUnit object = repositoryFederativeUnit.findById(id).orElse(null);
         repositoryFederativeUnit.deleteById(id);
-        return DTOResponseFederativeUnit.toDTO(object);
+        return MapStruct.MAPPER.toDTO(object);
     }
     public void delete() {
         repositoryFederativeUnit.deleteAll();
