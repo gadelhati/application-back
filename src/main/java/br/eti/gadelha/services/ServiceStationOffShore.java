@@ -2,7 +2,7 @@ package br.eti.gadelha.services;
 
 import br.eti.gadelha.persistence.model.synopticObservation.StationOffShore;
 import br.eti.gadelha.persistence.payload.request.DTORequestStationOffShore;
-import br.eti.gadelha.persistence.payload.response.DTOResponseStationShip;
+import br.eti.gadelha.persistence.payload.response.DTOResponseStationOffShore;
 import br.eti.gadelha.persistence.repository.RepositoryStationShip;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,35 +15,35 @@ import java.util.List;
 import java.util.UUID;
 
 @Service @RequiredArgsConstructor
-public class ServiceStationOffShore implements ServiceInterface<DTOResponseStationShip, DTORequestStationOffShore, StationOffShore> {
+public class ServiceStationOffShore implements ServiceInterface<DTOResponseStationOffShore, DTORequestStationOffShore, StationOffShore> {
 
     private final RepositoryStationShip repositoryStationShip;
 
-    public DTOResponseStationShip create(DTORequestStationOffShore created){
-        return DTOResponseStationShip.toDTO(repositoryStationShip.save(created.toObject()));
+    public DTOResponseStationOffShore create(DTORequestStationOffShore created){
+        return DTOResponseStationOffShore.toDTO(repositoryStationShip.save(created.toObject()));
     }
-    public DTOResponseStationShip retrieve(UUID id){
-        return DTOResponseStationShip.toDTO(repositoryStationShip.findById(id).orElse(null));
+    public DTOResponseStationOffShore retrieve(UUID id){
+        return DTOResponseStationOffShore.toDTO(repositoryStationShip.findById(id).orElse(null));
     }
-    public List<DTOResponseStationShip> retrieve(){
-        List<DTOResponseStationShip> list = new ArrayList<>();
+    public List<DTOResponseStationOffShore> retrieve(){
+        List<DTOResponseStationOffShore> list = new ArrayList<>();
         for(StationOffShore object: repositoryStationShip.findAll()) {
-            list.add(DTOResponseStationShip.toDTO(object));
+            list.add(DTOResponseStationOffShore.toDTO(object));
         }
         return list;
     }
-    public Page<DTOResponseStationShip> retrieve(Pageable pageable){
-        List<DTOResponseStationShip> list = new ArrayList<>();
+    public Page<DTOResponseStationOffShore> retrieve(Pageable pageable){
+        List<DTOResponseStationOffShore> list = new ArrayList<>();
         for(StationOffShore object: repositoryStationShip.findAll()) {
-            list.add(DTOResponseStationShip.toDTO(object));
+            list.add(DTOResponseStationOffShore.toDTO(object));
         }
-        return new PageImpl<DTOResponseStationShip>(list, pageable, list.size());
+        return new PageImpl<DTOResponseStationOffShore>(list, pageable, list.size());
     }
-    public Page<DTOResponseStationShip> retrieve(Pageable pageable, String source){
-        final List<DTOResponseStationShip> list = new ArrayList<>();
+    public Page<DTOResponseStationOffShore> retrieve(Pageable pageable, String source){
+        final List<DTOResponseStationOffShore> list = new ArrayList<>();
         if (source == null) {
             for (StationOffShore object : repositoryStationShip.findAll()) {
-                list.add(DTOResponseStationShip.toDTO(object));
+                list.add(DTOResponseStationOffShore.toDTO(object));
             }
         } else {
 //            for (StationShip object : repositoryStationShip.findByNameContainingIgnoreCaseOrderByNameAsc(source)) {
@@ -52,7 +52,7 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
         }
         return new PageImpl<>(list, pageable, list.size());
     }
-    public DTOResponseStationShip update(UUID id, DTORequestStationOffShore updated){
+    public DTOResponseStationOffShore update(UUID id, DTORequestStationOffShore updated){
         StationOffShore object = repositoryStationShip.findById(id).orElse(null);
         object.setLocalDepth(updated.getLocalDepth());
         object.setCommission(updated.getCommission());
@@ -69,12 +69,12 @@ public class ServiceStationOffShore implements ServiceInterface<DTOResponseStati
         object.setMarsdenSubSquare_1(updated.getMarsdenSubSquare_1());
         object.setWmoSquare(updated.getWmoSquare());
         object.setMarsdenSubSquare_5(updated.getMarsdenSubSquare_5());
-        return DTOResponseStationShip.toDTO(repositoryStationShip.save(object));
+        return DTOResponseStationOffShore.toDTO(repositoryStationShip.save(object));
     }
-    public DTOResponseStationShip delete(UUID id){
+    public DTOResponseStationOffShore delete(UUID id){
         StationOffShore object = repositoryStationShip.findById(id).orElse(null);
         repositoryStationShip.deleteById(id);
-        return DTOResponseStationShip.toDTO(object);
+        return DTOResponseStationOffShore.toDTO(object);
     }
     public void delete() {
         repositoryStationShip.deleteAll();
